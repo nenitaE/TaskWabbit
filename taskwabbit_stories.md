@@ -44,3 +44,35 @@
     * I would like the button to be on both the '/signup' and '/login' pages so I can easily
         notice it.
 
+
+## Log Out
+
+* If I'm a logged in user, I want to be able to log out via an easy to find log-out button on the
+    navigation bar.
+    * While on any page of the site:
+        * I can log out of my account and be redirected to the homepage.
+        * This way I can have peace of mind easily by quickly logging out to keep my information secure.
+
+## Choose a Task
+
+* If I'm a logged out user:
+    * I should be able to access the search filter for my task I want done.
+        * doing this should save the tasktype I want and redirect me to the sign-up login menu
+        * If I decide to signup or login it should redirect me to the next part of the form
+            and continue to create my task.
+
+* If I'm a logged in user:
+    * I should be able to access the search filter for my task I want done.
+        * doing this should save the tasktype and get the form to fill out my tasks details.
+
+
+## Task Details
+
+* If I'm a logged out user:
+    * I should only be able to access the form to create a task (task details) after signing up or logging in
+
+* If I'm a logged in user:
+    * I should be able to access the form to create a task through the "Choose a Task" search filter
+    * I should be able to access and see the details about any previous tasks I have created
+
+* 
