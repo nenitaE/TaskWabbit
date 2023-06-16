@@ -102,3 +102,16 @@
         * I should be able to change the star rating inside the review for the specific tasker
 
 
+## Becoming a Tasker
+
+* If I'm a logged out user:
+    * I should not be able to have access to become a Tasker
+
+* If I'm a logged in user:
+    * I should have access to become a Tasker
+        * I should see a button near the logout button in the navigation bar "become a tasker"
+            * pressing this button should bring me to a form to fill out needed information to become a tasker
+    * Once I have become a Tasker I should be available to perform tasks of the type I specified
+        for other people in my area.
+
+    
