@@ -75,4 +75,19 @@
     * I should be able to access the form to create a task through the "Choose a Task" search filter
     * I should be able to access and see the details about any previous tasks I have created
 
-* 
+    * I would like the layout of the form to be easy to read and come in multiple steps so I
+        don't get overwhelmed while trying to create my task.
+        * I would like a bar at the top with 4 stopping points to let me know where I am
+            in the form.
+            * clicking on any of those stopping points should bring me to that part of the form
+            * each stopping point should have a title for that part of the form so I can easily
+                see where I am currently
+            * once I finish one stopping point on the form I want to see a continue button that
+                takes me to the next stopping point
+
+            * once I reach the last stopping point I would like to see a Confirm button to let me know I am
+                about to create this task
+
+* upon submission of the form I would like to see my new task added to my list of tasks
+
+
