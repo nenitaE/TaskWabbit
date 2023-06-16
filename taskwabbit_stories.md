@@ -91,3 +91,14 @@
 * upon submission of the form I would like to see my new task added to my list of tasks
 
 
+## Tasker Reviews
+
+* If I'm a logged out user:
+    * I should not be able to post any reviews for any taskers
+
+* If I'm a logged in user:
+    * I should be able to create, update or delete a review for taskers that have finished
+        a task for me.
+        * I should be able to change the star rating inside the review for the specific tasker
+
+
