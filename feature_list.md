@@ -9,8 +9,7 @@ Features:
 3. Select price & confirm: GET "more like a filter of the different taskers"
 4. Get assigned a tasker: GET POST "find the tasker you want and then pay them in a cart"
 5. Reviews for the tasker after Task completion: GET, POST, PUT, DELETE
-
-possible make a join table for taskers and allow the user to become a tasker through that join table.
+6. make a join table for taskers and allow the user to become a tasker through that join table.
 
 
 Possible bonuses:

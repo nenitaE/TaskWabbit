@@ -114,4 +114,3 @@
     * Once I have become a Tasker I should be available to perform tasks of the type I specified
         for other people in my area.
 
-    
