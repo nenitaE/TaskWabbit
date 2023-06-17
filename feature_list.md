@@ -38,7 +38,18 @@ Methods: GET, POST (find the tasker you want and then pay them in a cart)
 
 Only logged in users are allowed to choose a tasker for their task
 
-## 5. Reviews for the tasker after Task completion:
+## 5. Become a tasker:
+Method: GET, POST, PUT, DELETE
+
+* Taskers can sign up, log in, and log out.
+* When a Tasker logs in they should be directed to their profile page
+     * the navigation bar should not show sign-up, log-in and become-a-tasker
+     * the navigation bar should show logout
+* When a Tasker logs out they should be directed to the homepage.
+    * the navigation bar should not show become-a-tasker and logout
+    * the navigation bar should show sign-up, log-in and become-a-tasker
+
+## BONUS. Reviews for the tasker after Task completion:
 Methods: GET, POST, PUT, DELETE
 
 Only logged in users are allowed to view, create, update or delete a review for taskers they have used
