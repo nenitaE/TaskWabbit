@@ -56,10 +56,10 @@ class Task(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    taskTypeId = db.Column(db.Integer,  db.ForeignKey(add_prefix_for_prod('taskType.id')), nullable=False)
+    taskTypeId = db.Column(db.Integer,  db.ForeignKey(add_prefix_for_prod('TaskType.id')), nullable=False)
     title = db.Column(db.String(100), nullable=False)
     description = db.Column(db.String(500), nullable=False)
-    totalPrice = db.Column(db.Integer, nullable=False)
+    totalPrice = db.Column(db.Float, nullable=False)
     location = db.Column(db.String(100))
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('Users.id')), nullable=False)
     tasker_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('Users.id')), nullable=False)
@@ -89,9 +89,8 @@ class Payment(db.Model):
 
 
 
-
 class TaskerTaskType(db.Model):
-    __tablename__ = 'Taskers_taskType'
+    __tablename__ = 'TaskerTaskTypes'
 
     if environment == "production":
         __table_args__ = {'schema': SCHEMA}
@@ -99,7 +98,7 @@ class TaskerTaskType(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     hourlyRate = db.Column(db.Integer)
     tasker_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('Users.id')), nullable=False)
-    taskType_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('taskType.id')), nullable=False)
+    taskType_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('TaskType.id')), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow)
 
@@ -125,15 +124,15 @@ class Review(db.Model):
 
 
 class TaskType(db.Model):
-    __tablename__ = 'taskType'
+    __tablename__ = 'TaskType'
 
     if environment == "production":
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
     type = db.Column(db.Text)
-    createdAt = db.Column(db.Time)
-    updatedAt = db.Column(db.Time)
+    createdAt = db.Column(db.DateTime, default=datetime.utcnow)
+    updatedAt = db.Column(db.DateTime, default=datetime.utcnow)
 
     tasks = db.relationship('Task', back_populates='taskType')
     taskerTaskTypes = db.relationship('TaskerTaskType', back_populates='taskType')

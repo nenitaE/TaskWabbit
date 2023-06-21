@@ -34,10 +34,21 @@ def seed_users():
        isTasker=True,
        password='password'
     )
+    cameron = User(
+       firstName='Cameron',
+       lastName='Smith',
+       username='cameron',
+       phone='6193367575',
+       location='California',
+       email='cam@aa.io',
+       isTasker=True,
+       password='password'
+    )
 
     db.session.add(demo)
     db.session.add(marnie)
     db.session.add(bobbie)
+    db.session.add(cameron)
     db.session.commit()
 
 
