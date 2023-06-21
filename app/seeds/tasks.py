@@ -5,7 +5,7 @@ from sqlalchemy.sql import text
 
 def seed_tasks():
     task1 = Task(
-        taskTypeId=8,
+        taskTypeId=4,
         title='Get icecream from popular icecream place',
         description='Stand in a looooong line to get me some icecream any flavor',
         totalPrice=130.65,

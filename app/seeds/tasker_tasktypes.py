@@ -58,7 +58,7 @@ def seed_taskerTaskTypes():
     taskersTaskType11 = TaskerTaskType(
         hourlyRate = 90,
         tasker_id = 2,
-        taskType_id = 0
+        taskType_id = 1
     )
     taskersTaskType12 = TaskerTaskType(
         hourlyRate = 60,
