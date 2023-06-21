@@ -21,7 +21,7 @@ def seed_users():
         phone='0987654321',
         location='California',
         email='marnie@aa.io',
-        isTasker=False,
+        isTasker=True,
         password='password'
     )
     bobbie = User(
@@ -41,7 +41,7 @@ def seed_users():
        phone='6193367575',
        location='California',
        email='cam@aa.io',
-       isTasker=True,
+       isTasker=False,
        password='password'
     )
 

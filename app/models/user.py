@@ -61,6 +61,7 @@ class Task(db.Model):
     description = db.Column(db.String(500), nullable=False)
     totalPrice = db.Column(db.Float, nullable=False)
     location = db.Column(db.String(100))
+    task_datetime = db.Column(db.DateTime, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('Users.id')), nullable=False)
     tasker_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('Users.id')), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
