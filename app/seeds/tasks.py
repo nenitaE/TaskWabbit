@@ -1,8 +1,7 @@
 
-
-from app.models.user import db, Task, environment, SCHEMA
+from app.models.task import db, Task, environment, SCHEMA
 from sqlalchemy.sql import text
-from datetime import datetime
+from datetime import date
 
 def seed_tasks():
     task1 = Task(
@@ -11,7 +10,7 @@ def seed_tasks():
         description='Stand in a looooong line to get me some icecream any flavor',
         totalPrice=130.65,
         location='California',
-        task_datetime=datetime(2023, 6, 21, 13, 45), # This sets the task_datetime to June 21, 2023 at 13:45
+        task_date=date(2023, 6, 21), # This sets the task_datetime to June 21, 2023
         user_id=1,
         tasker_id=2
     )
@@ -21,7 +20,7 @@ def seed_tasks():
         description='I would like this huge sword to be mounted on my wall',
         totalPrice=256.34,
         location='California',
-        task_datetime=datetime(2022, 6, 21, 6, 45),
+        task_date=date(2022, 6, 21),
         user_id=1,
         tasker_id=3
     )
@@ -32,7 +31,7 @@ def seed_tasks():
         description='tons of cleaning needed of a newly aquired house',
         totalPrice=1056.65,
         location='California',
-        task_datetime=datetime(2021, 6, 21, 17, 45),
+        task_date=date(2021, 6, 21),
         user_id=2,
         tasker_id=1
     )
@@ -43,7 +42,7 @@ def seed_tasks():
         description='Garage door wont open, it gets stuck on something',
         totalPrice=333.75,
         location='California',
-        task_datetime=datetime(2020, 6, 21, 18, 45),
+        task_date=date(2020, 6, 21),
         user_id=2,
         tasker_id=3
     )
@@ -54,7 +53,7 @@ def seed_tasks():
         description='The last people who owned the house let the backyard go wild full removal of plants',
         totalPrice=435.65,
         location='California',
-        task_datetime=datetime(2023, 6, 21, 19, 45),
+        task_date=date(2023, 6, 21),
         user_id=3,
         tasker_id=1
     )
@@ -65,7 +64,7 @@ def seed_tasks():
         description='My bathtub faucet burst and I cant stop it from coming out!!',
         totalPrice=1233.89,
         location='California',
-        task_datetime=datetime(2023, 6, 21, 20, 45),
+        task_date=date(2023, 6, 21),
         user_id=3,
         tasker_id=3
     )
