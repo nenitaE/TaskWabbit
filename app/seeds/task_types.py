@@ -1,4 +1,4 @@
-from app.models.user import db, TaskType, environment, SCHEMA
+from app.models.tasktype import db, TaskType, environment, SCHEMA
 from sqlalchemy.sql import text
 
 def seed_task_types():

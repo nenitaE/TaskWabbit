@@ -1,5 +1,5 @@
 
-from app.models.user import db, Payment, environment, SCHEMA
+from app.models.payment import db, Payment, environment, SCHEMA
 from sqlalchemy.sql import text
 
 def seed_payments():
