@@ -3,7 +3,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from datetime import datetime
 
-class Review(db.Model):
+class Review(db.Model, UserMixin):
     __tablename__ = 'Reviews'
 
     if environment == "production":

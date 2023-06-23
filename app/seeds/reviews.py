@@ -1,4 +1,4 @@
-from app.models.user import db, Review , environment, SCHEMA
+from app.models.review import db, Review , environment, SCHEMA
 from sqlalchemy.sql import text
 
 
@@ -22,11 +22,55 @@ def seed_reviews():
         user_id=2,
         tasker_id=2
     )
+    review4 = Review(
+        description='Did not Arrived on time and was very professional and fast.',
+        rating=3,
+        user_id=1,
+        tasker_id=2
+    )
+    review5 = Review(
+        description='Great job! was not professional.',
+        rating=4,
+        user_id=2,
+        tasker_id=1
+    )
+    review6 = Review(
+        description='Great job! and fast.',
+        rating=5,
+        user_id=4,
+        tasker_id=1
+    )
+    review7 = Review(
+        description='Arrived on time and was very professional and fast.',
+        rating=5,
+        user_id=2,
+        tasker_id=3
+    )
+    review8 = Review(
+        description='Great job!.',
+        rating=5,
+        user_id=3,
+        tasker_id=1
+    )
+    review9 = Review(
+        description='Arrived late and was not professional and fast.',
+        rating=3,
+        user_id=3,
+        tasker_id=2
+    )
+
+
 
 
     db.session.add(review1)
     db.session.add(review2)
     db.session.add(review3)
+    db.session.add(review4)
+    db.session.add(review5)
+    db.session.add(review6)
+    db.session.add(review7)
+    db.session.add(review8)
+    db.session.add(review9)
     db.session.commit()
 
 
