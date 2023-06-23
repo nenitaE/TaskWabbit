@@ -12,8 +12,6 @@ def find_user(email):
 def get_curr_tasktypes():
     """
     Query for all tasktypes for the current tasker and returns 
-    them in a list of user dictionaries 
+    them in a list of tasker dictionaries 
     """
-    tasker_id = current_user.id
-    tasktypes = TaskerTaskType.query.join(User).filter(User.tasker)
-    return {'users': [user.to_dict() for user in users]}
+    pass
