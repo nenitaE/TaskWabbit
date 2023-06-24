@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, session, request
-from app.models import Task
+from app.models import Task, User
 from app.models import User, db
 from app.forms import CreateTaskForm
 from datetime import datetime
@@ -59,6 +59,7 @@ def update_task(taskId):
     form['csrf_token'].data = request.cookies['csrf_token']
 
     task = Task.query.get(taskId)
+    # print('HEY TASK', vars(task))
 
     if task is None:
         return jsonify({'message': 'Task not found'}), 404
@@ -95,3 +96,18 @@ def update_task(taskId):
         return task.to_dict()
 
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
+
+
+
+@task_routes.route('/current', methods=['GET'])
+@login_required
+def get_current_task():
+    '''
+    Query for all tasks of current user and return them in a list of dictionaries
+    '''
+    current_user_id = session.get('user_id')
+    user = User.query.get(current_user_id)
+    if user is None:
+        return jsonify({'error': 'User not found'}), 404
+    else:
+        return jsonify(user.to_dict_with_tasks())
