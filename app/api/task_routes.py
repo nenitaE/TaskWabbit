@@ -10,7 +10,7 @@ from flask_login import login_required
 task_routes = Blueprint('tasks', __name__)
 
 @task_routes.route('/', methods=['POST'])
-# @login_required                       #for testing purposes
+@login_required                       #for testing purposes
 def create_task():
     form = CreateTaskForm()
     # print('DATA', form.data)
@@ -53,7 +53,7 @@ def create_task():
 
 
 @task_routes.route('/<int:taskId>', methods=['PUT'])
-# @login_required
+@login_required
 def update_task(taskId):
     form = CreateTaskForm()
     form['csrf_token'].data = request.cookies['csrf_token']
