@@ -56,8 +56,8 @@ def seed_task_types():
 
 def undo_task_types():
     if environment == "production":
-        db.session.execute(f"TRUNCATE TABLE {SCHEMA}.taskType RESTART IDENTITY CASCADE;")
+        db.session.execute(f"TRUNCATE TABLE {SCHEMA}.tasktypes RESTART IDENTITY CASCADE;")
     else:
-        db.session.execute(text("DELETE FROM taskType"))
+        db.session.execute(text("DELETE FROM tasktypes"))
 
     db.session.commit()
