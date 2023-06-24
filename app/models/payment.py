@@ -4,15 +4,15 @@ from flask_login import UserMixin
 from datetime import datetime
 
 class Payment(db.Model, UserMixin):
-    __tablename__ = 'Payments'
+    __tablename__ = 'payments'
 
     if environment == "production":
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
     amount = db.Column(db.Float)
-    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('Users.id')), nullable=False)
-    task_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('Tasks.id')), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
+    task_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('tasks.id')), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow)
 

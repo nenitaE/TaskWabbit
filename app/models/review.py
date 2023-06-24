@@ -4,7 +4,7 @@ from flask_login import UserMixin
 from datetime import datetime
 
 class Review(db.Model, UserMixin):
-    __tablename__ = 'Reviews'
+    __tablename__ = 'reviews'
 
     if environment == "production":
         __table_args__ = {'schema': SCHEMA}
@@ -12,8 +12,8 @@ class Review(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     description = db.Column(db.String)
     rating = db.Column(db.Float)
-    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('Users.id')), nullable=False)
-    tasker_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('Users.id')), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
+    tasker_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow)
 
