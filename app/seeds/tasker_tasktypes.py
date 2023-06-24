@@ -1,11 +1,11 @@
 
 
-from app.models.user import db, TaskerTaskType,environment, SCHEMA
+from app.models.taskertasktype import db, TaskerTaskType,environment, SCHEMA
 from sqlalchemy.sql import text
 from sqlalchemy.exc import SQLAlchemyError
 
 
-def seed_taskerTaskTypes():
+def seed_TaskerTaskTypes():
     taskersTaskType1 = TaskerTaskType(
         hourlyRate = 25,
         tasker_id = 3,
@@ -88,12 +88,12 @@ def seed_taskerTaskTypes():
     db.session.commit()
 
 
-def undo_taskerTaskTypes():
+def undo_TaskerTaskTypes():
     try:
         if environment == "production":
-            db.session.execute(f"TRUNCATE table {SCHEMA}.taskerTaskTypes RESTART IDENTITY CASCADE;")
+            db.session.execute(f"TRUNCATE table {SCHEMA}.TaskerTaskTypes RESTART IDENTITY CASCADE;")
         else:
-            db.session.execute(text("DELETE FROM taskerTaskTypes"))
+            db.session.execute(text("DELETE FROM TaskerTaskTypes"))
         db.session.commit()
     except SQLAlchemyError as e:
-        print(f"An error occurred while truncating/deleting taskerTaskTypes: {str(e)}")
+        print(f"An error occurred while truncating/deleting TaskerTaskTypes: {str(e)}")
