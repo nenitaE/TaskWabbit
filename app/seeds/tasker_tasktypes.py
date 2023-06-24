@@ -1,6 +1,6 @@
 
 
-from app.models.user import db, TaskerTaskType,environment, SCHEMA
+from app.models.taskertasktype import db, TaskerTaskType,environment, SCHEMA
 from sqlalchemy.sql import text
 from sqlalchemy.exc import SQLAlchemyError
 
