@@ -91,9 +91,9 @@ def seed_TaskerTaskTypes():
 def undo_TaskerTaskTypes():
     try:
         if environment == "production":
-            db.session.execute(f"TRUNCATE table {SCHEMA}.TaskerTaskTypes RESTART IDENTITY CASCADE;")
+            db.session.execute(f"TRUNCATE table {SCHEMA}.taskertasktypes RESTART IDENTITY CASCADE;")
         else:
-            db.session.execute(text("DELETE FROM TaskerTaskTypes"))
+            db.session.execute(text("DELETE FROM taskertasktypes"))
         db.session.commit()
     except SQLAlchemyError as e:
-        print(f"An error occurred while truncating/deleting TaskerTaskTypes: {str(e)}")
+        print(f"An error occurred while truncating/deleting taskertasktypes: {str(e)}")
