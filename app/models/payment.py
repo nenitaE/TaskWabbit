@@ -16,5 +16,5 @@ class Payment(db.Model, UserMixin):
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow)
 
-    user = db.relationship('user', back_populates='payments')
-    task = db.relationship('task', back_populates='payments')
+    user = db.relationship('User', back_populates='payments')
+    task = db.relationship('Task', back_populates='payments')

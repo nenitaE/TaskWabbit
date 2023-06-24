@@ -17,8 +17,8 @@ class Review(db.Model, UserMixin):
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow)
 
-    user = db.relationship('user',  foreign_keys='review.user_id', back_populates='reviews')
-    tasker = db.relationship('user', foreign_keys='review.tasker_id', back_populates='received_reviews')
+    user = db.relationship('User',  foreign_keys='Review.user_id', back_populates='reviews')
+    tasker = db.relationship('User', foreign_keys='Review.tasker_id', back_populates='received_reviews')
 
     def to_dict(self):
         return {

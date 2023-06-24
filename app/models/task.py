@@ -12,7 +12,7 @@ class Task(db.Model, UserMixin):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    taskTypeId = db.Column(db.Integer,  db.ForeignKey(add_prefix_for_prod('tasktype.id')), nullable=False)
+    taskTypeId = db.Column(db.Integer,  db.ForeignKey(add_prefix_for_prod('tasktypes.id')), nullable=False)
     title = db.Column(db.String(100), nullable=False)
     description = db.Column(db.String(500), nullable=False)
     totalPrice = db.Column(db.Float, nullable=False)
@@ -23,7 +23,7 @@ class Task(db.Model, UserMixin):
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow)
 
-    taskType = db.relationship('tasktype', back_populates='tasks')
-    user = db.relationship('user',foreign_keys='task.user_id', back_populates='tasks')
-    tasker = db.relationship('user', foreign_keys='task.tasker_id', back_populates='tasked_tasks')
-    payments = db.relationship('payment', back_populates='task', cascade="all, delete-orphan")
+    taskType = db.relationship('TaskType', back_populates='tasks')
+    user = db.relationship('User',foreign_keys='task.user_id', back_populates='tasks')
+    tasker = db.relationship('User', foreign_keys='task.tasker_id', back_populates='tasked_tasks')
+    payments = db.relationship('Payment', back_populates='task', cascade="all, delete-orphan")

@@ -12,9 +12,9 @@ class TaskerTaskType(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     hourlyRate = db.Column(db.Integer)
     tasker_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
-    taskType_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('tasktype.id')), nullable=False)
+    taskType_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('tasktypes.id')), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow)
 
-    tasker = db.relationship('user', back_populates='taskertasktypes')
-    taskType = db.relationship('tasktype', back_populates='taskertasktypes')
+    tasker = db.relationship('User', back_populates='taskertasktypes')
+    taskType = db.relationship('TaskType', back_populates='taskertasktypes')

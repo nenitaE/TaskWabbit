@@ -4,7 +4,7 @@ from flask_login import UserMixin
 from datetime import datetime
 
 class TaskType(db.Model):
-    __tablename__ = 'tasktype'
+    __tablename__ = 'tasktypes'
 
     if environment == "production":
         __table_args__ = {'schema': SCHEMA}
@@ -14,5 +14,5 @@ class TaskType(db.Model):
     createdAt = db.Column(db.DateTime, default=datetime.utcnow)
     updatedAt = db.Column(db.DateTime, default=datetime.utcnow)
 
-    tasks = db.relationship('Task', back_populates='tasktype')
-    taskerTaskTypes = db.relationship('Taskertasktype', back_populates='tasktype')
+    tasks = db.relationship('Task', back_populates='taskType')
+    taskertasktypes = db.relationship('TaskerTaskType', back_populates='taskType')
