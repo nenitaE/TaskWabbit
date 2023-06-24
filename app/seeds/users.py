@@ -38,7 +38,7 @@ def seed_users():
        firstName='Cameron',
        lastName='Smith',
        username='cameron',
-       phone='6193367575',
+       phone='1122334455',
        location='California',
        email='cam@aa.io',
        isTasker=False,

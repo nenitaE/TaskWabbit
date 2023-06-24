@@ -15,7 +15,7 @@ class User(db.Model, UserMixin):
     firstName = db.Column(db.String(50), nullable=False)
     lastName = db.Column(db.String(50), nullable=False)
     username = db.Column(db.String(40), nullable=False, unique=True)
-    phone = db.Column(db.String(10), unique=True)
+    phone = db.Column(db.Integer, unique=True)
     location = db.Column(db.String(100))
     email = db.Column(db.String(255), nullable=False, unique=True)
     isTasker = db.Column(db.Boolean, nullable = False)
