@@ -25,7 +25,7 @@ class User(db.Model, UserMixin):
 
     tasks = db.relationship('Task', foreign_keys='Task.user_id', back_populates='user', cascade='all, delete-orphan')
     tasked_tasks = db.relationship('Task', foreign_keys='Task.tasker_id', back_populates='tasker')
-    taskerTaskTypes = db.relationship('TaskerTaskType', back_populates='tasker')
+    taskertasktypes = db.relationship('TaskerTaskType', back_populates='tasker')
     reviews = db.relationship('Review', foreign_keys='Review.user_id', back_populates='user', cascade="all, delete-orphan")
     payments = db.relationship('Payment', back_populates='user',  cascade="all, delete-orphan")
     received_reviews = db.relationship('Review', foreign_keys='Review.tasker_id', back_populates='tasker', cascade="all, delete-orphan")

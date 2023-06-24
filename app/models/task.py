@@ -24,6 +24,6 @@ class Task(db.Model, UserMixin):
     updated_at = db.Column(db.DateTime, default=datetime.utcnow)
 
     taskType = db.relationship('TaskType', back_populates='tasks')
-    user = db.relationship('User',foreign_keys='task.user_id', back_populates='tasks')
-    tasker = db.relationship('User', foreign_keys='task.tasker_id', back_populates='tasked_tasks')
+    user = db.relationship('User',foreign_keys='Task.user_id', back_populates='tasks')
+    tasker = db.relationship('User', foreign_keys='Task.tasker_id', back_populates='tasked_tasks')
     payments = db.relationship('Payment', back_populates='task', cascade="all, delete-orphan")
