@@ -18,3 +18,9 @@ class TaskerTaskType(db.Model):
 
     tasker = db.relationship('User', back_populates='taskertasktypes')
     taskType = db.relationship('TaskType', back_populates='taskertasktypes')
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'taskTypeId': self.taskType_id,
+        }
