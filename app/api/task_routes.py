@@ -5,7 +5,7 @@ from app.forms import CreateTaskForm
 from datetime import datetime
 from sqlalchemy import and_
 from .auth_routes import validation_errors_to_error_messages
-from flask_login import login_required
+from flask_login import login_required, current_user
 
 task_routes = Blueprint('tasks', __name__)
 
@@ -96,3 +96,17 @@ def update_task(taskId):
         return task.to_dict()
 
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
+
+@task_routes.route('/current', methods=['GET'])
+@login_required
+def get_current_task():
+    '''
+    Query for all tasks of current user and return them in a list of dictionaries
+    '''
+    current_user_id = current_user.get_id()
+    print('CURRENT USERID', current_user_id)
+    user = User.query.get(current_user_id)
+    if user is None:
+        return jsonify({'error': 'User not found'}), 404
+    else:
+        return jsonify(user.to_dict_with_tasks())

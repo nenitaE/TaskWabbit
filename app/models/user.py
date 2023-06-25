@@ -61,7 +61,7 @@ class User(db.Model, UserMixin):
             'updatedAt': self.updated_at.isoformat(),
             'tasks': [task.to_dict() for task in self.tasks],
             'reviews': [review.to_dict() for review in self.received_reviews],
-            'taskerTaskTypes': [taskerTaskType.to_dict() for taskerTaskType in self.taskerTaskTypes]
+            'taskerTaskTypes': [taskertasktype.to_dict() for taskertasktype in self.taskertasktypes]
         }
 
     def to_dict_with_tasks(self):
