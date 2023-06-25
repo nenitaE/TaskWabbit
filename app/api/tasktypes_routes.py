@@ -9,7 +9,4 @@ def taskType():
     Query for all taskTypes and return them in a list of taskTypes
     """
     taskTypes = TaskType.query.all()
-
-
-    print(taskTypes, '------------------taksTypes----------------------')
     return jsonify({'TaskTypes': [taskType.to_dict_full() for taskType in taskTypes]})
