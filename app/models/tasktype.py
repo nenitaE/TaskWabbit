@@ -22,6 +22,4 @@ class TaskType(db.Model):
         return {
             'id': self.id,
             'type': self.type,
-            'createdAt': self.createdAt.isoformat(),
-            'updatedAt': self.updatedAt.isoformat(),
         }
