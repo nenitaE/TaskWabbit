@@ -3,7 +3,7 @@ from .users import seed_users, undo_users
 from .tasks import seed_tasks, undo_tasks
 from .task_types import seed_task_types, undo_task_types
 from .reviews import seed_reviews, undo_reviews
-from .tasker_tasktypes import seed_taskerTaskTypes, undo_taskerTaskTypes
+from .tasker_tasktypes import seed_TaskerTaskTypes, undo_TaskerTaskTypes
 from .payments import seed_payments, undo_payments
 
 from app.models.db import db, environment, SCHEMA
@@ -22,7 +22,7 @@ def seed():
         # the schema name (see comment in users.py undo_users function).
         # Make sure to add all your other model's undo functions below
 
-        undo_taskerTaskTypes()
+        undo_TaskerTaskTypes()
         undo_payments()
         undo_reviews()
         undo_tasks()
@@ -34,7 +34,7 @@ def seed():
     seed_tasks()
     seed_reviews()
     seed_payments()
-    seed_taskerTaskTypes()
+    seed_TaskerTaskTypes()
 
 
     # Add other seed functions here
@@ -43,7 +43,7 @@ def seed():
 # Creates the `flask seed undo` command
 @seed_commands.command('undo')
 def undo():
-    undo_taskerTaskTypes()
+    undo_TaskerTaskTypes()
     undo_payments()
     undo_reviews()
     undo_tasks()
