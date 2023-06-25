@@ -16,3 +16,12 @@ class TaskType(db.Model):
 
     tasks = db.relationship('Task', back_populates='taskType')
     taskertasktypes = db.relationship('TaskerTaskType', back_populates='taskType')
+
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'type': self.type,
+            'createdAt': self.createdAt.isoformat(),
+            'updatedAt': self.updatedAt.isoformat(),
+        }

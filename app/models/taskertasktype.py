@@ -16,5 +16,16 @@ class TaskerTaskType(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow)
 
+
     tasker = db.relationship('User', back_populates='taskertasktypes')
     taskType = db.relationship('TaskType', back_populates='taskertasktypes')
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'hourlyRate': self.hourlyRate,
+            'tasker_id': self.tasker_id,
+            'taskType_id': self.taskType_id,
+            'createdAt': self.created_at.isoformat(),
+            'updatedAt': self.updated_at.isoformat(),
+        }
