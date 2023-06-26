@@ -48,22 +48,26 @@ def add_tasktypes():
     if form.validate_on_submit():
         data = form.data
         tasker_id = data['tasker_id']
+        print(tasker_id, "**********TASKER_ID**************")
         taskerTaskTypes = TaskerTaskType.query.filter(
             and_(
                 TaskerTaskType.tasker_id == tasker_id
             )
         ).all()
 
+        print(taskerTaskTypes, "**********TASKERTASKTYPES**************")
+
         #check if form taskType_id already exists
         if data["taskType_id"] in taskerTaskTypes:
             return {'errors': 'Tasker is already assigned this tasktype'}, 400
-        if taskerTaskTypes is None:
-            return jsonify({'message': 'Task not found'}), 404
+        # if taskerTaskTypes is None:
+        #     return jsonify({'message': 'Task not found'}), 404
         
         #Create new tasktype
         new_taskertasktype = TaskerTaskType(hourlyRate=data["hourlyRate"],
                                             tasker_id=data["tasker_id"],
                                             taskType_id=data["taskType_id"])
+        print(new_taskertasktype, "*******NEWTASKETASKTYPE******")
         db.session.add(new_taskertasktype)
         db.session.commit()
         return new_taskertasktype.to_dict()
