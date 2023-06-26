@@ -25,5 +25,5 @@ class Review(db.Model, UserMixin):
             'description': self.description,
             'rating': self.rating,
             'user_id': self.user_id,
-            'takser_id': self.tasker_id
+            'tasker_id': self.tasker_id
         }

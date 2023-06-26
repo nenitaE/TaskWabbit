@@ -26,4 +26,20 @@ class Task(db.Model, UserMixin):
     taskType = db.relationship('TaskType', back_populates='tasks')
     user = db.relationship('User',foreign_keys='Task.user_id', back_populates='tasks')
     tasker = db.relationship('User', foreign_keys='Task.tasker_id', back_populates='tasked_tasks')
+    
     payments = db.relationship('Payment', back_populates='task', cascade="all, delete-orphan")
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'taskTypeId': self.taskTypeId,
+            'title': self.title,
+            'description': self.description,
+            'totalPrice': self.totalPrice,
+            'location': self.location,
+            'task_date': self.task_date.isoformat(), #isoformat() converts the date object to a string in the "YYYY-MM-DD" format,
+            'user_id': self.user_id,
+            'tasker_id': self.tasker_id,
+            'createdAt': self.created_at.isoformat(),
+            'updatedAt': self.updated_at.isoformat(),
+        }
