@@ -6,7 +6,7 @@ from datetime import datetime
 
 
 class User(db.Model, UserMixin):
-    __tablename__ = 'Users'
+    __tablename__ = 'users'
 
     if environment == "production":
         __table_args__ = {'schema': SCHEMA}
@@ -23,12 +23,12 @@ class User(db.Model, UserMixin):
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow)
 
-    tasks = db.relationship('Task', foreign_keys='Task.user_id', back_populates='user')
+    tasks = db.relationship('Task', foreign_keys='Task.user_id', back_populates='user', cascade='all, delete-orphan')
     tasked_tasks = db.relationship('Task', foreign_keys='Task.tasker_id', back_populates='tasker')
-    taskerTaskTypes = db.relationship('TaskerTaskType', back_populates='tasker')
-    reviews = db.relationship('Review', foreign_keys='Review.user_id', back_populates='user')
-    payments = db.relationship('Payment', back_populates='user')
-    received_reviews = db.relationship('Review', foreign_keys='Review.tasker_id', back_populates='tasker')
+    taskertasktypes = db.relationship('TaskerTaskType', back_populates='tasker')
+    reviews = db.relationship('Review', foreign_keys='Review.user_id', back_populates='user', cascade="all, delete-orphan")
+    payments = db.relationship('Payment', back_populates='user',  cascade="all, delete-orphan")
+    received_reviews = db.relationship('Review', foreign_keys='Review.tasker_id', back_populates='tasker', cascade="all, delete-orphan")
 
     @property
     def password(self):
@@ -46,4 +46,35 @@ class User(db.Model, UserMixin):
             'id': self.id,
             'username': self.username,
             'email': self.email
+        }
+    def to_dict_full(self):
+        return {
+            'id': self.id,
+            'firstName': self.firstName,
+            'lastName': self.lastName,
+            'username': self.username,
+            'phone': self.phone,
+            'location': self.location,
+            'email': self.email,
+            'isTasker': self.isTasker,
+            'createdAt': self.created_at.isoformat(),
+            'updatedAt': self.updated_at.isoformat(),
+            'tasks': [task.to_dict() for task in self.tasks],
+            'reviews': [review.to_dict() for review in self.received_reviews],
+            'taskerTaskTypes': [taskertasktype.to_dict() for taskertasktype in self.taskertasktypes]
+        }
+
+    def to_dict_with_tasks(self):
+        return {
+            'id': self.id,
+            'firstName': self.firstName,
+            'lastName': self.lastName,
+            'username': self.username,
+            'phone': self.phone,
+            'location': self.location,
+            'email': self.email,
+            'isTasker': self.isTasker,
+            'createdAt': self.created_at.isoformat(),
+            'updatedAt': self.updated_at.isoformat(),
+            'tasks': [task.to_dict() for task in self.tasks]
         }
