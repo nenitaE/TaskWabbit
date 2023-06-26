@@ -43,23 +43,22 @@ def edit_curr_tasktype(taskertasktypeId):
     return {'TaskerTaskType': [taskerTaskType.to_dict() for taskerTaskType in taskerTaskTypes]}
 
 
-@tasker_routes.route('/taskerTaskTypes/<int:tasktypeId>', methods=['DELETE'])
+@tasker_routes.route('/taskerTaskTypes/<int:taskertasktypeId>', methods=['DELETE'])
 @login_required
-def delete_curr_tasktype(tasktypeId):
-    taskersTaskType = TaskerTaskType.query.get(tasktypeId)
-    #print('taskerTaskType', vars(taskersTaskType))
+def delete_curr_tasktype(taskertasktypeId):
+    taskerTaskType = TaskerTaskType.query.get(taskertasktypeId)
+    userId = session['_user_id']
+    # print('taskerTaskType', taskerTaskType)
 
-    if not taskersTaskType:
+    if not taskerTaskType:
        return {'Error': 'TaskType not found'}
 
-    if int(taskersTaskType.tasker_id) != int(session['_user_id']):
+    if int(taskerTaskType.tasker_id) != int(userId):
         return {'Error': 'User is not authorized'}
 
     # print(session, "________DIR SESSION_______")
-    db.session.delete(taskersTaskType)
+    db.session.delete(taskerTaskType)
     db.session.commit()
-
-    userId = session['_user_id']
 
     taskersTaskTypes = TaskerTaskType.query.filter(TaskerTaskType.tasker_id == userId)
     # print('_____________',userId,'----', taskersTaskTypes, '________________')
