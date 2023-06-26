@@ -98,7 +98,7 @@ def review_taker_id(tasker_id):
     """
     taskers_reviews = Review.query.filter(Review.tasker_id == tasker_id)
     print(taskers_reviews)
-    return {"Reviews": [review.to_dict() for review in taskers_reviews]}
+    return {"Reviews": [review.to_dict_im() for review in taskers_reviews]}
 
 
 # Create a Review for a Tasker based on the Tasker's id, Require Authentication: true

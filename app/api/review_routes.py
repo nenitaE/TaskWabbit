@@ -15,7 +15,7 @@ def reviewData():
     """
     reviews = Review.query.filter(Review.user_id == session['_user_id']).order_by(Review.updated_at)
     print(type(int(session['_user_id'])), 'TEST')
-    return {'Reviews': [review.to_dict() for review in reviews]}
+    return {'Reviews': [review.to_dict_im() for review in reviews]}
 
 
 @review_routes.route('/<int:id>', methods=['DELETE'])
@@ -59,5 +59,5 @@ def updateReview(id):
     db.session.commit()
 
     updated = Review.query.filter(Review.id == id)
-    return {'Review': [update.to_dict() for update in updated]}
+    return {'Review': [update.to_dict_im() for update in updated]}
 

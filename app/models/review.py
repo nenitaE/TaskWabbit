@@ -20,7 +20,7 @@ class Review(db.Model, UserMixin):
     user = db.relationship('User',  foreign_keys='Review.user_id', back_populates='reviews')
     tasker = db.relationship('User', foreign_keys='Review.tasker_id', back_populates='received_reviews')
 
-    def to_dict(self):
+    def to_dict_im(self):
         return {
             'description': self.description,
             'rating': self.rating,
