@@ -62,4 +62,4 @@ def delete_curr_tasktype(taskertasktypeId):
 
     taskersTaskTypes = TaskerTaskType.query.filter(TaskerTaskType.tasker_id == userId)
     # print('_____________',userId,'----', taskersTaskTypes, '________________')
-    return {'TaskersTaskTypes': [taskType.to_dict() for taskType in taskersTaskTypes]}
+    return {'TaskerTaskTypes': [taskType.to_dict() for taskType in taskersTaskTypes]}
