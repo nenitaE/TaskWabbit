@@ -1,28 +1,46 @@
-from flask import Blueprint, jsonify, session
+from flask import Blueprint, jsonify, session, request
 from flask_login import login_required, current_user
 from app.models import db, User, TaskerTaskType, TaskType
+from app.forms.tasker_form import CreateTaskTypeForm
 
 tasker_routes = Blueprint('taskers', __name__)
 
 def find_user(email):
     return User.query.filter(User.email == email).first()
 
-# @tasker_routes.route('/taskerTaskTypes/current', methods=['GET'])
-# @login_required
-# def get_curr_tasktypes():
-#     """
-#     Query for all tasktypes for the current tasker and returns
-#     them in a list of tasker dictionaries
-#     """
-#     pass
-
-
-@tasker_routes.route('/taskerTaskTypes/<int:taskerId>', methods=['PUT'])
+@tasker_routes.route('/taskerTaskTypes/current', methods=['GET'])
 @login_required
-def edit_curr_tasktypes(taskerId):
-    taskersTaskTypes = TaskerTaskType.query.get(taskerId)
-    print ('_____taskersTaskTypes______', vars(taskersTaskTypes))
-    return "do I work?"
+def get_curr_tasktypes():
+    """
+    Query for all tasktypes for the current tasker and returns
+    them in a list of tasker dictionaries
+    """
+    pass
+
+
+@tasker_routes.route('/taskerTaskTypes/<int:taskertasktypeId>', methods=['PUT'])
+@login_required
+def edit_curr_tasktype(taskertasktypeId):
+
+    #query the single taskerTaskType to edit
+    taskerTaskType = TaskerTaskType.query.get(taskertasktypeId)
+    # print ('_____taskersTaskTypes______', vars(taskerTaskType))
+
+    #check to make sure the user is authorized to change this taskerTaskType
+    if (taskerTaskType.tasker_id) != int(session['_user_id']):
+        return {'Error': 'User is not authorized'}
+
+
+    #Change instance variable of the taskerTaskType through a JSON request
+    taskerTaskType.hourlyRate = request.json['hourlyRate']
+    taskerTaskType.taskType_id = request.json['taskType_id']
+
+    db.session.commit()
+
+    #Filter and return the taskTypes
+    taskerTaskTypes = TaskerTaskType.query.filter(TaskerTaskType.id == taskertasktypeId)
+
+    return {'TaskerTaskType': [taskerTaskType.to_dict() for taskerTaskType in taskerTaskTypes]}
 
 
 @tasker_routes.route('/taskerTaskTypes/<int:tasktypeId>', methods=['DELETE'])
@@ -31,14 +49,18 @@ def delete_curr_tasktype(tasktypeId):
     taskersTaskType = TaskerTaskType.query.get(tasktypeId)
     #print('taskerTaskType', vars(taskersTaskType))
 
-    if not taskersTaskType or int(taskersTaskType.tasker_id) != int(session['_user_id']):
-        return {'Error': 'TaskType not found or user not authorized'}
+    if not taskersTaskType:
+       return {'Error': 'TaskType not found'}
 
+    if int(taskersTaskType.tasker_id) != int(session['_user_id']):
+        return {'Error': 'User is not authorized'}
+
+    # print(session, "________DIR SESSION_______")
     db.session.delete(taskersTaskType)
     db.session.commit()
 
-    #print ('taskerTaskType__DELETE___', vars(taskerTaskType))
-    userId = session.get('user_id')
-    taskersTaskTypes = TaskerTaskType.query.filter(TaskerTaskType.tasker_id == userId)
+    userId = session['_user_id']
 
+    taskersTaskTypes = TaskerTaskType.query.filter(TaskerTaskType.tasker_id == userId)
+    # print('_____________',userId,'----', taskersTaskTypes, '________________')
     return {'TaskersTaskTypes': [taskType.to_dict() for taskType in taskersTaskTypes]}

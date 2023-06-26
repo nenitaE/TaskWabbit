@@ -23,4 +23,5 @@ class TaskerTaskType(db.Model):
         return {
             'id': self.id,
             'taskTypeId': self.taskType_id,
+            'hourlyRate': self.hourlyRate
         }
