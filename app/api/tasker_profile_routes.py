@@ -83,7 +83,7 @@ def get_curr_tasktypes():
         # print(tasker_taskType_data, '************TASKER TASK TYPE DATA **********')
         return jsonify({'TaskerTaskTypes':[tasker_taskType.to_dict_full() for tasker_taskType in tasker_taskType_data]})
 
-@tasker_profile_routes.route('/', methods=['POST'])
+@tasker_profile_routes.route('', methods=['POST'])
 @login_required
 def add_tasktypes():
     """
