@@ -7,6 +7,7 @@ import TaskersPage from "./components/TaskersPage";
 import { authenticate } from "./store/session";
 import MainFormPage from "./components/MainFormPage";
 import Navigation from "./components/Navigation";
+import TasksPage from "./components/TasksPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -31,6 +32,9 @@ function App() {
           </Route>
           <Route exact path="/taskers">
             <TaskersPage />
+          </Route>
+          <Route exact path="/tasks/current">
+            <TasksPage />
           </Route>
         </Switch>
       )}
