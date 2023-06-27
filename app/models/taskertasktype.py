@@ -26,17 +26,10 @@ class TaskerTaskType(db.Model):
             'hourlyRate': self.hourlyRate,
             'tasker_id': self.tasker_id,
             'taskType_id': self.taskType_id,
+            'createdAt': self.created_at.isoformat(),
+            'updatedAt': self.updated_at.isoformat()
         }
 
-    def to_dict(self):
-        return {
-            'hourlyRate': self.hourlyRate,
-            'tasker_id': self.tasker_id,
-            'taskType_id': self.taskType_id,
-            'createdAt': self.created_at.isoformat(),
-            'updatedAt': self.updated_at.isoformat()            
-        }
-    
     def to_dict_full(self):
         return {
             'id': self.id,
