@@ -53,7 +53,7 @@ def delete_curr_tasktype(taskertasktypeId):
 
     taskersTaskTypes = TaskerTaskType.query.filter(TaskerTaskType.tasker_id == userId)
     # print('_____________',userId,'----', taskersTaskTypes, '________________')
-    return {'TaskerTaskTypes': [taskType.to_dict() for taskType in taskersTaskTypes]}
+    return {'TaskerProfile': [taskType.to_dict() for taskType in taskersTaskTypes]}
 
 @tasker_profile_routes.route('/current', methods=['GET'])
 @login_required
