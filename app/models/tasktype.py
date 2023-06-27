@@ -27,3 +27,9 @@ class TaskType(db.Model):
             'createdAt': self.createdAt.isoformat(),
             'updatedAt': self.updatedAt.isoformat()
         }
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'type': self.type,
+        }
