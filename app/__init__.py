@@ -7,13 +7,10 @@ from flask_login import LoginManager, login_required
 from .models import db, User, Review
 from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
-<<<<<<< HEAD
 from .api.tasktypes_routes import tasktype_routes
-=======
 from .api.taskers_routes import taskers_routes
 from .api.task_routes import task_routes
 from .api.review_routes import review_routes
->>>>>>> dev
 from .seeds import seed_commands
 from .config import Config
 from .forms.review_form import ReviewForm
