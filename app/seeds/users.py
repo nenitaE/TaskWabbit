@@ -7,7 +7,7 @@ def seed_users():
     demo = User(
         firstName='Demo',
         lastName='Lition',
-        username='Demo',
+        username='demo',
         phone='1234567890',
         location='California',
         email='demo@aa.io',
