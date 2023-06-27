@@ -111,6 +111,20 @@ def get_current_task():
     else:
         return jsonify(user.to_dict_with_tasks())
 
+
+@task_routes.route('/<int:taskId>', methods=['GET'])
+@login_required
+def get_task(taskId):
+    '''
+    Query for a specific task and return is as a dictionary
+    '''
+    task = Task.query.get(taskId)
+    if task is None:
+        return jsonify({'error: Task not found'}), 404
+    else:
+        return jsonify(task.to_dict())
+
+
 @task_routes.route('/<int:taskId>', methods=['DELETE'])
 @login_required
 def delete_task(taskId):
