@@ -10,5 +10,4 @@ def taskers():
     Query for all taskers and return them in a list of tasker dictionaries
     """
     taskers = User.query.filter(User.isTasker.is_(True)).all()
-    print(taskers, "TASKERS")
     return jsonify({'Taskers': [tasker.to_dict_full() for tasker in taskers]})
