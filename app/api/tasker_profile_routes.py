@@ -3,12 +3,12 @@ from flask_login import login_required, current_user
 from app.models import db, User, TaskerTaskType, TaskType
 from app.forms.tasker_form import CreateTaskTypeForm
 
-tasker_routes = Blueprint('taskers', __name__)
+tasker_profile_routes = Blueprint('taskerTaskTypes', __name__)
 
 def find_user(email):
     return User.query.filter(User.email == email).first()
 
-@tasker_routes.route('/taskerTaskTypes/current', methods=['GET'])
+@tasker_routes.route('/current', methods=['GET'])
 @login_required
 def get_curr_tasktypes():
     """
@@ -18,7 +18,7 @@ def get_curr_tasktypes():
     pass
 
 
-@tasker_routes.route('/taskerTaskTypes/<int:taskertasktypeId>', methods=['PUT'])
+@tasker_routes.route('/<int:taskertasktypeId>', methods=['PUT'])
 @login_required
 def edit_curr_tasktype(taskertasktypeId):
 
@@ -43,7 +43,7 @@ def edit_curr_tasktype(taskertasktypeId):
     return {'TaskerTaskType': [taskerTaskType.to_dict() for taskerTaskType in taskerTaskTypes]}
 
 
-@tasker_routes.route('/taskerTaskTypes/<int:taskertasktypeId>', methods=['DELETE'])
+@tasker_routes.route('/<int:taskertasktypeId>', methods=['DELETE'])
 @login_required
 def delete_curr_tasktype(taskertasktypeId):
     taskerTaskType = TaskerTaskType.query.get(taskertasktypeId)
