@@ -20,10 +20,20 @@ class Review(db.Model, UserMixin):
     user = db.relationship('User',  foreign_keys='Review.user_id', back_populates='reviews')
     tasker = db.relationship('User', foreign_keys='Review.tasker_id', back_populates='received_reviews')
 
-    def to_dict(self):
+    def to_dict_im(self):
         return {
             'description': self.description,
             'rating': self.rating,
             'user_id': self.user_id,
-            'takser_id': self.tasker_id
+            'tasker_id': self.tasker_id,
+            'created_at': self.created_at,
+            'updated_at': self.updated_at
+        }
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'description': self.description,
+            'rating': self.rating,
+            'user_id': self.user_id,
+            'tasker_id': self.tasker_id,
         }
