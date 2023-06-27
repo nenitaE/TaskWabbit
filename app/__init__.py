@@ -8,8 +8,6 @@ from .models import db, User, Review
 from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
 from .api.tasktypes_routes import tasktype_routes
-from .api.taskers_routes import taskers_routes
-from .api.task_routes import task_routes
 from .api.review_routes import review_routes
 from .api.taskers_routes import taskers_routes
 from .api.task_routes import task_routes
@@ -38,8 +36,6 @@ app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(tasktype_routes, url_prefix='/api/tasktype')
 app.register_blueprint(review_routes, url_prefix='/api/reviews')
-app.register_blueprint(taskers_routes, url_prefix='/api/taskers')
-app.register_blueprint(task_routes, url_prefix='/api/tasks')
 app.register_blueprint(taskers_routes, url_prefix='/api/taskers')
 app.register_blueprint(task_routes, url_prefix='/api/tasks')
 app.register_blueprint(tasker_profile_routes, url_prefix='/api/taskerTaskTypes')
