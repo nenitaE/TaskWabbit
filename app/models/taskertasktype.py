@@ -26,4 +26,23 @@ class TaskerTaskType(db.Model):
             'hourlyRate': self.hourlyRate,
             'tasker_id': self.tasker_id,
             'taskType_id': self.taskType_id,
+            'createdAt': self.created_at.isoformat(),
+            'updatedAt': self.updated_at.isoformat()
+        }
+
+    def to_dict_full(self):
+        return {
+            'id': self.id,
+            'firstName': self.firstName,
+            'lastName': self.lastName,
+            'username': self.username,
+            'phone': self.phone,
+            'location': self.location,
+            'email': self.email,
+            'isTasker': self.isTasker,
+            'createdAt': self.created_at.isoformat(),
+            'updatedAt': self.updated_at.isoformat(),
+            'tasks': [task.to_dict() for task in self.tasks],
+            'reviews': [review.to_dict() for review in self.received_reviews],
+            'taskerTaskTypes': [taskertasktype.to_dict() for taskertasktype in self.taskertasktypes]
         }
