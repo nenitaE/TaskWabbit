@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { getTasks } from "../../store/tasks";
 import DeleteTaskModal from "../DeleteTaskModal";
 import { useModal } from "../../context/Modal";
@@ -28,6 +29,7 @@ function TasksPage(){
                     <p>Location: {task.location}</p>
                     {task.taskType && <p>TaskType:{task.taskType.type}</p>}
                     <button onClick={() => openDeleteModal(task.id)}>Delete Task</button>
+                    <Link to={`/tasks/${task.id}/edit`}>Edit Task</Link>
                 </div>
             ))}
         </div>

@@ -1,6 +1,8 @@
 // constants
 const SET_TASKS = "tasks/SET_TASKS";
 const DELETE_TASK = "tasks/DELETE_TASK";
+const SET_TASK = "tasks/SET_TASK";
+const UPDATE_TASK = "tasks/UPDATE_TASK";
 
 const setTasks = (tasks) => ({
     type: SET_TASKS,
@@ -12,7 +14,22 @@ const deleteTaskAction = (taskId) => ({
     payload:taskId
 })
 
-const initialState = {}
+const setTask = (taskId) =>({
+    type:SET_TASK,
+    payload:taskId
+})
+
+const updateTaskAction = (task) => ({
+    type:UPDATE_TASK,
+    payload: task
+})
+
+
+
+const initialState = {
+    tasks: [],
+    currentTask: null
+}
 
 export const getTasks = () => async(dispatch) => {
     const response = await fetch('/api/tasks/current');
@@ -20,6 +37,39 @@ export const getTasks = () => async(dispatch) => {
         const data = await response.json();
         // console.log(data)
         dispatch(setTasks(data.tasks))
+    }
+}
+
+export const getTask = (taskId) => async(dispatch) => {
+    const response = await fetch(`/api/tasks/${taskId}`)
+    if(response.ok){
+        const task = await response.json()
+        dispatch(setTask(task))
+    }
+}
+
+export const updateTask = (taskId, taskData) => async(dispatch) =>{
+    const response = await fetch(`/api/tasks/${taskId}`, {
+        method: "PUT",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(taskData)
+    })
+    if(response.ok){
+        const updatedTask = await response.json();
+        dispatch(updateTaskAction(updatedTask));
+        console.log('THE UPDATED TASKHERE', updateTask)
+        return updatedTask;
+    }else if (response.status < 500){
+        console.log("BACKEND UPDATE FAILED")
+        console.log("FAILED BODY", JSON.stringify(taskData))
+        const data = response.json();
+        if(data.errors){
+            return data.errors;
+        } else {
+            return ('An error occurred. Please try again')
+        }
     }
 }
 
@@ -47,6 +97,16 @@ export default function reducer(state = initialState, action){
             return{
                 ...state,
                 tasks: action.payload
+            }
+        case SET_TASK:
+            return {
+                ...state,
+                currentTask: action.payload
+            }
+        case UPDATE_TASK:
+            return {
+                ...state,
+                tasks: state.tasks.map(task => task.id === action.payload.id ? action.payload : task)
             }
         case DELETE_TASK:
             return{
