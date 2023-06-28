@@ -11,18 +11,44 @@ const HomePage = () => {
 
     const dispatch = useDispatch();
 
+    const [filterText, setFilterText] = useState('')
+
     const user = useSelector(state => state.session.user);
-    const tasktype = useSelector(state => state.session.tasktype)
+    const taskTypes = useSelector(state => state.taskTypes)
+
+    const filteredTaskTypes = taskTypes.filter(taskType => taskType.type.toLowerCase().startsWith(filterText.toLowerCase()))
+    // console.log(taskTypes, "tasktypes")
+
+    const updateFilterText = (e) => setFilterText(e.target.value)
 
     useEffect(() => {
         dispatch(getTaskTypes());
-    },[dispatch]);
+    }, [dispatch]);
 
-
+    if (taskTypes.length == 0) {
+        return (
+            <h1>Loading</h1>
+        )
+    }
 
     return (
         <main>
-            THIS IS THE HOMEPAGE
+            <h1>
+                Book Your Next Task
+            </h1>
+            <input
+                type="text"
+                placeholder="Choose your task type e.g. Cleaning"
+                value={filterText}
+                onChange={updateFilterText}
+            />
+            <ul>
+                {filteredTaskTypes.map((taskType) => (
+                    <div key={taskType.id}>
+                        {taskType.type}
+                    </div>
+                ))}
+            </ul>
         </main>
     )
 }

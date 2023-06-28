@@ -20,9 +20,7 @@ export const getTaskTypes = () => async dispatch => {
 }
 
 //__________CREATE_INITIAL_STATE__________
-const initialState = {
-    taskTypes: []
-};
+const initialState = [];
 
 //________GROUPS_REDUCER_________________
 const taskTypesReducer = (state = initialState, action) => {
