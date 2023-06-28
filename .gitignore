@@ -5,7 +5,6 @@ __pycache__/
 .DS_Store
 .vscode/
 instance/dev.db
-migrations/versions
 Pipfile
 Pipfile.lock
 .Pipfile.lock
