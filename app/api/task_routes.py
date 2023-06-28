@@ -43,9 +43,10 @@ def create_task():
             totalPrice=form.data['totalPrice'],
             location=form.data['location'],
             task_date=task_date,
-            user_id=form.data['user_id'],
+            user_id=current_user.id,
             tasker_id=tasker_id,
         )
+        print(current_user.id)
         db.session.add(task)
         db.session.commit()
         return task.to_dict()
@@ -83,14 +84,20 @@ def update_task(taskId):
             return {'errors': ['Cannot schedule task in the past']}, 400
 
         # Update the task
-        task.taskTypeId = form.data['taskTypeId']
-        task.title = form.data['title']
-        task.description = form.data['description']
-        task.totalPrice = form.data['totalPrice']
-        task.location = form.data['location']
-        task.task_date = task_date
-        task.tasker_id = tasker_id
-
+        if 'taskTypeId' in form.data:
+            task.taskTypeId = form.data['taskTypeId']
+        if 'title' in form.data:
+            task.title = form.data['title']
+        if 'description' in form.data:
+            task.description = form.data['description']
+        if 'totalPrice' in form.data:
+            task.totalPrice = form.data['totalPrice']
+        if 'location' in form.data:
+            task.location = form.data['location']
+        if 'task_date' in form.data:
+            task.task_date = task_date
+        if 'tasker_id' in form.data:
+            task.tasker_id = tasker_id
         db.session.commit()
 
         return task.to_dict()
@@ -110,6 +117,21 @@ def get_current_task():
         return jsonify({'error': 'User not found'}), 404
     else:
         return jsonify(user.to_dict_with_tasks())
+
+
+@task_routes.route('/<int:taskId>', methods=['GET'])
+@login_required
+def get_task(taskId):
+    '''
+    Query for a specific task and return is as a dictionary
+    '''
+
+    task = Task.query.get(taskId)
+    if task is None:
+        return jsonify({'error: Task not found'}), 404
+    else:
+        return jsonify(task.to_dict())
+
 
 @task_routes.route('/<int:taskId>', methods=['DELETE'])
 @login_required
