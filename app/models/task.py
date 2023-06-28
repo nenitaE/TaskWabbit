@@ -42,4 +42,5 @@ class Task(db.Model, UserMixin):
             'tasker_id': self.tasker_id,
             'createdAt': self.created_at.isoformat(),
             'updatedAt': self.updated_at.isoformat(),
+            'taskType': self.taskType.to_dict() if self.taskType else None,
         }
