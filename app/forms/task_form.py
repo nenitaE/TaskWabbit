@@ -10,5 +10,4 @@ class CreateTaskForm(FlaskForm):
     totalPrice = FloatField('totalPrice', validators=[DataRequired()])
     location = StringField('location', validators=[DataRequired()])
     task_date = DateField('task_date', validators=[DataRequired()])
-    user_id = IntegerField('user_id', validators=[DataRequired()])
     tasker_id = IntegerField('tasker_id', validators=[DataRequired()])
