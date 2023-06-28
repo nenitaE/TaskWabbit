@@ -43,9 +43,10 @@ def create_task():
             totalPrice=form.data['totalPrice'],
             location=form.data['location'],
             task_date=task_date,
-            user_id=form.data['user_id'],
+            user_id=current_user.id,
             tasker_id=tasker_id,
         )
+        print(current_user.id)
         db.session.add(task)
         db.session.commit()
         return task.to_dict()

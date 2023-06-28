@@ -9,6 +9,7 @@ import MainFormPage from "./components/MainFormPage";
 import Navigation from "./components/Navigation";
 import TasksPage from "./components/TasksPage";
 import EditTaskFormPage from "./components/EditTaskFormPage";
+import CreateTaskForm from "./components/CreateTaskForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -39,6 +40,9 @@ function App() {
           </Route>
           <Route exact path="/tasks/current">
             <TasksPage />
+          </Route>
+          <Route excat path="/tasks/new">
+            <CreateTaskForm/>
           </Route>
         </Switch>
       )}

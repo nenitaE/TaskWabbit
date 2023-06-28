@@ -22,6 +22,11 @@ function Navigation({ isLoaded }){
 					<NavLink to="/tasks/current">My Tasks</NavLink>
 				</li>
 			)}
+			{isLoaded && sessionUser &&(
+				<li>
+					<NavLink to="/tasks/new">Create a Task</NavLink>
+				</li>
+			)}
 			{isLoaded && (
 				<li>
 					<ProfileButton user={sessionUser} />
