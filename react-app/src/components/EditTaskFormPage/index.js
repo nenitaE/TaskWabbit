@@ -14,6 +14,7 @@ function EditTaskFormPage(){
     const [description, setDescription] = useState("");
     const [location, setLocation] = useState("");
     const [totalPrice, setTotalPrice] = useState(0);
+    // const [isPastDate, setIsPastDate] = useState(false);
     const [errors, setErrors] = useState([]);
 
     useEffect(() => {
@@ -22,6 +23,10 @@ function EditTaskFormPage(){
 
     useEffect(() => {
         if(task){
+            // const taskDate = new Date(task.task_date);
+            // const currentDate = new Date();
+            // currentDate.setHours(0,0,0,0) //set current time to 00:00:00
+            // setIsPastDate(taskDate < currentDate);
             setTitle(task.title);
             setDescription(task.description);
             setLocation(task.location);
@@ -33,6 +38,9 @@ function EditTaskFormPage(){
     if(!task){
         return null; //replace with loading spinner
     }
+    // if(isPastDate){
+    //   return <div>You cannot edit a Past Task Booking</div>
+    // }
 
     const handleSubmit = async(e) => {
         e.preventDefault();
