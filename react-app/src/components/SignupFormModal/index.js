@@ -12,7 +12,7 @@ function SignupFormModal() {
 	const [lastName, setLastName] = useState("");
 	const [phone, setPhone] = useState("");
 	const [location, setLocation] = useState("");
-	const [isTasker, setIsTasker] = useState("False");
+	const [isTasker, setIsTasker] = useState(false);
 	const [password, setPassword] = useState("");
 	const [confirmPassword, setConfirmPassword] = useState("");
 	const [errors, setErrors] = useState([]);
@@ -102,9 +102,8 @@ function SignupFormModal() {
 				<label>
 					<input
 						type="checkbox"
-						value={isTasker}
+						value={true}
 						onChange={(e) => setIsTasker(e.target.value)}
-						required
 					/>
 					SELECT if you want be able to work as a Tasker
 				</label>

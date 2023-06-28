@@ -1,7 +1,9 @@
 // constants
+//SESSION ACTION TYPES
 const SET_USER = "session/SET_USER";
 const REMOVE_USER = "session/REMOVE_USER";
 
+//SESSION ACTION CREATORS
 const setUser = (user) => ({
 	type: SET_USER,
 	payload: user,
@@ -13,6 +15,7 @@ const removeUser = () => ({
 
 const initialState = { user: null };
 
+//SESSION THUNK ACTIONS
 export const authenticate = () => async (dispatch) => {
 	const response = await fetch("/api/auth/", {
 		headers: {
@@ -100,6 +103,8 @@ export const signUp = (username, email, password, firstName,
 		return ["An error occurred. Please try again."];
 	}
 };
+
+//SESSION REDUCER
 
 export default function reducer(state = initialState, action) {
 	switch (action.type) {
