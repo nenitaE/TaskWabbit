@@ -1,4 +1,5 @@
 import { useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
 import { createTask } from "../../store/tasks";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
@@ -12,6 +13,8 @@ import Step4 from "../Step4";
 
 function CreateTaskForm() {
     const dispatch = useDispatch();
+    const { taskTypeId } = useParams();
+    console.log(taskTypeId, "tasktypeId______")
     const [step, setStep] = useState(1);
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
@@ -36,7 +39,7 @@ function CreateTaskForm() {
             "task_date": taskDate,
             title,
             "tasker_id": taskerId,
-            "taskTypeId": 1,
+            "taskTypeId": taskTypeId,
             "totalPrice": 123,
         }
         const data = await dispatch(createTask(taskData))

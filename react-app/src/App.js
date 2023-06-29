@@ -45,7 +45,7 @@ function App() {
           <Route exact path="/tasks/current">
             <TasksPage />
           </Route>
-          <Route excat path="/tasks/new">
+          <Route excat path="/tasks/new/:taskTypeId">
             <CreateTaskForm />
           </Route>
         </Switch>
