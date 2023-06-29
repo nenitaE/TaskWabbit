@@ -36,6 +36,8 @@ const HomePage = () => {
             <h1>Loading</h1>
         )
     }
+
+    // {const taskType = taskTypes.filter(taskType => taskType.id == taskerTaskType.id)}
     // TODO use the ratings of each review to get an average star rating
     return (
         <main>
@@ -67,9 +69,10 @@ const HomePage = () => {
                         <h3>{tasker.firstName} {tasker.lastName}</h3>
                         <p>Number of Reviews: {tasker.reviews.length}</p>
                         <ul>
-                            {tasker.taskerTaskTypes.slice(0, 3).map((taskType) => (
+                            {tasker.taskerTaskTypes.slice(0, 3).map((taskerTaskType) => (
+
                                 <li>
-                                    Hourly Rate: {taskType.hourlyRate}
+                                    {taskerTaskType.hourlyRate}
                                 </li>
                             ))}
                         </ul>
