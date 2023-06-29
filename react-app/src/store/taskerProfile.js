@@ -139,10 +139,9 @@ export default function taskerProfile(state = initialState, action){
                 taskerTaskType:[...state.taskerTaskTypes, action.payload.id]
             }
         case DELETE_TASKERTASKTYPE:
-            return{
-                ...state,
-                taskerTaskType:
-            }
+            newState = {...state};
+            delete newState[action.payload.id];
+            return newState;
         default:
             return state
     }
