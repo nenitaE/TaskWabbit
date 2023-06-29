@@ -46,7 +46,7 @@ const HomePage = () => {
     return (
         <main>
             <h1>
-                {user ? 'Book Your Next Task' : 'Get help. Gain happiness' }
+                {user ? 'Book Your Next Task' : 'Get help. Gain happiness'}
             </h1>
             <input
                 type="text"
@@ -73,10 +73,10 @@ const HomePage = () => {
                         <p>Number of Reviews: {tasker.reviews.length}</p>
                         <ul>
                             {tasker.taskerTaskTypes.slice(0, 3).map((taskerTaskType) => (
-
-                                <ul>
+                                <ul key={taskerTaskType.id}>
                                     {taskTypesById[taskerTaskType.taskType_id].type} for ${taskerTaskType.hourlyRate}/hr
                                 </ul>
+
                             ))}
                         </ul>
                     </div>
