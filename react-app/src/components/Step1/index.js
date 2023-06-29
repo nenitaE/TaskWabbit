@@ -1,8 +1,16 @@
 import React, { useState } from "react";
 
-function Step1({location, setLocation, description, setDescription, handleNext, title, setTitle}){
+function Step1({onStepComplete}){
+    const [location, setLocation] = useState("");
+    const [description, setDescription] = useState("");
+    const [title, setTitle] = useState("");
 
     const [errors, setErrors] = useState({})
+
+    const handleNext = () => {
+        // When step is complete, we pass the data back to parent
+        onStepComplete({ location, description, title });
+      };
 
     const validate = () => {
         const newErrors = {};
@@ -13,11 +21,6 @@ function Step1({location, setLocation, description, setDescription, handleNext, 
     }
 
     const onNext = (e) => {
-        e.preventDefault();
-        // if(!location || description){
-        //     alert('Both fields are required')
-        //     return;
-        // }
         const result = validate();
         if (Object.keys(result).length > 0){
             setErrors(result)
