@@ -3,9 +3,10 @@ import thunk from 'redux-thunk';
 import session from './session';
 import taskers from './taskers';
 import tasks from './tasks';
+import taskerProfile from './taskerProfile';
 
 const rootReducer = combineReducers({
-  session, taskers, tasks
+  session, taskers, tasks, taskerProfile
 });
 
 
