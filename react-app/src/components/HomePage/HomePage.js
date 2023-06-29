@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './homePage.css';
-// import OpenModalButton from './OpenModalButton';
-// import SignupFormModal from './SignupFormModal';
 
 import { NavLink, Link, Route, useParams } from 'react-router-dom';
 import { getTaskTypes } from '../../store/taskTypes';
@@ -25,7 +23,7 @@ const HomePage = () => {
     console.log(taskTypesById)
     const filteredTaskTypes = taskTypes.filter(taskType => taskType.type.toLowerCase().startsWith(filterText.toLowerCase()));
 
-    // console.log(taskTypes, "tasktypes")
+
 
     const updateFilterText = (e) => setFilterText(e.target.value);
 
@@ -46,7 +44,7 @@ const HomePage = () => {
     return (
         <main>
             <h1>
-                {user ? 'Book Your Next Task' : 'Get help. Gain happiness' }
+                {user ? 'Book Your Next Task' : 'Get help. Gain happiness'}
             </h1>
             <input
                 type="text"
@@ -73,10 +71,10 @@ const HomePage = () => {
                         <p>Number of Reviews: {tasker.reviews.length}</p>
                         <ul>
                             {tasker.taskerTaskTypes.slice(0, 3).map((taskerTaskType) => (
-
-                                <ul>
+                                <ul key={taskerTaskType.id}>
                                     {taskTypesById[taskerTaskType.taskType_id].type} for ${taskerTaskType.hourlyRate}/hr
                                 </ul>
+
                             ))}
                         </ul>
                     </div>
