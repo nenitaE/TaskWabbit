@@ -4,7 +4,7 @@ from app.models import User
 
 taskers_routes = Blueprint('taskers', __name__)
 
-@taskers_routes.route('/')
+@taskers_routes.route('')
 def taskers():
     """
     Query for all taskers and return them in a list of tasker dictionaries
