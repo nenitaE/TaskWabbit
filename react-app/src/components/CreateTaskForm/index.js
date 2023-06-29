@@ -29,7 +29,7 @@ function CreateTaskForm() {
         dispatch(getTaskers())
     }, [dispatch]);
 
-    const taskers = useSelector(state => state.taskers.taskers);
+    const taskers = Object.values(useSelector(state => state.taskers));
     console.log('THE TASKERS', taskers)
 
     const submitForm = async (e) => {
