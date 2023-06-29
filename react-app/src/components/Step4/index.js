@@ -6,7 +6,7 @@ function Step4({handleSubmit}){
 
     const handleCofirm = async(e) => {
         e.preventDefault();
-        await handleSubmit();
+        await handleSubmit(e);
         history.push('/tasks/current')
     }
     return (
