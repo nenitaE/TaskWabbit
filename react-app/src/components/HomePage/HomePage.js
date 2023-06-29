@@ -14,8 +14,9 @@ const HomePage = () => {
     const dispatch = useDispatch();
 
     const [filterText, setFilterText] = useState('');
+    const [taskTypeId, setTaskTypeId] = useState('');
 
-    const user = useSelector(state => state.session.user);
+
     const taskTypes = useSelector(state => state.taskTypes);
     const taskers = Object.values(useSelector(state => state.taskers));
 
@@ -50,7 +51,10 @@ const HomePage = () => {
             <ul>
                 {filteredTaskTypes.map((taskType) => (
                     <div key={taskType.id}>
-                        {taskType.type}
+                        <NavLink to={`/tasks/new/${parseInt(taskType.id)}`}>
+                            {taskType.type}
+                        </NavLink>
+
                     </div>
                 ))}
             </ul>
