@@ -1,12 +1,20 @@
 import React from 'react';
 import { useState } from 'react';
+import { useModal } from '../../context/Modal';
 
-function Step2({handleNext, handleBack, taskers, setTaskerId}){
+function Step2({ onStepComplete, taskers}){
+    const [taskerId, setTaskerId] = useState(null);
 
     const handleSelectTasker= (taskerId) => {
         setTaskerId(taskerId);
-        handleNext()
+        onStepComplete({
+            'tasker_id': taskerId,
+        });
     }
+
+    const handleBack = () => {
+        onStepComplete({ back: true });
+    };
 
     return (
         <div>

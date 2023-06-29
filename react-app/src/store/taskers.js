@@ -1,30 +1,39 @@
-// constants
-const SET_TASKERS = "taskers/SET_TASKERS";
 
-const setTaskers = (taskers) => ({
-    type: SET_TASKERS,
-    payload: taskers
-})
+//__________ACTION_TYPES____________
+const LOAD_TASKERS = 'taskers/LOAD_TASKERS'
 
-const initialState = {}
 
-export const getTaskers = () => async(dispatch) => {
-    const response = await fetch('/api/taskers/');
-    if(response.ok){
+//___________ACTIONS_________________
+const loadTaskers = (taskers) => ({
+    type: LOAD_TASKERS,
+    taskers,
+});
+
+//__________THUNK_ACTIONS______________
+export const getTaskers = () => async dispatch => {
+    const response = await fetch(`/api/taskers`);
+
+    if (response.ok) {
         const data = await response.json();
-        console.log(data)
-        dispatch(setTaskers(data.Taskers))
+        dispatch(loadTaskers(data.Taskers));
     }
 }
 
-export default function reducer(state = initialState, action) {
-	switch (action.type) {
-		case SET_TASKERS:
-			return {
-                ...state,
-                taskers: action.payload
-            };
-		default:
-			return state;
-	}
+//__________CREATE_INITIAL_STATE__________
+const initialState = {};
+
+//________TASKERS_REDUCER_________________
+const taskersReducer = (state = initialState, action) => {
+    let newState = {};
+    switch (action.type) {
+        case LOAD_TASKERS:
+            action.taskers.forEach(tasker => {
+                newState[tasker.id] = tasker;
+            });
+            return newState
+        default:
+            return state;
+    }
 }
+
+export default taskersReducer;
