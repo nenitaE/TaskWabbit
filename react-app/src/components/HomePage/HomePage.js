@@ -16,12 +16,15 @@ const HomePage = () => {
     const [filterText, setFilterText] = useState('');
     const [taskTypeId, setTaskTypeId] = useState('');
 
-
+    const user = useSelector(state => state.session.user)
     const taskTypes = useSelector(state => state.taskTypes);
     const taskers = Object.values(useSelector(state => state.taskers));
+    const taskTypesById = {}
+    taskTypes.forEach(taskType => { taskTypesById[taskType.id] = taskType })
 
+    console.log(taskTypesById)
     const filteredTaskTypes = taskTypes.filter(taskType => taskType.type.toLowerCase().startsWith(filterText.toLowerCase()));
-    const recommendedTaskers = taskers.slice(0, 3);
+
     // console.log(taskTypes, "tasktypes")
 
     const updateFilterText = (e) => setFilterText(e.target.value);
@@ -36,17 +39,18 @@ const HomePage = () => {
             <h1>Loading</h1>
         )
     }
-
-    // {const taskType = taskTypes.filter(taskType => taskType.id == taskerTaskType.id)}
     // TODO use the ratings of each review to get an average star rating
+
+
+    const recommendedTaskers = taskers.filter(tasker => user ? tasker.id != user.id : true).slice(0, 3);
     return (
         <main>
             <h1>
-                Book Your Next Task
+                {user ? 'Book Your Next Task' : 'Get help. Gain happiness' }
             </h1>
             <input
                 type="text"
-                placeholder="Choose your task type e.g. Cleaning"
+                placeholder={user ? "Choose your task type e.g. Cleaning" : 'I need help with...'}
                 value={filterText}
                 onChange={updateFilterText}
             />
@@ -56,7 +60,6 @@ const HomePage = () => {
                         <NavLink to={`/tasks/new/${parseInt(taskType.id)}`}>
                             {taskType.type}
                         </NavLink>
-
                     </div>
                 ))}
             </ul>
@@ -71,9 +74,9 @@ const HomePage = () => {
                         <ul>
                             {tasker.taskerTaskTypes.slice(0, 3).map((taskerTaskType) => (
 
-                                <li>
-                                    {taskerTaskType.hourlyRate}
-                                </li>
+                                <ul>
+                                    {taskTypesById[taskerTaskType.taskType_id].type} for ${taskerTaskType.hourlyRate}/hr
+                                </ul>
                             ))}
                         </ul>
                     </div>
@@ -83,5 +86,6 @@ const HomePage = () => {
         </main>
     )
 }
+
 
 export default HomePage;
