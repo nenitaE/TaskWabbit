@@ -1,4 +1,5 @@
 import { useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
 import { createTask } from "../../store/tasks";
 import { useEffect, useState} from "react";
 import { useSelector } from "react-redux";
@@ -11,6 +12,8 @@ import Step4 from "../Step4";
 
 function CreateTaskForm() {
     const dispatch = useDispatch();
+    const { taskTypeId } = useParams();
+    console.log(taskTypeId, "tasktypeId______")
     const [step, setStep] = useState(1);
     const [errors, setErrors] = useState([]);
 
@@ -24,7 +27,8 @@ function CreateTaskForm() {
         dispatch(getTaskers())
     }, [dispatch]);
 
-    const taskers = useSelector(state => state.taskers.taskers);
+
+    const taskers = Object.values(useSelector(state => state.taskers));
 
     const handleStepComplete = (stepData) => {
         if (stepData.back) {

@@ -7,6 +7,7 @@ import TaskersPage from "./components/TaskersPage";
 import { authenticate } from "./store/session";
 import MainFormPage from "./components/MainFormPage";
 import Navigation from "./components/Navigation";
+import HomePage from "./components/HomePage/HomePage";
 import TasksPage from "./components/TasksPage";
 import EditTaskFormPage from "./components/EditTaskFormPage";
 import CreateTaskForm from "./components/CreateTaskForm";
@@ -23,6 +24,9 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
+          <Route exact path="/">
+            <HomePage />
+          </Route>
           <Route exact path="/login" >
             <LoginFormPage />
           </Route>
@@ -36,13 +40,13 @@ function App() {
             <TaskersPage />
           </Route>
           <Route excat path="/tasks/:taskId/edit">
-            <EditTaskFormPage/>
+            <EditTaskFormPage />
           </Route>
           <Route exact path="/tasks/current">
             <TasksPage />
           </Route>
-          <Route excat path="/tasks/new/:tasktypeId">
-            <CreateTaskForm/>
+          <Route excat path="/tasks/new/:taskTypeId">
+            <CreateTaskForm />
           </Route>
         </Switch>
       )}
