@@ -18,7 +18,7 @@ function CreateTaskForm() {
     const [errors, setErrors] = useState([]);
 
     const [formData, setFormData] = useState({
-        taskTypeId: 1,  // replace with actual default value
+        taskTypeId:  taskTypeId,  // replace with actual default value
         totalPrice: 100  // replace with actual default value
     });
 
