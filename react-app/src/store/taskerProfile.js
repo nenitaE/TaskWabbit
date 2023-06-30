@@ -21,17 +21,17 @@ const getTaskerTaskTypesAction = (taskerTaskTypes) => {
     }
 }
 
-const deleteTaskerTaskTypesAction = (taskertasktypeId) => ({
+const deleteTaskerTaskTypeAction = (taskertasktypeId) => ({
     type: DELETE_TASKERTASKTYPE,
     payload:taskertasktypeId
 })
 
-const updateTaskerTaskTypesAction = (taskertasktypeId) => ({
+const updateTaskerTaskTypeAction = (taskertasktypeId) => ({
     type:UPDATE_TASKERTASKTYPE,
     payload: taskertasktypeId
 })
 
-const createTaskerTaskTypesAction = (newTaskerTaskType) => ({
+const createTaskerTaskTypeAction = (newTaskerTaskType) => ({
     type: CREATE_TASKERTASKTYPE,
     payload: newTaskerTaskType
 })
@@ -46,7 +46,7 @@ export const getTaskerTaskTypes = () => async(dispatch) => {
     }
 }
 
-export const updateTaskerTaskTypeAction = (taskertasktypeId, taskerTaskTypeData) => async(dispatch) =>{
+export const updateTaskerTaskType = (taskertasktypeId, taskerTaskTypeData) => async(dispatch) =>{
     const response = await fetch(`/api/taskerTaskType/${taskertasktypeId}`, {
         method: "PUT",
         headers: {
@@ -61,7 +61,7 @@ export const updateTaskerTaskTypeAction = (taskertasktypeId, taskerTaskTypeData)
         return updatedTaskerTaskType;
     }else if (response.status < 500){
         console.log("BACKEND UPDATE FAILED")
-        
+
         const data = response.json();
         if(data.errors){
             return data.errors;
@@ -71,7 +71,7 @@ export const updateTaskerTaskTypeAction = (taskertasktypeId, taskerTaskTypeData)
     }
 }
 
-export const deleteTaskerTaskTypeAction = (taskerTaskTypeId) => async(dispatch) => {
+export const deleteTaskerTaskType = (taskerTaskTypeId) => async(dispatch) => {
     const response = await fetch(`/api/taskerTaskType/${taskerTaskTypeId}`, {
         method: "DELETE"
     })
@@ -90,7 +90,7 @@ export const deleteTaskerTaskTypeAction = (taskerTaskTypeId) => async(dispatch) 
 }
 
 
-export const createTaskerTaskTypeAction = (taskerTaskTypeData) => async(dispatch) =>{
+export const createTaskerTaskType = (taskerTaskTypeData) => async(dispatch) =>{
     try {
         console.log("FAILED BODY", JSON.stringify(taskerTaskTypeData))
         const response = await fetch('/api/taskerTaskTypes', {
