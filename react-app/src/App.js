@@ -3,8 +3,14 @@ import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import SignupFormPage from "./components/SignupFormPage";
 import LoginFormPage from "./components/LoginFormPage";
+import TaskersPage from "./components/TaskersPage";
 import { authenticate } from "./store/session";
+import MainFormPage from "./components/MainFormPage";
 import Navigation from "./components/Navigation";
+import HomePage from "./components/HomePage/HomePage";
+import TasksPage from "./components/TasksPage";
+import EditTaskFormPage from "./components/EditTaskFormPage";
+import CreateTaskForm from "./components/CreateTaskForm";
 import ReviewByLoggedIn from "./components/CurrentReview";
 
 function App() {
@@ -19,14 +25,32 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-          <Route path="/login" >
+          <Route exact path="/">
+            <HomePage />
+          </Route>
+          <Route exact path="/login" >
             <LoginFormPage />
           </Route>
-          <Route path="/signup">
+          <Route exact path="/signup">
             <SignupFormPage />
           </Route>
-          <Route path="/reviews/currentUser">
+          <Route exact path="/form">
+            <MainFormPage />
+          </Route>
+          <Route exact path="/taskers">
+            <TaskersPage />
+          </Route>
+          <Route excat path="/tasks/:taskId/edit">
+            <EditTaskFormPage />
+          </Route>
+          <Route exact path="/tasks/current">
+            <TasksPage />
+          </Route>
+          <Route exact path="/reviews/currentUser">
             <ReviewByLoggedIn />
+          </Route>
+          <Route excat path="/tasks/new/:taskTypeId">
+            <CreateTaskForm />
           </Route>
         </Switch>
       )}
