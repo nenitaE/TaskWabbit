@@ -60,7 +60,7 @@ def delete_curr_tasktype(taskertasktypeId):
 def get_curr_tasktypes():
     """
     Query for all tasktypes for the current tasker and returns
-    them in a list of tasker dictionaries
+    them in a list of taskertasktype dictionaries
     """
     current_user_id = current_user.get_id()
     user = User.query.get(current_user_id)
