@@ -13,7 +13,6 @@ import Step4 from "../Step4";
 function CreateTaskForm() {
     const dispatch = useDispatch();
     const { taskTypeId } = useParams();
-    console.log(taskTypeId, "tasktypeId______")
     const [step, setStep] = useState(1);
     const [errors, setErrors] = useState([]);
 
@@ -29,6 +28,7 @@ function CreateTaskForm() {
 
 
     const taskers = Object.values(useSelector(state => state.taskers));
+    // console.log(taskers)
 
     const handleStepComplete = (stepData) => {
         if (stepData.back) {
