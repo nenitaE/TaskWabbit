@@ -12,10 +12,14 @@ const UPDATE_TASKERTASKTYPE = "taskertasktypes/updateTaskerTaskType"
 const CREATE_TASKERTASKTYPE = "taskertasktypes/createTaskerTaskType"
 
 //TASKERPROFILE ACTION CREATORS
-const getTaskerTaskTypesAction = (taskerTaskTypes) => ({
-    type: GET_TASKERTASKTYPES,
-    payload:taskerTaskTypes
-})
+
+const getTaskerTaskTypesAction = (taskerTaskTypes) => {
+    console.log('*********taskerTaskTypes*********', taskerTaskTypes)
+    return{
+        type: GET_TASKERTASKTYPES,
+        payload: taskerTaskTypes
+    }
+}
 
 const deleteTaskerTaskTypesAction = (taskertasktypeId) => ({
     type: DELETE_TASKERTASKTYPE,
@@ -37,13 +41,13 @@ export const getTaskerTaskTypes = () => async(dispatch) => {
     const response = await fetch('/api/taskerTaskTypes/current');
     if(response.ok){
         const data = await response.json();
-        // console.log(data)
-        dispatch(getTaskerTaskTypesAction(data.taskerTaskTypes))
+        console.log(data, "***********data***********")
+        dispatch(getTaskerTaskTypesAction(data.TaskerTaskTypes))
     }
 }
 
 export const updateTaskerTaskTypeAction = (taskertasktypeId, taskerTaskTypeData) => async(dispatch) =>{
-    const response = await fetch(`/api/taskerTaskType/${taskerTaskTypeId}`, {
+    const response = await fetch(`/api/taskerTaskType/${taskertasktypeId}`, {
         method: "PUT",
         headers: {
             'Content-Type': 'application/json'
@@ -86,7 +90,7 @@ export const deleteTaskerTaskTypeAction = (taskerTaskTypeId) => async(dispatch) 
 }
 
 
-export const createTaskerTaskType = (taskerTaskTypeData) => async(dispatch) =>{
+export const createTaskerTaskTypeAction = (taskerTaskTypeData) => async(dispatch) =>{
     try {
         console.log("FAILED BODY", JSON.stringify(taskerTaskTypeData))
         const response = await fetch('/api/taskerTaskTypes', {
@@ -101,7 +105,7 @@ export const createTaskerTaskType = (taskerTaskTypeData) => async(dispatch) =>{
             dispatch(createTaskerTaskTypeAction(newTaskerTaskType));
             return newTaskerTaskType
         } else if (response.status <= 500){
-            console.log("FAILED BODY", JSON.stringify(taskData))
+            console.log("FAILED BODY", JSON.stringify(taskerTaskTypeData))
             const data = await response.json();
             if(data.errors){
                 return data.errors;
@@ -121,7 +125,8 @@ const initialState = {
     taskerTaskTypes: null
 }
 
-export default function taskerProfile(state = initialState, action){
+export default function taskerProfileReducer(state = initialState, action){
+    let newState = {};
     switch(action.type){
         case GET_TASKERTASKTYPES:
             return{
