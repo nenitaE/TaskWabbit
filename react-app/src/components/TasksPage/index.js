@@ -8,7 +8,6 @@ import { useModal } from "../../context/Modal";
 function TasksPage(){
     const dispatch = useDispatch();
     const tasks = useSelector((state) => state.tasks.tasks)
-    console.log('HEY HERE ARE THE TASKS',tasks)
     const {setModalContent} = useModal();
 
     useEffect(() =>{
