@@ -65,10 +65,8 @@ export const updateTask = (taskId, taskData) => async(dispatch) =>{
     if(response.ok){
         const updatedTask = await response.json();
         dispatch(updateTaskAction(updatedTask));
-        console.log('THE UPDATED TASKHERE', updateTask)
         return updatedTask;
     }else if (response.status < 500){
-        console.log("BACKEND UPDATE FAILED")
         // console.log("FAILED BODY", JSON.stringify(taskData))
         const data = response.json();
         if(data.errors){
@@ -84,7 +82,7 @@ export const deleteTask = (taskId) => async(dispatch) => {
         method: "DELETE"
     })
     if(response.ok){
-        const data = await response.json();
+        await response.json();
         dispatch(deleteTaskAction(taskId))
         return null
     }else if(response.status < 500){
