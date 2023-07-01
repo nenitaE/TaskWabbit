@@ -15,7 +15,7 @@ const CREATE_TASKERTASKTYPE = "taskertasktypes/createTaskerTaskType"
 
 const getTaskerTaskTypesAction = (taskerTaskTypes) => {
     console.log('*********taskerTaskTypes*********', taskerTaskTypes)
-    return{
+    return  {
         type: GET_TASKERTASKTYPES,
         payload: taskerTaskTypes
     }
@@ -31,10 +31,13 @@ const updateTaskerTaskTypeAction = (taskertasktypeId) => ({
     payload: taskertasktypeId
 })
 
-const createTaskerTaskTypeAction = (newTaskerTaskType) => ({
-    type: CREATE_TASKERTASKTYPE,
-    payload: newTaskerTaskType
-})
+const createTaskerTaskType = (newTaskerTaskType) => {
+    console.log('*********newTaskerTaskType*********', newTaskerTaskType)
+    return {
+        type: CREATE_TASKERTASKTYPE,
+        payload: newTaskerTaskType
+    }
+}
 
 //TASKERPROFILE THUNK ACTIONS
 export const getTaskerTaskTypes = () => async(dispatch) => {
@@ -90,7 +93,8 @@ export const deleteTaskerTaskType = (taskerTaskTypeId) => async(dispatch) => {
 }
 
 
-export const createTaskerTaskType = (taskerTaskTypeData) => async(dispatch) =>{
+export const fetchCreateTaskerTaskType = (taskerTaskTypeData) => async(dispatch) =>{
+    console.log("********INSIDE CREATE TASKTYPE THUNK******")
     try {
         console.log("FAILED BODY", JSON.stringify(taskerTaskTypeData))
         const response = await fetch('/api/taskerTaskTypes', {
@@ -102,7 +106,7 @@ export const createTaskerTaskType = (taskerTaskTypeData) => async(dispatch) =>{
         });
         if(response.ok){
             const newTaskerTaskType = await response.json();
-            dispatch(createTaskerTaskTypeAction(newTaskerTaskType));
+            dispatch(createTaskerTaskType(newTaskerTaskType));
             return newTaskerTaskType
         } else if (response.status <= 500){
             console.log("FAILED BODY", JSON.stringify(taskerTaskTypeData))
@@ -134,10 +138,13 @@ export default function taskerProfileReducer(state = initialState, action){
                 taskerTaskTypes: action.payload
             }
         case CREATE_TASKERTASKTYPE:
-            return {
-                ...state,
-                taskerTaskType: [...state.taskerTaskTypes, action.payload]
-            }
+            console.log(action.payload, "****in createtasktype reducer****")
+            newState = {...state, [action.payload.id]: action.payload};
+            return newState
+            // return{
+            //     ...state,
+            //     taskerTaskType: [...state.taskerTaskTypes, action.payload]
+            // }
         case UPDATE_TASKERTASKTYPE:
             return {
                 ...state,
