@@ -139,12 +139,12 @@ export default function taskerProfileReducer(state = initialState, action){
             }
         case CREATE_TASKERTASKTYPE:
             console.log(action.payload, "****in createtasktype reducer****")
-            newState = {...state, [action.payload.id]: action.payload};
-            return newState
-            // {
-            //     ...state,
-            //     taskerTaskType: [...state.taskerTaskTypes, action.payload]
-            // }
+            // newState = {...state, [action.payload.id]: action.payload};
+            // return newState
+            return{
+                ...state,
+                taskerTaskType: [...state.taskerTaskTypes, action.payload]
+            }
         case UPDATE_TASKERTASKTYPE:
             return {
                 ...state,

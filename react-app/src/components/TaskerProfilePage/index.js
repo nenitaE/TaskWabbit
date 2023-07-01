@@ -3,6 +3,8 @@ import { NavLink, useHistory } from "react-router-dom/cjs/react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getTaskerTaskTypes} from "../../store/taskerProfile";
 import { getTaskTypes } from "../../store/taskTypes";
+import { getTaskers } from "../../store/taskers";
+import { getTasks } from "../../store/tasks";
 
 
 function TaskerProfilePage() {
@@ -10,30 +12,30 @@ function TaskerProfilePage() {
     const history = useHistory();
     const [isLoaded, setIsLoaded] = useState(false)
     const user = useSelector(state => state.session.user);
+    //get tasktypes descriptions by tasktypeID from the state
     const taskTypes = useSelector(state => state.taskTypes);
     console.log(taskTypes, "taskTypesfromState*************")
-    // const taskTypesById = {}
-    // taskTypes.forEach(taskType => { taskTypesById[taskType.id] = taskType })
     
-    // console.log(taskTypesById,"*******TASKTYPESBYID*********")
     const dispatch = useDispatch();
-
+    //get taskerProfile from the state
     let taskerProfile = useSelector(state => state.taskerProfile.taskerTaskTypes)
     console.log (taskerProfile, "********TASKERprofile********")
     // console.log (taskerProfile[0], "********CurrTASKERprofile********")
-    let currTaskerProfile = taskerProfile[0]
-    const currTaskTypesById = Object.values(currTaskerProfile.taskerTaskTypes);
-    console.log (currTaskTypesById, "********CURRTASKTYPESBYID********")
     
-
     useEffect(() => {
+        dispatch(getTaskers())
         dispatch(getTaskerTaskTypes())
         dispatch(getTaskTypes())
+        dispatch(getTasks())
         .then(() => setIsLoaded(true))
     }, [dispatch]);
 
     if (!taskerProfile) return null;
-    
+    //get taskerProfile for current logged in tasker
+    let currTaskerProfile = taskerProfile[0]
+    // get list of current logged in tasker's tasktypes & hourlyrates by tasktypeID
+    const currTaskTypesById = Object.values(currTaskerProfile.taskerTaskTypes);
+    console.log (currTaskTypesById, "********CURRTASKTYPESBYID********")
 
 
     return (
