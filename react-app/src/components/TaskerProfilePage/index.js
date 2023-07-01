@@ -10,7 +10,7 @@ import { getTasks } from "../../store/tasks";
 function TaskerProfilePage() {
 
     const history = useHistory();
-    const [isLoaded, setIsLoaded] = useState(false)
+    // const [isLoaded, setIsLoaded] = useState(false)
     const user = useSelector(state => state.session.user);
     //get tasktypes descriptions by tasktypeID from the state
     const taskTypes = useSelector(state => state.taskTypes);
@@ -23,11 +23,9 @@ function TaskerProfilePage() {
     // console.log (taskerProfile[0], "********CurrTASKERprofile********")
     
     useEffect(() => {
-        dispatch(getTaskers())
         dispatch(getTaskerTaskTypes())
         dispatch(getTaskTypes())
         dispatch(getTasks())
-        .then(() => setIsLoaded(true))
     }, [dispatch]);
 
     if (!taskerProfile) return null;
@@ -36,22 +34,24 @@ function TaskerProfilePage() {
     // get list of current logged in tasker's tasktypes & hourlyrates by tasktypeID
     const currTaskTypesById = Object.values(currTaskerProfile.taskerTaskTypes);
     console.log (currTaskTypesById, "********CURRTASKTYPESBYID********")
-
-
+    console.log (currTaskTypesById[5], "********CURRTASKTYPESBYIDNUM5********")
+    // console.log(taskTypes[taskType.taskType_id].type, "******SUGGESTEDBYWILL*****")
     return (
         <div>
             <h1>This will be the Tasker Profile Page</h1>
             <h2>Your current tasktypes are</h2>
-            {isLoaded && currTaskTypesById.map((taskType) => (
-               <li>{taskTypes[taskType.id].type} at an hourly rate of ${taskType.hourlyRate}</li> 
+            {/* {currTaskTypesById} */}
+            {currTaskTypesById.map((currTaskType) => (
+               <li>{taskTypes[currTaskType.taskType_id].type} at an hourly rate of ${currTaskType.hourlyRate}</li> 
             ))}
-            
+            {/* {taskTypes[taskType.id].type}  */}
+            {/* {taskTypes[currTaskType.taskType_id].type}  */}
         
             {!user || (
                 <span  className='create-new-tasktype'>
-                    <li>
+                    <p>
                         <NavLink to="/taskerTaskTypes/new">Create a New Tasktype</NavLink>
-                    </li>
+                    </p>
                 </span>)}
               
             
