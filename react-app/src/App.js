@@ -12,6 +12,7 @@ import TasksPage from "./components/TasksPage";
 import EditTaskFormPage from "./components/EditTaskFormPage";
 import CreateTaskForm from "./components/CreateTaskForm";
 import ReviewByLoggedIn from "./components/CurrentReview";
+import CreateReviewForm from "./components/CreateReviewForm/createReviewForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -51,6 +52,9 @@ function App() {
           </Route>
           <Route excat path="/tasks/new/:taskTypeId">
             <CreateTaskForm />
+          </Route>
+          <Route exact path='/reviews/new'>
+            <CreateReviewForm />
           </Route>
         </Switch>
       )}
