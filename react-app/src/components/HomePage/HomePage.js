@@ -74,7 +74,6 @@ const HomePage = () => {
                                 <ul key={taskerTaskType.id}>
                                     {taskTypesById[taskerTaskType.taskType_id].type} for ${taskerTaskType.hourlyRate}/hr
                                 </ul>
-
                             ))}
                         </ul>
                     </div>
