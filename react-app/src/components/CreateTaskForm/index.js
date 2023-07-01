@@ -40,7 +40,7 @@ function CreateTaskForm() {
     };
 
     const submitForm = async (e) => {
-        console.log(formData);
+        // console.log(formData);
         e.preventDefault();
         const data = await dispatch(createTask(formData))
         if(data){
