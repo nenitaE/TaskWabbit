@@ -11,6 +11,7 @@ import HomePage from "./components/HomePage/HomePage";
 import TasksPage from "./components/TasksPage";
 import EditTaskFormPage from "./components/EditTaskFormPage";
 import CreateTaskForm from "./components/CreateTaskForm";
+import LoginSignup from "./components/LoginSignup/LoginSignup";
 
 function App() {
   const dispatch = useDispatch();
@@ -32,6 +33,9 @@ function App() {
           </Route>
           <Route exact path="/signup">
             <SignupFormPage />
+          </Route>
+          <Route exact path="/loginSignup">
+            <LoginSignup/>
           </Route>
           <Route exact path="/form">
             <MainFormPage />
