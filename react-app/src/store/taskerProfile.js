@@ -21,15 +21,19 @@ const getTaskerTaskTypesAction = (taskerTaskTypes) => {
     }
 }
 
-const deleteTaskerTaskTypeAction = (taskertasktypeId) => ({
-    type: DELETE_TASKERTASKTYPE,
-    payload:taskertasktypeId
-})
+const deleteTaskerTaskTypeAction = (taskertasktypeId) => {
+    return {
+        type: DELETE_TASKERTASKTYPE,
+        payload:taskertasktypeId
+    }
+}
 
-const updateTaskerTaskTypeAction = (taskertasktypeId) => ({
-    type:UPDATE_TASKERTASKTYPE,
-    payload: taskertasktypeId
-})
+const updateTaskerTaskTypeAction = (taskertasktypeId) => {
+    return {
+        type:UPDATE_TASKERTASKTYPE,
+        payload: taskertasktypeId
+    }
+}
 
 const createTaskerTaskType = (newTaskerTaskType) => {
     console.log('*********newTaskerTaskType*********', newTaskerTaskType)
@@ -50,7 +54,7 @@ export const getTaskerTaskTypes = () => async(dispatch) => {
 }
 
 export const updateTaskerTaskType = (taskertasktypeId, taskerTaskTypeData) => async(dispatch) =>{
-    const response = await fetch(`/api/taskerTaskType/${taskertasktypeId}`, {
+    const response = await fetch(`/api/taskerTaskTypes/${taskertasktypeId}`, {
         method: "PUT",
         headers: {
             'Content-Type': 'application/json'
@@ -75,7 +79,7 @@ export const updateTaskerTaskType = (taskertasktypeId, taskerTaskTypeData) => as
 }
 
 export const deleteTaskerTaskType = (taskerTaskTypeId) => async(dispatch) => {
-    const response = await fetch(`/api/taskerTaskType/${taskerTaskTypeId}`, {
+    const response = await fetch(`/api/taskerTaskTypes/${taskerTaskTypeId}`, {
         method: "DELETE"
     })
     if(response.ok){
