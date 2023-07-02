@@ -5,6 +5,8 @@ import { getTaskerTaskTypes} from "../../store/taskerProfile";
 import { getTaskTypes } from "../../store/taskTypes";
 import { getTaskers } from "../../store/taskers";
 import { getTask, getTasks } from "../../store/tasks";
+import DeleteTaskerTaskTypeModal from "../DeleteTaskerTaskTypeModal";
+import { useModal } from "../../context/Modal";
 
 
 function TaskerProfilePage() {
@@ -18,6 +20,7 @@ function TaskerProfilePage() {
     taskTypes.forEach(taskType => {taskTypesById[taskType.id] = taskType})
     console.log(taskTypesById, "taskTypesById*************")
     
+    const {setModalContent} = useModal();
     const dispatch = useDispatch();
     //get taskerProfile from the state
     let taskerProfile = useSelector(state => state.taskerProfile.taskerTaskTypes)
@@ -40,16 +43,24 @@ function TaskerProfilePage() {
     console.log (currTaskTypesById, "********CURRTASKTYPESBYID********")
     console.log (currTaskTypesById[5], "********CURRTASKTYPESBYIDNUM5********")
 
+    const openDeleteTaskerTaskTypeModal = (taskerTaskTypeId) => {
+        setModalContent(<DeleteTaskerTaskTypeModal taskerTaskTypeId={taskerTaskTypeId}/>)
+    }
+
     return (
         <div>
             <h1>This will be the Tasker Profile Page</h1>
             <h2>Your current tasktypes are</h2>
             {isLoaded && currTaskTypesById.map((currTaskType) => (
-               <li>{taskTypesById[currTaskType.taskType_id].type} at an hourly rate of ${currTaskType.hourlyRate}</li> 
+                <div>
+                    <li>{taskTypesById[currTaskType.taskType_id].type} at an hourly rate of ${currTaskType.hourlyRate}
+                    <div className='deleteTTBtn'>
+                    <button onClick={() => openDeleteTaskerTaskTypeModal(currTaskType.taskType_id)}>Delete Tasktype</button>
+                    </div> 
+                    </li>
+                </div>
             ))}
-            {/* {taskTypes[taskType.id].type}  */}
-            {/* {taskTypes[currTaskType.taskType_id].type}  */}
-        
+            
             {!user || (
                 <span  className='create-new-tasktype'>
                     <p>

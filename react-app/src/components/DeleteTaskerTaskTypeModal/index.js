@@ -5,7 +5,7 @@ import { useModal } from '../../context/Modal';
 import { deleteTaskerTaskType } from '../../store/taskerProfile';
 
 
-const taskerTaskTypeDeleteModal = ({ taskerTaskTypeId }) => {
+const DeleteTaskerTaskTypeModal = ({ taskerTaskTypeId }) => {
     const dispatch = useDispatch();
     const { closeModal } = useModal();
     const history = useHistory();
@@ -33,4 +33,4 @@ const taskerTaskTypeDeleteModal = ({ taskerTaskTypeId }) => {
     )
 }
 
-export default taskerTaskTypeDeleteModal;
+export default DeleteTaskerTaskTypeModal;
