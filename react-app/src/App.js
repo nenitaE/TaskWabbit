@@ -13,6 +13,9 @@ import EditTaskFormPage from "./components/EditTaskFormPage";
 import CreateTaskForm from "./components/CreateTaskForm";
 import ReviewByLoggedIn from "./components/CurrentReview";
 import CreateReviewForm from "./components/CreateReviewForm/createReviewForm";
+import GetReview from "./components/UpdateReview/GetReviewById";
+import Update from "./components/UpdateReview";
+import ReviewsByTasker_id from "./components/GetReviewByTasker/GetReviewByTasker";
 
 function App() {
   const dispatch = useDispatch();
@@ -41,6 +44,9 @@ function App() {
           <Route exact path="/taskers">
             <TaskersPage />
           </Route>
+          <Route exact path="/taskers/:tasker_id/reviews">
+            <ReviewsByTasker_id />
+          </Route>
           <Route excat path="/tasks/:taskId/edit">
             <EditTaskFormPage />
           </Route>
@@ -50,12 +56,19 @@ function App() {
           <Route exact path="/reviews/currentUser">
             <ReviewByLoggedIn />
           </Route>
-          <Route excat path="/tasks/new/:taskTypeId">
-            <CreateTaskForm />
-          </Route>
           <Route exact path='/reviews/new'>
             <CreateReviewForm />
           </Route>
+          <Route exact path='/reviews/:id'>
+            <GetReview />
+          </Route>
+          <Route exact path="/reviews/:id/edit">
+            <Update />
+          </Route>
+          <Route excat path="/tasks/new/:taskTypeId">
+            <CreateTaskForm />
+          </Route>
+
         </Switch>
       )}
     </>

@@ -13,9 +13,9 @@ const CreateReviewForm = () => {
     const dispatch = useDispatch()
     const history = useHistory()
 
-    // useEffect( () => {
-    //     dispatch(getReviewForLoggedIn())
-    // }, [dispatch])
+    useEffect( () => {
+        dispatch(getReviewForLoggedIn())
+    }, [dispatch])
 
     const sessionUser = useSelector( (state) => state.session.user.id)
     console.log(typeof(sessionUser), sessionUser, 'session//////////////')
@@ -34,7 +34,6 @@ const CreateReviewForm = () => {
         }
 
         let newReviewByUser = await dispatch(createNewReviewByUser(payload))
-        dispatch(getReviewForLoggedIn())
         console.log(newReviewByUser, 'handle submit')
 
         if (newReviewByUser) {
