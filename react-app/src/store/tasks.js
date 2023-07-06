@@ -120,7 +120,7 @@ export const deleteTask = (taskId) => async(dispatch) => {
 
 export const createTask = (taskData) => async(dispatch) =>{
     try {
-        console.log("FAILED BODY", JSON.stringify(taskData))
+        // console.log("FAILED BODY", JSON.stringify(taskData))
         const response = await fetch('/api/tasks/', {
             method: "POST",
             headers: {
@@ -133,7 +133,7 @@ export const createTask = (taskData) => async(dispatch) =>{
             dispatch(createTaskAction(newTask));
             return newTask
         } else if (response.status <= 500){
-            console.log("FAILED BODY", JSON.stringify(taskData))
+            // console.log("FAILED BODY", JSON.stringify(taskData))
             const data = await response.json();
             if(data.errors){
                 return data.errors;
