@@ -2,10 +2,10 @@ import React from 'react';
 import { useModal } from '../../context/Modal';
 import { useState, useEffect } from "react";
 
-function Step3({onStepComplete}){
+function Step3({onStepComplete, existingData}){
 
     const { setModalContent, closeModal } = useModal();
-    const [taskDate, setTaskDate] = useState("");
+    const [taskDate, setTaskDate] = useState(existingData.taskDate || "");
     const [error, setError] = useState("");
 
     const handleDateChange = (e) => {
@@ -43,6 +43,7 @@ function Step3({onStepComplete}){
 
     const handleBack = () => {
         onStepComplete({ back: true });
+        closeModal();
     };
 
     // Set the modal content when this component mounts

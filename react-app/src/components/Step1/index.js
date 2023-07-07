@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
 
 
-function Step1({onStepComplete}){
-    const dispatch = useDispatch();
-    const [location, setLocation] = useState("");
-    const [description, setDescription] = useState("");
-    const [title, setTitle] = useState("");
-    const [apiKey, setApiKey] = useState("");
+function Step1({onStepComplete, existingData}){
+    const [location, setLocation] = useState(existingData.location || "");
+    const [description, setDescription] = useState(existingData.description || "");
+    const [title, setTitle] = useState(existingData.title || "");
     const [errors, setErrors] = useState({})
-    const [inputValue, setInputValue] = useState('');
+    const [inputValue, setInputValue] = useState(existingData.location || '');
     const [suggestions, setSuggestions] = useState([]);
 
     const fetchSuggestions = async (input) => {
@@ -61,8 +58,9 @@ function Step1({onStepComplete}){
                 {suggestions.map((suggestion, index) => (
                     <div
                         key={index}
-                        onMouseDown={() => {
-                            setLocation(suggestion.description);
+                        onMouseDown={(e) => {
+                            e.preventDefault()
+                            setLocation(inputValue);
                             setInputValue(suggestion.description);
                             setSuggestions([]);
                         }}
