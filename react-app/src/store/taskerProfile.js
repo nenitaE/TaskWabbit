@@ -4,6 +4,8 @@
 
     //GET all tasktypes of curr tasker
 const GET_TASKERTASKTYPES = "taskertasktypes/getTaskerTaskTypes";
+    //GET specific tasktype by Id
+const GET_TASKERTASKTYPE = "taskertasktypes/getTaskerTaskType";
     //DELETE a tasktype of curr user
 const DELETE_TASKERTASKTYPE = "taskertasktypes/deleteTaskerTaskType";
     //EDIT a tasktype of curr user
@@ -14,28 +16,36 @@ const CREATE_TASKERTASKTYPE = "taskertasktypes/createTaskerTaskType"
 //TASKERPROFILE ACTION CREATORS
 
 const getTaskerTaskTypesAction = (taskerTaskTypes) => {
-    console.log('*********taskerTaskTypes*********', taskerTaskTypes)
+   
     return  {
         type: GET_TASKERTASKTYPES,
         payload: taskerTaskTypes
     }
 }
+const getTaskerTaskTypeAction = (taskerTaskTypeId) => {
+   
+    return  {
+        type: GET_TASKERTASKTYPE,
+        payload: taskerTaskTypeId
+    }
+}
 
-const deleteTaskerTaskTypeAction = (taskertasktypeId) => {
+const deleteTaskerTaskTypeAction = (taskerTaskTypeId) => {
+    console.log('*********taskerTaskTypeId in DELETE ACTION*********', taskerTaskTypeId)
     return {
         type: DELETE_TASKERTASKTYPE,
-        payload:taskertasktypeId
+        payload:taskerTaskTypeId
     }
 }
 
-const updateTaskerTaskTypeAction = (taskertasktypeId) => {
+const updateTaskerTaskTypeAction = (taskerTaskTypeId) => {
     return {
         type:UPDATE_TASKERTASKTYPE,
-        payload: taskertasktypeId
+        payload: taskerTaskTypeId
     }
 }
 
-const createTaskerTaskType = (newTaskerTaskType) => {
+const createTaskerTaskTypeAction = (newTaskerTaskType) => {
     console.log('*********newTaskerTaskType*********', newTaskerTaskType)
     return {
         type: CREATE_TASKERTASKTYPE,
@@ -48,13 +58,21 @@ export const getTaskerTaskTypes = () => async(dispatch) => {
     const response = await fetch('/api/taskerTaskTypes/current');
     if(response.ok){
         const data = await response.json();
-        console.log(data, "***********data***********")
         dispatch(getTaskerTaskTypesAction(data.TaskerTaskTypes))
+        return data;
+    }
+}
+export const getTaskerTaskType = (taskerTaskTypeId) => async(dispatch) => {
+    const response = await fetch(`/api/taskerTaskTypes/${taskerTaskTypeId}`);
+    if(response.ok){
+        const taskerTaskType = await response.json();
+        dispatch(getTaskerTaskTypeAction(taskerTaskType))
+        return taskerTaskType;
     }
 }
 
-export const updateTaskerTaskType = (taskertasktypeId, taskerTaskTypeData) => async(dispatch) =>{
-    const response = await fetch(`/api/taskerTaskTypes/${taskertasktypeId}`, {
+export const updateTaskerTaskType = (taskerTaskTypeId, taskerTaskTypeData) => async(dispatch) =>{
+    const response = await fetch(`/api/taskerTaskTypes/${taskerTaskTypeId}`, {
         method: "PUT",
         headers: {
             'Content-Type': 'application/json'
@@ -85,7 +103,7 @@ export const deleteTaskerTaskType = (taskerTaskTypeId) => async(dispatch) => {
     if(response.ok){
         const data = await response.json();
         dispatch(deleteTaskerTaskTypeAction(taskerTaskTypeId))
-        return null
+        // return null
     }else if(response.status < 500){
         const data = await response.json()
         if(data.errors){
@@ -110,7 +128,7 @@ export const fetchCreateTaskerTaskType = (taskerTaskTypeData) => async(dispatch)
         });
         if(response.ok){
             const newTaskerTaskType = await response.json();
-            dispatch(createTaskerTaskType(newTaskerTaskType));
+            dispatch(createTaskerTaskTypeAction(newTaskerTaskType));
             return newTaskerTaskType
         } else if (response.status <= 500){
             console.log("FAILED BODY", JSON.stringify(taskerTaskTypeData))
@@ -130,8 +148,9 @@ export const fetchCreateTaskerTaskType = (taskerTaskTypeData) => async(dispatch)
 //TASKERPROFILE REDUCER
 
 const initialState = {
-    taskerTaskTypes: null
-}
+    taskerTaskTypes: null,
+    taskerTaskType: null
+};
 
 export default function taskerProfileReducer(state = initialState, action){
     let newState = {};
@@ -141,8 +160,14 @@ export default function taskerProfileReducer(state = initialState, action){
                 ...state,
                 taskerTaskTypes: action.payload
             }
+        case GET_TASKERTASKTYPE:
+            return{
+                ...state,
+                taskerTaskType: action.payload
+            }
         case CREATE_TASKERTASKTYPE:
             console.log(action.payload, "****in createtasktype reducer****")
+            // newState = {...state, [action.payload.id]: action.payload};
             newState = {...state, [action.payload.id]: action.payload};
             return newState
             // return{
@@ -150,13 +175,16 @@ export default function taskerProfileReducer(state = initialState, action){
             //     taskerTaskType: [...state.taskerTaskTypes, action.payload]
             // }
         case UPDATE_TASKERTASKTYPE:
+            // newState = {...state, [action.payload.id]: {...state, ...action.taskerTaskType}};
+            // return newState;
             return {
                 ...state,
-                taskerTaskType:[...state.taskerTaskTypes, action.payload.id]
+                taskerTaskType:[...state.taskerTaskType, action.payload.taskerTaskTypeId]
+                // taskerTaskTypes: state.taskerTaskTypes.map(taskerTaskType => taskerTaskType.id === action.payload.id ? action.payload : taskerTaskType)
             }
         case DELETE_TASKERTASKTYPE:
             newState = {...state};
-            delete newState[action.payload.id];
+            delete newState[action.payload.taskerTaskTypeId];
             return newState;
         default:
             return state

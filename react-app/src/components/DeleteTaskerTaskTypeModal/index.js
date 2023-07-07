@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch} from 'react-redux';
 import { Redirect, useHistory } from 'react-router-dom';
 import { useModal } from '../../context/Modal';
-import { deleteTaskerTaskType } from '../../store/taskerProfile';
+import { deleteTaskerTaskType, getTaskerTaskTypes } from '../../store/taskerProfile';
 
 
 const DeleteTaskerTaskTypeModal = ({ taskerTaskTypeId }) => {
@@ -13,11 +13,12 @@ const DeleteTaskerTaskTypeModal = ({ taskerTaskTypeId }) => {
 
     const handleDelete = async (e) => {
         e.preventDefault();
-
-        await dispatch(deleteTaskerTaskType(taskerTaskTypeId)).then(closeModal);
-        history.push(`/taskerTaskTypes`)
-
+        await dispatch(deleteTaskerTaskType(taskerTaskTypeId))
+        .then(dispatch(getTaskerTaskTypes()))
+        .then(closeModal)
+        .then(history.push(`/taskerTaskTypes/current`))
     }
+    
 
     return (
         <div>

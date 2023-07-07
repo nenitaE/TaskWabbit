@@ -13,6 +13,7 @@ import EditTaskFormPage from "./components/EditTaskFormPage";
 import CreateTaskForm from "./components/CreateTaskForm";
 import TaskerProfilePage from "./components/TaskerProfilePage";
 import CreateTaskerTaskTypeForm from "./components/CreateTaskerTaskTypeForm";
+import UpdateTaskerTaskTypeForm from "./components/UpdateTaskerTaskTypeForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -41,10 +42,15 @@ function App() {
           <Route exact path="/taskers">
             <TaskersPage />
           </Route>
+          <Route exact path="/taskerTaskTypes/:taskerTaskTypeId/edit">
+            <UpdateTaskerTaskTypeForm />
+          </Route>
           <Route exact path="/taskerTaskTypes/current">
             <TaskerProfilePage />
           </Route>
-          <Route path="/taskerTaskTypes/new" component={CreateTaskerTaskTypeForm} />
+          <Route exact path="/taskerTaskTypes/new">
+            <CreateTaskerTaskTypeForm />
+          </Route>
           <Route exact path="/tasks/:taskId/edit">
             <EditTaskFormPage />
           </Route>
