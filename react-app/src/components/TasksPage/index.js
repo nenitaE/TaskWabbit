@@ -25,9 +25,10 @@ function TasksPage(){
             const taskDate = new Date(task.task_date);
             const currentDate = new Date();
             currentDate.setHours(0,0,0,0); // set current time to 00:00:00
+            const uniqueKey = `${task.id}_`;
 
             return (
-                <div key={task.id}>
+                <div key={uniqueKey}>
                     <h2>{task.title}</h2>
                     <p>Date: {task.task_date}</p>
                     <p>Location: {task.location}</p>
