@@ -119,8 +119,9 @@ export const deleteTask = (taskId) => async(dispatch) => {
 // }
 
 export const createTask = (taskData) => async(dispatch) =>{
+    console.log("FAILED BODY", JSON.stringify(taskData))
     try {
-        // console.log("FAILED BODY", JSON.stringify(taskData))
+
         const response = await fetch('/api/tasks/', {
             method: "POST",
             headers: {

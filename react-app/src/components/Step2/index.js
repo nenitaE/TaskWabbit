@@ -12,9 +12,19 @@ function Step2({ onStepComplete, taskers}){
     const { taskTypeId } = useParams();
 
     const handleSelectTasker= (taskerId) => {
+        const selectedTasker = filteredTaskers.find(tasker => tasker.id === taskerId);
+        const taskType = selectedTasker.taskerTaskTypes.find(taskType => taskType.taskType_id == taskTypeId);
+        // console.log('THE TASKTYPE', taskType.hourlyRate)
+        const trustAndSupportFee = 12.54;
+        // const totalRate = Number(taskType.hourlyRate) + trustAndSupportFee;
+
         setTaskerId(taskerId);
         onStepComplete({
             'tasker_id': taskerId,
+            'trustAndSupportFee': trustAndSupportFee.toFixed(2),
+            'tasker_name': `${selectedTasker.firstName} ${selectedTasker.lastName}`,
+            'hourlyRate': taskType.hourlyRate,
+            'totalPrice': (Number(taskType.hourlyRate) + Number(trustAndSupportFee)).toFixed(2)
         });
     }
 
