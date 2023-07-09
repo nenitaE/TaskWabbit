@@ -149,7 +149,7 @@ export const fetchCreateTaskerTaskType = (taskerTaskTypeData) => async(dispatch)
 
 const initialState = {
     taskerTaskTypes: null,
-    taskerTaskType: null
+    taskerTaskType: [null]
 };
 
 export default function taskerProfileReducer(state = initialState, action){
@@ -175,13 +175,13 @@ export default function taskerProfileReducer(state = initialState, action){
             //     taskerTaskType: [...state.taskerTaskTypes, action.payload]
             // }
         case UPDATE_TASKERTASKTYPE:
-            // newState = {...state, [action.payload.id]: {...state, ...action.taskerTaskType}};
-            // return newState;
-            return {
-                ...state,
-                taskerTaskType:[...state.taskerTaskType, action.payload.taskerTaskTypeId]
-                // taskerTaskTypes: state.taskerTaskTypes.map(taskerTaskType => taskerTaskType.id === action.payload.id ? action.payload : taskerTaskType)
-            }
+            newState = {...state, [action.payload.id]: {...state, ...action.taskerTaskTypes}};
+            return newState;
+            // return {
+            //     ...state,
+            //     taskerTaskType:[...state.taskerTaskType, action.payload.taskerTaskTypeId]
+            //     // taskerTaskTypes: state.taskerTaskTypes.map(taskerTaskType => taskerTaskType.id === action.payload.id ? action.payload : taskerTaskType)
+            // }
         case DELETE_TASKERTASKTYPE:
             newState = {...state};
             delete newState[action.payload.taskerTaskTypeId];

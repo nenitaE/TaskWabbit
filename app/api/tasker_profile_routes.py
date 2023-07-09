@@ -27,8 +27,7 @@ def edit_curr_tasktype(taskerTaskTypeId):
         return {'Error': 'User is not authorized'}
 
     if form.validate_on_submit():
-        data = form.data
-        tasker_id = data['tasker_id']
+        tasker_id = form.data['tasker_id']
         # print(tasker_id, "**********TASKER_ID**************")
         taskerTaskTypes = TaskerTaskType.query.filter(
             and_(
@@ -38,15 +37,15 @@ def edit_curr_tasktype(taskerTaskTypeId):
 
         print(taskerTaskTypes, "**********TASKERTASKTYPES**************")
 
-        print(data["taskType_id"], "********data[taskType_id]*****")
+        print(form.data["taskType_id"], "********data[taskType_id]*****")
 
                 
-        if 'taskType_id' in data:
-            taskerTaskType.taskType_id = data["taskType_id"]
-        if 'tasker_id' in data:
-            taskerTaskType.tasker_id = data["tasker_id"]
-        if 'hourlyRate' in data:
-            taskerTaskType.hourlyRate = data["hourlyRate"]
+        if 'taskType_id' in form.data:
+            taskerTaskType.taskType_id = form.data["taskType_id"]
+        if 'tasker_id' in form.data:
+            taskerTaskType.tasker_id = form.data["tasker_id"]
+        if 'hourlyRate' in form.data:
+            taskerTaskType.hourlyRate = form.data["hourlyRate"]
 
     # #Change instance variable of the taskerTaskType through a JSON request
     # taskerTaskType.hourlyRate = request.json['hourlyRate']
