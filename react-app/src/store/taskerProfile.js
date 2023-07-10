@@ -151,7 +151,7 @@ export const fetchCreateTaskerTaskType = (taskerTaskTypeData) => async(dispatch)
 
 const initialState = {
     taskerTaskTypes: null,
-    taskerTaskType: null
+    taskerTaskType: [null]
 };
 
 export default function taskerProfileReducer(state = initialState, action){
