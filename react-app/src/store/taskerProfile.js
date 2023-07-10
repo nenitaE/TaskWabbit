@@ -168,23 +168,20 @@ export default function taskerProfileReducer(state = initialState, action){
                 taskerTaskType: action.payload
             }
         case CREATE_TASKERTASKTYPE:
-            // newState = {...state, [action.payload.id]: action.payload};
+            
             newState = {...state,
                 taskerTaskTypes: [...state.taskerTaskTypes, action.payload]
                 };
             return newState
         case UPDATE_TASKERTASKTYPE:
-            // newState = {...state, [action.payload.id]: {...state.taskerTaskTypes, ...action.taskerTaskType}};
-            // return newState;
+
             return {
                 ...state,
                 taskerTaskType: action.payload,
                 taskerTaskTypes: state.taskerTaskTypes?.map(taskerTaskType => taskerTaskType.id === action.payload.id ? action.payload : taskerTaskType)
         }
         case DELETE_TASKERTASKTYPE:
-            // newState = {...state};
-            // delete newState[action.payload.taskerTaskTypeId];
-            // return newState;
+
             return {
                 ...state,
                 taskerTaskTypes: state.taskerTaskTypes.filter(taskerTaskType => taskerTaskType.id != action.payload)
