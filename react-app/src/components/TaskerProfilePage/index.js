@@ -12,14 +12,14 @@ function TaskerProfilePage() {
     const history = useHistory();
     const [isLoaded, setIsLoaded] = useState(false)
     const user = useSelector(state => state.session.user);
-    console.log(user, "******USER**********")
+
     //get list of all possible tasktypes with descriptions by tasktypeID from the state
     const taskTypes = useSelector(state => state.taskTypes);
-    console.log(taskTypes, "*********taskTypes*********")
+
     // flatten taskTypes into an obj with key of taskType.id
     const taskTypesById = {};
     taskTypes.forEach(taskType => {taskTypesById[taskType.id] = taskType})
-    console.log(taskTypesById, "taskTypesById*************")
+
 
     const {setModalContent} = useModal();
     const dispatch = useDispatch();
@@ -33,16 +33,16 @@ function TaskerProfilePage() {
 
      //get taskerTaskTypes for current logged in tasker from the state
     let currTaskerTaskTypes = useSelector(state => state.taskerProfile.taskerTaskTypes)
-     console.log (currTaskerTaskTypes, "********curr TASKER TASKTYPES********")
+
     if (!currTaskerTaskTypes) return null;
 
     // flatten currTaskerTaskTypes array and assign to obj with key of taskType_id
-    const currTaskerTaskTypesById = {};
-    currTaskerTaskTypes.forEach(currTaskerTaskType => {currTaskerTaskTypesById[currTaskerTaskType.taskType_id] = currTaskerTaskType})
-    console.log(currTaskerTaskTypesById, "currTaskerTaskTypesById*************")
+    // const currTaskerTaskTypesById = {};
+    // currTaskerTaskTypes.forEach(currTaskerTaskType => {currTaskerTaskTypesById[currTaskerTaskType.taskType_id] = currTaskerTaskType})
 
-    const currTaskTypesById = Object.values(currTaskerTaskTypesById);
-    console.log (currTaskTypesById, "********CURRTASKTYPESBYID********")
+
+    // const currTaskTypesById = Object.values(currTaskerTaskTypesById);
+
 
     const openDeleteTaskerTaskTypeModal = (taskerTaskTypeId) => {
         setModalContent(<DeleteTaskerTaskTypeModal taskerTaskTypeId={taskerTaskTypeId}/>)
@@ -62,13 +62,11 @@ function TaskerProfilePage() {
                         </span>
                         <span> </span>
                         <span  className='editTTBtn'>
-                            <NavLink to={`/taskerTaskTypes/${currTaskerTaskType.id}/edit`}>Edit Tasktype</NavLink>
+                            {/* {<NavLink to={`/taskerTaskTypes/${currTaskerTaskType.id}/edit`}>Edit Tasktype</NavLink>} */}
 
-                            {/* <a href={`/taskerTaskTypes/${currTaskType.taskType_id}/edit`}>
+                            { <a href={`/taskerTaskTypes/${currTaskerTaskType.id}/edit`}>
                             <button>Edit Tasktype</button>
-
-                            <Link to={`/spots/${spot.id}`} key={spot.id}>
-                            </a> */}
+                            </a> }
                         </span>
                     </span>
                 </div>
