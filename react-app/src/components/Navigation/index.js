@@ -14,17 +14,7 @@ function Navigation({ isLoaded }){
 			</li>
 			{isLoaded && sessionUser &&(
 				<li>
-					<NavLink to="/taskers">Taskers</NavLink>
-				</li>
-			)}
-			{isLoaded && sessionUser &&(
-				<li>
 					<NavLink to="/tasks/current">My Tasks</NavLink>
-				</li>
-			)}
-			{isLoaded && sessionUser &&(
-				<li>
-					<NavLink to="/tasks/new/:taskTypeId">Create a Task</NavLink>
 				</li>
 			)}
 			{isLoaded && (
