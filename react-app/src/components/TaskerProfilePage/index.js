@@ -61,7 +61,7 @@ function TaskerProfilePage() {
                         </span> 
                         <span> </span>
                         <span  className='editTTBtn'>
-                            <NavLink to={`/taskerTaskTypes/${currTaskerTaskType.id}/edit`}>Edit Tasktype</NavLink>
+                            <NavLink to={`/taskerTaskTypes/${currTaskerTaskType.id}/edit`}>Edit Hourly Rate</NavLink>
                             
                             {/* <a href={`/taskerTaskTypes/${currTaskType.taskType_id}/edit`}>
                             <button>Edit Tasktype</button>
