@@ -11,6 +11,9 @@ import HomePage from "./components/HomePage/HomePage";
 import TasksPage from "./components/TasksPage";
 import EditTaskFormPage from "./components/EditTaskFormPage";
 import CreateTaskForm from "./components/CreateTaskForm";
+import TaskerProfilePage from "./components/TaskerProfilePage";
+import CreateTaskerTaskTypeForm from "./components/CreateTaskerTaskTypeForm";
+import NewUpdateTaskerTaskTypeForm from "./components/NewUpdateTaskerTaskTypeForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -39,13 +42,22 @@ function App() {
           <Route exact path="/taskers">
             <TaskersPage />
           </Route>
-          <Route excat path="/tasks/:taskId/edit">
+          <Route exact path="/taskerTaskTypes/:taskerTaskTypeId/edit">
+            <NewUpdateTaskerTaskTypeForm/>
+          </Route>
+          <Route exact path="/taskerTaskTypes/current">
+            <TaskerProfilePage />
+          </Route>
+          <Route exact path="/taskerTaskTypes/new">
+            <CreateTaskerTaskTypeForm />
+          </Route>
+          <Route exact path="/tasks/:taskId/edit">
             <EditTaskFormPage />
           </Route>
           <Route exact path="/tasks/current">
             <TasksPage />
           </Route>
-          <Route excat path="/tasks/new/:taskTypeId">
+          <Route exact path="/tasks/new/:taskTypeId">
             <CreateTaskForm />
           </Route>
         </Switch>
