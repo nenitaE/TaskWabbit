@@ -27,7 +27,9 @@ def edit_curr_tasktype(taskerTaskTypeId):
         return {'Error': 'User is not authorized'}
 
     if form.validate_on_submit():
-        tasker_id = form.data['tasker_id']
+        data = form.data
+        print(data)
+        tasker_id = data['tasker_id']
         # print(tasker_id, "**********TASKER_ID**************")
         taskerTaskTypes = TaskerTaskType.query.filter(
             and_(
@@ -35,17 +37,12 @@ def edit_curr_tasktype(taskerTaskTypeId):
             )
         ).all()
 
-        print(taskerTaskTypes, "**********TASKERTASKTYPES**************")
-
-        print(form.data["taskType_id"], "********data[taskType_id]*****")
-
-                
-        if 'taskType_id' in form.data:
-            taskerTaskType.taskType_id = form.data["taskType_id"]
-        if 'tasker_id' in form.data:
-            taskerTaskType.tasker_id = form.data["tasker_id"]
-        if 'hourlyRate' in form.data:
-            taskerTaskType.hourlyRate = form.data["hourlyRate"]
+        if 'taskType_id' in data:
+            taskerTaskType.taskType_id = data["taskType_id"]
+        if 'tasker_id' in data:
+            taskerTaskType.tasker_id = data["tasker_id"]
+        if 'hourlyRate' in data:
+            taskerTaskType.hourlyRate = data["hourlyRate"]
 
     # #Change instance variable of the taskerTaskType through a JSON request
     # taskerTaskType.hourlyRate = request.json['hourlyRate']
@@ -92,7 +89,7 @@ def get_curr_tasktypes():
     """
     current_user_id = current_user.get_id()
     user = User.query.get(current_user_id)
-    
+
     #check if user is logged in
     if user is None:
         return jsonify({'error': 'User not found'}), 404
@@ -109,7 +106,7 @@ def get_curr_tasktypes():
     #if current_user is not a tasker, return error msg
     if curr_user_is_tasker is None:
         return jsonify({'message': 'Must be registered as a tasker.'}), 404
-    
+
     else:
         taskersTaskTypes = TaskerTaskType.query.filter(TaskerTaskType.tasker_id == current_user_id)
         return {'TaskerTaskTypes': [taskerTaskType.to_dict() for taskerTaskType in taskersTaskTypes]}
@@ -127,7 +124,7 @@ def get_taskerTaskType(taskerTaskTypeId):
         return jsonify({'error: TaskerTaskType not found'}), 404
     else:
         return jsonify(taskerTaskType.to_dict())
-    
+
 @tasker_profile_routes.route('', methods=['POST'])
 @login_required
 def add_tasktypes():
@@ -156,7 +153,7 @@ def add_tasktypes():
         for taskerTaskType in taskerTaskTypes:
             if data["taskType_id"] == taskerTaskType.taskType_id:
                 return {'errors': 'Tasker is already assigned this tasktype'}, 400
-        
+
 
         #Create new tasktype
         new_taskertasktype = TaskerTaskType(hourlyRate=data["hourlyRate"],

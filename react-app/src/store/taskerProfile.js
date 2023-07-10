@@ -16,14 +16,14 @@ const CREATE_TASKERTASKTYPE = "taskertasktypes/createTaskerTaskType"
 //TASKERPROFILE ACTION CREATORS
 
 const getTaskerTaskTypesAction = (taskerTaskTypes) => {
-   
+
     return  {
         type: GET_TASKERTASKTYPES,
         payload: taskerTaskTypes
     }
 }
 const getTaskerTaskTypeAction = (taskerTaskTypeId) => {
-   
+
     return  {
         type: GET_TASKERTASKTYPE,
         payload: taskerTaskTypeId
@@ -31,10 +31,10 @@ const getTaskerTaskTypeAction = (taskerTaskTypeId) => {
 }
 
 const deleteTaskerTaskTypeAction = (taskerTaskTypeId) => {
-    console.log('*********taskerTaskTypeId in DELETE ACTION*********', taskerTaskTypeId)
+
     return {
         type: DELETE_TASKERTASKTYPE,
-        payload:taskerTaskTypeId
+        payload: taskerTaskTypeId
     }
 }
 
@@ -46,7 +46,7 @@ const updateTaskerTaskTypeAction = (taskerTaskTypeId) => {
 }
 
 const createTaskerTaskTypeAction = (newTaskerTaskType) => {
-    console.log('*********newTaskerTaskType*********', newTaskerTaskType)
+
     return {
         type: CREATE_TASKERTASKTYPE,
         payload: newTaskerTaskType
@@ -72,6 +72,7 @@ export const getTaskerTaskType = (taskerTaskTypeId) => async(dispatch) => {
 }
 
 export const updateTaskerTaskType = (taskerTaskTypeId, taskerTaskTypeData) => async(dispatch) =>{
+
     const response = await fetch(`/api/taskerTaskTypes/${taskerTaskTypeId}`, {
         method: "PUT",
         headers: {
@@ -79,15 +80,17 @@ export const updateTaskerTaskType = (taskerTaskTypeId, taskerTaskTypeData) => as
         },
         body: JSON.stringify(taskerTaskTypeData)
     })
+
     if(response.ok){
         const updatedTaskerTaskType = await response.json();
         dispatch(updateTaskerTaskTypeAction(updatedTaskerTaskType));
-        console.log('*****UPDATED TASKERTASKTYPE****', updatedTaskerTaskType)
+
         return updatedTaskerTaskType;
-    }else if (response.status < 500){
-        console.log("BACKEND UPDATE FAILED")
+    } else if (response.status < 500){
+
 
         const data = response.json();
+
         if(data.errors){
             return data.errors;
         } else {
@@ -103,7 +106,6 @@ export const deleteTaskerTaskType = (taskerTaskTypeId) => async(dispatch) => {
     if(response.ok){
         const data = await response.json();
         dispatch(deleteTaskerTaskTypeAction(taskerTaskTypeId))
-        // return null
     }else if(response.status < 500){
         const data = await response.json()
         if(data.errors){
@@ -166,16 +168,27 @@ export default function taskerProfileReducer(state = initialState, action){
                 taskerTaskType: action.payload
             }
         case CREATE_TASKERTASKTYPE:
-            // console.log(action.payload, "****in createtasktype reducer****")
-            newState = {...state, [action.payload.id]: action.payload};
+            // newState = {...state, [action.payload.id]: action.payload};
+            newState = {...state,
+                taskerTaskTypes: [...state.taskerTaskTypes, action.payload]
+                };
             return newState
         case UPDATE_TASKERTASKTYPE:
-            newState = {...state, [action.payload.id]: {...state, ...action.taskerTaskTypes}};
-            return newState;
+            // newState = {...state, [action.payload.id]: {...state.taskerTaskTypes, ...action.taskerTaskType}};
+            // return newState;
+            return {
+                ...state,
+                taskerTaskType: action.payload,
+                taskerTaskTypes: state.taskerTaskTypes?.map(taskerTaskType => taskerTaskType.id === action.payload.id ? action.payload : taskerTaskType)
+        }
         case DELETE_TASKERTASKTYPE:
-            newState = {...state};
-            delete newState[action.payload.taskerTaskTypeId];
-            return newState;
+            // newState = {...state};
+            // delete newState[action.payload.taskerTaskTypeId];
+            // return newState;
+            return {
+                ...state,
+                taskerTaskTypes: state.taskerTaskTypes.filter(taskerTaskType => taskerTaskType.id != action.payload)
+            }
         default:
             return state
     }
