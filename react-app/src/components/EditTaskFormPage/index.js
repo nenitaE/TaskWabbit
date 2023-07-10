@@ -13,7 +13,7 @@ function EditTaskFormPage(){
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [location, setLocation] = useState("");
-    const [totalPrice, setTotalPrice] = useState(0);
+    // const [totalPrice, setTotalPrice] = useState(0);
     // const [isPastDate, setIsPastDate] = useState(false);
     const [errors, setErrors] = useState([]);
 
@@ -30,7 +30,7 @@ function EditTaskFormPage(){
             setTitle(task.title);
             setDescription(task.description);
             setLocation(task.location);
-            setTotalPrice(task.totalPrice);
+            // setTotalPrice(task.totalPrice);
         }
 
     }, [task]);
@@ -49,13 +49,14 @@ function EditTaskFormPage(){
             "taskTypeId": task.taskTypeId,
             "user_id": task.user_id,
             "tasker_id": task.tasker_id,
-            "task_date": task.task_date
+            "task_date": task.task_date,
+            "totalPrice": task.totalPrice
         }
         const taskData = {
             title,
             description,
             location,
-            totalPrice
+            // totalPrice
         }
 
         const finaltaskData = {
@@ -99,14 +100,14 @@ function EditTaskFormPage(){
               onChange={(e) => setLocation(e.target.value)}
             />
           </label>
-          <label>
+          {/* <label>
             Total Price
             <input
               type="number"
               value={totalPrice}
               onChange={(e) => setTotalPrice(e.target.value)}
             />
-          </label>
+          </label> */}
           <button type="submit">Update Task</button>
         </form>
       );

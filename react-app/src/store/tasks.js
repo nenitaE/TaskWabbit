@@ -55,6 +55,7 @@ export const getTask = (taskId) => async(dispatch) => {
 }
 
 export const updateTask = (taskId, taskData) => async(dispatch) =>{
+        // console.log("FAILED BODY", JSON.stringify(taskData))
     const response = await fetch(`/api/tasks/${taskId}`, {
         method: "PUT",
         headers: {
@@ -67,7 +68,6 @@ export const updateTask = (taskId, taskData) => async(dispatch) =>{
         dispatch(updateTaskAction(updatedTask));
         return updatedTask;
     }else if (response.status < 500){
-        // console.log("FAILED BODY", JSON.stringify(taskData))
         const data = response.json();
         if(data.errors){
             return data.errors;

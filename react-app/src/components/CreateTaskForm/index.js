@@ -23,18 +23,32 @@ function CreateTaskForm() {
         // totalPrice: 100  // replace with actual default value
     });
 
-    //Fetcha all Taskers
-    useEffect(() => {
-        const data = dispatch(getTaskers())
-        taskers.current = data || [];
-    }, [dispatch]);
+    // //Fetcha all Taskers
+    // useEffect(() => {
+    //     const data = dispatch(getTaskers())
+    //     taskers.current = data || [];
+    // }, [dispatch]);
+
+    // useEffect(() => {
+    //   return () => {
+    //     // Cleanup function to cancel any pending tasks or subscriptions
+    //     taskers.current = [];
+    //   };
+    // }, []);
 
     useEffect(() => {
+      let _isMounted = true;
+      const fetchData = async () => {
+          const data = await dispatch(getTaskers());
+          if (_isMounted) {  // only update state if component is still mounted
+              taskers.current = data || [];
+          }
+      }
+      fetchData();
       return () => {
-        // Cleanup function to cancel any pending tasks or subscriptions
-        taskers.current = [];
+          _isMounted = false;  // update _isMounted when component is unmounted
       };
-    }, []);
+  }, [dispatch]);
 
 
     const taskers = Object.values(useSelector(state => state.taskers));
@@ -60,7 +74,7 @@ function CreateTaskForm() {
     }
 
     const submitForm = async () => {
-        console.log("-----Submitting form", formData.totalPrice);
+        // console.log("-----Submitting form", formData.totalPrice);
         const taskData = {
           taskTypeId: formData.taskTypeId,
           title: formData.title,
@@ -80,12 +94,6 @@ function CreateTaskForm() {
             console.log("Form submitted successfully");
         }
     }
-
-    // useEffect(() => {
-    //   if(shouldSubmit){
-    //     submitForm()
-    //   }
-    // }, [shouldSubmit])
 
     return (
         <form onSubmit={submitForm}>
@@ -121,12 +129,6 @@ function CreateTaskForm() {
 
             />
           )}
-          {/* {step === 5 && (
-            <Step5
-              handleSubmit={submitForm}
-            />
-          )} */}
-
         </form>
       );
 }
