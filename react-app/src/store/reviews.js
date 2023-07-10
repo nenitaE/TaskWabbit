@@ -46,11 +46,11 @@ const reviewByTaskerId = taskerReview => {
 export const getReviewForLoggedIn = () => async (dispatch) => {
 
     const response = await fetch('/api/reviews/current')
-
+    console.log(response, 'REsponse----')
 
     if(response.ok){
         const loadReviews = await response.json()
-        // console.log(loadReviews, 'Thunk Response')
+        console.log(loadReviews, 'Thunk Response')
 
         dispatch(reviewLoggedIn(loadReviews))
 
@@ -173,13 +173,14 @@ const reviewReducer = (state = initialState, action) => {
             return newState
         }
         case GET_REVIEW_BY_ID: {
-            let newState = {...state}
+            let newState = {}
 
             console.log(state, 'state=========')
             const rev = action.reviewById
             console.log(rev, 'rev--')
 
             newState[rev.id] = rev
+            console.log(newState, 'stateAFTER======')
             return newState
         }
         case DELETE_REVIEW: {

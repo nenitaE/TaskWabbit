@@ -28,17 +28,41 @@ const ReviewsByTasker_id = () => {
             return tasker.push(data)
         }
     })
+
+    if(!tasker.length){
+        return(
+            <p>...loading</p>
+        )
+    }
     console.log(tasker, 'tasker data')
+    console.log(tasker[0], 'testing')
+
+    let avg = 0
+    let numReview = 0
+    list.forEach(review => {
+        console.log(review.rating)
+        numReview++
+        avg = avg+ review.rating
+    })
+
+    console.log(avg, numReview, 'test')
 
     return (
         <>
             <h1>Tasker's Reviews</h1>
             <div>
+            <h2>Tasker Detail</h2>
+                <p>Name: {tasker[0].lastName}, {tasker[0].firstName}</p>
+                <p>Member Since: {new Date(tasker[0].createdAt).toDateString()}</p>
+                <p>Average Rating: {avg/numReview}</p>
+            </div>
+            <div>
                 {list.map(rev => (
                     <div>
                         <div>
-                            {rev.description}
+                            Review: {rev.description}
                         </div>
+                        <div>Rating: {rev.rating}</div>
                         <div>
                             {new Date(rev.created_at).toDateString()}
                         </div>

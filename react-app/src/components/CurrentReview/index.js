@@ -4,9 +4,11 @@ import { useEffect } from "react";
 import { getReviewForLoggedIn } from "../../store/reviews";
 import { getTaskers } from "../../store/taskers";
 import DeleteReview from "../DeleteReviewModal/DeleteReview";
+import { Link, useHistory } from "react-router-dom/cjs/react-router-dom";
 
 const ReviewByLoggedIn = () => {
     const dispatch = useDispatch();
+    const history = useHistory()
 
     // state
     const reviewList = useSelector(state => Object.values(state.reviewReducer))
@@ -42,6 +44,14 @@ const ReviewByLoggedIn = () => {
                         </div>
                         <div>
                             <DeleteReview id={rev.id} />
+                        </div>
+                        <div>
+                            {/* <Link to={`/reviews/${rev.id}/edit`}>
+                                <button>Update Review</button>
+                            </Link> */}
+                            <button onClick={
+                                () => history.push(`/reviews/${rev.id}/edit`)
+                            }>Update</button>
                         </div>
                     </div>
                 ))}

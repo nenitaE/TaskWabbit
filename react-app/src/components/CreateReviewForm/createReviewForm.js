@@ -26,6 +26,15 @@ const CreateReviewForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        const errors = {}
+        if(description.length < 5) errors['description'] = 'Review requires atleast 5 characters'
+        if(rating < 1 || rating > 5) errors['rating'] = 'Rating must be between 1 and 5'
+
+        if(Object.values(errors).length){
+            setValidation(errors)
+            return alert('can not submit')
+        }
+
         const payload = {
             description,
             rating,
@@ -39,6 +48,8 @@ const CreateReviewForm = () => {
         if (newReviewByUser) {
             return history.push('/reviews/currentUser')
         }
+
+        setValidation({})
     }
 
     return (
@@ -48,28 +59,39 @@ const CreateReviewForm = () => {
                 <div>
                     <h3>How was the service?</h3>
                     <label>
-                        Description:
                         <textarea
                             id='description'
-                            placeholder="Your Review"
+                            placeholder="Please describe your experience"
                             required
                             value={description}
                             type="text"
                             onChange={ e => setDescription(e.target.value)}/>
+                            {
+                                validation.description && (
+                                    <div style={{color: 'red'}}
+                                    >{validation.description}</div>
+                                )
+                            }
                     </label>
                 </div>
                 <div>
                     <h3>Please give a rating</h3>
                     <label>
-                        Rating:
                         <input
                             id='rating'
                             required
-                            placeholder="Rating"
+                            placeholder="Rate between 1 & 5"
                             value={rating}
                             type="integer"
                             onChange={ e => setRating(e.target.value)}
                             />
+                            {
+                                validation.rating && (
+                                    <div style={{color: 'red'}}>
+                                        {validation.rating}
+                                    </div>
+                                )
+                            }
                     </label>
                 </div>
                 <div>

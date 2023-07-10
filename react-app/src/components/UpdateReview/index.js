@@ -10,7 +10,7 @@ const Update = () => {
 
     const {id} = useParams()
     console.log(id, 'test')
-    const review = useSelector(state => Object.values(state.reviewReducer))
+    const review = useSelector(state => state.reviewReducer[id])
     console.log(review, 'review update')
 
     useEffect(() => {
@@ -19,17 +19,18 @@ const Update = () => {
         console.log(id, 'idTest')
     }, [dispatch])
 
-    if(review.length === 0){
+    if(!review){
         return(
             <p>loading...</p>
         )
     }
 
     // converting to Object
-    let reviewObj = review[0]
+    let reviewObj = review
     console.log(reviewObj, 'reviewObj --------')
 
     return(
+        // <p>Test</p>
         <UpdateReview reviewObj={reviewObj} />
     )
 }

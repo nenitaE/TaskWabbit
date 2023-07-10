@@ -10,6 +10,7 @@ const UpdateReview = ({reviewObj}) => {
     const [description, setDescription] = useState(reviewObj.description)
     const [rating, setRating] = useState(reviewObj.rating)
     const [tasker_id, setTasker] = useState(reviewObj.tasker_id)
+    const [validation, setValidation] = useState('')
 
     const dispatch = useDispatch()
     const history = useHistory()
@@ -18,6 +19,15 @@ const UpdateReview = ({reviewObj}) => {
         e.preventDefault();
 
         console.log(rating, typeof(rating), 'test')
+
+        const errors = {}
+        if(description.length < 5) errors['description'] = 'Review requires atleast 5 characters'
+        if(rating < 1 || rating > 5) errors['rating'] = 'Rating must be between 1 and 5'
+
+        if(Object.values(errors).length){
+            setValidation(errors)
+            return
+        }
 
         // rating = parseInt(rating)
         const payload = {
@@ -35,7 +45,7 @@ const UpdateReview = ({reviewObj}) => {
             return history.push('/reviews/currentUser')
         }
 
-
+        setValidation({})
     }
 
     return(
@@ -54,6 +64,13 @@ const UpdateReview = ({reviewObj}) => {
                             type='text'
                             onChange={ e => setDescription(e.target.value)}
                             />
+                            {
+                                validation.description && (
+                                    <div style={{color: 'red'}}>
+                                        {validation.description}
+                                    </div>
+                                )
+                            }
                     </label>
                 </div>
                 <div>
@@ -68,6 +85,13 @@ const UpdateReview = ({reviewObj}) => {
                             value={rating}
                             onChange={e => setRating(e.target.value)}
                             />
+                            {
+                                validation.rating && (
+                                    <div style={{color: 'red'}}>
+                                        {validation.rating}
+                                    </div>
+                                )
+                            }
                     </label>
                 </div>
                 <div>
