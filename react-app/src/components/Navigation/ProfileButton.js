@@ -1,12 +1,15 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useHistory } from 'react-router-dom';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../store/session";
+import { NavLink } from 'react-router-dom';
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 
 function ProfileButton({ user }) {
+  const sessionUser = useSelector(state => state.session.user);
+
   const dispatch = useDispatch();
   const history = useHistory();
   const [showMenu, setShowMenu] = useState(false);
@@ -49,7 +52,15 @@ function ProfileButton({ user }) {
         {user ? (
           <>
             <li>{user.username}</li>
-            <li>{user.email}</li>
+            {/* <li>{user.email}</li> */}
+            <li>
+              <NavLink to="/tasks/current">My Tasks</NavLink>
+            </li>
+						{sessionUser?.isTasker && (
+							<li>
+								<NavLink to="/taskerTaskTypes/current">Tasker Profile</NavLink>
+							</li>
+						)}
             <li>
               <button onClick={handleLogout}>Log Out</button>
             </li>
