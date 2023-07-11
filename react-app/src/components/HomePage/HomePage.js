@@ -55,7 +55,7 @@ const HomePage = () => {
             <ul>
                 {filteredTaskTypes.map((taskType) => (
                     <div key={taskType.id}>
-                        <NavLink to={user ? `/tasks/new/${parseInt(taskType.id)}` : `/loginSignup`}>
+                        <NavLink to={user ? `/tasks/new/${parseInt(taskType.id)}` : `/loginSignup/${parseInt(taskType.id)}`}>
                             {taskType.type}
                         </NavLink>
                     </div>

@@ -37,7 +37,7 @@ function App() {
           <Route exact path="/signup">
             <SignupFormPage />
           </Route>
-          <Route exact path="/loginSignup">
+          <Route exact path="/loginSignup/:taskTypeId">
             <LoginSignup/>
           </Route>
           <Route exact path="/form">
