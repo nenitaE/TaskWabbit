@@ -9,6 +9,7 @@ function EditTaskerTaskTypeForm({taskerTaskType, formType}) {
     const { taskerTaskTypeId } = useParams();
     const tasker_id = useSelector((state) => state.session.user.id);
     const taskTypes = useSelector((state) => state.taskTypes);
+    const filteredTaskTypeById = taskTypes.filter(taskType => taskType.id == taskerTaskType.tasker_id )
 
     const history = useHistory();
 
@@ -62,7 +63,7 @@ function EditTaskerTaskTypeForm({taskerTaskType, formType}) {
                 {Array.isArray(errors) ? errors.map((error, idx) => <li key={idx}>{error}</li>) : <li>{errors}</li>}
                 </ul>
                     <h2>{formType}</h2>
-                        <h3>Use this form to edit the hourly rate for: .</h3>
+                        <h3>Use this form to edit the hourly rate for: {filteredTaskTypeById.type}</h3>
                             {/* <div className='c'>
                                 <label htmlFor='taskType_id'>Task Type </label>
                                     {hasSubmitted && !taskType_id && (
