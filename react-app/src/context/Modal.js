@@ -10,6 +10,7 @@ export function ModalProvider({ children }) {
   // callback function that will be called when modal is closing
   const [onModalClose, setOnModalClose] = useState(null);
 
+
   const closeModal = () => {
     console.log('Closing modal')
     setModalContent(null); // clear the modal contents
@@ -21,11 +22,16 @@ export function ModalProvider({ children }) {
     }
   };
 
+  // New function that does nothing initially
+  const [clickOutsideModal, setClickOutsideModal] = useState(() => closeModal);
+
   const contextValue = {
     modalRef, // reference to modal div
     modalContent, // React component to render inside modal
     setModalContent, // function to set the React component to render inside modal
     setOnModalClose, // function to set the callback function called when modal is closing
+    clickOutsideModal,
+    setClickOutsideModal,
     closeModal // function to close the modal
   };
 
@@ -40,15 +46,15 @@ export function ModalProvider({ children }) {
 }
 
 export function Modal() {
-  const { modalRef, modalContent, closeModal } = useContext(ModalContext);
+  const { modalRef, modalContent, clickOutsideModal } = useContext(ModalContext);
   // If there is no div referenced by the modalRef or modalContent is not a
   // truthy value, render nothing:
   if (!modalRef || !modalRef.current || !modalContent) return null;
 
-  // Render the following component to the div referenced by the modalRef
+  // Render the following component to the div referenced by the modalRef. Changed onClick={closeModal}
   return ReactDOM.createPortal(
     <div id="modal">
-      <div id="modal-background" onClick={closeModal} />
+      <div id="modal-background" onClick={clickOutsideModal} />
       <div id="modal-content">
         {modalContent}
       </div>
