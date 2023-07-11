@@ -9,7 +9,6 @@ function EditTaskFormPage(){
     const history = useHistory();
 
     const task = useSelector(state => state.tasks.currentTask);
-    console.log("TASK IN UPDATE FORM", task)
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [location, setLocation] = useState("");
