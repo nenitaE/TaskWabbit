@@ -11,6 +11,7 @@ import HomePage from "./components/HomePage/HomePage";
 import TasksPage from "./components/TasksPage";
 import EditTaskFormPage from "./components/EditTaskFormPage";
 import CreateTaskForm from "./components/CreateTaskForm";
+import LoginSignup from "./components/LoginSignup/LoginSignup";
 import TaskerProfilePage from "./components/TaskerProfilePage";
 import CreateTaskerTaskTypeForm from "./components/CreateTaskerTaskTypeForm";
 import NewUpdateTaskerTaskTypeForm from "./components/NewUpdateTaskerTaskTypeForm";
@@ -35,6 +36,9 @@ function App() {
           </Route>
           <Route exact path="/signup">
             <SignupFormPage />
+          </Route>
+          <Route exact path="/loginSignup/:taskTypeId">
+            <LoginSignup/>
           </Route>
           <Route exact path="/form">
             <MainFormPage />

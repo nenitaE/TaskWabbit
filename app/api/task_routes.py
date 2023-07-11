@@ -111,7 +111,7 @@ def get_current_task():
     Query for all tasks of current user and return them in a list of dictionaries
     '''
     current_user_id = current_user.get_id()
-    print('CURRENT USERID', current_user_id)
+    # print('CURRENT USERID', current_user_id)
     user = User.query.get(current_user_id)
     if user is None:
         return jsonify({'error': 'User not found'}), 404
