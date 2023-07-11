@@ -36,22 +36,13 @@ function TaskerProfilePage() {
 
     if (!currTaskerTaskTypes) return null;
 
-    // flatten currTaskerTaskTypes array and assign to obj with key of taskType_id
-    // const currTaskerTaskTypesById = {};
-    // currTaskerTaskTypes.forEach(currTaskerTaskType => {currTaskerTaskTypesById[currTaskerTaskType.taskType_id] = currTaskerTaskType})
-
-
-    // const currTaskTypesById = Object.values(currTaskerTaskTypesById);
-
-
     const openDeleteTaskerTaskTypeModal = (taskerTaskTypeId) => {
         setModalContent(<DeleteTaskerTaskTypeModal taskerTaskTypeId={taskerTaskTypeId}/>)
     }
 
-    let taskType;
     return (
         <div>
-            <h1>Welcome {user.username}.</h1>
+            <h1>Welcome {user.firstName}.</h1>
             <h2>Your current tasktypes are:</h2>
             {isLoaded && currTaskerTaskTypes.map((currTaskerTaskType) => (
                 <div key={currTaskerTaskType.id}>

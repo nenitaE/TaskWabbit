@@ -135,7 +135,7 @@ export const fetchCreateTaskerTaskType = (taskerTaskTypeData) => async(dispatch)
         } else if (response.status <= 500){
             console.log("FAILED BODY", JSON.stringify(taskerTaskTypeData))
             const data = await response.json();
-            if(data.errors){
+            if (data.errors) {
                 return data.errors;
             }
         }else {

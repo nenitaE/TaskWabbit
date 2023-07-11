@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { login } from "../../store/session";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom/cjs/react-router-dom";
 import { useModal } from "../../context/Modal";
 import "./LoginForm.css";
 
 function LoginFormModal() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
@@ -20,6 +22,14 @@ function LoginFormModal() {
         closeModal()
     }
   };
+  const handleDemoLogin = async (e) => {
+    e.preventDefault();
+    setEmail('demo@aa.io');
+    setPassword('password');
+  };
+
+
+
 
   return (
     <>
@@ -49,6 +59,11 @@ function LoginFormModal() {
           />
         </label>
         <button type="submit">Log In</button>
+        <button 
+          className="demoButton" 
+          onClick={handleDemoLogin}>
+              Click here to fill demo user data
+            </button>
       </form>
     </>
   );

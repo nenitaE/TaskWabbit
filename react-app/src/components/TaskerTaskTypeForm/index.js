@@ -10,7 +10,7 @@ const TaskerTaskTypeForm = ({ taskerTaskType, formType}) => {
     // const tasker_id = session.user.id;
     // console.log (tasker_id, "********TASKERID********")
     const history = useHistory();
-    const [hourlyRate, setHourlyRate] = useState(taskerTaskType.hourlyRate);
+    const [hourlyRate, setHourlyRate] = useState("");
     const [taskType_id, setTaskTypeId] = useState(1);
     const [errors, setErrors] = useState([]);
     const [hasSubmitted, setHasSubmitted] = useState(false);
