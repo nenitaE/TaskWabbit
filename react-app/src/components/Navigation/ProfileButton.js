@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useHistory } from 'react-router-dom';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../store/session";
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
@@ -14,6 +14,9 @@ function ProfileButton({ user }) {
   const history = useHistory();
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
+
+  const userLoggedIn = useSelector(state => state.session.user)
+  console.log(userLoggedIn, 'test========')
 
   const openMenu = () => {
     if (showMenu) return;

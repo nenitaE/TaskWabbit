@@ -154,7 +154,7 @@ const reviewReducer = (state = initialState, action) => {
     switch(action.type){
         case GET_REVIEW_FOR_LOGGEDIN: {
             console.log("IN RECUDER STATE")
-            const newState = {...state}
+            const newState = {}
             const userRev = action.payload.Reviews
             // console.log(state, 'action----------')
             // console.log(userRev.payload.Reviews, 'Review ARRAY')
