@@ -5,10 +5,11 @@ import { useEffect, useState} from "react";
 import { useSelector } from "react-redux";
 import { getTaskers } from "../../store/taskers";
 import StepIndicator from "../StepIndicator";
-import Step1 from "../Step1"
-import Step2 from "../Step2"
-import Step3 from "../Step3"
+import Step1 from "../Step1";
+import Step2 from "../Step2";
+import Step3 from "../Step3";
 import Step4 from "../Step4";
+import './CreateTaskForm.css'
 
 
 function CreateTaskForm() {
@@ -96,7 +97,7 @@ function CreateTaskForm() {
     }
 
     return (
-        <form onSubmit={submitForm}>
+        <form className="create-task-form" onSubmit={submitForm}>
           <StepIndicator currentStep={step} onStepClick={handleStepClick}/>
           {step === 1 && (
             <Step1

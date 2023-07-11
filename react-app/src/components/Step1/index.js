@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import './Step1.css';
 
 
 function Step1({onStepComplete, existingData}){
@@ -8,20 +9,23 @@ function Step1({onStepComplete, existingData}){
     const [errors, setErrors] = useState({})
     const [inputValue, setInputValue] = useState(existingData.location || '');
     const [suggestions, setSuggestions] = useState([]);
+    const [isInputSelected, setIsInputSelected] = useState(false);
 
     const fetchSuggestions = async (input) => {
         const response = await fetch(`/api/auth/autocomplete/${input}`);
         const data = await response.json();
+        console.log('Fetched suggestions:', data);
         setSuggestions(data);
     };
 
     useEffect(() => {
-        if (inputValue) {
+        console.log('Input value:', inputValue);
+        if (inputValue && !isInputSelected) {
           fetchSuggestions(inputValue);
         } else {
           setSuggestions([]);
         }
-    }, [inputValue]);
+    }, [inputValue, isInputSelected]);
 
 
     const handleNext = () => {
@@ -46,50 +50,73 @@ function Step1({onStepComplete, existingData}){
         handleNext();
     }
     return (
-        <div>
+        <div className="step1">
+            <div className="step-1-section">
             <label>
                 Location:
                 <input
                 type="text"
                 value={inputValue}
-                onChange={(e) => setInputValue(e.target.value)}
+                onChange={(e) => {
+                    setInputValue(e.target.value)
+                    setIsInputSelected(false);
+                }}
+                placeholder="Street Address"
                 required
                 />
+                <div className="location-suggestions">
                 {suggestions.map((suggestion, index) => (
                     <div
                         key={index}
                         onMouseDown={(e) => {
                             e.preventDefault()
+                            console.log('Clicked suggestion:', suggestion.description);
                             setLocation(inputValue);
                             setInputValue(suggestion.description);
+                            setIsInputSelected(true); //// Set isInputSelected to true when a suggestion is clicked
                             setSuggestions([]);
                         }}
                     >
                         {suggestion.description}
                     </div>
                 ))}
+                </div>
             </label>
             {errors.location && <p>{errors.location}</p>}
+            </div>
+
+            <div className="step1-section">
             <label>
                 Title:
                 <input
                 type="text"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
+                placeholder="Provide a title for your task"
                 required
                 />
             </label>
             {errors.title && <p>{errors.title}</p>}
+            </div>
+
+            <div className="step1-section">
             <label>
-                Description:
+                Tell us the details of your task
+                <p>
+                Start the conversation and tell your Tasker what you need done. This helps us show you only qualified and available Taskers for the job. Don't worry, you can edit this later.
+                </p>
                 <textarea
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
+                placeholder="Provide a summary of what you need done for your Tasker."
                 required
                 />
             </label>
             {errors.description && <p>{errors.description}</p>}
-            <button onClick={onNext}>Next</button>
+            </div>
+            <button onClick={onNext}>See Taskers & Prices</button>
+
+
         </div>
     )
 }
