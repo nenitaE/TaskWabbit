@@ -32,7 +32,11 @@ function Step4({ handleSubmit, hourlyRate, location, taskDate, taskerName, trust
             <p>Hourly Rate {Number(hourlyRate)}/hr</p>
             <p>Trust and Support Fee {parseFloat(trustAndSupportFee).toFixed(2)}</p>
             <p>Total Price {totalRate.toFixed(2)}</p>
-            <button type="button" onClick={handleCofirm}>Confirm & Chat</button>
+            {taskDate ?
+              <button type="button" onClick={handleCofirm}>Confirm & Chat</button>
+              :
+              <p>Please go to Step 3 and add a date.</p>
+            }
         </div>
     )
 }
