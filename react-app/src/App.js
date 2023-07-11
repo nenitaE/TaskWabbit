@@ -11,13 +11,10 @@ import HomePage from "./components/HomePage/HomePage";
 import TasksPage from "./components/TasksPage";
 import EditTaskFormPage from "./components/EditTaskFormPage";
 import CreateTaskForm from "./components/CreateTaskForm";
-<<<<<<< HEAD
 import LoginSignup from "./components/LoginSignup/LoginSignup";
-=======
 import TaskerProfilePage from "./components/TaskerProfilePage";
 import CreateTaskerTaskTypeForm from "./components/CreateTaskerTaskTypeForm";
 import NewUpdateTaskerTaskTypeForm from "./components/NewUpdateTaskerTaskTypeForm";
->>>>>>> 6a91738541f4c963dc2e002367d94624d41065a7
 
 function App() {
   const dispatch = useDispatch();
