@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { authenticate } from '../../store/session';
 import { useParams } from "react-router-dom";
 import { getTasks } from '../../store/tasks';
+import './Step2.css'
 
 function Step2({ onStepComplete, taskers}){
     const [taskerId, setTaskerId] = useState(null);
@@ -78,24 +79,29 @@ function Step2({ onStepComplete, taskers}){
         <div>
             <label>
                 Choose your tasker:
-                    {filteredTaskers && filteredTaskers.map((tasker) => (
-                        <div key={tasker.id}>
-                            <h2>{tasker.firstName}</h2>
-                            <p>({tasker.reviews.length} reviews)</p>
-                            <p>{tasker.taskerTaskTypes.find(taskType => taskType.taskType_id == taskTypeId).hourlyRate}</p>
-                            <p>Tasks done: {countTaskerTasks(tasker.id, taskTypeId)}</p>
-                            <p>{tasker.reviews[0].description}</p>
-                            <button onClick={() => handleSelectTasker(tasker.id)}>Select and continue</button>
-                        </div>
-                    ))}
-
+                    {filteredTaskers.length > 0 ? (
+                        filteredTaskers.map((tasker) => (
+                            <div key={tasker.id}>
+                                <div>
+                                    <h2>{tasker.firstName}</h2>
+                                    <p>{tasker.taskerTaskTypes.find(taskType => taskType.taskType_id == taskTypeId).hourlyRate}/hr</p>
+                                </div>
+                                <p>({tasker.reviews.length} reviews)</p>
+                                <p>Tasks done: {countTaskerTasks(tasker.id, taskTypeId)}</p>
+                                <p>{tasker.reviews[0] ? tasker.reviews[0].description : 'No reviews'}</p>
+                                <button onClick={() => handleSelectTasker(tasker.id)}>Select and continue</button>
+                            </div>
+                        ))
+                    ) : (
+                        <p>No taskers available</p>
+                    )}
             </label>
             <button type="button" onClick={handleBack}>
                 Back
             </button>
-
         </div>
     )
 }
+
 
 export default Step2
