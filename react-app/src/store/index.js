@@ -4,12 +4,14 @@ import session from './session'
 import taskTypesReducer from './taskTypes';
 import taskersReducer from './taskers';
 import tasks from './tasks';
+import taskerProfileReducer from './taskerProfile';
 
 const rootReducer = combineReducers({
-  session,
+  session, 
+  tasks, 
+  taskerProfile: taskerProfileReducer,
   taskTypes: taskTypesReducer,
-  taskers: taskersReducer,
-  tasks,
+  taskers: taskersReducer
 });
 
 
