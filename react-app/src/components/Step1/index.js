@@ -9,23 +9,25 @@ function Step1({onStepComplete, existingData}){
     const [errors, setErrors] = useState({})
     const [inputValue, setInputValue] = useState(existingData.location || '');
     const [suggestions, setSuggestions] = useState([]);
-    const [isInputSelected, setIsInputSelected] = useState(false);
+    // const [isInputSelected, setIsInputSelected] = useState(false);
+    // const [showSuggestions, setShowSuggestions] = useState(false);
+
 
     const fetchSuggestions = async (input) => {
         const response = await fetch(`/api/auth/autocomplete/${input}`);
         const data = await response.json();
-        console.log('Fetched suggestions:', data);
+        // console.log('Fetched suggestions:', data);
         setSuggestions(data);
     };
 
     useEffect(() => {
-        console.log('Input value:', inputValue);
-        if (inputValue && !isInputSelected) {
+        // console.log('Input value:', inputValue);
+        if (inputValue) { // && !isInputSelected
           fetchSuggestions(inputValue);
         } else {
           setSuggestions([]);
         }
-    }, [inputValue, isInputSelected]);
+    }, [inputValue]); //isInputSelected
 
 
     const handleNext = () => {
@@ -59,22 +61,24 @@ function Step1({onStepComplete, existingData}){
                 value={inputValue}
                 onChange={(e) => {
                     setInputValue(e.target.value)
-                    setIsInputSelected(false);
+                    // setIsInputSelected(false);
+                    // setShowSuggestions(true); // show suggestions when user types
                 }}
                 placeholder="Street Address"
                 required
                 />
                 <div className="location-suggestions">
-                {suggestions.map((suggestion, index) => (
+                {suggestions.map((suggestion, index) => ( //showSuggestions &&
                     <div
                         key={index}
                         onMouseDown={(e) => {
                             e.preventDefault()
-                            console.log('Clicked suggestion:', suggestion.description);
+                            // console.log('Clicked suggestion:', suggestion.description);
                             setLocation(inputValue);
                             setInputValue(suggestion.description);
-                            setIsInputSelected(true); //// Set isInputSelected to true when a suggestion is clicked
+                            // setIsInputSelected(true); //// Set isInputSelected to true when a suggestion is clicked
                             setSuggestions([]);
+                            // setShowSuggestions(false); // hide suggestions when a suggestion is clicked
                         }}
                     >
                         {suggestion.description}

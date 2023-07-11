@@ -9,7 +9,7 @@ import Step1 from "../Step1";
 import Step2 from "../Step2";
 import Step3 from "../Step3";
 import Step4 from "../Step4";
-import './CreateTaskForm.css'
+import './CreateTaskForm.css';
 
 
 function CreateTaskForm() {
@@ -21,7 +21,6 @@ function CreateTaskForm() {
 
     const [formData, setFormData] = useState({
         taskTypeId:  taskTypeId,
-        // totalPrice: 100  // replace with actual default value
     });
 
     // //Fetcha all Taskers
@@ -85,14 +84,13 @@ function CreateTaskForm() {
           task_date: formData.task_date,
           tasker_id: formData.tasker_id
         }
-        console.log("Task data", taskData);
         const data = await dispatch(createTask(taskData))
-        console.log("Create task response", data);
+        // console.log("Create task response", data);
         if(data){
             setErrors(data)
         }else {
             setStep(step + 1);
-            console.log("Form submitted successfully");
+            // console.log("Form submitted successfully");
         }
     }
 
