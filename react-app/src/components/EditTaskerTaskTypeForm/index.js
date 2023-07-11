@@ -5,8 +5,6 @@ import { getTaskerTaskTypes, updateTaskerTaskType } from "../../store/taskerProf
 import { getTaskTypes } from "../../store/taskTypes";
 
 function EditTaskerTaskTypeForm({taskerTaskType, formType}) {
-    console.log(taskerTaskType, "*********taskerTaskType IN EDIT FORM")
-
 
     const { taskerTaskTypeId } = useParams();
     const tasker_id = useSelector((state) => state.session.user.id);
@@ -38,18 +36,17 @@ function EditTaskerTaskTypeForm({taskerTaskType, formType}) {
           ...existingData,
           ...taskerTaskTypeData
         }
-        console.log(finalTaskerTaskTypeData, 'Final Tasker Task Type Data ------------')
 
         let data;
         data = await dispatch(updateTaskerTaskType(taskerTaskTypeId, finalTaskerTaskTypeData));
 
 
-        // if (data && data.length > 0) {
-        //   setErrors(data);
-        // } else {
+        if (data && data.length > 0) {
+          setErrors(data);
+        } else {
             history.push(`/taskerTaskTypes/current`);
             dispatch(getTaskerTaskTypes(taskerTaskTypeId));
-        // }
+        }
 
     };
 
