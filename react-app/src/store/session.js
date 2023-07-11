@@ -70,7 +70,7 @@ export const logout = () => async (dispatch) => {
 	}
 };
 
-export const signUp = (username, email, password, firstName, 
+export const signUp = (username, email, password, firstName,
 						lastName, phone, location, isTasker
 						) => async (dispatch) => {
 	const response = await fetch("/api/auth/signup", {
@@ -103,6 +103,7 @@ export const signUp = (username, email, password, firstName,
 		return ["An error occurred. Please try again."];
 	}
 };
+
 
 //SESSION REDUCER
 

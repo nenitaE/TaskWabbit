@@ -1,11 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-function Step1({onStepComplete}){
-    const [location, setLocation] = useState("");
-    const [description, setDescription] = useState("");
-    const [title, setTitle] = useState("");
 
+function Step1({onStepComplete, existingData}){
+    const [location, setLocation] = useState(existingData.location || "");
+    const [description, setDescription] = useState(existingData.description || "");
+    const [title, setTitle] = useState(existingData.title || "");
     const [errors, setErrors] = useState({})
+    const [inputValue, setInputValue] = useState(existingData.location || '');
+    const [suggestions, setSuggestions] = useState([]);
+
+    const fetchSuggestions = async (input) => {
+        const response = await fetch(`/api/auth/autocomplete/${input}`);
+        const data = await response.json();
+        setSuggestions(data);
+    };
+
+    useEffect(() => {
+        if (inputValue) {
+          fetchSuggestions(inputValue);
+        } else {
+          setSuggestions([]);
+        }
+    }, [inputValue]);
+
 
     const handleNext = () => {
         // When step is complete, we pass the data back to parent
@@ -14,7 +31,7 @@ function Step1({onStepComplete}){
 
     const validate = () => {
         const newErrors = {};
-        if (!location) newErrors.location = "Location is required";
+        if (!inputValue) newErrors.location = "Location is required";
         if (!description) newErrors.description = "Description is required";
         if (!title) newErrors.title = "Title is required";
         return newErrors;
@@ -34,10 +51,23 @@ function Step1({onStepComplete}){
                 Location:
                 <input
                 type="text"
-                value={location}
-                onChange={(e) => setLocation(e.target.value)}
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
                 required
                 />
+                {suggestions.map((suggestion, index) => (
+                    <div
+                        key={index}
+                        onMouseDown={(e) => {
+                            e.preventDefault()
+                            setLocation(inputValue);
+                            setInputValue(suggestion.description);
+                            setSuggestions([]);
+                        }}
+                    >
+                        {suggestion.description}
+                    </div>
+                ))}
             </label>
             {errors.location && <p>{errors.location}</p>}
             <label>
