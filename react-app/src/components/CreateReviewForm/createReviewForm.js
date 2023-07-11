@@ -3,8 +3,9 @@ import { createNewReviewByUser, getReviewForLoggedIn } from "../../store/reviews
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom/cjs/react-router-dom";
 
-const CreateReviewForm = () => {
+const CreateReviewForm = ({test}) => {
 
+    console.log(test, typeof(test),'tasker_id in form')
     const [description, setDescription] = useState('')
     const [rating, setRating] = useState('')
     const [tasker_id, setTasker_id] = useState('')
@@ -27,7 +28,7 @@ const CreateReviewForm = () => {
         e.preventDefault();
 
         const errors = {}
-        if(description.length < 5) errors['description'] = 'Review requires atleast 5 characters'
+        if(description.length < 5 || description.length > 50) errors['description'] = 'Review requires atleast 5 characters or below 50 characters'
         if(rating < 1 || rating > 5) errors['rating'] = 'Rating must be between 1 and 5'
 
         if(Object.values(errors).length){
@@ -39,7 +40,7 @@ const CreateReviewForm = () => {
             description,
             rating,
             user_id: sessionUser,
-            tasker_id
+            tasker_id: test
         }
 
         let newReviewByUser = await dispatch(createNewReviewByUser(payload))
@@ -58,10 +59,11 @@ const CreateReviewForm = () => {
             <form onSubmit={handleSubmit}>
                 <div>
                     <h3>How was the service?</h3>
+                    <p>Please describe your experience</p>
                     <label>
                         <textarea
                             id='description'
-                            placeholder="Please describe your experience"
+                            placeholder="maximum 50 characters"
                             required
                             value={description}
                             type="text"
@@ -75,7 +77,7 @@ const CreateReviewForm = () => {
                     </label>
                 </div>
                 <div>
-                    <h3>Please give a rating</h3>
+                    <h3>Please leave a rating</h3>
                     <label>
                         <input
                             id='rating'
@@ -94,7 +96,7 @@ const CreateReviewForm = () => {
                             }
                     </label>
                 </div>
-                <div>
+                {/* <div>
                     <h3>tasker id(needs work)</h3>
                     <label>
                         tasker_id:
@@ -106,7 +108,7 @@ const CreateReviewForm = () => {
                         onChange={ e => setTasker_id(e.target.value)}
                         />
                     </label>
-                </div>
+                </div> */}
                 <div>
                     <button type="submit">Post Your Review</button>
                 </div>
