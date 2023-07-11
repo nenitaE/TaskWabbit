@@ -8,6 +8,7 @@ function EditTaskerTaskTypeForm({taskerTaskType, formType}) {
 
     const { taskerTaskTypeId } = useParams();
     const tasker_id = useSelector((state) => state.session.user.id);
+    const taskTypes = useSelector((state) => state.taskTypes);
 
     const history = useHistory();
 
@@ -18,6 +19,10 @@ function EditTaskerTaskTypeForm({taskerTaskType, formType}) {
     const dispatch = useDispatch();
 
     const updateHourlyRate = (e) => setHourlyRate(e.target.value);
+
+    useEffect(() => {
+        dispatch(getTaskTypes())
+    }, [dispatch])
 
     const handleSubmit = async (e) => {
 
