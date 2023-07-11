@@ -55,7 +55,7 @@ const HomePage = () => {
             <ul>
                 {filteredTaskTypes.map((taskType) => (
                     <div key={taskType.id}>
-                        <NavLink to={`/tasks/new/${parseInt(taskType.id)}`}>
+                        <NavLink to={user ? `/tasks/new/${parseInt(taskType.id)}` : `/loginSignup/${parseInt(taskType.id)}`}>
                             {taskType.type}
                         </NavLink>
                     </div>
@@ -74,7 +74,6 @@ const HomePage = () => {
                                 <ul key={taskerTaskType.id}>
                                     {taskTypesById[taskerTaskType.taskType_id].type} for ${taskerTaskType.hourlyRate}/hr
                                 </ul>
-
                             ))}
                         </ul>
                     </div>

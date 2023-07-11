@@ -7,6 +7,7 @@ import './Navigation.css';
 function Navigation({ isLoaded }){
 	const sessionUser = useSelector(state => state.session.user);
 
+
 	return (
 		<ul>
 			<li>
@@ -14,17 +15,12 @@ function Navigation({ isLoaded }){
 			</li>
 			{isLoaded && sessionUser &&(
 				<li>
-					<NavLink to="/taskers">Taskers</NavLink>
-				</li>
-			)}
-			{isLoaded && sessionUser &&(
-				<li>
 					<NavLink to="/tasks/current">My Tasks</NavLink>
 				</li>
 			)}
-			{isLoaded && sessionUser &&(
+			{isLoaded && sessionUser?.isTasker && (
 				<li>
-					<NavLink to="/tasks/new/:taskTypeId">Create a Task</NavLink>
+					<NavLink to="/taskerTaskTypes/current">Tasker Profile</NavLink>
 				</li>
 			)}
 			{isLoaded && (

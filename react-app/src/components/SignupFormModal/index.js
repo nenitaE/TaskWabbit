@@ -21,7 +21,7 @@ function SignupFormModal() {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		if (password === confirmPassword) {
-			const data = await dispatch(signUp(username, email, password, 
+			const data = await dispatch(signUp(username, email, password,
 				firstName, lastName, phone, location, isTasker));
 			if (data) {
 				setErrors(data);
@@ -105,7 +105,7 @@ function SignupFormModal() {
 						value={true}
 						onChange={(e) => setIsTasker(e.target.value)}
 					/>
-					SELECT if you want be able to work as a Tasker
+					SELECT if you want to be able to work as a Tasker
 				</label>
 				<label>
 					Password

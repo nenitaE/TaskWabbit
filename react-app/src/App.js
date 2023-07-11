@@ -16,6 +16,10 @@ import CreateReviewForm from "./components/CreateReviewForm/createReviewForm";
 import GetReview from "./components/UpdateReview/GetReviewById";
 import Update from "./components/UpdateReview";
 import ReviewsByTasker_id from "./components/GetReviewByTasker/GetReviewByTasker";
+import LoginSignup from "./components/LoginSignup/LoginSignup";
+import TaskerProfilePage from "./components/TaskerProfilePage";
+import CreateTaskerTaskTypeForm from "./components/CreateTaskerTaskTypeForm";
+import NewUpdateTaskerTaskTypeForm from "./components/NewUpdateTaskerTaskTypeForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -38,6 +42,9 @@ function App() {
           <Route exact path="/signup">
             <SignupFormPage />
           </Route>
+          <Route exact path="/loginSignup/:taskTypeId">
+            <LoginSignup/>
+          </Route>
           <Route exact path="/form">
             <MainFormPage />
           </Route>
@@ -47,7 +54,16 @@ function App() {
           <Route exact path="/taskers/:tasker_id/reviews">
             <ReviewsByTasker_id />
           </Route>
-          <Route excat path="/tasks/:taskId/edit">
+          <Route exact path="/taskerTaskTypes/:taskerTaskTypeId/edit">
+            <NewUpdateTaskerTaskTypeForm/>
+          </Route>
+          <Route exact path="/taskerTaskTypes/current">
+            <TaskerProfilePage />
+          </Route>
+          <Route exact path="/taskerTaskTypes/new">
+            <CreateTaskerTaskTypeForm />
+          </Route>
+          <Route exact path="/tasks/:taskId/edit">
             <EditTaskFormPage />
           </Route>
           <Route exact path="/tasks/current">

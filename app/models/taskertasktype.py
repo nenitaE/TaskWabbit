@@ -42,7 +42,5 @@ class TaskerTaskType(db.Model):
             'isTasker': self.isTasker,
             'createdAt': self.created_at.isoformat(),
             'updatedAt': self.updated_at.isoformat(),
-            'tasks': [task.to_dict() for task in self.tasks],
-            'reviews': [review.to_dict() for review in self.received_reviews],
             'taskerTaskTypes': [taskertasktype.to_dict() for taskertasktype in self.taskertasktypes]
         }

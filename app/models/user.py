@@ -45,8 +45,10 @@ class User(db.Model, UserMixin):
         return {
             'id': self.id,
             'username': self.username,
-            'email': self.email
+            'email': self.email,
+            'isTasker': self.isTasker,
         }
+    
     def to_dict_full(self):
         return {
             'id': self.id,
@@ -77,4 +79,18 @@ class User(db.Model, UserMixin):
             'createdAt': self.created_at.isoformat(),
             'updatedAt': self.updated_at.isoformat(),
             'tasks': [task.to_dict() for task in self.tasks]
+        }
+    def to_dict_with_tasktypes(self):
+        return {
+            'id': self.id,
+            'firstName': self.firstName,
+            'lastName': self.lastName,
+            'username': self.username,
+            'phone': self.phone,
+            'location': self.location,
+            'email': self.email,
+            'isTasker': self.isTasker,
+            'createdAt': self.created_at.isoformat(),
+            'updatedAt': self.updated_at.isoformat(),
+            'taskerTaskTypes': [taskertasktype.to_dict() for taskertasktype in self.taskertasktypes]
         }
