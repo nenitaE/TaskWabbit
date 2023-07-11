@@ -4,7 +4,7 @@ import CreateReviewForm from "./createReviewForm";
 
 export default function CreateReviewModal ({tasker_id}){
 
-    console.log(tasker_id, 'tasker_id---')
+    // console.log(tasker_id, 'tasker_id---')
 
     const [modal, setModal] = useState(false)
 

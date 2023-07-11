@@ -14,7 +14,7 @@ export default function DeleteReview ({id}) {
     }
 
     const handleDelete = () => {
-        console.log('testing---- in handleDel')
+        // console.log('testing---- in handleDel')
         dispatch(delReviewById(id))
         toggleModal()
     }

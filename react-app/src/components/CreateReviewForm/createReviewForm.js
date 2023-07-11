@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom";
 
 const CreateReviewForm = ({test}) => {
 
-    console.log(test, typeof(test),'tasker_id in form')
+    // console.log(test, typeof(test),'tasker_id in form')
     const [description, setDescription] = useState('')
     const [rating, setRating] = useState('')
     const [tasker_id, setTasker_id] = useState('')
@@ -19,10 +19,10 @@ const CreateReviewForm = ({test}) => {
     }, [dispatch])
 
     const sessionUser = useSelector( (state) => state.session.user.id)
-    console.log(typeof(sessionUser), sessionUser, 'session//////////////')
+    // console.log(typeof(sessionUser), sessionUser, 'session//////////////')
 
     const sessiontest = useSelector( state => state)
-    console.log(sessiontest, 'test---------')
+    // console.log(sessiontest, 'test---------')
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -44,7 +44,7 @@ const CreateReviewForm = ({test}) => {
         }
 
         let newReviewByUser = await dispatch(createNewReviewByUser(payload))
-        console.log(newReviewByUser, 'handle submit')
+        // console.log(newReviewByUser, 'handle submit')
 
         if (newReviewByUser) {
             return history.push('/reviews/currentUser')

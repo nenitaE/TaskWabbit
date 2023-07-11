@@ -9,14 +9,14 @@ const Update = () => {
     const dispatch = useDispatch();
 
     const {id} = useParams()
-    console.log(id, 'test')
+    // console.log(id, 'test')
     const review = useSelector(state => state.reviewReducer[id])
-    console.log(review, 'review update')
+    // console.log(review, 'review update')
 
     useEffect(() => {
 
         dispatch(getRevById(id))
-        console.log(id, 'idTest')
+        // console.log(id, 'idTest')
     }, [dispatch])
 
     if(!review){
@@ -27,7 +27,7 @@ const Update = () => {
 
     // converting to Object
     let reviewObj = review
-    console.log(reviewObj, 'reviewObj --------')
+    // console.log(reviewObj, 'reviewObj --------')
 
     return(
         // <p>Test</p>

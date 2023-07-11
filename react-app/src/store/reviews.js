@@ -7,7 +7,7 @@ const GET_REVIEW_BY_TASKER = 'taskwabbit/getReviewByTasker'
 
 //func
 const reviewLoggedIn = (reviews) => {
-    console.log('TEST--------------')
+    // console.log('TEST--------------')
     return {
         type: GET_REVIEW_FOR_LOGGEDIN,
         payload: reviews
@@ -46,11 +46,11 @@ const reviewByTaskerId = taskerReview => {
 export const getReviewForLoggedIn = () => async (dispatch) => {
 
     const response = await fetch('/api/reviews/current')
-    console.log(response, 'REsponse----')
+    // console.log(response, 'REsponse----')
 
     if(response.ok){
         const loadReviews = await response.json()
-        console.log(loadReviews, 'Thunk Response')
+        // console.log(loadReviews, 'Thunk Response')
 
         dispatch(reviewLoggedIn(loadReviews))
 
@@ -59,7 +59,7 @@ export const getReviewForLoggedIn = () => async (dispatch) => {
 }
 
 export const createNewReviewByUser = (payload) => async (dispatch) => {
-    console.log(payload, 'payload Thunk')
+    // console.log(payload, 'payload Thunk')
     const response = await fetch('/api/taskers/reviews', {
         method: 'POST',
         headers: {
@@ -67,13 +67,13 @@ export const createNewReviewByUser = (payload) => async (dispatch) => {
         },
         body: JSON.stringify(payload)
     })
-    console.log(response, 'Response')
-    console.log(response.body, 'BODY')
+    // console.log(response, 'Response')
+    // console.log(response.body, 'BODY')
 
     if(response.ok){
         const newRev= await response.json()
 
-        console.log(newRev, 'newRev------')
+        // console.log(newRev, 'newRev------')
         dispatch(createReview(newRev))
 
         return newRev
@@ -81,7 +81,7 @@ export const createNewReviewByUser = (payload) => async (dispatch) => {
 }
 
 export const getRevById = (id) => async (dispatch) => {
-    console.log(id, 'id')
+    // console.log(id, 'id')
     const response = await fetch(`/api/reviews/${id}`)
 
     console.log(response, 'getRev resp')
@@ -96,7 +96,7 @@ export const getRevById = (id) => async (dispatch) => {
 }
 
 export const updateReview = (payload, id) => async (dispatch) => {
-    console.log(payload, 'payload in updateRev')
+    // console.log(payload, 'payload in updateRev')
 
     const response = await fetch(`/api/reviews/${id}`, {
         method: 'PUT',
@@ -117,7 +117,7 @@ export const updateReview = (payload, id) => async (dispatch) => {
 
 export const delReviewById = (id) => async (dispatch) => {
 
-    console.log(id, typeof(id), 'test id')
+    // console.log(id, typeof(id), 'test id')
     const response = await fetch(`/api/reviews/${id}`, {
         method: 'DELETE'
     })
@@ -134,11 +134,11 @@ export const getReviewByTaskerId = (tasker_id) => async (dispatch) => {
 
     const response = await fetch(`/api/taskers/${tasker_id}/reviews`)
 
-    console.log(response, 'response')
+    // console.log(response, 'response')
 
     if(response.ok){
         const revResponse = await response.json()
-        console.log(revResponse, 'rev-----')
+        // console.log(revResponse, 'rev-----')
 
         dispatch(reviewByTaskerId(revResponse))
     }
@@ -153,7 +153,7 @@ const reviewReducer = (state = initialState, action) => {
 
     switch(action.type){
         case GET_REVIEW_FOR_LOGGEDIN: {
-            console.log("IN RECUDER STATE")
+            // console.log("IN RECUDER STATE")
             const newState = {}
             const userRev = action.payload.Reviews
             // console.log(state, 'action----------')
@@ -165,28 +165,28 @@ const reviewReducer = (state = initialState, action) => {
         }
         case CREATE_NEW_REVIEW: {
             let newState = {}
-            console.log(state, action, 'In state')
-            console.log(action.newReview, 'newReview')
+            // console.log(state, action, 'In state')
+            // console.log(action.newReview, 'newReview')
             newState = {...state}
             newState[action.newReview.id] = action.newReview
-            console.log(newState, 'new----------------')
+            // console.log(newState, 'new----------------')
             return newState
         }
         case GET_REVIEW_BY_ID: {
             let newState = {}
 
-            console.log(state, 'state=========')
+            // console.log(state, 'state=========')
             const rev = action.reviewById
-            console.log(rev, 'rev--')
+            // console.log(rev, 'rev--')
 
             newState[rev.id] = rev
-            console.log(newState, 'stateAFTER======')
+            // console.log(newState, 'stateAFTER======')
             return newState
         }
         case DELETE_REVIEW: {
             const newState = {...state}
 
-            console.log(action.rev.id, newState, 'del action')
+            // console.log(action.rev.id, newState, 'del action')
 
             delete newState[action.rev.id]
 
@@ -194,11 +194,11 @@ const reviewReducer = (state = initialState, action) => {
         }
         case GET_REVIEW_BY_TASKER:{
             const newState = {}
-            console.log(action.taskerReview.Reviews, 'review by tasker')
+            // console.log(action.taskerReview.Reviews, 'review by tasker')
             let revArr = action.taskerReview.Reviews
 
             revArr.forEach(rev => newState[rev.id] = rev)
-            console.log(newState, 'newState')
+            // console.log(newState, 'newState')
 
             return newState
         }

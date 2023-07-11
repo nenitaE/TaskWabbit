@@ -30,7 +30,7 @@ function TasksPage(){
         {tasks && tasks.map(task => {
             const taskDate = new Date(task.task_date);
             const currentDate = new Date();
-            console.log(task, 'map======')
+            // console.log(task, 'map======')
             currentDate.setHours(0,0,0,0); // set current time to 00:00:00
 
             return (
@@ -38,7 +38,7 @@ function TasksPage(){
                     <h2>{task.title}</h2>
                     <p>Date: {task.task_date}</p>
                     <p>Location: {task.location}</p>
-                    <p>Id: {task.tasker_id}</p>
+                    {/* <p>Id: {task.tasker_id}</p> */}
                     {task.taskType && <p>TaskType:{task.taskType.type}</p>}
                     <button onClick={() => openDeleteModal(task.id)}>Delete Task</button>
                     <CreateReviewModal tasker_id={task.tasker_id}/>
