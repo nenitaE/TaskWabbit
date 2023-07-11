@@ -87,7 +87,7 @@ function EditTaskerTaskTypeForm({taskerTaskType, formType}) {
                                         )}
                                         <input
                                             type="number"
-                                            placeholder="hourlyRate"
+                                            placeholder={hourlyRate}
                                             required={true}
                                             value={hourlyRate}
                                             onChange={updateHourlyRate}
