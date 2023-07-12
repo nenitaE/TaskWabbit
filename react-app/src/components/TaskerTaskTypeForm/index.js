@@ -1,16 +1,20 @@
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { Redirect } from 'react-router-dom/cjs/react-router-dom';
 import { getTaskerTaskTypes, fetchCreateTaskerTaskType } from '../../store/taskerProfile';
 import './TaskerTaskType.css';
 
 const TaskerTaskTypeForm = ({ taskerTaskType, formType}) => {
     console.log("Inside TaskerTaskTypeForm component>>>>>>>>>>>>>>")
-    const tasker_id = useSelector((state) => state.session.user.id);
+    const tasker_id = useSelector((state) => state.session.user?.id);
     console.log(tasker_id, "******SESSIONUSER*********")
+    const history = useHistory();
+    
+
     // const tasker_id = session.user.id;
     // console.log (tasker_id, "********TASKERID********")
-    const history = useHistory();
+   
     const [hourlyRate, setHourlyRate] = useState("");
     const [taskType_id, setTaskTypeId] = useState(1);
     const [errors, setErrors] = useState([]);
@@ -53,6 +57,14 @@ const TaskerTaskTypeForm = ({ taskerTaskType, formType}) => {
             }      
     };
     
+    if (!tasker_id) {
+        return(
+            <div>
+            <p>You must be logged in to access this page</p>
+            {history.push('/')}
+            </div>
+        )
+    }
     return (
         <div>
                 <div className='newTTFormContainer'>
