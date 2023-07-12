@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import './Step1.css';
 
 
@@ -9,6 +9,7 @@ function Step1({onStepComplete, existingData}){
     const [errors, setErrors] = useState({})
     const [inputValue, setInputValue] = useState(existingData.location || '');
     const [suggestions, setSuggestions] = useState([]);
+    const suggestionRef = useRef();
     // const [isInputSelected, setIsInputSelected] = useState(false);
     // const [showSuggestions, setShowSuggestions] = useState(false);
 
@@ -32,7 +33,8 @@ function Step1({onStepComplete, existingData}){
 
     const handleNext = () => {
         // When step is complete, we pass the data back to parent
-        onStepComplete({ location, description, title });
+        const locationValue = suggestionRef.current || location;
+        onStepComplete({ location: locationValue, description, title });
       };
 
     const validate = () => {
@@ -74,9 +76,10 @@ function Step1({onStepComplete, existingData}){
                         onMouseDown={(e) => {
                             e.preventDefault()
                             // console.log('Clicked suggestion:', suggestion.description);
-                            setLocation(inputValue);
                             setInputValue(suggestion.description);
+                            setLocation(inputValue);
                             // setIsInputSelected(true); //// Set isInputSelected to true when a suggestion is clicked
+                            suggestionRef.current = suggestion.description;
                             setSuggestions([]);
                             // setShowSuggestions(false); // hide suggestions when a suggestion is clicked
                         }}
