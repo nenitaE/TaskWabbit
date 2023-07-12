@@ -7,7 +7,7 @@ import { useHistory, useParams } from "react-router-dom";
 function NewUpdateTaskerTaskTypeForm() {
     const { taskerTaskTypeId } = useParams();
     console.log(taskerTaskTypeId, "*********taskerTaskType.Id in Update Form*********")
-    
+
     //Get taskerTaskType by Id
     const dispatch = useDispatch();
     let hasErrors = false;
@@ -34,11 +34,16 @@ function NewUpdateTaskerTaskTypeForm() {
     const [hasSubmitted, setHasSubmitted] = useState(false);
 
     const updateHourlyRate = (e) => setHourlyRate(e.target.value);
-   
+
 
     const handleSubmit = async (e) => {
+<<<<<<< HEAD
     //   console.log("Inside Handle SUbmit...EditTaskerTaskTypeForm component>>>>>>>>>>>>>>")
   
+=======
+      console.log("Inside Handle SUbmit...EditTaskerTaskTypeForm component>>>>>>>>>>>>>>")
+
+>>>>>>> dd30af63d7784ef4b4914cd25d899e4c8aad27f9
       e.preventDefault();
       setHasSubmitted(true);
       const existingData = {
@@ -82,7 +87,7 @@ function NewUpdateTaskerTaskTypeForm() {
         history.push(`/taskerTaskTypes/current`);
         dispatch(getTaskerTaskTypes());
       }
-           
+
     };
 
 

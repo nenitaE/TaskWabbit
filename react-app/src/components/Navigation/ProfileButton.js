@@ -7,6 +7,9 @@ import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 import './Navigation.css'
+import { NavLink } from "react-router-dom/cjs/react-router-dom";
+import { getReviewForLoggedIn } from "../../store/reviews";
+import ReviewByLoggedIn from "../CurrentReview";
 
 function ProfileButton({ user }) {
   const sessionUser = useSelector(state => state.session.user);
@@ -15,6 +18,9 @@ function ProfileButton({ user }) {
   const history = useHistory();
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
+
+  const userLoggedIn = useSelector(state => state.session.user)
+  // console.log(userLoggedIn, 'test========')
 
   const openMenu = () => {
     if (showMenu) return;
@@ -62,6 +68,10 @@ function ProfileButton({ user }) {
 								<NavLink className='text-link' to="/taskerTaskTypes/current">Tasker Profile</NavLink>
 							</li>
 						)}
+            <li>
+              <NavLink to="/reviews/currentUser"
+              >My Reviews</NavLink>
+            </li>
             <li>
               <button onClick={handleLogout}>Log Out</button>
             </li>
