@@ -6,7 +6,7 @@ import './Navigation.css';
 
 function Navigation({ isLoaded }){
 	const sessionUser = useSelector(state => state.session.user);
-	const taskerTasktypes = useSelector(state => state.taskerProfile)
+
 
 	return (
 		<ul>
@@ -18,7 +18,7 @@ function Navigation({ isLoaded }){
 					<NavLink to="/tasks/current">My Tasks</NavLink>
 				</li>
 			)}
-			{isLoaded && taskerTasktypes.taskerTaskTypes && (
+			{isLoaded && sessionUser?.isTasker && (
 				<li>
 					<NavLink to="/taskerTaskTypes/current">Tasker Profile</NavLink>
 				</li>

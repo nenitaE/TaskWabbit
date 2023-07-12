@@ -27,15 +27,19 @@ def delete(id):
     ordered by updated_at
     """
     rev = Review.query.get(id)
-    if not rev or int(rev.user_id) != int(session['_user_id']):
-        # print(type(rev.user_id), type(session['_user_id']), 'revTEST')
+    if not rev or (int(rev.user_id) != int(session['_user_id'])):
+        print(type(int(rev.user_id)), type(int(session['_user_id'])), 'checking type-------------///')
+        print((int(rev.user_id) != int(session['_user_id'])), 'revTEST-------')
         return {'Error': 'Review not found or user not authorized'}
+    else:
+        db.session.delete(rev)
+        db.session.commit()
+        return rev.to_dict_im()
 
-    db.session.delete(rev)
-    db.session.commit()
+
 
     reviews = Review.query.filter(Review.user_id == session['_user_id']).order_by(Review.updated_at)
-    return {'message': 'Deleted Successful'}
+    return rev.to_dict_im()
 
 
 # Edit a review
@@ -61,3 +65,11 @@ def updateReview(id):
     updated = Review.query.filter(Review.id == id)
     return {'Review': [update.to_dict_im() for update in updated]}
 
+
+# get a review on review id
+@review_routes.route('<int:id>')
+def getReviewById (id):
+
+    rev = Review.query.get(id)
+
+    return rev.to_dict_im()

@@ -5,11 +5,11 @@ import { getTaskerTaskTypes, updateTaskerTaskType } from "../../store/taskerProf
 import { getTaskTypes } from "../../store/taskTypes";
 
 function EditTaskerTaskTypeForm({taskerTaskType, formType}) {
-    console.log(taskerTaskType, "*********taskerTaskType IN EDIT FORM")
-
 
     const { taskerTaskTypeId } = useParams();
     const tasker_id = useSelector((state) => state.session.user.id);
+    const taskTypes = useSelector((state) => state.taskTypes);
+    const filteredTaskTypeById = taskTypes.filter(taskType => taskType.id == taskerTaskType.tasker_id )
 
     const history = useHistory();
 
@@ -20,6 +20,10 @@ function EditTaskerTaskTypeForm({taskerTaskType, formType}) {
     const dispatch = useDispatch();
 
     const updateHourlyRate = (e) => setHourlyRate(e.target.value);
+
+    useEffect(() => {
+        dispatch(getTaskTypes())
+    }, [dispatch])
 
     const handleSubmit = async (e) => {
 
@@ -38,18 +42,17 @@ function EditTaskerTaskTypeForm({taskerTaskType, formType}) {
           ...existingData,
           ...taskerTaskTypeData
         }
-        console.log(finalTaskerTaskTypeData, 'Final Tasker Task Type Data ------------')
 
         let data;
         data = await dispatch(updateTaskerTaskType(taskerTaskTypeId, finalTaskerTaskTypeData));
 
 
-        // if (data && data.length > 0) {
-        //   setErrors(data);
-        // } else {
+        if (data && data.length > 0) {
+          setErrors(data);
+        } else {
             history.push(`/taskerTaskTypes/current`);
             dispatch(getTaskerTaskTypes(taskerTaskTypeId));
-        // }
+        }
 
     };
 
@@ -60,7 +63,7 @@ function EditTaskerTaskTypeForm({taskerTaskType, formType}) {
                 {Array.isArray(errors) ? errors.map((error, idx) => <li key={idx}>{error}</li>) : <li>{errors}</li>}
                 </ul>
                     <h2>{formType}</h2>
-                        <h3>Use this form to edit the hourly rate for: .</h3>
+                        <h3>Use this form to edit the hourly rate for: {filteredTaskTypeById.type}</h3>
                             {/* <div className='c'>
                                 <label htmlFor='taskType_id'>Task Type </label>
                                     {hasSubmitted && !taskType_id && (
@@ -90,7 +93,7 @@ function EditTaskerTaskTypeForm({taskerTaskType, formType}) {
                                         )}
                                         <input
                                             type="number"
-                                            placeholder="hourlyRate"
+                                            placeholder={hourlyRate}
                                             required={true}
                                             value={hourlyRate}
                                             onChange={updateHourlyRate}
