@@ -128,9 +128,9 @@ def createReview():
         )
         db.session.add(newReview)
         db.session.commit()
-        # return redirect(f"/api/taskers/{(session['_user_id'])}/reviews")
-        return '<h1>Success!</h1>'
-    return '<h1>Error</h1>'
+        
+        return newReview.to_dict_im()
+    return { 'Error': 'Error creating Review'}
 
 
 
