@@ -6,6 +6,7 @@ import { NavLink } from 'react-router-dom';
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
+import './Navigation.css'
 
 function ProfileButton({ user }) {
   const sessionUser = useSelector(state => state.session.user);
@@ -54,11 +55,11 @@ function ProfileButton({ user }) {
             <li>{user.username}</li>
             {/* <li>{user.email}</li> */}
             <li>
-              <NavLink to="/tasks/current">My Tasks</NavLink>
+              <NavLink className='text-link' to="/tasks/current">My Tasks</NavLink>
             </li>
 						{sessionUser?.isTasker && (
 							<li>
-								<NavLink to="/taskerTaskTypes/current">Tasker Profile</NavLink>
+								<NavLink className='text-link' to="/taskerTaskTypes/current">Tasker Profile</NavLink>
 							</li>
 						)}
             <li>
