@@ -6,7 +6,7 @@ import { updateReview } from "../../store/reviews";
 
 const UpdateReview = ({reviewObj}) => {
 
-    console.log(reviewObj, typeof(reviewObj.id), 'test reviewObj')
+    // console.log(reviewObj, typeof(reviewObj.id), 'test reviewObj')
     const [description, setDescription] = useState(reviewObj.description)
     const [rating, setRating] = useState(reviewObj.rating)
     const [tasker_id, setTasker] = useState(reviewObj.tasker_id)
@@ -18,7 +18,7 @@ const UpdateReview = ({reviewObj}) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        console.log(rating, typeof(rating), 'test')
+        // console.log(rating, typeof(rating), 'test')
 
         const errors = {}
         if(description.length < 5) errors['description'] = 'Review requires atleast 5 characters'
@@ -35,11 +35,11 @@ const UpdateReview = ({reviewObj}) => {
             rating: Number(rating)
         }
         const id = reviewObj.id
-        console.log(payload, id, 'update in handle')
-        console.log(rating, typeof(rating), 'test2----')
+        // console.log(payload, id, 'update in handle')
+        // console.log(rating, typeof(rating), 'test2----')
 
         let updated = await dispatch(updateReview(payload, id))
-        console.log(updated, 'update in handle--')
+        // console.log(updated, 'update in handle--')
 
         if(updated){
             return history.push('/reviews/currentUser')

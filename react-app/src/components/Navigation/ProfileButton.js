@@ -16,7 +16,7 @@ function ProfileButton({ user }) {
   const ulRef = useRef();
 
   const userLoggedIn = useSelector(state => state.session.user)
-  console.log(userLoggedIn, 'test========')
+  // console.log(userLoggedIn, 'test========')
 
   const openMenu = () => {
     if (showMenu) return;
@@ -58,8 +58,6 @@ function ProfileButton({ user }) {
             <li>{user.email}</li>
             <li>
               <NavLink to="/reviews/currentUser"
-              // onClick={getReviewForLoggedIn()}
-              // {<ReviewByLoggedIn />}
               >My Reviews</NavLink>
             </li>
             <li>

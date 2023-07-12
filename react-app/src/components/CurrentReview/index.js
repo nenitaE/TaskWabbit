@@ -12,9 +12,9 @@ const ReviewByLoggedIn = () => {
 
     // state
     const reviewList = useSelector(state => Object.values(state.reviewReducer))
-    console.log(reviewList, 'state Result')
+    // console.log(reviewList, 'state Result')
     const user = useSelector(state => state.session.user)
-    console.log(user, 'user-------------')
+    // console.log(user, 'user-------------')
 
     let reviewDate;
 

@@ -84,7 +84,7 @@ export const getRevById = (id) => async (dispatch) => {
     // console.log(id, 'id')
     const response = await fetch(`/api/reviews/${id}`)
 
-    console.log(response, 'getRev resp')
+    // console.log(response, 'getRev resp')
 
     if(response.ok){
         const review = await response.json()
@@ -107,7 +107,7 @@ export const updateReview = (payload, id) => async (dispatch) => {
     });
     if(response.ok){
         const updatedRev = await response.json()
-        console.log(updatedRev.Review[0], 'updatedRev')
+        // console.log(updatedRev.Review[0], 'updatedRev')
 
         dispatch(createReview(updatedRev.Review[0]))
 
@@ -121,7 +121,7 @@ export const delReviewById = (id) => async (dispatch) => {
     const response = await fetch(`/api/reviews/${id}`, {
         method: 'DELETE'
     })
-    console.log(response, 'thunk response delete')
+    // console.log(response, 'thunk response delete')
     if(response.ok){
         const del = await response.json()
         console.log(del)
