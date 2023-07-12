@@ -13,9 +13,36 @@
 .profileButton {
   float: right;
   margin-right: 120px;
+  margin-top: 15px;
 }
+
+#navProfileBTTN {
+  color: #006b54; 
+  background-color: transparent;
+  border: none;
+  size: lg;
+}
+.logoutBTTN-profile {
+  color: #006b54; 
+  background-color: transparent;
+  border: none;
+}
+.welcome-profile {
+  color: #006b54; 
+  border-bottom: 2px;
+}
+
+
 
 .text-link {
   color: inherit;
   text-decoration: inherit;
+}
+
+.logoutBTTN-profile {
+  /* background-color: rgba(0, 107, 84, .75); */
+  /* padding: 8px; */
+  border: 2px solid rgba(0, 0, 0, .75);
+  border-radius: 5px;
+  margin-left: 15px;
 }
