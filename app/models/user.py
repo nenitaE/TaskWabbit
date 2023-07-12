@@ -45,8 +45,10 @@ class User(db.Model, UserMixin):
         return {
             'id': self.id,
             'username': self.username,
-            'email': self.email
+            'email': self.email,
+            'isTasker': self.isTasker,
         }
+    
     def to_dict_full(self):
         return {
             'id': self.id,

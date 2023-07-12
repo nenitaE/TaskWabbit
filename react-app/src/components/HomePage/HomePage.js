@@ -37,30 +37,34 @@ const HomePage = () => {
             <h1>Loading</h1>
         )
     }
-    // TODO use the ratings of each review to get an average star rating
 
 
     const recommendedTaskers = taskers.filter(tasker => user ? tasker.id != user.id : true).slice(0, 3);
     return (
         <main>
-            <h1>
-                {user ? 'Book Your Next Task' : 'Get help. Gain happiness'}
-            </h1>
-            <input
-                type="text"
-                placeholder={user ? "Choose your task type e.g. Cleaning" : 'I need help with...'}
-                value={filterText}
-                onChange={updateFilterText}
-            />
-            <ul>
-                {filteredTaskTypes.map((taskType) => (
-                    <div key={taskType.id}>
-                        <NavLink to={`/tasks/new/${parseInt(taskType.id)}`}>
-                            {taskType.type}
-                        </NavLink>
-                    </div>
-                ))}
-            </ul>
+            <div className='book-task-spacing'>
+                <h1>
+                    {user ? 'Book Your Next Task' : 'Get help. Gain happiness'}
+                </h1>
+                <input
+                    className='search-filter'
+                    type="text"
+                    placeholder={user ? "Choose your task type e.g. Cleaning" : 'I need help with...'}
+                    value={filterText}
+                    onChange={updateFilterText}
+                />
+                <div className='task-type-buttons'>
+                    {filteredTaskTypes.map((taskType) => (
+                        <div key={taskType.id}>
+                            <NavLink className='task-type-button-link' to={user ? `/tasks/new/${parseInt(taskType.id)}` : `/loginSignup/${parseInt(taskType.id)}`}>
+                                <div className='task-type-button'>
+                                {taskType.type}
+                                </div>
+                            </NavLink>
+                        </div>
+                    ))}
+                </div>
+            </div>
             <h3>
                 Taskers recommended for you
             </h3>
@@ -74,7 +78,6 @@ const HomePage = () => {
                                 <ul key={taskerTaskType.id}>
                                     {taskTypesById[taskerTaskType.taskType_id].type} for ${taskerTaskType.hourlyRate}/hr
                                 </ul>
-
                             ))}
                         </ul>
                     </div>
