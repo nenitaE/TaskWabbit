@@ -115,7 +115,7 @@ function Step2({ onStepComplete, taskers}){
                             <div key={tasker.id} className='tasker-card'>
                                 <div className='tasker-image-container'>
                                     <img src="https://placehold.it/100" alt='Profile' className='profile-image'></img>
-                                    <button onClick={() => handleSelectTasker(tasker.id)}>Select and continue</button>
+                                    <button className='select-button' onClick={() => handleSelectTasker(tasker.id)}>Select and continue</button>
                                 </div>
                                 <div className='tasker-info-container'>
                                     <div className='header'>
@@ -134,7 +134,7 @@ function Step2({ onStepComplete, taskers}){
                     )}
             {/* </label> */}
             </div>
-            <button type="button" onClick={handleBack}>
+            <button  type="button" onClick={handleBack}>
                 Back
             </button>
         </div>

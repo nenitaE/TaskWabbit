@@ -3,7 +3,7 @@
     display: grid;
     grid-template-columns: 1fr 3fr;
     grid-template-rows: 1fr;
-    gap: 0px 0px;
+    gap: 20%;
     grid-template-areas:
         "range-slider taskers";
 }
@@ -27,11 +27,12 @@
 .taskers div {
     flex: 1 0 21%;
     margin: 5px;
+    margin-bottom: 5%;
 }
 
 .tasker-card{
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: auto 1fr;
     margin-bottom: 15px;
 }
 
@@ -40,7 +41,6 @@
     flex-direction: column;
     align-items: center;
     /* justify-content: flex-start; */
-    margin-right: 50px;
 }
 
 .profile-image {
@@ -57,4 +57,18 @@
 .header {
     display: flex;
     justify-content: space-between;
+}
+
+.select-button{
+    background-color: #006b54;
+    color:white;
+    border: none;
+    border-radius: 25px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.select-button:hover{
+    background-color:#00281c;
 }
