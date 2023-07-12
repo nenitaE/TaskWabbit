@@ -14,14 +14,14 @@
 .task-type-buttons {
     display: flex;
     flex-wrap: wrap;
-    /* justify-content: space-evenly; */
-    gap: 5px;
+    align-content: flex-start;
+    gap: 2.5px;
 }
 
 .task-type-button {
 
-    color: green;
-    border: 1.5px solid green;
+    color: #006b54;
+    border: 1.5px solid #006b54;
     border-radius: 10px;
     padding: 10px;
 
