@@ -7,7 +7,6 @@ import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 import './Navigation.css'
-import { NavLink } from "react-router-dom/cjs/react-router-dom";
 import { getReviewForLoggedIn } from "../../store/reviews";
 import ReviewByLoggedIn from "../CurrentReview";
 
@@ -58,7 +57,7 @@ function ProfileButton({ user }) {
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
           <>
-            <li>{user.username}</li>
+            <li>Welcome {user.username}.</li>
             {/* <li>{user.email}</li> */}
             <li>
               <NavLink className='text-link' to="/tasks/current">My Tasks</NavLink>
@@ -69,7 +68,7 @@ function ProfileButton({ user }) {
 							</li>
 						)}
             <li>
-              <NavLink to="/reviews/currentUser"
+              <NavLink className='text-link' to="/reviews/currentUser"
               >My Reviews</NavLink>
             </li>
             <li>

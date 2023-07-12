@@ -37,13 +37,8 @@ function NewUpdateTaskerTaskTypeForm() {
 
 
     const handleSubmit = async (e) => {
-<<<<<<< HEAD
     //   console.log("Inside Handle SUbmit...EditTaskerTaskTypeForm component>>>>>>>>>>>>>>")
   
-=======
-      console.log("Inside Handle SUbmit...EditTaskerTaskTypeForm component>>>>>>>>>>>>>>")
-
->>>>>>> dd30af63d7784ef4b4914cd25d899e4c8aad27f9
       e.preventDefault();
       setHasSubmitted(true);
       const existingData = {
