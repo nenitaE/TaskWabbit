@@ -7,7 +7,7 @@ import { useHistory, useParams } from "react-router-dom";
 function NewUpdateTaskerTaskTypeForm() {
     const { taskerTaskTypeId } = useParams();
     console.log(taskerTaskTypeId, "*********taskerTaskType.Id in Update Form*********")
-    
+
     //Get taskerTaskType by Id
     const dispatch = useDispatch()
 
@@ -32,11 +32,11 @@ function NewUpdateTaskerTaskTypeForm() {
     const [hasSubmitted, setHasSubmitted] = useState(false);
 
     const updateHourlyRate = (e) => setHourlyRate(e.target.value);
-   
+
 
     const handleSubmit = async (e) => {
       console.log("Inside Handle SUbmit...EditTaskerTaskTypeForm component>>>>>>>>>>>>>>")
-  
+
       e.preventDefault();
       setHasSubmitted(true);
       const existingData = {
@@ -48,7 +48,7 @@ function NewUpdateTaskerTaskTypeForm() {
         hourlyRate
       }
       console.log(taskerTaskTypeData, "********EDITED***taskerTaskTypeData in handle submit")
-      
+
       const finalTaskerTaskTypeData = {
         ...existingData,
         ...taskerTaskTypeData
@@ -63,25 +63,25 @@ function NewUpdateTaskerTaskTypeForm() {
           history.push(`/taskerTaskTypes/current`);
           dispatch(getTaskerTaskTypes());
       }
-           
+
     };
 
 
     return (
       <div className='a'>
-          <form className ='b' onSubmit={handleSubmit} > 
+          <form className ='b' onSubmit={handleSubmit} >
               <ul>
               {Array.isArray(errors) ? errors.map((error, idx) => <li key={idx}>{error}</li>) : <li>{errors}</li>}
-              </ul>  
-                  
-                      <h3>Use this form to edit the hourly rate for: .</h3>              
-                       
+              </ul>
+
+                      <h3>Use this form to edit the hourly rate for: .</h3>
+
                               <div className='d'>
                                   <label htmlFor='hourlyRate'>Enter an hourly rate in US dollars: </label>
                                       {hasSubmitted && !hourlyRate && (
                                           <label htmlFor='hourlyRate' className='e'>Hourly rate is required</label>
                                       )}
-                                      <input 
+                                      <input
                                           type="number"
                                           placeholder="hourlyRate"
                                           required={true}
