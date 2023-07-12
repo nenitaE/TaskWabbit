@@ -1,34 +1,27 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
+import logoimg from './images/tWabbitLogo.png'
 
 function Navigation({ isLoaded }){
 	const sessionUser = useSelector(state => state.session.user);
 
 
 	return (
-		<ul>
-			<li>
-				<NavLink exact to="/">Home</NavLink>
-			</li>
-			{isLoaded && sessionUser &&(
-				<li>
-					<NavLink to="/tasks/current">My Tasks</NavLink>
-				</li>
-			)}
-			{isLoaded && sessionUser?.isTasker && (
-				<li>
-					<NavLink to="/taskerTaskTypes/current">Tasker Profile</NavLink>
-				</li>
-			)}
-			{isLoaded && (
-				<li>
-					<ProfileButton user={sessionUser} />
-				</li>
-			)}
-		</ul>
+			<div className='navContainer'>
+				<NavLink exact to="/" className="navLinkLogo">
+					<img className='logoimg' src={logoimg} alt='logo' />
+				</NavLink>	
+				<span>
+					{isLoaded && (
+						<li className="profileButton">
+							<ProfileButton user={sessionUser} />
+						</li>
+					)}
+				</span>
+			</div>
 	);
 }
 

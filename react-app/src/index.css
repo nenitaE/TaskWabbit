@@ -1,1 +1,6 @@
 /* TODO Add site wide styles */
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@600&display=swap');
+
+* {
+    font-family: 'League Spartan', sans-serif;
+}
