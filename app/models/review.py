@@ -22,6 +22,7 @@ class Review(db.Model, UserMixin):
 
     def to_dict_im(self):
         return {
+            'id': self.id,
             'description': self.description,
             'rating': self.rating,
             'user_id': self.user_id,
