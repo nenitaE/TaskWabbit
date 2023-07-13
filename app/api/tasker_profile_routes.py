@@ -7,6 +7,15 @@ from .auth_routes import validation_errors_to_error_messages
 
 tasker_profile_routes = Blueprint('taskerTaskTypes', __name__)
 
+def validation_errors_to_error_messages(validation_errors):
+    """
+    Simple function that turns the WTForms validation errors into a simple list
+    """
+    errorMessages = []
+    for field in validation_errors:
+        for error in validation_errors[field]:
+            errorMessages.append(f'{field} : {error}')
+    return errorMessages
 
 @tasker_profile_routes.route('/<int:taskerTaskTypeId>', methods=['PUT'])
 @login_required
@@ -36,6 +45,11 @@ def edit_curr_tasktype(taskerTaskTypeId):
                 TaskerTaskType.tasker_id == tasker_id
             )
         ).all()
+        
+        # validate new hourlyRate
+        if data["hourlyRate"] <= 0:
+            return {'errors': 'hourlyRate must be greater than 0.'}, 400
+
 
         if 'taskType_id' in data:
             taskerTaskType.taskType_id = data["taskType_id"]
@@ -44,19 +58,12 @@ def edit_curr_tasktype(taskerTaskTypeId):
         if 'hourlyRate' in data:
             taskerTaskType.hourlyRate = data["hourlyRate"]
 
-    # #Change instance variable of the taskerTaskType through a JSON request
-    # taskerTaskType.hourlyRate = request.json['hourlyRate']
-    # taskerTaskType.taskType_id = request.json['taskType_id']
-
+    
         db.session.commit()
 
-    # #Filter and return the taskTypes
-    # taskerTaskTypes = TaskerTaskType.query.filter(TaskerTaskType.id == taskertasktypeId)
-
-    # return {'TaskerTaskType': [taskerTaskType.to_dict() for taskerTaskType in taskerTaskTypes]}
         return taskerTaskType.to_dict()
 
-    return {'errors': validation_errors_to_error_messages(form.errors)}, 400
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
 @tasker_profile_routes.route('/<int:taskerTaskTypeId>', methods=['DELETE'])
@@ -153,6 +160,8 @@ def add_tasktypes():
         for taskerTaskType in taskerTaskTypes:
             if data["taskType_id"] == taskerTaskType.taskType_id:
                 return {'errors': 'Tasker is already assigned this tasktype'}, 400
+            if data["hourlyRate"] <= 0:
+                return {'errors': 'hourlyRate must be greater than 0.'}, 400
 
 
         #Create new tasktype
@@ -163,4 +172,4 @@ def add_tasktypes():
         db.session.add(new_taskertasktype)
         db.session.commit()
         return new_taskertasktype.to_dict()
-    return {'errors': validation_errors_to_error_messages(form.errors)}, 400
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
