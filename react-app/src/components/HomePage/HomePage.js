@@ -74,15 +74,17 @@ const HomePage = () => {
                     {recommendedTaskers.map((tasker) => (
                         <div className="tasker-recommended-individual" key={tasker.id}>
                             <div className="popular-in-area">popular in your area</div>
-                            <h3>{tasker.firstName} {tasker.lastName}</h3>
-                            <p>({tasker.reviews.length} reviews)</p>
-                            <div>------------  Top Skills ------------</div>
-                            <div className="top-skill-container">
-                                {tasker.taskerTaskTypes.slice(0, 3).map((taskerTaskType) => (
-                                    <div className="top-skills-layout" key={taskerTaskType.id}>
-                                        {taskTypesById[taskerTaskType.taskType_id].type} for ${taskerTaskType.hourlyRate}/hr
-                                    </div>
-                                ))}
+                            <div className='tasker-recommended-details'>
+                                <h3>{tasker.firstName} {tasker.lastName}</h3>
+                                <p>({tasker.reviews.length} reviews)</p>
+                                <div>------------  Top Skills ------------</div>
+                                <div className="top-skill-container">
+                                    {tasker.taskerTaskTypes.slice(0, 3).map((taskerTaskType) => (
+                                        <div className="top-skills-layout" key={taskerTaskType.id}>
+                                            {taskTypesById[taskerTaskType.taskType_id].type} for ${taskerTaskType.hourlyRate}/hr
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
                         </div>
                     ))}

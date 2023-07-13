@@ -10,9 +10,8 @@
 .center-spacing {
     height: 80px;
     background-color: #006b542e;
-    /* padding: 20px; */
     width: 100%;
-    margin: 20px, 0px, 20px, 0px;
+    margin: 60px 0px 60px 0px;
 }
 
 .search-filter {
@@ -47,7 +46,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    /* padding-left: 80px; */
+    gap: 10px;
 }
 
 .taskers-recommended-container {
@@ -56,17 +55,27 @@
 }
 
 .popular-in-area {
-    background-color: rgb(238, 238, 238);
+    background-color: rgb(243, 241, 241);
     width: 100%;
     text-align: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 .tasker-recommended-individual {
     display: flex;
+    flex: 1 1 0px;
     flex-direction: column;
     align-items: center;
     border: 1.5px solid grey;
     border-radius: 2px;
+}
+
+.tasker-recommended-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
 }
 
 .top-skills-layout {
