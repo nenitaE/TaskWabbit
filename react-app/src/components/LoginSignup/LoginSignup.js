@@ -17,7 +17,7 @@ function LoginSignup() {
         <div className="login-signup-root">
             <div className="login-signup-container">
                 <div className="login-signup-inner">
-                    <div className="taskwabbit-title">taskwabbit</div>
+                    <div className="taskwabbit-title">taskWabbit</div>
 
                     <OpenModalButton
                         className="signup-button"

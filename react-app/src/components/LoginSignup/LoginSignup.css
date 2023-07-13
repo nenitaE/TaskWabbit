@@ -34,6 +34,7 @@ html, body
 
 .taskwabbit-title {
     font-size: 50px;
+    padding-bottom: 15px;
 }
 
 .signup-button {
@@ -54,12 +55,11 @@ html, body
     border: 1.5px solid #006b54;
     border-radius: 20px;
     width: 100%;
-    /* width: 250px; */
     height: 35px;
 }
 
 .agreement-section {
     text-align: center;
     font-size: 12px;
-    padding: 10px;
+    padding: 15px 10px 0px 10px;
 }
