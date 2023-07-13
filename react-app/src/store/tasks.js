@@ -136,7 +136,7 @@ export const createTask = (taskData) => async(dispatch) =>{
         });
         if(response.ok){
             const newTask = await response.json();
-            console.log(newTask, 'in my thunk, the response i get back')
+            // console.log(newTask, 'in my thunk, the response i get back')
             dispatch(createTaskAction(newTask));
             return newTask
         } else if (response.status <= 500){
