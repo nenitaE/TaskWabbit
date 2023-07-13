@@ -15,7 +15,7 @@ const Update = () => {
     const review = useSelector(state => state.reviewReducer[id])
 
     const userSession = useSelector(state => state.session.user)
-    console.log(review, userSession, 'review update')
+    // console.log(review, userSession, 'review update')
 
     useEffect(() => {
 
@@ -24,9 +24,9 @@ const Update = () => {
     }, [dispatch, userSession])
 
     if(!userSession || userSession.id !== review.user_id){
+        alert('Resticted')
         return(
             <>
-                {alert('Resticted')}
                 {history.push('/')}
                 </>
             )

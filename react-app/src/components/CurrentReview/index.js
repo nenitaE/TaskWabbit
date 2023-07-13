@@ -48,9 +48,6 @@ const ReviewByLoggedIn = () => {
                             <DeleteReview id={rev.id} />
                         </div>
                         <div>
-                            {/* <Link to={`/reviews/${rev.id}/edit`}>
-                                <button>Update Review</button>
-                            </Link> */}
                             <button onClick={
                                 () => history.push(`/reviews/${rev.id}/edit`)
                             }>Update</button>
