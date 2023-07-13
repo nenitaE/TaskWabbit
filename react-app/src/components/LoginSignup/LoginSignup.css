@@ -1,5 +1,36 @@
-.Login_Signup_container {
+html, body
+{
+    height: 100%;
+    width: 100%;
+    margin: 0px;
+}
+
+.login-signup-root {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("https://cdn.wisemove.co.za/image/blog/e191f4c2692ad6f4f51c8fc262505144.webp");
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100vw;
+    height: 100vh;
+}
+
+.login-signup-container {
+    background-color: white;
+    border-color: white;
+    border-radius: 6px;
+}
+
+.login-signup-inner {
     display: flex;
     flex-direction: column;
-    border: 5px solid #006b54;
+    align-items: center;
+    padding: 45px;
 }
+
+.taskwabbit-title {
+    font-size: 50px;
+}
+
