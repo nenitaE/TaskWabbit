@@ -5,10 +5,11 @@ import { useEffect, useState} from "react";
 import { useSelector } from "react-redux";
 import { getTaskers } from "../../store/taskers";
 import StepIndicator from "../StepIndicator";
-import Step1 from "../Step1"
-import Step2 from "../Step2"
-import Step3 from "../Step3"
+import Step1 from "../Step1";
+import Step2 from "../Step2";
+import Step3 from "../Step3";
 import Step4 from "../Step4";
+import './CreateTaskForm.css';
 
 
 function CreateTaskForm() {
@@ -20,14 +21,13 @@ function CreateTaskForm() {
 
     const [formData, setFormData] = useState({
         taskTypeId:  taskTypeId,
-        // totalPrice: 100  // replace with actual default value
     });
 
-    // //Fetcha all Taskers
-    // useEffect(() => {
-    //     const data = dispatch(getTaskers())
-    //     taskers.current = data || [];
-    // }, [dispatch]);
+    //Fetcha all Taskers
+    useEffect(() => {
+        const data = dispatch(getTaskers())
+        // taskers.current = data || [];
+    }, [dispatch]);
 
     // useEffect(() => {
     //   return () => {
@@ -35,20 +35,6 @@ function CreateTaskForm() {
     //     taskers.current = [];
     //   };
     // }, []);
-
-    useEffect(() => {
-      let _isMounted = true;
-      const fetchData = async () => {
-          const data = await dispatch(getTaskers());
-          if (_isMounted) {  // only update state if component is still mounted
-              taskers.current = data || [];
-          }
-      }
-      fetchData();
-      return () => {
-          _isMounted = false;  // update _isMounted when component is unmounted
-      };
-  }, [dispatch]);
 
 
     const taskers = Object.values(useSelector(state => state.taskers));
@@ -74,7 +60,6 @@ function CreateTaskForm() {
     }
 
     const submitForm = async () => {
-        // console.log("-----Submitting form", formData.totalPrice);
         const taskData = {
           taskTypeId: formData.taskTypeId,
           title: formData.title,
@@ -84,19 +69,18 @@ function CreateTaskForm() {
           task_date: formData.task_date,
           tasker_id: formData.tasker_id
         }
-        console.log("Task data", taskData);
         const data = await dispatch(createTask(taskData))
-        console.log("Create task response", data);
+        // console.log("Create task Form in the component", data);
         if(data){
             setErrors(data)
         }else {
             setStep(step + 1);
-            console.log("Form submitted successfully");
+            // console.log("Form submitted successfully");
         }
     }
 
     return (
-        <form onSubmit={submitForm}>
+        <form className="create-task-form" onSubmit={submitForm}>
           <StepIndicator currentStep={step} onStepClick={handleStepClick}/>
           {step === 1 && (
             <Step1

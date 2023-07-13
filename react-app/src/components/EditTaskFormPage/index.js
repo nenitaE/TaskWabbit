@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getTask, updateTask } from "../../store/tasks";
+import { getTask, updateTask, clearCurrentTask } from "../../store/tasks";
 import { useHistory, useParams } from "react-router-dom";
 
 function EditTaskFormPage(){
@@ -12,16 +12,23 @@ function EditTaskFormPage(){
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [location, setLocation] = useState("");
-    // const [totalPrice, setTotalPrice] = useState(0);
     // const [isPastDate, setIsPastDate] = useState(false);
     const [errors, setErrors] = useState([]);
+    const { id: loggedInUserId } = useSelector(state => state.session.user); // Fetch logged in user's ID
+    console.log(loggedInUserId, 'current logged in user')
 
     useEffect(() => {
         dispatch(getTask(taskId))
+        console.log()
     }, [dispatch, taskId])
 
     useEffect(() => {
         if(task){
+          console.log(task.user_id, 'task.user_Id')
+          if (task.user_id !== loggedInUserId) {
+            dispatch(clearCurrentTask());
+            history.push('/tasks/current');
+          }
             // const taskDate = new Date(task.task_date);
             // const currentDate = new Date();
             // currentDate.setHours(0,0,0,0) //set current time to 00:00:00
@@ -29,17 +36,14 @@ function EditTaskFormPage(){
             setTitle(task.title);
             setDescription(task.description);
             setLocation(task.location);
-            // setTotalPrice(task.totalPrice);
         }
 
     }, [task]);
 
     if(!task){
-        return null; //replace with loading spinner
+        return null; //dont forget to replace with loading spinner
     }
-    // if(isPastDate){
-    //   return <div>You cannot edit a Past Task Booking</div>
-    // }
+
 
     const handleSubmit = async(e) => {
         e.preventDefault();
@@ -55,7 +59,6 @@ function EditTaskFormPage(){
             title,
             description,
             location,
-            // totalPrice
         }
 
         const finaltaskData = {
@@ -99,14 +102,6 @@ function EditTaskFormPage(){
               onChange={(e) => setLocation(e.target.value)}
             />
           </label>
-          {/* <label>
-            Total Price
-            <input
-              type="number"
-              value={totalPrice}
-              onChange={(e) => setTotalPrice(e.target.value)}
-            />
-          </label> */}
           <button type="submit">Update Task</button>
         </form>
       );
