@@ -23,6 +23,12 @@ const Update = () => {
         // console.log(id, 'idTest')
     }, [dispatch, userSession])
 
+    if(!review){
+        return(
+            <p>loading...</p>
+        )
+    }
+    
     if(!userSession || userSession.id !== review.user_id){
         alert('Resticted')
         return(
@@ -32,11 +38,6 @@ const Update = () => {
             )
         }
 
-    if(!review){
-        return(
-            <p>loading...</p>
-        )
-    }
 
     // converting to Object
     let reviewObj = review

@@ -1,0 +1,37 @@
+#main {
+    display: grid;
+    justify-content: center;
+    /* background-color: antiquewhite; */
+}
+
+#mainUser {
+    display: grid;
+}
+
+#mainUserContent {
+    display: grid;
+    border: solid white;
+    border-bottom-color: greenyellow;
+    border-left-color: greenyellow;
+    margin: 1em;
+}
+
+#afterUser {
+    border: solid green;
+}
+
+.singleReview {
+    display: grid;
+    background-color: white;
+    border: solid white;
+    border-radius: 5%;
+    border-bottom-color: greenyellow;
+    border-left-color: greenyellow;
+    justify-content: start;
+    justify-items: stretch;
+    margin: 1em;
+}
+
+#revContent {
+    background-color: aqua;
+}

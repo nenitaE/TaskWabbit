@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom/cjs/react-router-dom";
 import { updateReview } from "../../store/reviews";
+import './UpdateForm.css'
 
 
 const UpdateReview = ({reviewObj}) => {
@@ -50,13 +51,21 @@ const UpdateReview = ({reviewObj}) => {
 
     return(
         <>
-            <h1>Update Review</h1>
+        <div id="mainForm">
+            <h3>Update Review</h3>
+
+            <div id="afterTitle"></div>
+
             <form onSubmit={handleSubmit}>
                 <div>
-                    <h3>How was the servie?</h3>
-                    <p>Please describe your experience</p>
+                    <h4>How was the servie?</h4>
+                    <p>Please describe your experience.</p>
                     <label>
-                        Description:
+                        <div>
+                            Description:
+                        </div>
+
+                        <div>
                         <textarea
                             id='description'
                             placeholder="maximum 100 characters"
@@ -72,10 +81,11 @@ const UpdateReview = ({reviewObj}) => {
                                     </div>
                                 )
                             }
+                        </div>
                     </label>
                 </div>
                 <div>
-                    <h3>Please give a rating</h3>
+                    <h4>Please give a rating</h4>
                     <label>
                         Rating:
                         <input
@@ -95,10 +105,14 @@ const UpdateReview = ({reviewObj}) => {
                             }
                     </label>
                 </div>
+
+                <div id="afterfields"></div>
+
                 <div>
                     <button type='submit'>Update</button>
                 </div>
             </form>
+        </div>
         </>
     )
 }

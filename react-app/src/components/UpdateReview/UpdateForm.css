@@ -1,0 +1,15 @@
+#mainForm {
+    display: grid;
+    justify-content: center;
+}
+
+#afterTitle {
+    border: solid green;
+}
+
+#description {
+    border-color: greenyellow;
+    border-radius: 5%;
+    height: 50px;
+    width: fit-content;
+}
