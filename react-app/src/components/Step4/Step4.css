@@ -1,0 +1,35 @@
+.main-container{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 20px;
+}
+
+.payment-method{
+    /* need to do this too */
+}
+
+.taskdetails{
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    gap: 10px
+}
+
+.general-taskdetails{
+
+}
+
+.price-details{
+
+}
+
+.card-input-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 200px;
+}
+
+.card-logo {
+    width: 25%;
+    height: auto;
+}

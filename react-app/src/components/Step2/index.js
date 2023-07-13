@@ -5,11 +5,26 @@ import { authenticate } from '../../store/session';
 import { useParams } from "react-router-dom";
 import { getTasks } from '../../store/tasks';
 
+
+import './Step2.css'
+
 function Step2({ onStepComplete, taskers}){
     const [taskerId, setTaskerId] = useState(null);
     const dispatch = useDispatch();
     const user = useSelector(state => state.session.user)
     const { taskTypeId } = useParams();
+
+    //Find the highest hourly rate from all taskers
+    let highestHourlyRate = 0;
+    taskers.forEach(tasker => {
+        tasker.taskerTaskTypes.forEach(taskType => {
+            if (taskType.taskType_id == taskTypeId && Number(taskType.hourlyRate) > highestHourlyRate) {
+                highestHourlyRate = Number(taskType.hourlyRate);
+            }
+        });
+    });
+    const [maxHourlyRate, setMaxHourlyRate] = useState(highestHourlyRate);
+
 
     const handleSelectTasker= (taskerId) => {
         const selectedTasker = filteredTaskers.find(tasker => tasker.id === taskerId);
@@ -75,27 +90,56 @@ function Step2({ onStepComplete, taskers}){
 
 
     return (
-        <div>
-            <label>
-                Choose your tasker:
-                    {filteredTaskers && filteredTaskers.map((tasker) => (
-                        <div key={tasker.id}>
-                            <h2>{tasker.firstName}</h2>
-                            <p>({tasker.reviews.length} reviews)</p>
-                            <p>{tasker.taskerTaskTypes.find(taskType => taskType.taskType_id == taskTypeId).hourlyRate}</p>
-                            <p>Tasks done: {countTaskerTasks(tasker.id, taskTypeId)}</p>
-                            <p>{tasker.reviews[0].description}</p>
-                            <button onClick={() => handleSelectTasker(tasker.id)}>Select and continue</button>
-                        </div>
-                    ))}
+        <div className='main_container'>
+            <div className='range-slider'>
+                <input
+                    type="range"
+                    min="0"
+                    max={highestHourlyRate}
+                    value={maxHourlyRate}
+                    onChange={event => setMaxHourlyRate(Number(event.target.value))}
+                />
+                {maxHourlyRate}$
+            </div>
 
-            </label>
-            <button type="button" onClick={handleBack}>
+            <div className='taskers'>
+            {/* <label> */}
+                Choose your tasker:
+                    {filteredTaskers.length > 0 ? (
+                        filteredTaskers
+                        .filter(tasker => {
+                            const hourlyRate = Number(tasker.taskerTaskTypes.find(taskType => taskType.taskType_id == taskTypeId).hourlyRate);
+                            return hourlyRate <= maxHourlyRate;
+                        })
+                        .map((tasker) => (
+                            <div key={tasker.id} className='tasker-card'>
+                                <div className='tasker-image-container'>
+                                    <img src="https://placehold.it/100" alt='Profile' className='profile-image'></img>
+                                    <button className='select-button' onClick={() => handleSelectTasker(tasker.id)}>Select and continue</button>
+                                </div>
+                                <div className='tasker-info-container'>
+                                    <div className='header'>
+                                        <h2>{tasker.firstName}</h2>
+                                        <h2>{tasker.taskerTaskTypes.find(taskType => taskType.taskType_id == taskTypeId).hourlyRate}/hr</h2>
+                                    </div>
+
+                                    <p>({tasker.reviews.length} reviews)</p>
+                                    <p>Tasks done: {countTaskerTasks(tasker.id, taskTypeId)}</p>
+                                    <p>{tasker.reviews[0] ? tasker.reviews[0].description : 'No reviews'}</p>
+                                </div>
+                            </div>
+                        ))
+                    ) : (
+                        <p>No taskers available</p>
+                    )}
+            {/* </label> */}
+            </div>
+            <button  type="button" onClick={handleBack}>
                 Back
             </button>
-
         </div>
     )
 }
+
 
 export default Step2

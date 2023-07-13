@@ -1,7 +1,9 @@
-.step-indicator {
+
+  .step-indicator {
     display: flex;
     justify-content: space-between;
-    width: 50%;
+    align-items: center;
+    width: 90%;
     margin: 20px auto;
 }
 
@@ -13,9 +15,22 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 2;
+    position: relative;
 }
 
 .step-indicator .step.active {
-    background: green;
+    background:  #006b54;
     color: white;
-  }
+}
+
+.step-indicator .step-line {
+    flex-grow: 1;
+    height: 3px;
+    background: lightgray;
+    transition: background .5s ease;
+}
+
+.step-indicator .step-line.active {
+    background:  #006b54;
+}
