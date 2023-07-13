@@ -20,6 +20,7 @@ function LoginSignup() {
                     <div className="taskwabbit-title">taskwabbit</div>
                     <div>
                         <OpenModalButton
+                        className="signup-button"
                             buttonText="Signup"
                             modalComponent={<SignupFormModal />}
                             onModalClose={<Redirect to={`/tasks/new/${taskTypeId}`} />}
