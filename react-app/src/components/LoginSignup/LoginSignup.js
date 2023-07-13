@@ -12,7 +12,7 @@ function LoginSignup() {
     if (sessionUser) return <Redirect to={`/tasks/new/${taskTypeId}`} />;
 
     return (
-        <>
+        <div>
             <OpenModalButton
                 buttonText="Signup"
                 modalComponent={<SignupFormModal/>}
@@ -23,7 +23,7 @@ function LoginSignup() {
                 modalComponent={<LoginFormModal/>}
                 onModalClose={<Redirect to={`/tasks/new/${taskTypeId}`} />}
             />
-        </>
+        </div>
     )
 }
 
