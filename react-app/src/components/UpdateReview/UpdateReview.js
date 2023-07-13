@@ -56,7 +56,7 @@ const UpdateReview = ({reviewObj}) => {
 
             <div id="afterTitle"></div>
 
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} id="form">
                 <div>
                     <h4>How was the servie?</h4>
                     <p>Please describe your experience.</p>
@@ -87,8 +87,12 @@ const UpdateReview = ({reviewObj}) => {
                 <div>
                     <h4>Please give a rating</h4>
                     <label>
-                        Rating:
-                        <input
+                        <div>
+                            Rating:
+                        </div>
+
+                        <div>
+                            <input
                             id='rating'
                             type='number'
                             required
@@ -103,10 +107,12 @@ const UpdateReview = ({reviewObj}) => {
                                     </div>
                                 )
                             }
+                        </div>
+
                     </label>
                 </div>
 
-                <div id="afterfields"></div>
+                <div id="afterFields"></div>
 
                 <div>
                     <button type='submit'>Update</button>
