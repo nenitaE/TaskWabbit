@@ -13,10 +13,10 @@ const ReviewByLoggedIn = () => {
 
     // state
     const reviewList = useSelector(state => Object.values(state.reviewReducer))
-    console.log(reviewList, 'state Result')
+    // console.log(reviewList, 'state Result')
     const user = useSelector(state => state.session.user)
     const taskers = useSelector(state => Object.values(state.taskers))
-    console.log(user, taskers, 'user-------------')
+    // console.log(user, taskers, 'user-------------')
 
     let taskerData = [];
 
@@ -34,10 +34,10 @@ const ReviewByLoggedIn = () => {
     }
 
     taskers.forEach(tasker => {
-        console.log(tasker.id)
+        // console.log(tasker.id)
         // taskerData.push(tasker)
     })
-    console.log(taskerData, 'tasker DATA')
+    // console.log(taskerData, 'tasker DATA')
 
     return (
         <>
@@ -71,11 +71,7 @@ const ReviewByLoggedIn = () => {
                             Rating: {rev.rating}
                         </div>
                         <div>
-                            {/* test {taskers.forEach(tasker => {
-                                if(tasker.id === rev.tasker_id)(
-                                    (test)
-                                )
-                            })} */}
+                            
                         </div>
                         <div id="revContent">
                             <b>{new Date(rev.created_at).toDateString()}</b>
