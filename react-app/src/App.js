@@ -64,9 +64,9 @@ function App() {
           <ProtectedRoute exact path="/taskerTaskTypes/new">
             <CreateTaskerTaskTypeForm />
           </ProtectedRoute>
-          <Route exact path="/tasks/:taskId/edit">
+          <ProtectedRoute exact path="/tasks/:taskId/edit">
             <EditTaskFormPage />
-          </Route>
+          </ProtectedRoute>
           <ProtectedRoute exact path="/tasks/current">
             <TasksPage />
           </ProtectedRoute>
