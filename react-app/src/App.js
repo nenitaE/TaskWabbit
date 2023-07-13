@@ -25,17 +25,19 @@ function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
-    dispatch(authenticate()).then(() => setIsLoaded(true));
+    dispatch(authenticate()).then(() => setIsLoaded(true)).catch(() => setIsLoaded(false));
   }, [dispatch]);
-
+  console.log(isLoaded, "isLoaded")
   return (
     <>
       <Navigation isLoaded={isLoaded} />
-      {isLoaded && (
+      
         <Switch>
           <Route exact path="/">
             <HomePage />
           </Route>
+
+      
           <Route exact path="/login" >
             <LoginFormPage />
           </Route>
@@ -48,6 +50,8 @@ function App() {
           <Route exact path="/form">
             <MainFormPage />
           </Route>
+       {isLoaded && ( 
+        <>   
           <Route exact path="/taskers">
             <TaskersPage />
           </Route>
@@ -84,9 +88,11 @@ function App() {
           <Route excat path="/tasks/new/:taskTypeId">
             <CreateTaskForm />
           </Route>
+          </>  
+      )}
 
         </Switch>
-      )}
+      
     </>
   );
 }
