@@ -77,7 +77,7 @@ const HomePage = () => {
                             <div className='tasker-recommended-details'>
                                 <h3>{tasker.firstName} {tasker.lastName}</h3>
                                 <p>({tasker.reviews.length} reviews)</p>
-                                <div>------------  Top Skills ------------</div>
+                                <div>—————  Top Skills —————</div>
                                 <div className="top-skill-container">
                                     {tasker.taskerTaskTypes.slice(0, 3).map((taskerTaskType) => (
                                         <div className="top-skills-layout" key={taskerTaskType.id}>

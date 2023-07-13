@@ -4,7 +4,7 @@ import SignupFormModal from "../SignupFormModal";
 import LoginFormModal from "../LoginFormModal";
 import { useSelector } from "react-redux";
 import { Redirect, useParams } from "react-router-dom";
-import "./loginSignup.css"
+import "./LoginSignup.css"
 
 
 
