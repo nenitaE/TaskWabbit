@@ -21,7 +21,7 @@ const UpdateReview = ({reviewObj}) => {
         // console.log(rating, typeof(rating), 'test')
 
         const errors = {}
-        if(description.length < 5) errors['description'] = 'Review requires atleast 5 characters'
+        if(description.length < 5 || description.length > 100) errors['description'] = 'Review requires atleast 5 characters or below 100 characters'
         if(rating < 1 || rating > 5) errors['rating'] = 'Rating must be between 1 and 5'
 
         if(Object.values(errors).length){
@@ -54,11 +54,12 @@ const UpdateReview = ({reviewObj}) => {
             <form onSubmit={handleSubmit}>
                 <div>
                     <h3>How was the servie?</h3>
+                    <p>Please describe your experience</p>
                     <label>
                         Description:
                         <textarea
                             id='description'
-                            placeholder="Your Review"
+                            placeholder="maximum 100 characters"
                             required
                             value={description}
                             type='text'
@@ -81,7 +82,7 @@ const UpdateReview = ({reviewObj}) => {
                             id='rating'
                             type='number'
                             required
-                            placeholder="Rating"
+                            placeholder="Rate between 1 & 5"
                             value={rating}
                             onChange={e => setRating(e.target.value)}
                             />
