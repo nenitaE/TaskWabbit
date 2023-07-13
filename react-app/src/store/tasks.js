@@ -4,6 +4,7 @@ const DELETE_TASK = "tasks/DELETE_TASK";
 const SET_TASK = "tasks/SET_TASK";
 const UPDATE_TASK = "tasks/UPDATE_TASK";
 const CREATE_TASK = "tasks/CREATE_TASK";
+const CLEAR_CURRENT_TASK = "CLEAR_CURRENT_TASK";
 
 const setTasks = (tasks) => ({
     type: SET_TASKS,
@@ -29,6 +30,10 @@ const createTaskAction = (task) => ({
     type: CREATE_TASK,
     payload: task
 })
+
+export const clearCurrentTask = () => ({
+    type: "CLEAR_CURRENT_TASK"
+});
 
 
 
@@ -166,6 +171,8 @@ export default function reducer(state = initialState, action){
                 ...state,
                 tasks: [...state.tasks, action.payload]
             }
+        case CLEAR_CURRENT_TASK:
+            return { ...state, currentTask: null };
         case UPDATE_TASK:
             return {
                 ...state,
