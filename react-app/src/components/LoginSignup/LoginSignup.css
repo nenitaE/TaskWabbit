@@ -1,3 +1,5 @@
 .Login_Signup_container {
-    background-image:
+    display: flex;
+    flex-direction: column;
+    border: 5px solid #006b54;
 }
