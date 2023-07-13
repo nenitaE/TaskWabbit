@@ -15,11 +15,9 @@ function Navigation({ isLoaded }){
 					<img className='logoimg' src={logoimg} alt='logo' />
 				</NavLink>	
 				<span>
-					{isLoaded && (
-						<li className="profileButton">
+					<li className="profileButton">
 							<ProfileButton user={sessionUser} />
-						</li>
-					)}
+					</li>
 				</span>
 			</div>
 	);

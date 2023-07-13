@@ -20,14 +20,15 @@ import LoginSignup from "./components/LoginSignup/LoginSignup";
 import TaskerProfilePage from "./components/TaskerProfilePage";
 import CreateTaskerTaskTypeForm from "./components/CreateTaskerTaskTypeForm";
 import NewUpdateTaskerTaskTypeForm from "./components/NewUpdateTaskerTaskTypeForm";
+import ProtectedRoute from "./ProtectedRoute";
 
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
-    dispatch(authenticate()).then(() => setIsLoaded(true));
+    dispatch(authenticate()).then(() => setIsLoaded(true)).catch(() => setIsLoaded(false));
   }, [dispatch]);
-
+  console.log(isLoaded, "isLoaded")
   return (
     <>
       <Navigation isLoaded={isLoaded} />
@@ -48,42 +49,42 @@ function App() {
           <Route exact path="/form">
             <MainFormPage />
           </Route>
-          <Route exact path="/taskers">
+          <ProtectedRoute exact path="/taskers">
             <TaskersPage />
-          </Route>
-          <Route exact path="/taskers/:tasker_id/reviews">
+          </ProtectedRoute>
+          <ProtectedRoute exact path="/taskers/:tasker_id/reviews">
             <ReviewsByTasker_id />
-          </Route>
-          <Route exact path="/taskerTaskTypes/:taskerTaskTypeId/edit">
+          </ProtectedRoute>
+          <ProtectedRoute exact path="/taskerTaskTypes/:taskerTaskTypeId/edit">
             <NewUpdateTaskerTaskTypeForm/>
-          </Route>
-          <Route exact path="/taskerTaskTypes/current">
+          </ProtectedRoute>
+          <ProtectedRoute exact path="/taskerTaskTypes/current">
             <TaskerProfilePage />
-          </Route>
-          <Route exact path="/taskerTaskTypes/new">
+          </ProtectedRoute>
+          <ProtectedRoute exact path="/taskerTaskTypes/new">
             <CreateTaskerTaskTypeForm />
-          </Route>
-          <Route exact path="/tasks/:taskId/edit">
+          </ProtectedRoute>
+          <ProtectedRoute exact path="/tasks/:taskId/edit">
             <EditTaskFormPage />
-          </Route>
-          <Route exact path="/tasks/current">
+          </ProtectedRoute>
+          <ProtectedRoute exact path="/tasks/current">
             <TasksPage />
-          </Route>
-          <Route exact path="/reviews/currentUser">
+          </ProtectedRoute>
+          <ProtectedRoute exact path="/reviews/currentUser">
             <ReviewByLoggedIn />
-          </Route>
-          <Route exact path='/reviews/new'>
+          </ProtectedRoute>
+          <ProtectedRoute exact path='/reviews/new'>
             <CreateReviewForm />
-          </Route>
-          <Route exact path='/reviews/:id'>
+          </ProtectedRoute>
+          <ProtectedRoute exact path='/reviews/:id'>
             <GetReview />
-          </Route>
-          <Route exact path="/reviews/:id/edit">
+          </ProtectedRoute>
+          <ProtectedRoute exact path="/reviews/:id/edit">
             <Update />
-          </Route>
-          <Route excat path="/tasks/new/:taskTypeId">
+          </ProtectedRoute>
+          <ProtectedRoute excat path="/tasks/new/:taskTypeId">
             <CreateTaskForm />
-          </Route>
+          </ProtectedRoute>
 
         </Switch>
       )}

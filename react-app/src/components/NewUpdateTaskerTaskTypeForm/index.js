@@ -35,7 +35,7 @@ function NewUpdateTaskerTaskTypeForm() {
     // const taskTypeDescription = taskTypesById[taskType_id].type
     // console.log(taskTypeDescription, "taskTypeDescription")
 
-    const tasker_id = useSelector((state) => state.session.user.id);
+    const tasker_id = useSelector((state) => state.session.user?.id);
 
     const history = useHistory();
 
@@ -94,6 +94,15 @@ function NewUpdateTaskerTaskTypeForm() {
       }
 
     };
+
+    if (!tasker_id) {
+      return(
+          <div>
+          <p>You must be logged in to access this page</p>
+          {history.push('/')}
+          </div>
+      )
+    }
 
 
     return (
