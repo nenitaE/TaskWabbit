@@ -28,6 +28,8 @@ html, body
     flex-direction: column;
     align-items: center;
     padding: 45px;
+    gap: 15px;
+    width: 300px;
 }
 
 .taskwabbit-title {
@@ -35,7 +37,29 @@ html, body
 }
 
 .signup-button {
-    color: #006b54;
+    color: white;
+    background-color: #006b54;
+    font-size: 17px;
     border: 1.5px solid #006b54;
-    border-radius: 7px;
+    border-radius: 20px;
+    /* width: 250px; */
+    width: 100%;
+    height: 35px;
+}
+
+.login-button {
+    color: #006b54;
+    background-color: white;
+    font-size: 17px;
+    border: 1.5px solid #006b54;
+    border-radius: 20px;
+    width: 100%;
+    /* width: 250px; */
+    height: 35px;
+}
+
+.agreement-section {
+    text-align: center;
+    font-size: 12px;
+    padding: 10px;
 }

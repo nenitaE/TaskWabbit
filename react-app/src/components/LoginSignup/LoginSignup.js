@@ -18,22 +18,23 @@ function LoginSignup() {
             <div className="login-signup-container">
                 <div className="login-signup-inner">
                     <div className="taskwabbit-title">taskwabbit</div>
-                    <div>
-                        <OpenModalButton
+
+                    <OpenModalButton
                         className="signup-button"
-                            buttonText="Signup"
-                            modalComponent={<SignupFormModal />}
-                            onModalClose={<Redirect to={`/tasks/new/${taskTypeId}`} />}
-                        />
-                    </div>
-                    <div>
-                        <OpenModalButton
-                            buttonText="Login"
-                            modalComponent={<LoginFormModal />}
-                            onModalClose={<Redirect to={`/tasks/new/${taskTypeId}`} />}
-                        />
-                    </div>
-                    <div>
+                        buttonText="Sign up"
+                        modalComponent={<SignupFormModal />}
+                        onModalClose={<Redirect to={`/tasks/new/${taskTypeId}`} />}
+                    />
+
+
+                    <OpenModalButton
+                        className="login-button"
+                        buttonText="Log in"
+                        modalComponent={<LoginFormModal />}
+                        onModalClose={<Redirect to={`/tasks/new/${taskTypeId}`} />}
+                    />
+
+                    <div className="agreement-section">
                         By signing up you agree to our Terms of Use and Privacy Policy.
                     </div>
                 </div>
