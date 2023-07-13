@@ -4,6 +4,7 @@ const DELETE_TASK = "tasks/DELETE_TASK";
 const SET_TASK = "tasks/SET_TASK";
 const UPDATE_TASK = "tasks/UPDATE_TASK";
 const CREATE_TASK = "tasks/CREATE_TASK";
+const CLEAR_CURRENT_TASK = "CLEAR_CURRENT_TASK";
 
 const setTasks = (tasks) => ({
     type: SET_TASKS,
@@ -29,6 +30,10 @@ const createTaskAction = (task) => ({
     type: CREATE_TASK,
     payload: task
 })
+
+export const clearCurrentTask = () => ({
+    type: "CLEAR_CURRENT_TASK"
+});
 
 
 
@@ -119,7 +124,7 @@ export const deleteTask = (taskId) => async(dispatch) => {
 // }
 
 export const createTask = (taskData) => async(dispatch) =>{
-    console.log("FAILED BODY", JSON.stringify(taskData))
+    // console.log("FAILED BODY", JSON.stringify(taskData))
     try {
 
         const response = await fetch('/api/tasks/', {
@@ -131,10 +136,11 @@ export const createTask = (taskData) => async(dispatch) =>{
         });
         if(response.ok){
             const newTask = await response.json();
+            // console.log(newTask, 'in my thunk, the response i get back')
             dispatch(createTaskAction(newTask));
             return newTask
         } else if (response.status <= 500){
-            // console.log("FAILED BODY", JSON.stringify(taskData))
+            console.log("FAILED BODY", JSON.stringify(taskData))
             const data = await response.json();
             if(data.errors){
                 return data.errors;
@@ -166,6 +172,8 @@ export default function reducer(state = initialState, action){
                 ...state,
                 tasks: [...state.tasks, action.payload]
             }
+        case CLEAR_CURRENT_TASK:
+            return { ...state, currentTask: null };
         case UPDATE_TASK:
             return {
                 ...state,

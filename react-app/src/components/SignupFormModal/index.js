@@ -108,7 +108,7 @@ function SignupFormModal() {
 					SELECT if you want to be able to work as a Tasker
 				</label>
 				<label>
-					Password
+					 Password
 					<input
 						type="password"
 						value={password}

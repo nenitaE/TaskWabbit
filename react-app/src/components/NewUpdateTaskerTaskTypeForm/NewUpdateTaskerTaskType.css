@@ -1,0 +1,11 @@
+.descriptionTT {
+    color: #006b54; 
+}
+
+.updateTTBtn {
+    background-color: transparent;
+    padding: 8px;
+    border: 1px solid rgba(0, 0, 0, .75);
+    border-radius: 5px;
+    /* margin-left: 15px;  */
+}
