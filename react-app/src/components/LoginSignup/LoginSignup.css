@@ -20,7 +20,7 @@ html, body
 .login-signup-container {
     background-color: white;
     border-color: white;
-    border-radius: 6px;
+    border-radius: 12px;
 }
 
 .login-signup-inner {
