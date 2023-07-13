@@ -7,9 +7,9 @@ import { useModal } from "../../context/Modal";
 import { useHistory } from "react-router-dom/cjs/react-router-dom";
 import CreateReviewModal from "../CreateReviewForm";
 
-//Note: Rename this to CurrentTasksPage
 
-function TasksPage(){
+
+function PastTasksPage(){
     const dispatch = useDispatch();
     const history = useHistory()
     const tasks = useSelector((state) => state.tasks.tasks)
@@ -17,7 +17,6 @@ function TasksPage(){
 
     useEffect(() =>{
         dispatch(getTasks())
-        // console.log('TASKKSSS', tasks);
     }, [dispatch])
 
     const openDeleteModal = (taskId) => {
@@ -26,12 +25,11 @@ function TasksPage(){
 
     return (
         <div>
-        <h1>Current Tasks</h1>
+        <h1>Past Tasks</h1>
         <Link to="/tasks/current">Current Tasks</Link>
         <Link to="/tasks/past">Past Tasks</Link>
         {tasks && tasks
-        .filter(task => new Date(task.task_date) >= new Date()) //filter current tasks to show only tasks with date >= today
-
+        .filter(task => new Date(task.task_date) < new Date()) //filter to past tasks to show only tasks with date < today
         .map(task => {
             const taskDate = new Date(task.task_date);
             const currentDate = new Date();
@@ -56,4 +54,4 @@ function TasksPage(){
 )
 }
 
-export default TasksPage
+export default PastTasksPage

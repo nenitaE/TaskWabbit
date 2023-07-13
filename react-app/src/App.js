@@ -21,6 +21,7 @@ import TaskerProfilePage from "./components/TaskerProfilePage";
 import CreateTaskerTaskTypeForm from "./components/CreateTaskerTaskTypeForm";
 import NewUpdateTaskerTaskTypeForm from "./components/NewUpdateTaskerTaskTypeForm";
 import ProtectedRoute from "./ProtectedRoute";
+import PastTasksPage from "./components/PastTasks";
 
 function App() {
   const dispatch = useDispatch();
@@ -69,6 +70,9 @@ function App() {
           </ProtectedRoute>
           <ProtectedRoute exact path="/tasks/current">
             <TasksPage />
+          </ProtectedRoute>
+          <ProtectedRoute exact path="/tasks/past">
+            <PastTasksPage/>
           </ProtectedRoute>
           <ProtectedRoute exact path="/reviews/currentUser">
             <ReviewByLoggedIn />
