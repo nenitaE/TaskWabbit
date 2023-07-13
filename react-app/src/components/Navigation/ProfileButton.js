@@ -2,14 +2,17 @@ import React, { useState, useEffect, useRef } from "react";
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../store/session";
+import { NavLink } from 'react-router-dom';
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
-import { NavLink } from "react-router-dom/cjs/react-router-dom";
+import './Navigation.css'
 import { getReviewForLoggedIn } from "../../store/reviews";
 import ReviewByLoggedIn from "../CurrentReview";
 
 function ProfileButton({ user }) {
+  const sessionUser = useSelector(state => state.session.user);
+
   const dispatch = useDispatch();
   const history = useHistory();
   const [showMenu, setShowMenu] = useState(false);
@@ -48,32 +51,42 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <button onClick={openMenu}>
-        <i className="fas fa-user-circle" />
+      <button id="navProfileBTTN" onClick={openMenu}>
+        <i  className="fas fa-user-circle fa-lg" />
       </button>
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
           <>
-            <li>{user.username}</li>
-            <li>{user.email}</li>
+            <li className="welcome-profile">Welcome {user.username}.</li>
+            {/* <li>{user.email}</li> */}
             <li>
-              <NavLink to="/reviews/currentUser"
+              <NavLink className='text-link' to="/tasks/current">My Tasks</NavLink>
+            </li>
+						{sessionUser?.isTasker && (
+							<li>
+								<NavLink className='text-link' to="/taskerTaskTypes/current">Tasker Profile</NavLink>
+							</li>
+						)}
+            <li>
+              <NavLink className='text-link' to="/reviews/currentUser"
               >My Reviews</NavLink>
             </li>
             <li>
-              <button onClick={handleLogout}>Log Out</button>
+              <button className="logoutBTTN-profile" onClick={handleLogout}>Log Out</button>
             </li>
           </>
         ) : (
           <>
             <OpenModalButton
               buttonText="Log In"
+              className="logoutBTTN-profile"
               onItemClick={closeMenu}
               modalComponent={<LoginFormModal />}
             />
 
             <OpenModalButton
               buttonText="Sign Up"
+              className="logoutBTTN-profile"
               onItemClick={closeMenu}
               modalComponent={<SignupFormModal />}
             />
