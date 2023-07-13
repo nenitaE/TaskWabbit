@@ -28,9 +28,9 @@ const Update = () => {
             <p>loading...</p>
         )
     }
-    
+
     if(!userSession || userSession.id !== review.user_id){
-        alert('Resticted')
+        // alert('Resticted')
         return(
             <>
                 {history.push('/')}
