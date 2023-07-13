@@ -55,35 +55,42 @@ const HomePage = () => {
                 />
                 <div className='task-type-buttons'>
                     {filteredTaskTypes.map((taskType) => (
-                        <div key={taskType.id}>
-                            <NavLink className='task-type-button-link' to={user ? `/tasks/new/${parseInt(taskType.id)}` : `/loginSignup/${parseInt(taskType.id)}`}>
-                                <div className='task-type-button'>
+                        <NavLink key={taskType.id} className='task-type-button-link' to={user ? `/tasks/new/${parseInt(taskType.id)}` : `/loginSignup/${parseInt(taskType.id)}`}>
+                            <div className='task-type-button'>
                                 {taskType.type}
-                                </div>
-                            </NavLink>
-                        </div>
+                            </div>
+                        </NavLink>
                     ))}
                 </div>
             </div>
-            <h3>
-                Taskers recommended for you
-            </h3>
-            <ul>
-                {recommendedTaskers.map((tasker) => (
-                    <div key={tasker.id}>
-                        <h3>{tasker.firstName} {tasker.lastName}</h3>
-                        <p>Number of Reviews: {tasker.reviews.length}</p>
-                        <ul>
-                            {tasker.taskerTaskTypes.slice(0, 3).map((taskerTaskType) => (
-                                <ul key={taskerTaskType.id}>
-                                    {taskTypesById[taskerTaskType.taskType_id].type} for ${taskerTaskType.hourlyRate}/hr
-                                </ul>
-                            ))}
-                        </ul>
-                    </div>
-                ))}
-            </ul>
+            <div className="center-spacing">
 
+            </div>
+            <div className="taskers-recommended-container">
+                <h3>
+                    Taskers recommended for you
+                </h3>
+                <div className="taskers-recommended-spacing">
+                    {recommendedTaskers.map((tasker) => (
+                        <div className="tasker-recommended-individual" key={tasker.id}>
+                            <div className="popular-in-area">popular in your area</div>
+                            <div className='tasker-recommended-details'>
+                                <h3>{tasker.firstName} {tasker.lastName}</h3>
+                                <p>({tasker.reviews.length} reviews)</p>
+                                <div>—————  Top Skills —————</div>
+                                <div className="top-skill-container">
+                                    {tasker.taskerTaskTypes.slice(0, 3).map((taskerTaskType) => (
+                                        <div className="top-skills-layout" key={taskerTaskType.id}>
+                                            {taskTypesById[taskerTaskType.taskType_id].type} for ${taskerTaskType.hourlyRate}/hr
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+
+                </div>
+            </div>
         </main>
     )
 }
