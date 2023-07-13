@@ -35,7 +35,6 @@ function TasksPage(){
         .map(task => {
             const taskDate = new Date(task.task_date);
             const currentDate = new Date();
-            // console.log(task, 'map======')
             currentDate.setHours(0,0,0,0); // set current time to 00:00:00
             const uniqueKey = `${task.id}_`;
 

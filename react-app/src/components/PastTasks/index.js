@@ -6,6 +6,8 @@ import DeleteTaskModal from "../DeleteTaskModal";
 import { useModal } from "../../context/Modal";
 import { useHistory } from "react-router-dom/cjs/react-router-dom";
 import CreateReviewModal from "../CreateReviewForm";
+import "./PastTasksPage.css";
+import { getTaskers } from "../../store/taskers";
 
 
 
@@ -13,11 +15,15 @@ function PastTasksPage(){
     const dispatch = useDispatch();
     const history = useHistory()
     const tasks = useSelector((state) => state.tasks.tasks)
+    const taskers = useSelector((state) => Object.values(state.taskers))
     const {setModalContent} = useModal();
 
     useEffect(() =>{
         dispatch(getTasks())
+        dispatch(getTaskers())
+        console.log('The TASKERS', taskers)
     }, [dispatch])
+
 
     const openDeleteModal = (taskId) => {
         setModalContent(<DeleteTaskModal taskId={taskId}/>)
@@ -33,17 +39,20 @@ function PastTasksPage(){
         .map(task => {
             const taskDate = new Date(task.task_date);
             const currentDate = new Date();
-            // console.log(task, 'map======')
             currentDate.setHours(0,0,0,0); // set current time to 00:00:00
             const uniqueKey = `${task.id}_`;
+            const tasker = taskers.find(tasker => tasker.id === task.tasker_id)
 
             return (
-                <div key={uniqueKey}>
-                    <h2>{task.title}</h2>
+                <div key={uniqueKey} className="task-card">
+                    {task.taskType && <h2>{task.taskType.type}</h2>}
+                    {tasker && <p>{tasker.firstName}</p>}
+                    <p>{task.title}</p>
                     <p>Date: {task.task_date}</p>
                     <p>Location: {task.location}</p>
+
                     {/* <p>Id: {task.tasker_id}</p> */}
-                    {task.taskType && <p>TaskType:{task.taskType.type}</p>}
+
                     <button onClick={() => openDeleteModal(task.id)}>Delete Task</button>
                     <CreateReviewModal tasker_id={task.tasker_id}/>
                     {taskDate >= currentDate && <Link to={`/tasks/${task.id}/edit`}>Edit Task</Link>}
