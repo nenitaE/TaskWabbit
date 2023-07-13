@@ -124,7 +124,7 @@ export const deleteTask = (taskId) => async(dispatch) => {
 // }
 
 export const createTask = (taskData) => async(dispatch) =>{
-    console.log("FAILED BODY", JSON.stringify(taskData))
+    // console.log("FAILED BODY", JSON.stringify(taskData))
     try {
 
         const response = await fetch('/api/tasks/', {
@@ -136,10 +136,11 @@ export const createTask = (taskData) => async(dispatch) =>{
         });
         if(response.ok){
             const newTask = await response.json();
+            console.log(newTask, 'in my thunk, the response i get back')
             dispatch(createTaskAction(newTask));
             return newTask
         } else if (response.status <= 500){
-            // console.log("FAILED BODY", JSON.stringify(taskData))
+            console.log("FAILED BODY", JSON.stringify(taskData))
             const data = await response.json();
             if(data.errors){
                 return data.errors;

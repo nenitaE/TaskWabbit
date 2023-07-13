@@ -23,11 +23,11 @@ function CreateTaskForm() {
         taskTypeId:  taskTypeId,
     });
 
-    // //Fetcha all Taskers
-    // useEffect(() => {
-    //     const data = dispatch(getTaskers())
-    //     taskers.current = data || [];
-    // }, [dispatch]);
+    //Fetcha all Taskers
+    useEffect(() => {
+        const data = dispatch(getTaskers())
+        // taskers.current = data || [];
+    }, [dispatch]);
 
     // useEffect(() => {
     //   return () => {
@@ -35,20 +35,6 @@ function CreateTaskForm() {
     //     taskers.current = [];
     //   };
     // }, []);
-
-    useEffect(() => {
-      let _isMounted = true;
-      const fetchData = async () => {
-          const data = await dispatch(getTaskers());
-          if (_isMounted) {  // only update state if component is still mounted
-              taskers.current = data || [];
-          }
-      }
-      fetchData();
-      return () => {
-          _isMounted = false;  // update _isMounted when component is unmounted
-      };
-  }, [dispatch]);
 
 
     const taskers = Object.values(useSelector(state => state.taskers));
@@ -74,7 +60,6 @@ function CreateTaskForm() {
     }
 
     const submitForm = async () => {
-        // console.log("-----Submitting form", formData.totalPrice);
         const taskData = {
           taskTypeId: formData.taskTypeId,
           title: formData.title,
@@ -85,7 +70,7 @@ function CreateTaskForm() {
           tasker_id: formData.tasker_id
         }
         const data = await dispatch(createTask(taskData))
-        // console.log("Create task response", data);
+        console.log("Create task response", data);
         if(data){
             setErrors(data)
         }else {
