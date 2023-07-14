@@ -9,6 +9,27 @@
     text-align: start;
 }
 
+.footer-content{
+    padding: 20px;
+}
+
+.footer-links{
+    margin-bottom: 1rem;
+    display: flex;
+}
+
+.social-links a{
+    text-decoration: none;
+}
+
+.followus{
+    color: #B1B9C3;
+}
+
+.footer-title {
+    color: #B1B9C3;
+}
+
 .footer-grid{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
