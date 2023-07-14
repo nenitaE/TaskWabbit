@@ -4,6 +4,7 @@
     align-items: center;
     justify-content: center;
     width: 100%;
+    /* max-width: 50%; */
     margin: 0 auto;
 }
 
@@ -18,11 +19,28 @@
 .task-card{
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 0.5fr 0.5fr 0.5fr 0.5fr;
+    grid-template-rows: repeat(4, auto);
     grid-template-areas:
-    "task-type task-type"
-    "tasker-name tasker-name"
-    "tasktitle-date-location tasktitle-date-location"
-    "task-button-actions task-button-actions"
-    ;
+    "task-type"
+    "tasker-name"
+    "tasktitle-date-location"
+    "task-button-actions";
+    width: 100%;
+}
+
+.task-type{
+    grid-area: task-type;
+}
+
+.tasker-name{
+    grid-area: tasker-name;
+}
+
+.tasktitle-date-location{
+    grid-area: task-date-location;
+}
+
+.task-button-actions{
+    grid-area: task-button-actions;
+    justify-self: end;
 }
