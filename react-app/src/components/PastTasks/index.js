@@ -30,9 +30,9 @@ function PastTasksPage(){
     }
 
     return (
-        <div className="main-container">
+        <div className="task-main-container">
             <div className="link-container">
-            <h1>Past Tasks</h1>
+            {/* <h1>Past Tasks</h1> */}
                 <Link to="/tasks/current">Current Tasks</Link>
                 <Link to="/tasks/past">Past Tasks</Link>
             </div>
@@ -64,7 +64,7 @@ function PastTasksPage(){
                                 <p>Location: {task.location}</p>
                             </div>
                             <div className="task-button-actions">
-                                <button onClick={() => openDeleteModal(task.id)}>Delete Task</button>
+                                <button className="select-button" onClick={() => openDeleteModal(task.id)}>Delete Task</button>
                                 <CreateReviewModal tasker_id={task.tasker_id}/>
                                 {taskDate >= currentDate && <Link to={`/tasks/${task.id}/edit`}>Edit Task</Link>}
                             </div>

@@ -1,4 +1,4 @@
-.main-container{
+.task-main-container{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -9,6 +9,8 @@
 }
 
 .link-container{
+    /* display: flex;
+    align-items:start; */
 
 }
 
@@ -18,18 +20,28 @@
 
 .task-card{
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
     grid-template-rows: repeat(4, auto);
     grid-template-areas:
-    "task-type"
-    "tasker-name"
-    "tasktitle-date-location"
-    "task-button-actions";
+    "task-type task-price"
+    "tasker-name task-price"
+    "tasktitle-date-location tasktitle-date-location"
+    "task-button-actions task-button-actions";
     width: 100%;
+    margin-bottom: 5em;
+    border: 1px solid black;
+    padding: 20px;
 }
 
 .task-type{
     grid-area: task-type;
+    padding-right: 10em;
+}
+
+.task-price{
+    grid-area: task-price;
+    justify-self: end;
+    padding-left: 10em;
 }
 
 .tasker-name{
@@ -37,7 +49,7 @@
 }
 
 .tasktitle-date-location{
-    grid-area: task-date-location;
+    grid-area: tasktitle-date-location;
 }
 
 .task-button-actions{
