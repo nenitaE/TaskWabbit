@@ -5,7 +5,7 @@ import LoginFormModal from "../LoginFormModal";
 import { useSelector } from "react-redux";
 import { Redirect, useParams } from "react-router-dom";
 import "./LoginSignup.css"
-import { NavLink } from "react-router-dom/cjs/react-router-dom";
+import { Link } from "react-router-dom/cjs/react-router-dom";
 
 
 
@@ -28,15 +28,9 @@ function LoginSignup() {
                         onModalClose={<Redirect to={`/tasks/new/${taskTypeId}`} />}
                     />
 
-
-                    {/* <OpenModalButton
-                        className="login-button"
-                        buttonText="Log in"
-                        modalComponent={<LoginFormModal />}
-                        onModalClose={<Redirect to={`/tasks/new/${taskTypeId}`} />}
-                    /> */}
-
-                    <NavLink className='login-button' to={`/login/${taskTypeId ?? ''}`}>Log in</NavLink>
+                    <Link to={`/login/${taskTypeId ?? ''}`}>
+                        <button className='login-button'>Log in</button>
+                    </Link>
 
                     <div className="agreement-section">
                         By signing up you agree to our Terms of Use and Privacy Policy.
