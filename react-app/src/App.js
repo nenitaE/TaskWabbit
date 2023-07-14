@@ -22,10 +22,13 @@ import CreateTaskerTaskTypeForm from "./components/CreateTaskerTaskTypeForm";
 import NewUpdateTaskerTaskTypeForm from "./components/NewUpdateTaskerTaskTypeForm";
 import ProtectedRoute from "./ProtectedRoute";
 import PastTasksPage from "./components/PastTasks";
+import Footer from "./components/Footer";
+import {useLocation} from 'react-router-dom';
 
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
+  const location = useLocation();
   useEffect(() => {
     dispatch(authenticate()).then(() => setIsLoaded(true)).catch(() => setIsLoaded(false));
   }, [dispatch]);
@@ -92,6 +95,7 @@ function App() {
 
         </Switch>
       )}
+      {isLoaded && !location.pathname.startsWith('/tasks/new') && <Footer/>}
     </>
   );
 }
