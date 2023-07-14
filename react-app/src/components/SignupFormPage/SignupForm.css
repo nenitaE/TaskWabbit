@@ -1,0 +1,69 @@
+html, body
+{
+    height: 100%;
+    width: 100%;
+    margin: 0px;
+}
+
+.signup-root {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("https://cdn.wisemove.co.za/image/blog/e191f4c2692ad6f4f51c8fc262505144.webp");
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100vw;
+    height: 100vh;
+}
+
+.signup-container {
+    height: 65%;
+    width: 37%;
+    background-color: white;
+    border-color: white;
+    border-radius: 12px;
+}
+
+.signup-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 45px;
+    gap: 15px;
+    width: 300px;
+}
+
+.signup-inner input{
+    width: 200px;
+    height: 200%;
+    text-align: center;
+}
+
+.signup-bttn {
+    color: white;
+    background-color: #006b54;
+    font-size: 17px;
+    border: 1.5px solid #006b54;
+    border-radius: 20px;
+    width: 300px;
+    /* width: 100%; */
+    height: 35px;
+}
+
+.login-bttn {
+    color: #006b54;
+    background-color: white;
+    font-size: 17px;
+    border: 1.5px solid #006b54;
+    border-radius: 20px;
+    width: 300px;
+    /* width: 100%; */
+    height: 35px;
+}
+
+.agreement-text {
+    text-align: center;
+    font-size: 12px;
+    padding: 15px 10px 0px 10px;
+}

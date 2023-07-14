@@ -3,7 +3,7 @@ import OpenModalButton from "../OpenModalButton";
 import SignupFormModal from "../SignupFormModal";
 import LoginFormModal from "../LoginFormModal";
 import { useSelector } from "react-redux";
-import { Redirect, useParams } from "react-router-dom";
+import { Redirect, useParams, Link } from "react-router-dom";
 import "./LoginSignup.css"
 
 
@@ -13,18 +13,23 @@ function LoginSignup() {
     const sessionUser = useSelector((state) => state.session.user);
     if (sessionUser) return <Redirect to={`/tasks/new/${taskTypeId}`} />;
 
+    
     return (
         <div className="login-signup-root">
             <div className="login-signup-container">
                 <div className="login-signup-inner">
                     <div className="taskwabbit-title">taskWabbit</div>
-
-                    <OpenModalButton
+                    <Link to="/signup" >
+                        <button className="signup-button">
+                            Sign up 
+                        </button>
+                    </Link>
+                    {/* <OpenModalButton
                         className="signup-button"
                         buttonText="Sign up"
                         modalComponent={<SignupFormModal />}
                         onModalClose={<Redirect to={`/tasks/new/${taskTypeId}`} />}
-                    />
+                    /> */}
 
 
                     <OpenModalButton

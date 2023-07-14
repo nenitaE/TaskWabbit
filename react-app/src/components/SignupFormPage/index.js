@@ -34,96 +34,100 @@ function SignupFormPage() {
   };
 
   return (
-    <>
-      <h1>Sign Up</h1>
-      <form onSubmit={handleSubmit}>
-        <ul>
-          {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-        </ul>
-        <label>
-          Email
-          <input
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Username
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-					First Name
-					<input
-						type="text"
-						value={firstName}
-						onChange={(e) => setFirstName(e.target.value)}
-						required
-					/>
-				</label>
-				<label>
-					Last Name
-					<input
-						type="text"
-						value={lastName}
-						onChange={(e) => setLastName(e.target.value)}
-						required
-					/>
-				</label>
-				<label>
-					Location
-					<input
-						type="text"
-						value={location}
-						onChange={(e) => setLocation(e.target.value)}
-						required
-					/>
-				</label>
-				<label>
-					Phone
-					<input
-						type="tel"
-						value={phone}
-						maxLength={10}
-						onChange={(e) => setPhone(e.target.value)}
-						required
-					/>
-				</label>
-				<label>
-					<input
-						type="checkbox"
-						value={true}
-						onChange={(e) => setIsTasker(e.target.value)}
-					/>
-					SELECT if you want to be able to work as a Tasker
-				</label>
-        <label>
-          Password
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Confirm Password
-          <input
-            type="password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            required
-          />
-        </label>
-        <button type="submit">Sign Up</button>
-      </form>
-    </>
+    <div className="signup-root">
+        <div className="signup-container">
+            <div className="signup-inner">
+                <div className="taskwabbit-title">taskWabbit</div>
+                    <form onSubmit={handleSubmit}>
+                        <ul>
+                          {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                        </ul>
+                        <label>
+                          <input
+                            type="text"
+                            placeholder="Email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            required
+                          />
+                        </label>
+                        <label>
+                          <input
+                            type="text"
+                            placeholder="Username"
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                            required
+                          />
+                        </label>
+                        <label>
+                          <input
+                            type="text"
+                            placeholder="First Name"
+                            value={firstName}
+                            onChange={(e) => setFirstName(e.target.value)}
+                            required
+                          />
+                        </label>
+                        <label>
+                          <input
+                            type="text"
+                            placeholder="Last Name"
+                            value={lastName}
+                            onChange={(e) => setLastName(e.target.value)}
+                            required
+                          />
+                        </label>
+                        <label>
+                          <input
+                            type="text"
+                            placeholder="Location"
+                            value={location}
+                            onChange={(e) => setLocation(e.target.value)}
+                            required
+                          />
+                        </label>
+                        <label>
+                          <input
+                            type="tel"
+                            placeholder="Phone"
+                            value={phone}
+                            maxLength={10}
+                            onChange={(e) => setPhone(e.target.value)}
+                            required
+                          />
+                        </label>
+                        <label>
+                          <input
+                            type="checkbox"
+                            value={true}
+                            onChange={(e) => setIsTasker(e.target.value)}
+                          />
+                          Sign me up as a Tasker
+                        </label>
+                        <label>
+                          <input
+                            type="password"
+                            placeholder="Password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                          />
+                        </label>
+                        <label>
+                          <input
+                            type="password"
+                            placeholder="Confirm Password"
+                            value={confirmPassword}
+                            onChange={(e) => setConfirmPassword(e.target.value)}
+                            required
+                          />
+                        </label>
+                        <button type="submit">Sign Up</button>
+                      </form>
+                    </div>
+                </div>
+            </div>
   );
 }
 
