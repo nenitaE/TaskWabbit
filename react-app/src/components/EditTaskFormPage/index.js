@@ -13,13 +13,21 @@ function EditTaskFormPage(){
     const [description, setDescription] = useState("");
     const [location, setLocation] = useState("");
     // const [isPastDate, setIsPastDate] = useState(false);
-    const [errors, setErrors] = useState([]);
+    const [errors, setErrors] = useState({});
     const { id: loggedInUserId } = useSelector(state => state.session.user); // Fetch logged in user's ID
     console.log(loggedInUserId, 'current logged in user')
 
+    const validateForm = () => {
+      const errors = {}
+      if(!title) errors.title = "Title is required";
+      if(!description) errors.description = "A description is required";
+      if(!location) errors.location = "A location is required";
+      return errors
+    }
+
+
     useEffect(() => {
         dispatch(getTask(taskId))
-        console.log()
     }, [dispatch, taskId])
 
     useEffect(() => {
@@ -47,6 +55,13 @@ function EditTaskFormPage(){
 
     const handleSubmit = async(e) => {
         e.preventDefault();
+
+        const result = validateForm();
+        if(Object.keys(result).length > 0){
+          setErrors(result)
+          return
+        }
+
 
         const existingData = {
             "taskTypeId": task.taskTypeId,
@@ -79,9 +94,9 @@ function EditTaskFormPage(){
           <p>Here you can edit your task so your tasker has the most updated information</p>
         </div>
         <form className="create-task-form"onSubmit={handleSubmit}>
-          <ul>
+          {/* <ul>
             {Array.isArray(errors) ? errors.map((error, idx) => <li key={idx}>{error}</li>) : <li>{errors}</li>}
-          </ul>
+          </ul> */}
           <label>
             Title
             <input
@@ -90,6 +105,7 @@ function EditTaskFormPage(){
               onChange={(e) => setTitle(e.target.value)}
             />
           </label>
+          {errors.title && <p>{errors.title}</p>}
           <label>
             Description
             <input
@@ -98,6 +114,7 @@ function EditTaskFormPage(){
               onChange={(e) => setDescription(e.target.value)}
             />
           </label>
+          {errors.description && <p>{errors.description}</p>}
           <label>
             Location
             <input
@@ -106,6 +123,7 @@ function EditTaskFormPage(){
               onChange={(e) => setLocation(e.target.value)}
             />
           </label>
+          {errors.location && <p>{errors.location}</p>}
           <button type="submit">Update Task</button>
         </form>
         </div>

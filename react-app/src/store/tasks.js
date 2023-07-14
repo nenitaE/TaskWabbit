@@ -75,7 +75,7 @@ export const updateTask = (taskId, taskData) => async(dispatch) =>{
     }else if (response.status < 500){
         const data = response.json();
         if(data.errors){
-            console.log('THESE ARE MY ERRORS', data.errors)
+            // console.log('THESE ARE MY ERRORS', data.errors)
             return data.errors;
         } else {
             return ('An error occurred. Please try again')
