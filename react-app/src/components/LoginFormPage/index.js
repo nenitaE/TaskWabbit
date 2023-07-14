@@ -33,7 +33,7 @@ function LoginFormPage() {
     <div className="login-root">
       <div className="login-container">
         <div className="login-inner">
-          <h1>taskWabbit</h1>
+          <div className="taskwabbit-title-login">taskWabbit</div>
           <form onSubmit={handleSubmit}>
             {errors.length != 0 && (
               <ul>
