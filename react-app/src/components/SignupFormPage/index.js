@@ -4,7 +4,8 @@ import { Redirect } from "react-router-dom";
 import { signUp } from "../../store/session";
 import './SignupForm.css';
 
-function SignupFormPage() {
+function SignupFormPage({ taskTypeId }) {
+  console.log(taskTypeId, "TASKTYPEID********************")
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const [email, setEmail] = useState("");
@@ -25,6 +26,7 @@ function SignupFormPage() {
     if (password === confirmPassword) {
         const data = await dispatch(signUp(username, email, password, 
           firstName, lastName, phone, location, isTasker));
+          <Redirect to={`/tasks/new/${taskTypeId}`} />;
         if (data) {
           setErrors(data)
         }

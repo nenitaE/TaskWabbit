@@ -10,6 +10,7 @@ import "./LoginSignup.css"
 
 function LoginSignup() {
     const { taskTypeId } = useParams();
+    console.log(taskTypeId, "TASKTYPEID********************")
     const sessionUser = useSelector((state) => state.session.user);
     if (sessionUser) return <Redirect to={`/tasks/new/${taskTypeId}`} />;
 
