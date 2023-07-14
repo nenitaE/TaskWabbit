@@ -94,8 +94,10 @@ function EditTaskFormPage(){
           <p>Here you can edit your task so your tasker has the most updated information</p>
         </div>
         <form className="create-task-form"onSubmit={handleSubmit}>
+          <div className="step1">
+          <div className="step1-section">
           <label>
-            Title
+            <h3>Title</h3>
             <input
               type="text"
               value={title}
@@ -103,8 +105,10 @@ function EditTaskFormPage(){
             />
           </label>
           {errors.title && <p>{errors.title}</p>}
+          </div>
+          <div  className="step1-section">
           <label>
-            Description
+            <h3>Description</h3>
             <input
               type="text"
               value={description}
@@ -112,8 +116,10 @@ function EditTaskFormPage(){
             />
           </label>
           {errors.description && <p>{errors.description}</p>}
+          </div>
+          <div className="step1-section">
           <label>
-            Location
+            <h3>Location</h3>
             <input
               type="text"
               value={location}
@@ -121,9 +127,12 @@ function EditTaskFormPage(){
             />
           </label>
           {errors.location && <p>{errors.location}</p>}
+          </div>
           <button type="submit">Update Task</button>
+          </div>
         </form>
         </div>
+
       );
 }
 export default EditTaskFormPage
