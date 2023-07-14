@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { NavLink, Link} from "react-router-dom";
 import { getTasks } from "../../store/tasks";
 import DeleteTaskModal from "../DeleteTaskModal";
 import { useModal } from "../../context/Modal";
@@ -8,6 +8,7 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom";
 import CreateReviewModal from "../CreateReviewForm";
 import "./PastTasksPage.css";
 import { getTaskers } from "../../store/taskers";
+import avatarimage from "../../images/default_avatar.png"
 
 
 
@@ -29,13 +30,21 @@ function PastTasksPage(){
         setModalContent(<DeleteTaskModal taskId={taskId}/>)
     }
 
+    //hardcoded pictures from seeded data
+    const PROFILE_PICTURES = {
+        "demo": "",
+        "marnie": "",
+        "bobbie": ""
+    }
+
     return (
         <div className="task-main-container">
             <div className="link-container">
             {/* <h1>Past Tasks</h1> */}
-                <Link to="/tasks/current">Current Tasks</Link>
-                <Link to="/tasks/past">Past Tasks</Link>
+                <NavLink className="task-link" activeClassName="is-active"  to="/tasks/current">Current Tasks</NavLink>
+                <NavLink className="task-link" activeClassName="is-active"  to="/tasks/past">Past Tasks</NavLink>
             </div>
+            <div  className="spacer"></div>
             <div className="tasks-container">
                 {tasks && tasks
                 .filter(task => new Date(task.task_date) < new Date()) //filter to past tasks to show only tasks with date < today
@@ -52,11 +61,19 @@ function PastTasksPage(){
                                 {task.taskType && <h2>{task.taskType.type}</h2>}
 
                             </div>
+                            <div className="seperator"></div>
                             <div className="task-price">
                                 {task.totalPrice && <h2>${task.totalPrice}</h2>}
                             </div>
                             <div className="tasker-name">
-                                {tasker && <h2>{tasker.firstName}</h2>}
+                                {tasker && (
+                                    <>
+                                        <img
+                                            src={PROFILE_PICTURES[tasker.username] || avatarimage}
+                                        />
+                                        <h2>{tasker.firstName}</h2>
+                                    </>
+                                )}
                             </div>
                             <div className="tasktitle-date-location">
                                 <p>{task.title}</p>
