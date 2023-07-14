@@ -1,0 +1,27 @@
+#mainForm {
+    display: grid;
+    justify-content: center;
+    background-color: wheat;
+}
+
+#afterTitle {
+    border: solid green;
+}
+
+#description {
+    border-color: #006b54;
+    border-radius: 10%;
+    height: 50px;
+    width: fit-content;
+}
+
+#rating {
+    border-color: #006b54;
+    border-radius: 5%;
+    margin-bottom: 5%;
+}
+
+#afterFields {
+    border: solid green;
+    margin-bottom: 10%;
+}

@@ -18,7 +18,7 @@ const CreateReviewForm = ({test}) => {
         dispatch(getReviewForLoggedIn())
     }, [dispatch])
 
-    const sessionUser = useSelector( (state) => state.session.user.id)
+    const sessionUser = useSelector( (state) => state.session.user)
     // console.log(typeof(sessionUser), sessionUser, 'session//////////////')
 
     const sessiontest = useSelector( state => state)
@@ -28,7 +28,7 @@ const CreateReviewForm = ({test}) => {
         e.preventDefault();
 
         const errors = {}
-        if(description.length < 5 || description.length > 50) errors['description'] = 'Review requires atleast 5 characters or below 50 characters'
+        if(description.length < 5 || description.length > 100) errors['description'] = 'Review requires atleast 5 characters or below 100 characters'
         if(rating < 1 || rating > 5) errors['rating'] = 'Rating must be between 1 and 5'
 
         if(Object.values(errors).length){
@@ -39,7 +39,7 @@ const CreateReviewForm = ({test}) => {
         const payload = {
             description,
             rating,
-            user_id: sessionUser,
+            user_id: sessionUser.id,
             tasker_id: test
         }
 
@@ -63,7 +63,7 @@ const CreateReviewForm = ({test}) => {
                     <label>
                         <textarea
                             id='description'
-                            placeholder="maximum 50 characters"
+                            placeholder="maximum 100 characters"
                             required
                             value={description}
                             type="text"
@@ -96,19 +96,6 @@ const CreateReviewForm = ({test}) => {
                             }
                     </label>
                 </div>
-                {/* <div>
-                    <h3>tasker id(needs work)</h3>
-                    <label>
-                        tasker_id:
-                    <input
-                        required
-                        placeholder="tasker_id"
-                        value={tasker_id}
-                        type="integer"
-                        onChange={ e => setTasker_id(e.target.value)}
-                        />
-                    </label>
-                </div> */}
                 <div>
                     <button type="submit">Post Your Review</button>
                 </div>
