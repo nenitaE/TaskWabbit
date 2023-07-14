@@ -61,7 +61,6 @@
 }
 
 
-
 .task-type{
     grid-area: task-type;
     padding-right: 10em;
@@ -83,6 +82,15 @@
 
 .tasker-name{
     grid-area: tasker-name;
+    display: flex;
+    align-items: center ;
+}
+
+.avatar-image{
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    margin-right: 20px;
 }
 
 .tasktitle-date-location{

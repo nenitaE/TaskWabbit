@@ -68,7 +68,7 @@ function PastTasksPage(){
                             <div className="tasker-name">
                                 {tasker && (
                                     <>
-                                        <img
+                                        <img className="avatar-image"
                                             src={PROFILE_PICTURES[tasker.username] || avatarimage}
                                         />
                                         <h2>{tasker.firstName}</h2>
@@ -76,8 +76,16 @@ function PastTasksPage(){
                                 )}
                             </div>
                             <div className="tasktitle-date-location">
-                                <p>{task.title}</p>
-                                <p>Date: {task.task_date}</p>
+                                <p>Task Title: {task.title}</p>
+                                {/* <FontAwesomeIcon icon="fa-thin fa-calendar" /> */}
+                                <p>{
+                                    new Date(task.task_date).toLocaleDateString('en-US', {
+                                        weekday:'long',
+                                        year:'numeric',
+                                        month:'long',
+                                        day:'numeric'
+                                    })
+                                }</p>
                                 <p>Location: {task.location}</p>
                             </div>
                             <div className="task-button-actions">
