@@ -19,6 +19,8 @@ function PastTasksPage(){
     const tasks = useSelector((state) => state.tasks.tasks)
     const taskers = useSelector((state) => Object.values(state.taskers))
     const {setModalContent} = useModal();
+    const pastTasks = tasks && tasks.filter(task => new Date(task.task_date) < new Date()); //filter to past tasks to show only tasks with date < today
+
 
     useEffect(() =>{
         dispatch(getTasks())
@@ -47,10 +49,10 @@ function PastTasksPage(){
             </div>
             <div  className="spacer"></div>
             <div className="tasks-container">
-                {tasks && tasks
-                .filter(task => new Date(task.task_date) < new Date()).length > 0 //filter to past tasks to show only tasks with date < today
-                ? tasks.map(task => {
+                {pastTasks && pastTasks.length > 0
+                ? pastTasks.map(task => {
                     const taskDate = new Date(task.task_date);
+                    taskDate.setHours(0,0,0,0);
                     const currentDate = new Date();
                     currentDate.setHours(0,0,0,0); // set current time to 00:00:00
                     const uniqueKey = `${task.id}_`;
