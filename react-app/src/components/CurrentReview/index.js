@@ -5,6 +5,7 @@ import { getReviewForLoggedIn } from "../../store/reviews";
 import { getTaskers } from "../../store/taskers";
 import DeleteReview from "../DeleteReviewModal/DeleteReview";
 import { Link, useHistory } from "react-router-dom/cjs/react-router-dom";
+import "./CurrentReview.css"
 
 const ReviewByLoggedIn = () => {
     const dispatch = useDispatch();
@@ -14,9 +15,10 @@ const ReviewByLoggedIn = () => {
     const reviewList = useSelector(state => Object.values(state.reviewReducer))
     // console.log(reviewList, 'state Result')
     const user = useSelector(state => state.session.user)
-    // console.log(user, 'user-------------')
+    const taskers = useSelector(state => Object.values(state.taskers))
+    // console.log(user, taskers, 'user-------------')
 
-    let reviewDate;
+    let taskerData = [];
 
     useEffect(() => {
         dispatch(getReviewForLoggedIn())
@@ -31,29 +33,58 @@ const ReviewByLoggedIn = () => {
         )
     }
 
+    taskers.forEach(tasker => {
+        // console.log(tasker.id)
+        // taskerData.push(tasker)
+    })
+    // console.log(taskerData, 'tasker DATA')
+
     return (
         <>
-        <h1>Reviews ({reviewList.length})</h1>
-            <div>
+
+            <div id="main">
+                <div id="mainUser">
+                    <h3>My Info</h3>
+
+                    <div id="mainUserContent">
+
+                        <div>
+                            Username: {user.username}
+                        </div>
+                        <div>
+                            Email: {user.email}
+                        </div>
+                    </div>
+                </div>
+
+                <div id="afterUser">
+
+                </div>
+
+                <h3>My Reviews ({reviewList.length})</h3>
                 {reviewList.map( rev => (
-                    <div className=".">
-                        <div>
-                            {rev.description}
+                    <div className="singleReview" key={rev.id}>
+                        <div id="revContent">
+                            Review: {rev.description}
                         </div>
-                            {rev.id}
-                        <div>
-                            {new Date(rev.created_at).toDateString()}
+                        <div id="revContent">
+                            Rating: {rev.rating}
                         </div>
                         <div>
+                            
+                        </div>
+                        <div id="revContent">
+                            <b>{new Date(rev.created_at).toDateString()}</b>
+                        </div>
+                        <div id="button">
+                            <div>
                             <DeleteReview id={rev.id} />
-                        </div>
-                        <div>
-                            {/* <Link to={`/reviews/${rev.id}/edit`}>
-                                <button>Update Review</button>
-                            </Link> */}
+                            </div>
+                            <div>
                             <button onClick={
                                 () => history.push(`/reviews/${rev.id}/edit`)
                             }>Update</button>
+                            </div>
                         </div>
                     </div>
                 ))}
