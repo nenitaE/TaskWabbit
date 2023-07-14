@@ -37,13 +37,13 @@ function App() {
           <Route exact path="/">
             <HomePage />
           </Route>
-          <Route exact path="/login" >
+          <Route exact path="/login/:taskTypeId?" >
             <LoginFormPage />
           </Route>
           <Route exact path="/signup">
             <SignupFormPage />
           </Route>
-          <Route exact path="/loginSignup/:taskTypeId">
+          <Route exact path="/loginSignup/:taskTypeId?">
             <LoginSignup/>
           </Route>
           <Route exact path="/form">
@@ -82,7 +82,7 @@ function App() {
           <ProtectedRoute exact path="/reviews/:id/edit">
             <Update />
           </ProtectedRoute>
-          <ProtectedRoute excat path="/tasks/new/:taskTypeId">
+          <ProtectedRoute exact path="/tasks/new/:taskTypeId">
             <CreateTaskForm />
           </ProtectedRoute>
 
