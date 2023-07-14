@@ -94,9 +94,6 @@ function EditTaskFormPage(){
           <p>Here you can edit your task so your tasker has the most updated information</p>
         </div>
         <form className="create-task-form"onSubmit={handleSubmit}>
-          {/* <ul>
-            {Array.isArray(errors) ? errors.map((error, idx) => <li key={idx}>{error}</li>) : <li>{errors}</li>}
-          </ul> */}
           <label>
             Title
             <input
