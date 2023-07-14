@@ -51,8 +51,9 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <button id="navProfileBTTN" onClick={openMenu}>
-        <i  className="fas fa-user-circle fa-lg" />
+      <button id="navProfileBTTN" onClick={openMenu}>Profile Button
+      {/* TODO return profile button to original */}
+        {/* <i  className="fas fa-user-circle fa-lg" /> */}
       </button>
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
@@ -77,12 +78,13 @@ function ProfileButton({ user }) {
           </>
         ) : (
           <>
-            <OpenModalButton
+            {/* <OpenModalButton
               buttonText="Log In"
               className="logoutBTTN-profile"
               onItemClick={closeMenu}
               modalComponent={<LoginFormModal />}
-            />
+            /> */}
+            <NavLink className='logoutBTTN-profile' to={`/login`}>Log in</NavLink>
 
             <OpenModalButton
               buttonText="Sign Up"
