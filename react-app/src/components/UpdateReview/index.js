@@ -15,7 +15,7 @@ const Update = () => {
     const review = useSelector(state => state.reviewReducer[id])
 
     const userSession = useSelector(state => state.session.user)
-    // console.log(review, userSession, 'review update')
+    console.log(review, userSession, 'review update')
 
     useEffect(() => {
 
@@ -25,7 +25,10 @@ const Update = () => {
 
     if(!review){
         return(
+            <>
             <p>loading...</p>
+            {/* {history.push('/')} */}
+            </>
         )
     }
 
