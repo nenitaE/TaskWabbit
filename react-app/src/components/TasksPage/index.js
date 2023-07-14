@@ -8,6 +8,7 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom";
 import CreateReviewModal from "../CreateReviewForm";
 import avatarimage from "../../images/default_avatar.png"
 import { getTaskers } from "../../store/taskers";
+import noTasksImage from "../../images/notasks.png"
 
 //Note: Rename this to CurrentTasksPage
 
@@ -35,6 +36,13 @@ function TasksPage(){
         setModalContent(<DeleteTaskModal taskId={taskId}/>)
     }
 
+      //hardcoded pictures from seeded data
+      const PROFILE_PICTURES = {
+        "demo": "",
+        "marnie": "",
+        "bobbie": ""
+    }
+
     return (
         <div className="task-main-container">
             <div className="link-container">
@@ -45,8 +53,8 @@ function TasksPage(){
             <div  className="spacer"></div>
             <div className="tasks-container">
                 {tasks && tasks
-                .filter(task => new Date(task.task_date) >= new Date()) //filter current tasks to show only tasks with date >= today
-                .map(task => {
+                .filter(task => new Date(task.task_date) >= new Date()).length > 0 //filter current tasks to show only tasks with date >= today
+                ? tasks.map(task => {
                     const taskDate = new Date(task.task_date);
                     const currentDate = new Date();
                     currentDate.setHours(0,0,0,0); // set current time to 00:00:00
@@ -88,15 +96,25 @@ function TasksPage(){
                             </div>
                             <div className="task-button-actions">
                                 <button className="select-button" onClick={() => openDeleteModal(task.id)}>Delete Task</button>
-                                <CreateReviewModal tasker_id={task.tasker_id}/>
-                                {taskDate >= currentDate && <Link to={`/tasks/${task.id}/edit`}>Edit Task</Link>}
+                                {taskDate <= currentDate && <CreateReviewModal tasker_id={task.tasker_id}/> }
+                                {taskDate >= currentDate && <NavLink className="select-button" to={`/tasks/${task.id}/edit`}>Edit Task</NavLink>}
                             </div>
                         </div>
                     )
-                })}
+                })
+                :
+                    <div className="image-container">
+                        <img className="no-tasks-image" src={noTasksImage} alt="No tasks"></img>
+                    </div>
+            }
         </div>
     </div>
 )
 }
+
+
+
+
+
 
 export default TasksPage

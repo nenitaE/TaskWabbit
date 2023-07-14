@@ -46,9 +46,9 @@
     grid-template-columns: 1fr 1fr;
     grid-template-rows: repeat(4, auto);
     grid-template-areas:
-    "task-type task-price"
+    "task-type tasktype"
     "separator separator"
-    "tasker-name tasker-name"
+    "tasker-name task-price"
     "tasktitle-date-location tasktitle-date-location"
     "task-button-actions task-button-actions";
     width: 100%;
@@ -104,4 +104,19 @@
 
 .task-button-actions button{
     margin-right: 10px
+}
+
+.no-tasks-image{
+    width: 400px;
+    /* height: 245px; */
+    /* margin-top: 50px; */
+    object-fit: cover;
+}
+
+.image-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+
 }
