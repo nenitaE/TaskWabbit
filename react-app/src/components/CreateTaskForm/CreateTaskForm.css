@@ -1,6 +1,13 @@
-.create-task-form{
-    max-width: 80%;
-    margin: auto;
+.task-form-container{
+    max-width: 100%;
+    /* margin: auto; */
     padding: 20px;
-    box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+    /* box-shadow: 0px 0px 10px rgba(0,0,0,0.1); */
 }
+
+.logo-step-indicator {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }

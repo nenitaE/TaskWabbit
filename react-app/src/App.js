@@ -35,7 +35,7 @@ function App() {
   console.log(isLoaded, "isLoaded")
   return (
     <div className="App">
-      <Navigation isLoaded={isLoaded} />
+      {isLoaded && !location.pathname.startsWith('/tasks/new') && <Navigation isLoaded={isLoaded} />}
       {isLoaded && (
         <Switch>
           <Route exact path="/">
