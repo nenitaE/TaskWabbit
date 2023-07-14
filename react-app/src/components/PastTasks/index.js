@@ -78,7 +78,7 @@ function PastTasksPage(){
                             </div>
                             <div className="tasktitle-date-location">
                                 <p>Task Title: {task.title}</p>
-                                <i className="fa-regular fa-calendar" />
+                                <i className="far fa-calendar" />
                                 <p>{
                                     new Date(task.task_date).toLocaleDateString('en-US', {
                                         weekday:'long',

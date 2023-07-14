@@ -34,7 +34,7 @@ function App() {
   }, [dispatch]);
   console.log(isLoaded, "isLoaded")
   return (
-    <>
+    <div className="App">
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
@@ -96,7 +96,7 @@ function App() {
         </Switch>
       )}
       {isLoaded && !location.pathname.startsWith('/tasks/new') && <Footer/>}
-    </>
+    </div>
   );
 }
 

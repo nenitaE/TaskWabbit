@@ -1,1 +1,26 @@
 
+.footer{
+    position:relative;
+    background-color:rgb(103, 114, 126);
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    text-align: start;
+}
+
+.footer-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 1rem;
+}
+
+.footer{
+    margin-top: auto;
+}
+
+.App{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
