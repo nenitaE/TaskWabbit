@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect } from 'react-router-dom/cjs/react-router-dom';
 import { getTaskerTaskTypes, fetchCreateTaskerTaskType } from '../../store/taskerProfile';
 import './TaskerTaskType.css';
 
@@ -16,25 +15,19 @@ const TaskerTaskTypeForm = ({ taskerTaskType, formType}) => {
     // console.log (tasker_id, "********TASKERID********")
    
     const [hourlyRate, setHourlyRate] = useState("");
+    const [rateError, setRateError] = useState('');
     const [taskType_id, setTaskTypeId] = useState(1);
-    const [errors, setErrors] = useState([]);
     const [hasSubmitted, setHasSubmitted] = useState(false);
     
     const dispatch = useDispatch();
+    let hasErrors = false;
 
     const updateHourlyRate = (e) => setHourlyRate(e.target.value);
     const updateTaskType_id = (e) => setTaskTypeId(e.target.value);
       
 
-    // useEffect(() => {
-    //     const errors = [];
-    //     if(!Number(hourlyRate)) errors.push('You must enter an hourly rate');
-    //     if(!Number(taskType_id)) errors.push('You must select a tasktype');
-    //     setValidationErrors(errors);
-    // }, [hourlyRate, taskType_id])
-
     const handleSubmit = async (e) => {
-        console.log("Inside Handle SUbmit...TaskerTaskTypeForm component>>>>>>>>>>>>>>")
+        // console.log("Inside Handle SUbmit...TaskerTaskTypeForm component>>>>>>>>>>>>>>")
     
         e.preventDefault();
         setHasSubmitted(true);
@@ -43,7 +36,29 @@ const TaskerTaskTypeForm = ({ taskerTaskType, formType}) => {
             tasker_id,
             taskType_id
         };
+
         
+        // Set hourlyRate errors
+
+        if (hourlyRate.length <= 0){
+            setRateError('Must enter an hourly rate in USD to update');
+            hasErrors = true;
+        } else if (hourlyRate <= 0){
+                setRateError('Must enter a minimum hourly rate of $1.');
+                hasErrors = true;
+        } else if (hourlyRate.includes(".")){
+                setRateError('Must enter a whole number in USD.');
+                hasErrors = true;
+        } else {
+            setRateError('');
+        }
+        
+        
+        // Disable form submission if errors are present
+        if (hasErrors) {
+            return;
+        }
+
         let newTaskerTaskType = await dispatch(fetchCreateTaskerTaskType(taskerTaskType));
         console.log(newTaskerTaskType, "newTaskerTaskType details in TaskerTaskType component----AFTER dispatching CreateTaskerTaskType");
 
@@ -53,14 +68,14 @@ const TaskerTaskTypeForm = ({ taskerTaskType, formType}) => {
             history.push(`/taskerTaskTypes/current`);
             dispatch(getTaskerTaskTypes(taskertasktypeId));
         } else {
-                setErrors(['Please complete form']);
-            }      
+
+        }     
     };
     
     if (!tasker_id) {
         return(
             <div>
-            <p>You must be logged in to access this page</p>
+            <p>You must be a logged in tasker to access this page</p>
             {history.push('/')}
             </div>
         )
@@ -68,10 +83,7 @@ const TaskerTaskTypeForm = ({ taskerTaskType, formType}) => {
     return (
         <div>
                 <div className='newTTFormContainer'>
-                    <form className ='b' onSubmit={handleSubmit} > 
-                        <ul>
-                            {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-                        </ul>  
+                    <form className ='ttFormContainer' onSubmit={handleSubmit} > 
                             <h2>{formType}</h2>
                                 <div className='newTTInnerContainer'>
                                         <h3 className='newTT-TitleContainer'>Use this form to add a new tasktype to your profile.</h3>              
@@ -111,6 +123,11 @@ const TaskerTaskTypeForm = ({ taskerTaskType, formType}) => {
                                                                 value={hourlyRate}
                                                                 onChange={updateHourlyRate}
                                                             />
+                                                    </div>
+                                                    <div>
+                                                        <p className="field-error">
+                                                            {rateError && <span className="error"> {rateError}</span>}
+                                                        </p>
                                                     </div>
                                                     <input className='newTTSubmitBTN' type="submit" value={formType} />
                                                 </h3>
