@@ -103,9 +103,12 @@ function TasksPage(){
                     )
                 })
                 :
-                    <div className="image-container">
-                        <img className="no-tasks-image" src={noTasksImage} alt="No tasks"></img>
-                    </div>
+                <div className="no-tasks-container">
+                    <img className="no-tasks-image" src={noTasksImage} alt="No tasks"></img>
+                    <h2> Have something else on your to-do list?</h2>
+                    <p>Book your next task or manage future to-dos with TaskWabbit </p>
+                <NavLink className="select-button" to={`/`}>Book Your Task</NavLink>
+            </div>
             }
         </div>
     </div>
