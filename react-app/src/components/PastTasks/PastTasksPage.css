@@ -6,13 +6,17 @@
     width: 100%;
     /* max-width: 50%; */
     margin: 0 auto;
+    background-color: #f9fafb
 }
 
-.link-container{
-    /* display: flex;
-    align-items:start; */
+@media screen  and (max-width:760px) {
+    .link-container{
+        align-self: flex-start;
+        padding-left: 10px;
+    }
 
 }
+
 
 .tasks-container{
 
@@ -29,8 +33,10 @@
     "task-button-actions task-button-actions";
     width: 100%;
     margin-bottom: 5em;
-    border: 1px solid black;
-    padding: 20px;
+    border: 1px solid #b1b9c3;
+    border-radius: 4px;
+    padding: 10px;
+    background-color: white
 }
 
 .task-type{
@@ -55,4 +61,8 @@
 .task-button-actions{
     grid-area: task-button-actions;
     justify-self: end;
+}
+
+.task-button-actions button{
+    margin-right: 10px
 }

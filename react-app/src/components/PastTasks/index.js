@@ -53,7 +53,7 @@ function PastTasksPage(){
 
                             </div>
                             <div className="task-price">
-                                {task.totalPrice && <h2>{task.totalPrice}</h2>}
+                                {task.totalPrice && <h2>${task.totalPrice}</h2>}
                             </div>
                             <div className="tasker-name">
                                 {tasker && <h2>{tasker.firstName}</h2>}
