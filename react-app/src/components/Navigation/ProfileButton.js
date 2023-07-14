@@ -51,9 +51,9 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <button id="navProfileBTTN" onClick={openMenu}>Profile Button
-      {/* TODO return profile button to original */}
-        {/* <i  className="fas fa-user-circle fa-lg" /> */}
+      <button id="navProfileBTTN" onClick={openMenu}>
+      
+        <i  className="fas fa-user-circle fa-lg" />
       </button>
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
