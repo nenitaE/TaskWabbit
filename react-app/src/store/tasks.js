@@ -60,7 +60,7 @@ export const getTask = (taskId) => async(dispatch) => {
 }
 
 export const updateTask = (taskId, taskData) => async(dispatch) =>{
-        // console.log("FAILED BODY", JSON.stringify(taskData))
+        console.log("FAILED BODY", JSON.stringify(taskData))
     const response = await fetch(`/api/tasks/${taskId}`, {
         method: "PUT",
         headers: {

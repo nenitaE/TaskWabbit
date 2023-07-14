@@ -25,7 +25,7 @@ function TasksPage(){
     const tasks = useSelector((state) => state.tasks.tasks)
     const taskers = useSelector((state) => Object.values(state.taskers))
     const {setModalContent} = useModal();
-    const curTasks = tasks && tasks.filter(task => new Date(task.task_date) >= new Date());
+    const curTasks = tasks && tasks.filter(task => new Date(task.task_date) >= new Date()); //filter current tasks to show only tasks with date >= today
 
 
     useEffect(() =>{
@@ -54,7 +54,7 @@ function TasksPage(){
             </div>
             <div  className="spacer"></div>
             <div className="tasks-container">
-                {curTasks && curTasks.length > 0 //filter current tasks to show only tasks with date >= today
+                {curTasks && curTasks.length > 0
                 ? curTasks.map(task => {
                     const taskDate = new Date(task.task_date);
                     taskDate.setHours(0,0,0,0);
