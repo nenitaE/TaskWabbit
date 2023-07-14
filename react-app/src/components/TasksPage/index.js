@@ -42,7 +42,7 @@ function TasksPage(){
                     {/* <p>Id: {task.tasker_id}</p> */}
                     {task.taskType && <p>TaskType:{task.taskType.type}</p>}
                     <button onClick={() => openDeleteModal(task.id)}>Delete Task</button>
-                    <CreateReviewModal tasker_id={task.tasker_id}/>
+                    {taskDate <= currentDate && <CreateReviewModal tasker_id={task.tasker_id}/> }
                     {taskDate >= currentDate && <Link to={`/tasks/${task.id}/edit`}>Edit Task</Link>}
                 </div>
             )

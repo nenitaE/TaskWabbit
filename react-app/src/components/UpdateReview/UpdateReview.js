@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom/cjs/react-router-dom";
 import { updateReview } from "../../store/reviews";
+import './UpdateForm.css'
 
 
 const UpdateReview = ({reviewObj}) => {
@@ -21,7 +22,7 @@ const UpdateReview = ({reviewObj}) => {
         // console.log(rating, typeof(rating), 'test')
 
         const errors = {}
-        if(description.length < 5) errors['description'] = 'Review requires atleast 5 characters'
+        if(description.length < 5 || description.length > 100) errors['description'] = 'Review requires atleast 5 characters or below 100 characters'
         if(rating < 1 || rating > 5) errors['rating'] = 'Rating must be between 1 and 5'
 
         if(Object.values(errors).length){
@@ -50,15 +51,24 @@ const UpdateReview = ({reviewObj}) => {
 
     return(
         <>
-            <h1>Update Review</h1>
-            <form onSubmit={handleSubmit}>
+        <div id="mainForm">
+            <h3>Update Review</h3>
+
+            <div id="afterTitle"></div>
+
+            <form onSubmit={handleSubmit} id="form">
                 <div>
-                    <h3>How was the servie?</h3>
+                    <h4>How was the servie?</h4>
+                    <p>Please describe your experience.</p>
                     <label>
-                        Description:
+                        <div>
+                            Description:
+                        </div>
+
+                        <div>
                         <textarea
                             id='description'
-                            placeholder="Your Review"
+                            placeholder="maximum 100 characters"
                             required
                             value={description}
                             type='text'
@@ -71,17 +81,22 @@ const UpdateReview = ({reviewObj}) => {
                                     </div>
                                 )
                             }
+                        </div>
                     </label>
                 </div>
                 <div>
-                    <h3>Please give a rating</h3>
+                    <h4>Please give a rating</h4>
                     <label>
-                        Rating:
-                        <input
+                        <div>
+                            Rating:
+                        </div>
+
+                        <div>
+                            <input
                             id='rating'
                             type='number'
                             required
-                            placeholder="Rating"
+                            placeholder="Rate between 1 & 5"
                             value={rating}
                             onChange={e => setRating(e.target.value)}
                             />
@@ -92,12 +107,18 @@ const UpdateReview = ({reviewObj}) => {
                                     </div>
                                 )
                             }
+                        </div>
+
                     </label>
                 </div>
+
+                <div id="afterFields"></div>
+
                 <div>
                     <button type='submit'>Update</button>
                 </div>
             </form>
+        </div>
         </>
     )
 }
