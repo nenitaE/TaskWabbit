@@ -120,7 +120,6 @@ export const deleteTaskerTaskType = (taskerTaskTypeId) => async(dispatch) => {
 export const fetchCreateTaskerTaskType = (taskerTaskTypeData) => async(dispatch) =>{
     console.log("********INSIDE CREATE TASKTYPE THUNK******")
     try {
-        console.log("FAILED BODY", JSON.stringify(taskerTaskTypeData))
         const response = await fetch('/api/taskerTaskTypes', {
             method: "POST",
             headers: {
@@ -168,7 +167,6 @@ export default function taskerProfileReducer(state = initialState, action){
                 taskerTaskType: action.payload
             }
         case CREATE_TASKERTASKTYPE:
-            
             newState = {...state,
                 taskerTaskTypes: [...state.taskerTaskTypes, action.payload]
                 };

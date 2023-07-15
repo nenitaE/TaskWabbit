@@ -92,6 +92,7 @@ function SignupFormPage() {
                             placeholder="Phone"
                             value={phone}
                             maxLength={10}
+                            minLength={10}
                             onChange={(e) => setPhone(e.target.value)}
                             required
                           />
