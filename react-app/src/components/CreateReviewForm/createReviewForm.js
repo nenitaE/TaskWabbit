@@ -60,14 +60,14 @@ const CreateReviewForm = ({test}) => {
             <h2>Write a Review</h2>
 
             <div className="gapAfterTitle"></div>
-            
+
             <form onSubmit={handleSubmit}>
                 <div>
                     <h4>How was the service?</h4>
                     <p>Please describe your experience</p>
                     <label>
                         <textarea
-                            id='description'
+                            id='descriptionCreate'
                             placeholder="maximum 100 characters"
                             required
                             value={description}
