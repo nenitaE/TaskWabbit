@@ -1,0 +1,63 @@
+html, body
+{
+    height: 100%;
+    width: 100%;
+    margin: 0px;
+}
+
+.login-root {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("https://ipfs.io/ipfs/QmRSrrKztpa9ALGK5pVqE9Hsbqp7oBmtFfvUoiDDWg7iHT?filename=moving_cropped.webp");
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100vw;
+    height: 100vh;
+}
+
+.login-container {
+    background-color: white;
+    border-color: white;
+    border-radius: 12px;
+}
+
+.login-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 45px;
+    gap: 15px;
+    width: 300px;
+}
+
+.label-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-bottom: 20px;
+}
+
+.text-field {
+    height: 25px;
+    padding-left: 10px;
+}
+
+.login-button2 {
+    color: white;
+    background-color: #006b54;
+    font-size: 17px;
+    border: 1.5px solid #006b54;
+    border-radius: 20px;
+    text-decoration: none;
+    text-align: center;
+    width: 300px;
+    height: 35px;
+    margin-top: 10px;
+}
+
+.taskwabbit-title-login {
+    font-size: 50px;
+    padding-bottom: 15px;
+}

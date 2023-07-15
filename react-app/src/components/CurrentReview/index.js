@@ -71,17 +71,17 @@ const ReviewByLoggedIn = () => {
                             Rating: {rev.rating}
                         </div>
                         <div>
-                            
+
                         </div>
                         <div id="revContent">
                             <b>{new Date(rev.created_at).toDateString()}</b>
                         </div>
                         <div id="button">
-                            <div>
+                            <div id="deleteButton">
                             <DeleteReview id={rev.id} />
                             </div>
-                            <div>
-                            <button onClick={
+                            <div id="update">
+                            <button className='updateButton' onClick={
                                 () => history.push(`/reviews/${rev.id}/edit`)
                             }>Update</button>
                             </div>

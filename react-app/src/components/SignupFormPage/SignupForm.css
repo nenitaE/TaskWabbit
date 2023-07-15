@@ -1,0 +1,138 @@
+html, body
+{
+    height: 100%;
+    width: 100%;
+    margin: 0px;
+}
+
+.signup-root {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("https://ipfs.io/ipfs/QmRSrrKztpa9ALGK5pVqE9Hsbqp7oBmtFfvUoiDDWg7iHT?filename=moving_cropped.webp");
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100vw;
+    height: 100vh;
+}
+
+.signup-container {
+    display: flex;
+    justify-content: center;
+    background-color: white;
+    border-color: white;
+    border-radius: 12px;
+    margin-top: 104px;
+    width: 440px;
+    max-width: 440px;
+    position: absolute;
+}
+
+.signup-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 35px;
+    gap: 15px;
+    width: 350px;
+}
+
+.signup-taskwabbit-title {
+    font-size: 60px;
+    color: rgb(10, 38, 22);
+}
+.signupForm label {
+    display: flex;
+    flex-direction: column;
+    /* gap: 10px; */
+    padding-bottom: 10px;
+}
+
+.signup-inner input {
+    align-content: stretch;
+    border-radius: 5px;
+    border-color:lightgray;
+    border-style: solid;
+    border-width: 1px;
+    height: 25px;
+    padding-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    letter-spacing: 1.25px;
+}
+
+.row-signup {
+    display: flex;
+    flex-grow: 2;
+    justify-content: space-between;
+}
+
+.coloumn-signup {
+    /* display: inline; */
+    /* width: 70%; */
+    /* display: flex; */
+    /* flex: shrink; */
+}
+
+
+
+.signup-isTaskerBox { 
+    display: inline;
+    /* align-items: flex-start; */
+}
+
+.signupBox-text {
+    color: #006b54;
+    align-content: center;
+    align-items: center;
+}
+
+.signup-bttn2 {
+    color: white;
+    background-color: #006b54;
+    font-size: 17px;
+    border: 1.5px solid #006b54;
+    border-radius: 20px;
+    text-decoration: none;
+    text-align: center;
+    width: 340px;
+    height: 35px;
+}
+
+.signup-agreement-text {
+    text-align: left;
+    font-family: Arial, Helvetica, sans-serif;
+    letter-spacing: 1px;
+    font-weight: lighter;
+    font-size: 12px;
+    /* padding: 15px 10px 0px 10px; */
+}
+
+.signup-greenText {
+    color: #006b54;
+}
+
+.fa-solid fa-triangle-exclamation {
+    color: red;
+}
+.signup-errors{
+    color: red;
+    list-style-type: none;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: rgba(106,108,110, .75);
+}
+  
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: gray;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+    color: gray;
+}
+

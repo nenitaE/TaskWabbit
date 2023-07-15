@@ -106,11 +106,9 @@ function NewUpdateTaskerTaskTypeForm() {
     return (
       <div className='a'>
        
-          <form className ='b' onSubmit={handleSubmit} > 
-             <div style={{ backgroundImage: "url(/furnitureBuilder.png)"}}> </div>       
+          <form className ='b' onSubmit={handleSubmit} >      
                       <h3>Use this form to edit the hourly rate for: .</h3>              
                       {/* <h3>Use this form to edit the hourly rate for: <span className="descriptionTT">{taskTypeDescription}.</span></h3>               */}
-                       
                               <div className='d'>
                                   <label htmlFor='hourlyRate'>Enter an hourly rate in US dollars: </label>
                                       
@@ -123,9 +121,12 @@ function NewUpdateTaskerTaskTypeForm() {
                                       />
                               </div>
                               <div>
-                                <p className="field-error">
-                                    {rateError && <span className="error"> {rateError}</span>}
-                                </p>
+                                  <p className="field-error">
+                                      {rateError &&   <span className="error"> 
+                                                          <i className="fa-solid fa-triangle-exclamation"></i>
+                                                          {rateError}
+                                                      </span>}
+                                  </p>
                               </div>
                               <button className="updateTTBtn" type="submit">Update Hourly Rate</button>
           </form>

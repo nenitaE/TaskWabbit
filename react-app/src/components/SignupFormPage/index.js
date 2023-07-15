@@ -34,96 +34,112 @@ function SignupFormPage() {
   };
 
   return (
-    <>
-      <h1>Sign Up</h1>
-      <form onSubmit={handleSubmit}>
-        <ul>
-          {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-        </ul>
-        <label>
-          Email
-          <input
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Username
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-					First Name
-					<input
-						type="text"
-						value={firstName}
-						onChange={(e) => setFirstName(e.target.value)}
-						required
-					/>
-				</label>
-				<label>
-					Last Name
-					<input
-						type="text"
-						value={lastName}
-						onChange={(e) => setLastName(e.target.value)}
-						required
-					/>
-				</label>
-				<label>
-					Location
-					<input
-						type="text"
-						value={location}
-						onChange={(e) => setLocation(e.target.value)}
-						required
-					/>
-				</label>
-				<label>
-					Phone
-					<input
-						type="tel"
-						value={phone}
-						maxLength={10}
-						onChange={(e) => setPhone(e.target.value)}
-						required
-					/>
-				</label>
-				<label>
-					<input
-						type="checkbox"
-						value={true}
-						onChange={(e) => setIsTasker(e.target.value)}
-					/>
-					SELECT if you want to be able to work as a Tasker
-				</label>
-        <label>
-          Password
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Confirm Password
-          <input
-            type="password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            required
-          />
-        </label>
-        <button type="submit">Sign Up</button>
-      </form>
-    </>
+    <div className="signup-root">
+        <div className="signup-container">
+            <div className="signup-inner">
+                <div className="signup-taskwabbit-title">taskWabbit</div>
+                    <form className="signupForm" onSubmit={handleSubmit}>
+                      <span className="row-signup"> 
+                          <label>
+                            <input
+                              type="text"
+                              placeholder="First Name"
+                              value={firstName}
+                              onChange={(e) => setFirstName(e.target.value)}
+                              required
+                            />
+                          </label>
+                          <label>
+                            <input
+                              type="text"
+                              placeholder="Last Name"
+                              value={lastName}
+                              onChange={(e) => setLastName(e.target.value)}
+                              required
+                            />
+                          </label>
+                      </span> 
+                        <label>
+                          <input
+                            type="text"
+                            placeholder="Email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            required
+                          />
+                        </label>
+                        <label>
+                          <input
+                            type="text"
+                            placeholder="Username"
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                            required
+                          />
+                        </label>
+                        <label>
+                          <input
+                            type="text"
+                            placeholder="Location"
+                            value={location}
+                            onChange={(e) => setLocation(e.target.value)}
+                            required
+                          />
+                        </label>
+                        <label>
+                          <input
+                            type="tel"
+                            placeholder="Phone"
+                            value={phone}
+                            maxLength={10}
+                            minLength={10}
+                            onChange={(e) => setPhone(e.target.value)}
+                            required
+                          />
+                        </label>
+                        <span className="row-signup">
+                            <label className="column-signup">
+                                <input
+                                    type="password"
+                                    placeholder="Password"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    required
+                                    />
+                            </label>
+                            <label className="column-signup">
+                                <input
+                                  type="password"
+                                  placeholder="Confirm Password"
+                                  value={confirmPassword}
+                                  onChange={(e) => setConfirmPassword(e.target.value)}
+                                  required
+                                />
+                            </label>
+                        </span>
+                            <span className="signup-isTasker">
+                              <input
+                                className="signup-isTaskerBox"
+                                type="checkbox"
+                                value={true}
+                                onChange={(e) => setIsTasker(e.target.value)}
+                              /> <span className="signupBox-text"> Sign me up as a Tasker</span>
+                            </span>
+                        {errors.length != 0 && (
+                          <ul>
+                            {errors.map((error, idx) => (
+                              <li className="signup-errors" key={idx}>
+                                <i className="fa-solid fa-triangle-exclamation"></i>
+                                {error}</li>
+                            ))}
+                          </ul>
+                        )}
+                        <p className="signup-agreement-text">By clicking below and creating an account, I agree to TaskWabbit’s <span className="signup-greenText">Terms of Service</span> and <span className="signup-greenText">Privacy Policy</span>.</p>
+                        <button className="signup-bttn2" type="submit">Create Account</button>
+                      </form>
+                    </div>
+                </div>
+            </div>
   );
 }
 

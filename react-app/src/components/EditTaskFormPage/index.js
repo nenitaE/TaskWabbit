@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getTask, updateTask, clearCurrentTask } from "../../store/tasks";
 import { useHistory, useParams } from "react-router-dom";
@@ -13,13 +13,37 @@ function EditTaskFormPage(){
     const [description, setDescription] = useState("");
     const [location, setLocation] = useState("");
     // const [isPastDate, setIsPastDate] = useState(false);
-    const [errors, setErrors] = useState([]);
+    const [errors, setErrors] = useState({});
     const { id: loggedInUserId } = useSelector(state => state.session.user); // Fetch logged in user's ID
-    console.log(loggedInUserId, 'current logged in user')
+    const [inputValue, setInputValue] = useState('');
+    const [suggestions, setSuggestions] = useState([]);
+    const suggestionRef = useRef();
+    const [showSuggestions, setShowSuggestions] = useState(false);
+
+    const fetchSuggestions = async (input) => {
+      const response = await fetch(`/api/auth/autocomplete/${input}`);
+      const data = await response.json();
+      setSuggestions(data);
+    };
+
+    useEffect(() => {
+        if (inputValue) {
+          fetchSuggestions(inputValue);
+        } else {
+          setSuggestions([]);
+        }
+    }, [inputValue]);
+
+    const validateForm = () => {
+      const errors = {}
+      if(!title) errors.title = "Title is required";
+      if(!description) errors.description = "A description is required";
+      if(!location) errors.location = "A location is required";
+      return errors
+    }
 
     useEffect(() => {
         dispatch(getTask(taskId))
-        console.log()
     }, [dispatch, taskId])
 
     useEffect(() => {
@@ -36,6 +60,7 @@ function EditTaskFormPage(){
             setTitle(task.title);
             setDescription(task.description);
             setLocation(task.location);
+            setInputValue(task.location);
         }
 
     }, [task]);
@@ -48,6 +73,13 @@ function EditTaskFormPage(){
     const handleSubmit = async(e) => {
         e.preventDefault();
 
+        const result = validateForm();
+        if(Object.keys(result).length > 0){
+          setErrors(result)
+          return
+        }
+
+
         const existingData = {
             "taskTypeId": task.taskTypeId,
             "user_id": task.user_id,
@@ -58,7 +90,7 @@ function EditTaskFormPage(){
         const taskData = {
             title,
             description,
-            location,
+            location: suggestionRef.current || location,
         }
 
         const finaltaskData = {
@@ -74,36 +106,72 @@ function EditTaskFormPage(){
         }
     }
     return (
-        <form onSubmit={handleSubmit}>
-          <ul>
-            {Array.isArray(errors) ? errors.map((error, idx) => <li key={idx}>{error}</li>) : <li>{errors}</li>}
-          </ul>
+      <div className="task-form-container">
+        <div className="form-description">
+          <p>Here you can edit your task so your tasker has the most updated information</p>
+        </div>
+        <form className="create-task-form"onSubmit={handleSubmit}>
+          <div className="step1">
+          <div className="step1-section">
           <label>
-            Title
+            <h3>Title</h3>
             <input
               type="text"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
             />
           </label>
+          {errors.title && <p>{errors.title}</p>}
+          </div>
+          <div  className="step1-section">
           <label>
-            Description
+            <h3>Description</h3>
             <input
               type="text"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
             />
           </label>
+          {errors.description && <p>{errors.description}</p>}
+          </div>
+          <div className="step1-section">
           <label>
-            Location
+            <h3>Location</h3>
             <input
               type="text"
-              value={location}
-              onChange={(e) => setLocation(e.target.value)}
+              value={inputValue}
+              onChange={(e) => {
+                setInputValue(e.target.value)
+                setShowSuggestions(true)
+              }
+              }
             />
+                <div className="location-suggestions">
+                {showSuggestions && suggestions.map((suggestion, index) => (
+                    <div
+                        key={index}
+                        onMouseDown={(e) => {
+                            e.preventDefault()
+                            // console.log('Clicked suggestion:', suggestion.description);
+                            setInputValue(suggestion.description);
+                            setLocation(inputValue);
+                            suggestionRef.current = suggestion.description;
+                            setSuggestions([]);
+                            setShowSuggestions(false); // hide suggestions when a suggestion is clicked
+                        }}w
+                    >
+                        {suggestion.description}
+                    </div>
+                ))}
+                </div>
           </label>
+          {errors.location && <p>{errors.location}</p>}
+          </div>
           <button type="submit">Update Task</button>
+          </div>
         </form>
+        </div>
+
       );
 }
 export default EditTaskFormPage

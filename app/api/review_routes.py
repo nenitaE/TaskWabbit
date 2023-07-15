@@ -1,4 +1,4 @@
-from flask import Flask, Blueprint, jsonify, session, request
+from flask import Flask, Blueprint, jsonify, session, request, Response
 from flask_migrate import Migrate
 from flask_login import login_required
 from app.models.review import Review, db
@@ -14,7 +14,7 @@ def reviewData():
     ordered by updated_at
     """
     reviews = Review.query.filter(Review.user_id == session['_user_id']).order_by(Review.updated_at)
-    print(type(int(session['_user_id'])), 'TEST')
+    # print(type(int(session['_user_id'])), 'TEST')
     return {'Reviews': [review.to_dict_im() for review in reviews]}
 
 
@@ -28,8 +28,8 @@ def delete(id):
     """
     rev = Review.query.get(id)
     if not rev or (int(rev.user_id) != int(session['_user_id'])):
-        print(type(int(rev.user_id)), type(int(session['_user_id'])), 'checking type-------------///')
-        print((int(rev.user_id) != int(session['_user_id'])), 'revTEST-------')
+        # print(type(int(rev.user_id)), type(int(session['_user_id'])), 'checking type-------------///')
+        # print((int(rev.user_id) != int(session['_user_id'])), 'revTEST-------')
         return {'Error': 'Review not found or user not authorized'}
     else:
         db.session.delete(rev)
@@ -71,5 +71,11 @@ def updateReview(id):
 def getReviewById (id):
 
     rev = Review.query.get(id)
+
+    # print((Response), dir(Response.status), 'fasdfas----' ,dir(Response.status_code), 'response---------')
+
+    if not rev:
+        # Response.status
+        return ({ 'Error': 'Review does not exist'}), 404
 
     return rev.to_dict_im()

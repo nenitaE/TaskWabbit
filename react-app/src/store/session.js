@@ -24,11 +24,9 @@ export const authenticate = () => async (dispatch) => {
 	});
 	if (response.ok) {
 		const data = await response.json();
-		console.log(data.errors, "data.errors truthy")
+		// console.log(data.errors, "data.errors truthy")
 		if (data.errors) {
 			return
-			// console.log(data.errors, "data.errors falsy")
-			// throw new Error("user not loaded");
 		}
 
 		dispatch(setUser(data));

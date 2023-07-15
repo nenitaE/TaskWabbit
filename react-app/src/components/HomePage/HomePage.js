@@ -41,7 +41,7 @@ const HomePage = () => {
 
     const recommendedTaskers = taskers.filter(tasker => user ? tasker.id != user.id : true).slice(0, 3);
     return (
-        <main>
+        <main className='homepage-main-container'>
             <div className='book-task-spacing'>
                 <h1>
                     {user ? 'Book Your Next Task' : 'Get help. Gain happiness'}

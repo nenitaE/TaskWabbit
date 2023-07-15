@@ -1,10 +1,18 @@
+.homepage-main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .book-task-spacing {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-left: 80px;
-    padding-right: 80px;
+    justify-content: center;
+    /* padding-left: 80px;
+    padding-right: 80px; */
     gap: 15.5px;
+    width: 800px;
 }
 
 .center-spacing {
@@ -50,8 +58,7 @@
 }
 
 .taskers-recommended-container {
-    padding-left: 80px;
-    padding-right: 80px;
+    width: 800px;
 }
 
 .popular-in-area {

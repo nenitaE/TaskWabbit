@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { delReviewById } from "../../store/reviews";
+import "./DeleteReview.css"
 
 
 export default function DeleteReview ({id}) {
@@ -21,7 +22,7 @@ export default function DeleteReview ({id}) {
 
     return (
         <>
-            <button onClick={toggleModal}>
+            <button className='deleteBtn' onClick={toggleModal}>
                 Delete
             </button>
 
@@ -34,7 +35,7 @@ export default function DeleteReview ({id}) {
                             <button onClick={handleDelete} style={{backgroundColor: 'pink'}}>
                                 Yes (Delete Review)
                             </button>
-                            <button onClick={toggleModal} style={{backgroundColor: 'darkgray'}}>
+                            <button onClick={toggleModal} style={{backgroundColor: '#006b54'}}>
                                 No (Keep Review)
                             </button>
                         </div>
