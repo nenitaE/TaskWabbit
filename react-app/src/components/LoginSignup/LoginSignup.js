@@ -5,6 +5,7 @@ import LoginFormModal from "../LoginFormModal";
 import { useSelector } from "react-redux";
 import { Redirect, useParams, Link } from "react-router-dom";
 import "./LoginSignup.css"
+import { Link } from "react-router-dom/cjs/react-router-dom";
 
 
 
@@ -13,6 +14,7 @@ function LoginSignup() {
     console.log(taskTypeId, "TASKTYPEID********************")
     const sessionUser = useSelector((state) => state.session.user);
     if (sessionUser) return <Redirect to={`/tasks/new/${taskTypeId}`} />;
+    console.log(taskTypeId, "tasktypeID ______________")
 
     
     return (
@@ -26,7 +28,6 @@ function LoginSignup() {
                         </button>
                     </Link>
                     
-
 
                     <Link to={`/login/${taskTypeId ?? ''}`}>
                         <button className='login-button'>Log in</button>

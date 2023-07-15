@@ -89,7 +89,7 @@ function App() {
           <ProtectedRoute exact path="/reviews/:id/edit">
             <Update />
           </ProtectedRoute>
-          <ProtectedRoute excat path="/tasks/new/:taskTypeId">
+          <ProtectedRoute exact path="/tasks/new/:taskTypeId">
             <CreateTaskForm />
           </ProtectedRoute>
 
