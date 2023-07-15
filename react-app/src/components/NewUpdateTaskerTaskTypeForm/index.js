@@ -3,9 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getTaskerTaskType, getTaskerTaskTypes, updateTaskerTaskType  } from "../../store/taskerProfile";
 import { getTaskTypes } from "../../store/taskTypes";
 import { useHistory, useParams } from "react-router-dom";
-import './NewUpdateTaskerTaskType.css'
-import background from './images/furnitureBuilder.png'
-
+import './NewUpdateTaskerTaskType.css';
 
 function NewUpdateTaskerTaskTypeForm() {
     const { taskerTaskTypeId } = useParams();
@@ -98,7 +96,7 @@ function NewUpdateTaskerTaskTypeForm() {
     if (!tasker_id) {
       return(
           <div>
-          <p>You must be logged in to access this page</p>
+          <p>You must be logged in tasker to access this page</p>
           {history.push('/')}
           </div>
       )

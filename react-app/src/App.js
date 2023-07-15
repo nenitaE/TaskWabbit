@@ -21,29 +21,33 @@ import TaskerProfilePage from "./components/TaskerProfilePage";
 import CreateTaskerTaskTypeForm from "./components/CreateTaskerTaskTypeForm";
 import NewUpdateTaskerTaskTypeForm from "./components/NewUpdateTaskerTaskTypeForm";
 import ProtectedRoute from "./ProtectedRoute";
+import PastTasksPage from "./components/PastTasks";
+import Footer from "./components/Footer";
+import {useLocation} from 'react-router-dom';
 
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
+  const location = useLocation();
   useEffect(() => {
     dispatch(authenticate()).then(() => setIsLoaded(true)).catch(() => setIsLoaded(false));
   }, [dispatch]);
-  console.log(isLoaded, "isLoaded")
+
   return (
-    <>
-      <Navigation isLoaded={isLoaded} />
+    <div className="App">
+      {isLoaded && !location.pathname.startsWith('/tasks/new') && <Navigation isLoaded={isLoaded} />}
       {isLoaded && (
         <Switch>
           <Route exact path="/">
             <HomePage />
           </Route>
-          <Route exact path="/login" >
+          <Route exact path="/login/:taskTypeId?" >
             <LoginFormPage />
           </Route>
           <Route exact path="/signup">
             <SignupFormPage />
           </Route>
-          <Route exact path="/loginSignup/:taskTypeId">
+          <Route exact path="/loginSignup/:taskTypeId?">
             <LoginSignup/>
           </Route>
           <Route exact path="/form">
@@ -70,6 +74,9 @@ function App() {
           <ProtectedRoute exact path="/tasks/current">
             <TasksPage />
           </ProtectedRoute>
+          <ProtectedRoute exact path="/tasks/past">
+            <PastTasksPage/>
+          </ProtectedRoute>
           <ProtectedRoute exact path="/reviews/currentUser">
             <ReviewByLoggedIn />
           </ProtectedRoute>
@@ -82,13 +89,14 @@ function App() {
           <ProtectedRoute exact path="/reviews/:id/edit">
             <Update />
           </ProtectedRoute>
-          <ProtectedRoute excat path="/tasks/new/:taskTypeId">
+          <ProtectedRoute exact path="/tasks/new/:taskTypeId">
             <CreateTaskForm />
           </ProtectedRoute>
 
         </Switch>
       )}
-    </>
+      {isLoaded && !location.pathname.startsWith('/tasks/new') && <Footer/>}
+    </div>
   );
 }
 

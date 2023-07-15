@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { login } from "../../store/session";
-import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { useDispatch, useSelector, } from "react-redux";
+import { Redirect, useParams, useHistory } from "react-router-dom";
 import './LoginForm.css';
 
 function LoginFormPage() {
+  const { taskTypeId } = useParams();
+  const history = useHistory();
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const [email, setEmail] = useState("");
@@ -18,39 +20,53 @@ function LoginFormPage() {
     const data = await dispatch(login(email, password));
     if (data) {
       setErrors(data);
+    } else {
+      if (taskTypeId) {
+        history.push(`/tasks/new/${taskTypeId}`)
+      } else {
+        history.push('/')
+      }
     }
   };
 
   return (
-    <>
-      <h1>Log In</h1>
-      <form onSubmit={handleSubmit}>
-        <ul>
-          {errors.map((error, idx) => (
-            <li key={idx}>{error}</li>
-          ))}
-        </ul>
-        <label>
-          Email
-          <input
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Password
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </label>
-        <button type="submit">Log In</button>
-      </form>
-    </>
+    <div className="login-root">
+      <div className="login-container">
+        <div className="login-inner">
+          <div className="taskwabbit-title-login">taskWabbit</div>
+          <form onSubmit={handleSubmit}>
+            {errors.length != 0 && (
+              <ul>
+                {errors.map((error, idx) => (
+                  <li key={idx}>{error}</li>
+                ))}
+              </ul>
+            )}
+            <label className="label-container">
+              Email Address
+              <input
+                className="text-field"
+                type="text"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </label>
+            <label className="label-container">
+              Password
+              <input
+                className="text-field"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </label>
+            <button className="login-button2" type="submit">Log In</button>
+          </form>
+        </div>
+      </div>
+    </div>
   );
 }
 
