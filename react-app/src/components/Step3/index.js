@@ -52,33 +52,41 @@ function Step3({onStepComplete, existingData}){
         closeModal();
     };
 
-    // Set the modal content when this component mounts
+    // Set modal content
   useEffect(() => {
-    setClickOutsideModal(() => {});
-    setModalContent(
-      <div>
-        <label>
-          Choose the date for your task:
-          <input
-            type="date"
-            value={taskDate}
-            onChange={handleDateChange}
-          />
-        </label>
-        {error && <p>{error}</p>}
-        <button type="button" onClick={handleBack}>
-          Back
-        </button>
-        <button onClick={onSubmit}>
-          Next
-        </button>
-      </div>
-    );
+
+    let isMounted = true;
+
+    if (isMounted) {
+        setClickOutsideModal(() => {});
+        setModalContent(
+        <div>
+          <label>
+            Choose the date for your task:
+            <input
+              type="date"
+              value={taskDate}
+              onChange={handleDateChange}
+            />
+          </label>
+          {error && <p>{error}</p>}
+          <button type="button" onClick={handleBack}>
+            Back
+          </button>
+          <button onClick={onSubmit}>
+            Next
+          </button>
+        </div>
+        );
+      }
     return () => {
-      closeModal();
-      setClickOutsideModal(() => closeModal); // reset clickOutsideModal
-    }
-  }, [taskDate, error]);  // Dependency array includes taskDate to refresh modal content when taskDate changes
+      if (isMounted) {
+        closeModal();
+        setClickOutsideModal(() => closeModal); // reset clickOutsideModal
+      }
+      isMounted = false;
+    };
+  }, [taskDate, error]);
 
   return null;  // Return null because the actual content is rendered in the modal
 }
