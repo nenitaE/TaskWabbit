@@ -28,7 +28,7 @@ function App() {
   useEffect(() => {
     dispatch(authenticate()).then(() => setIsLoaded(true)).catch(() => setIsLoaded(false));
   }, [dispatch]);
-  console.log(isLoaded, "isLoaded")
+  
   return (
     <>
       <Navigation isLoaded={isLoaded} />

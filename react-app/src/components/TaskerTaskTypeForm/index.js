@@ -126,7 +126,10 @@ const TaskerTaskTypeForm = ({ taskerTaskType, formType}) => {
                                                     </div>
                                                     <div>
                                                         <p className="field-error">
-                                                            {rateError && <span className="error"> {rateError}</span>}
+                                                            {rateError &&   <span className="error"> 
+                                                                                <i className="fa-solid fa-triangle-exclamation"></i>
+                                                                                {rateError}
+                                                                            </span>}
                                                         </p>
                                                     </div>
                                                     <input className='newTTSubmitBTN' type="submit" value={formType} />

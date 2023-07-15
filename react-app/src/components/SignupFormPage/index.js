@@ -127,7 +127,9 @@ function SignupFormPage() {
                         {errors.length != 0 && (
                           <ul>
                             {errors.map((error, idx) => (
-                              <li className="signup-errors" key={idx}>{error}</li>
+                              <li className="signup-errors" key={idx}>
+                                <i className="fa-solid fa-triangle-exclamation"></i>
+                                {error}</li>
                             ))}
                           </ul>
                         )}
