@@ -1,0 +1,28 @@
+.mainForm {
+    display: grid;
+    /* width: fit-content; */
+    justify-content: center;
+    /* border: 1px green solid; */
+    padding: 1%;
+}
+
+.gapAfterTitle {
+    border: #006b54 solid;
+}
+
+.buttonDiv {
+
+}
+
+.postBtn {
+    cursor: pointer;
+    height: 25px;
+    width: fit-content;
+}
+
+.postBtn:hover {
+    background-color: #006b54;
+    color: white;
+    transition-delay: 150ms;
+    transition-property: background-color, color;
+}
