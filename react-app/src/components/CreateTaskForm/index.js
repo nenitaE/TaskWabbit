@@ -5,6 +5,10 @@ import { useEffect, useState} from "react";
 import { useSelector } from "react-redux";
 import { getTaskers } from "../../store/taskers";
 import StepIndicator from "../StepIndicator";
+import { NavLink, Link } from "react-router-dom";
+import logo from "../Navigation/images/tWabbitLogo.png";
+
+
 import Step1 from "../Step1";
 import Step2 from "../Step2";
 import Step3 from "../Step3";
@@ -80,40 +84,51 @@ function CreateTaskForm() {
     }
 
     return (
-        <form className="create-task-form" onSubmit={submitForm}>
+      <>
+        <div className="logo-step-indicator">
+          <Link to="/">
+            <img src={logo} alt="TaskRabbit logo" className="logo" />
+          </Link>
           <StepIndicator currentStep={step} onStepClick={handleStepClick}/>
-          {step === 1 && (
-            <Step1
-              onStepComplete={handleStepComplete}
-              existingData={formData}
-            />
-          )}
-          {step === 2 && (
-            <Step2
-              taskers={taskers}
-              onStepComplete={handleStepComplete}
-              existingData={formData}
-            />
-          )}
-          {step === 3 && (
-            <Step3
-              onStepComplete={handleStepComplete}
-              existingData={formData}
-            />
-          )}
-          {step === 4 && (
-            <Step4
-              handleSubmit={submitForm}
-              onStepComplete={handleStepComplete}
-              hourlyRate={formData.hourlyRate}
-              location={formData.location}
-              taskDate={formData.task_date}
-              taskerName={formData.tasker_name}
-              trustAndSupportFee={formData.trustAndSupportFee}
-
-            />
-          )}
-        </form>
+        </div>
+        <div className="form-description">
+          <p>Tell us aout your task. We use these details to shows Taskers in your area who fit your needs</p>
+        </div>
+        <div className="task-form-container">
+          <form className="create-task-form" onSubmit={submitForm}>
+            {step === 1 && (
+              <Step1
+                onStepComplete={handleStepComplete}
+                existingData={formData}
+              />
+            )}
+            {step === 2 && (
+              <Step2
+                taskers={taskers}
+                onStepComplete={handleStepComplete}
+                existingData={formData}
+              />
+            )}
+            {step === 3 && (
+              <Step3
+                onStepComplete={handleStepComplete}
+                existingData={formData}
+              />
+            )}
+            {step === 4 && (
+              <Step4
+                handleSubmit={submitForm}
+                onStepComplete={handleStepComplete}
+                hourlyRate={formData.hourlyRate}
+                location={formData.location}
+                taskDate={formData.task_date}
+                taskerName={formData.tasker_name}
+                trustAndSupportFee={formData.trustAndSupportFee}
+              />
+            )}
+          </form>
+        </div>
+      </>
       );
 }
 

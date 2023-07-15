@@ -14,7 +14,7 @@ export default function CreateReviewModal ({tasker_id}){
 
     return (
         <>
-            <button onClick={toggleModal}>
+            <button className="select-button" onClick={toggleModal}>
                 Leave a Review
             </button>
 

@@ -34,6 +34,10 @@
     display: grid;
     grid-template-columns: auto 1fr;
     margin-bottom: 15px;
+    border: 1px solid #b1b9c3;
+    background-color: white;
+    padding: 20px;
+    border-radius: 15px;
 }
 
 .tasker-image-container {
@@ -48,6 +52,7 @@
     height: 170px;
     border-radius: 50%;
     object-fit: cover;
+    padding-bottom: 10px;
 }
 
 .tasker-info-container {
@@ -62,13 +67,14 @@
 .select-button{
     background-color: #006b54;
     color:white;
-    border: none;
-    border-radius: 25px;
+    border: 1px solid #3d463d;
+    border-radius: 8px;
     padding: 10px 20px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    text-decoration: none;
 }
 
 .select-button:hover{
-    background-color:#00281c;
+    background-color:#043e2d;
 }
