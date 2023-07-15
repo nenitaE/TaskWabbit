@@ -27,18 +27,19 @@ function CreateTaskForm() {
     taskTypeId: taskTypeId,
   });
 
+  const [isMounted, setIsMounted] = useState(true);
+
   //Fetcha all Taskers
   useEffect(() => {
     const data = dispatch(getTaskers())
     // taskers.current = data || [];
   }, [dispatch]);
 
-  // useEffect(() => {
-  //   return () => {
-  //     // Cleanup function to cancel any pending tasks or subscriptions
-  //     taskers.current = [];
-  //   };
-  // }, []);
+  useEffect(() => {
+    return () => {
+      setIsMounted(false);
+    };
+  }, []);
 
 
   const taskers = Object.values(useSelector(state => state.taskers));
@@ -75,11 +76,13 @@ function CreateTaskForm() {
     }
     const data = await dispatch(createTask(taskData))
     // console.log("Create task Form in the component", data);
-    if (data) {
-      setErrors(data)
-    } else {
-      setStep(step + 1);
-      // console.log("Form submitted successfully");
+    if(isMounted){
+      if (data) {
+        setErrors(data)
+      } else {
+        setStep(step + 1);
+        // console.log("Form submitted successfully");
+      }
     }
   }
 
