@@ -114,8 +114,8 @@ const UpdateReview = ({reviewObj}) => {
 
                 <div id="afterFields"></div>
 
-                <div>
-                    <button type='submit'>Update</button>
+                <div id="updateDiv">
+                    <button className='updateBtn' type='submit'>Update</button>
                 </div>
             </form>
         </div>
