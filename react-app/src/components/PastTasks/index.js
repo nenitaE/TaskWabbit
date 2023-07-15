@@ -19,7 +19,16 @@ function PastTasksPage(){
     const tasks = useSelector((state) => state.tasks.tasks)
     const taskers = useSelector((state) => Object.values(state.taskers))
     const {setModalContent} = useModal();
-    const pastTasks = tasks && tasks.filter(task => new Date(task.task_date) < new Date()); //filter to past tasks to show only tasks with date < today
+
+    const today = new Date();
+    today.setHours(0,0,0,0)
+
+    const pastTasks = tasks && tasks.filter(task => {
+        const [year, month, day] = task.task_date.split("-");
+        const taskdate = new Date(year, month-1, day)
+        taskdate.setHours(0,0,0,0)
+        return taskdate < today
+    }); //filter to past tasks to show only tasks with date < today
 
 
     useEffect(() =>{
@@ -51,12 +60,21 @@ function PastTasksPage(){
             <div className="tasks-container">
                 {pastTasks && pastTasks.length > 0
                 ? pastTasks.map(task => {
-                    const taskDate = new Date(task.task_date);
-                    taskDate.setHours(0,0,0,0);
                     const currentDate = new Date();
                     currentDate.setHours(0,0,0,0); // set current time to 00:00:00
                     const uniqueKey = `${task.id}_`;
                     const tasker = taskers.find(tasker => tasker.id === task.tasker_id)
+
+                    //TO FORMAT DATES
+                    const [year, month, day] = task.task_date.split("-");
+                    const taskDate = new Date(year, month-1, day)
+                    const formattedDate = taskDate.toLocaleDateString('en-US', {
+                        weekday:'long',
+                        year:'numeric',
+                        month:'long',
+                        day:'numeric'
+                    })
+                    taskDate.setHours(0,0,0,0)
 
                     return (
                         <div key={uniqueKey} className="task-card">
@@ -81,14 +99,7 @@ function PastTasksPage(){
                             <div className="tasktitle-date-location">
                                 <p>Task Title: {task.title}</p>
                                 <i className="far fa-calendar" />
-                                <p>{
-                                    new Date(task.task_date).toLocaleDateString('en-US', {
-                                        weekday:'long',
-                                        year:'numeric',
-                                        month:'long',
-                                        day:'numeric'
-                                    })
-                                }</p>
+                                <p>{formattedDate}</p>
                                 <p>Location: {task.location}</p>
                             </div>
                             <div className="task-button-actions">

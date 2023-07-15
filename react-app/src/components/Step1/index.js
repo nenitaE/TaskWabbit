@@ -7,7 +7,7 @@ function Step1({onStepComplete, existingData}){
     const [description, setDescription] = useState(existingData.description || "");
     const [title, setTitle] = useState(existingData.title || "");
     const [errors, setErrors] = useState({})
-    const [inputValue, setInputValue] = useState(existingData.location || '');
+    const [inputValue, setInputValue]  = useState(existingData.location || '');
     const [suggestions, setSuggestions] = useState([]);
     const suggestionRef = useRef();
     // const [isInputSelected, setIsInputSelected] = useState(false);
@@ -63,7 +63,6 @@ function Step1({onStepComplete, existingData}){
                 value={inputValue}
                 onChange={(e) => {
                     setInputValue(e.target.value)
-                    // setIsInputSelected(false);
                     setShowSuggestions(true); // show suggestions when user types
                 }}
                 placeholder="Street Address"

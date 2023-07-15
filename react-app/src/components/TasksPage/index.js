@@ -5,7 +5,6 @@ import { getTasks } from "../../store/tasks";
 import DeleteTaskModal from "../DeleteTaskModal";
 import { useModal } from "../../context/Modal";
 import { useHistory } from "react-router-dom/cjs/react-router-dom";
-import CreateReviewModal from "../CreateReviewForm";
 import avatarimage from "../../images/default_avatar.png"
 import { getTaskers } from "../../store/taskers";
 import noTasksImage from "../../images/notasks.png"
@@ -25,8 +24,16 @@ function TasksPage(){
     const tasks = useSelector((state) => state.tasks.tasks)
     const taskers = useSelector((state) => Object.values(state.taskers))
     const {setModalContent} = useModal();
-    const curTasks = tasks && tasks.filter(task => new Date(task.task_date) >= new Date()); //filter current tasks to show only tasks with date >= today
 
+    const today = new Date();
+    today.setHours(0,0,0,0)
+
+    const curTasks = tasks && tasks.filter(task => {
+        const [year, month, day] = task.task_date.split("-");
+        const taskdate = new Date(year, month-1, day)
+        taskdate.setHours(0,0,0,0)
+        return taskdate >= today
+    }); //filter to past tasks to show only tasks with date < today
 
     useEffect(() =>{
         dispatch(getTasks())
@@ -56,13 +63,21 @@ function TasksPage(){
             <div className="tasks-container">
                 {curTasks && curTasks.length > 0
                 ? curTasks.map(task => {
-                    const taskDate = new Date(task.task_date);
-                    taskDate.setHours(0,0,0,0);
                     const currentDate = new Date();
                     currentDate.setHours(0,0,0,0); // set current time to 00:00:00
                     const uniqueKey = `${task.id}_`;
                     const tasker = taskers.find(tasker => tasker.id === task.tasker_id)
 
+                    //TO FORMAT DATES
+                    const [year, month, day] = task.task_date.split("-");
+                    const taskDate = new Date(year, month-1, day)
+                    const formattedDate = taskDate.toLocaleDateString('en-US', {
+                        weekday:'long',
+                        year:'numeric',
+                        month:'long',
+                        day:'numeric'
+                    })
+                    taskDate.setHours(0,0,0,0)
                     return (
                         <div key={uniqueKey} className="task-card">
                             <div className="task-type">
@@ -86,19 +101,12 @@ function TasksPage(){
                             <div className="tasktitle-date-location">
                                 <p>Task Title: {task.title}</p>
                                 <i className="far fa-calendar" />
-                                <p>{
-                                    new Date(task.task_date).toLocaleDateString('en-US', {
-                                        weekday:'long',
-                                        year:'numeric',
-                                        month:'long',
-                                        day:'numeric'
-                                    })
-                                }</p>
+                                <p>{formattedDate}</p>
+                                {/* <p>{task.task_date}</p> */}
                                 <p>Location: {task.location}</p>
                             </div>
                             <div className="task-button-actions">
                                 <button className="select-button" onClick={() => openDeleteModal(task.id)}>Delete Task</button>
-                                {taskDate <= currentDate && <CreateReviewModal tasker_id={task.tasker_id}/> }
                                 {taskDate >= currentDate && <NavLink className="select-button" to={`/tasks/${task.id}/edit`}>Edit Task</NavLink>}
                             </div>
                         </div>

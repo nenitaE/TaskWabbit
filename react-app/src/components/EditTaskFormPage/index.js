@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getTask, updateTask, clearCurrentTask } from "../../store/tasks";
 import { useHistory, useParams } from "react-router-dom";
@@ -15,7 +15,24 @@ function EditTaskFormPage(){
     // const [isPastDate, setIsPastDate] = useState(false);
     const [errors, setErrors] = useState({});
     const { id: loggedInUserId } = useSelector(state => state.session.user); // Fetch logged in user's ID
-    console.log(loggedInUserId, 'current logged in user')
+    const [inputValue, setInputValue] = useState('');
+    const [suggestions, setSuggestions] = useState([]);
+    const suggestionRef = useRef();
+    const [showSuggestions, setShowSuggestions] = useState(false);
+
+    const fetchSuggestions = async (input) => {
+      const response = await fetch(`/api/auth/autocomplete/${input}`);
+      const data = await response.json();
+      setSuggestions(data);
+    };
+
+    useEffect(() => {
+        if (inputValue) {
+          fetchSuggestions(inputValue);
+        } else {
+          setSuggestions([]);
+        }
+    }, [inputValue]);
 
     const validateForm = () => {
       const errors = {}
@@ -24,7 +41,6 @@ function EditTaskFormPage(){
       if(!location) errors.location = "A location is required";
       return errors
     }
-
 
     useEffect(() => {
         dispatch(getTask(taskId))
@@ -44,6 +60,7 @@ function EditTaskFormPage(){
             setTitle(task.title);
             setDescription(task.description);
             setLocation(task.location);
+            setInputValue(task.location);
         }
 
     }, [task]);
@@ -73,7 +90,7 @@ function EditTaskFormPage(){
         const taskData = {
             title,
             description,
-            location,
+            location: suggestionRef.current || location,
         }
 
         const finaltaskData = {
@@ -122,9 +139,31 @@ function EditTaskFormPage(){
             <h3>Location</h3>
             <input
               type="text"
-              value={location}
-              onChange={(e) => setLocation(e.target.value)}
+              value={inputValue}
+              onChange={(e) => {
+                setInputValue(e.target.value)
+                setShowSuggestions(true)
+              }
+              }
             />
+                <div className="location-suggestions">
+                {showSuggestions && suggestions.map((suggestion, index) => (
+                    <div
+                        key={index}
+                        onMouseDown={(e) => {
+                            e.preventDefault()
+                            // console.log('Clicked suggestion:', suggestion.description);
+                            setInputValue(suggestion.description);
+                            setLocation(inputValue);
+                            suggestionRef.current = suggestion.description;
+                            setSuggestions([]);
+                            setShowSuggestions(false); // hide suggestions when a suggestion is clicked
+                        }}w
+                    >
+                        {suggestion.description}
+                    </div>
+                ))}
+                </div>
           </label>
           {errors.location && <p>{errors.location}</p>}
           </div>

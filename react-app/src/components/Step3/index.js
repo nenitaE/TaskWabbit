@@ -16,10 +16,16 @@ function Step3({onStepComplete, existingData}){
       let today = new Date()
       today.setHours(0, 0, 0, 0);
 
-      let choosenDate = new Date(taskDate);
+      let [year, month, day] = taskDate.split("-");
+      let choosenDate = new Date(year, month-1, day);
       choosenDate.setHours(0, 0, 0, 0)
 
+      console.log(choosenDate, 'THE CHOOSEN DATE')
+      console.log(today, 'TODAY')
+
       if(choosenDate < today){
+        console.log(choosenDate, 'THE CHOOSEN DATE')
+        console.log(today, 'TODAY')
         return 'Cannot schedule task in the past'
       }
       return "";
