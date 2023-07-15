@@ -59,6 +59,7 @@ function Step1({onStepComplete, existingData}){
             <label>
                 <h2>You task Location</h2>
                 <input
+                className={errors.location && !inputValue ? 'error': ''}
                 type="text"
                 value={inputValue}
                 onChange={(e) => {
@@ -88,13 +89,14 @@ function Step1({onStepComplete, existingData}){
                 ))}
                 </div>
             </label>
-            {errors.location && <p>{errors.location}</p>}
+            {errors.location && <p className="error">{errors.location}</p>}
             </div>
 
             <div className="step1-section">
             <label>
                 <h2>Your task Title</h2>
                 <input
+                className={errors.title  && !title ? 'error': ''}
                 type="text"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
@@ -102,7 +104,7 @@ function Step1({onStepComplete, existingData}){
                 required
                 />
             </label>
-            {errors.title && <p>{errors.title}</p>}
+            {errors.title && <p className="error">{errors.title}</p>}
             </div>
 
             <div className="step1-section">
@@ -112,13 +114,14 @@ function Step1({onStepComplete, existingData}){
                 Start the conversation and tell your Tasker what you need done. This helps us show you only qualified and available Taskers for the job. Don't worry, you can edit this later.
                 </p>
                 <textarea
+                className={errors.description  && !description ? 'error': ''}
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 placeholder="Provide a summary of what you need done for your Tasker."
                 required
                 />
             </label>
-            {errors.description && <p>{errors.description}</p>}
+            {errors.description && <p className="error">{errors.description}</p>}
             </div>
             <button onClick={onNext}>See Taskers & Prices</button>
 

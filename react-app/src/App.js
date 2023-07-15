@@ -32,7 +32,7 @@ function App() {
   useEffect(() => {
     dispatch(authenticate()).then(() => setIsLoaded(true)).catch(() => setIsLoaded(false));
   }, [dispatch]);
-  console.log(isLoaded, "isLoaded")
+
   return (
     <div className="App">
       {isLoaded && !location.pathname.startsWith('/tasks/new') && <Navigation isLoaded={isLoaded} />}

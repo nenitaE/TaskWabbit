@@ -61,3 +61,9 @@
 .step1 .location-suggestions div:hover {
     background-color: lightgray;
 }
+
+.error{
+    color:#af0808;
+    border-color:#af0808 !important;
+    font-size: 0.8rem;
+}
