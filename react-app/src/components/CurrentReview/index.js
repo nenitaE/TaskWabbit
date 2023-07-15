@@ -80,8 +80,8 @@ const ReviewByLoggedIn = () => {
                             <div id="deleteButton">
                             <DeleteReview id={rev.id} />
                             </div>
-                            <div id="updateButton">
-                            <button onClick={
+                            <div id="update">
+                            <button className='updateButton' onClick={
                                 () => history.push(`/reviews/${rev.id}/edit`)
                             }>Update</button>
                             </div>

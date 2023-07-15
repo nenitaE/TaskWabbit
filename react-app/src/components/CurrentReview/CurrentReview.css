@@ -10,10 +10,12 @@
 
 #mainUserContent {
     display: grid;
-    border: solid white;
-    border-bottom-color: #006b54;
-    border-left-color: #006b54;
+    border: 1px solid;
+    border-radius: 2%;
+    /* border-bottom-color: #006b54;
+    border-left-color: #006b54; */
     margin: 1em;
+    padding: 2%;
 }
 
 #afterUser {
@@ -23,17 +25,19 @@
 .singleReview {
     display: grid;
     background-color: white;
-    border: solid white;
-    border-radius: 5%;
-    border-bottom-color: #006b54;
-    border-left-color: #006b54;
+    border: 1px solid;
+    border-radius: 2%;
+    /* border-bottom-color: #006b54;
+    border-left-color: #006b54; */
     /* justify-content: start; */
     justify-items: stretch;
     margin: 1em;
+    padding: 0.5em;
 }
 
 #revContent {
-    background-color: aqua;
+    /* background-color: aqua; */
+    padding: 2%;
 }
 
 #button {
@@ -41,11 +45,23 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-areas: "delete" "Update";
-    justify-content: end;
-    justify-items: end;
+    /* justify-content: end; */
+    /* justify-items: end; */
     width: fit-content;
+    /* align-items: end; */
+    padding: 2%;
 }
 
-#deleteButton {
-    color: aqua;
+.updateButton {
+    /* background-color: gray; */
+    cursor: pointer;
+}
+
+.updateButton:hover {
+    background-color: #006b54;
+    color: white;
+    transition-delay: 150ms;
+    transition-property: background-color, color;
+    /* color: rebeccapurple; */
+    /* border: 1px #006b54; */
 }
