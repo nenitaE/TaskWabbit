@@ -17,18 +17,18 @@
 }
 
 #navProfileBTTN {
-  color: #006b54; 
+  color: #006b54;
   background-color: transparent;
   border: none;
   size: lg;
 }
 .logoutBTTN-profile {
-  color: #006b54; 
+  color: #006b54;
   background-color: transparent;
   border: none;
 }
 .welcome-profile {
-  color: #006b54; 
+  color: #006b54;
   border-bottom: 2px;
 }
 
@@ -45,4 +45,8 @@
   border: 2px solid rgba(0, 0, 0, .75);
   border-radius: 5px;
   margin-left: 15px;
+}
+
+.navContainer{
+  background-color: white;
 }
