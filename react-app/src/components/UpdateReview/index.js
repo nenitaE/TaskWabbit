@@ -20,14 +20,15 @@ const Update = () => {
     useEffect(() => {
 
         dispatch(getRevById(id))
-        // console.log(id, 'idTest')
+        console.log(id, 'idTest')
     }, [dispatch, userSession])
 
     if(!review){
         return(
             <>
-            <p>loading...</p>
-            {/* {history.push('/')} */}
+            <p>Review</p>
+            <p>NOT FOUND</p>
+
             </>
         )
     }

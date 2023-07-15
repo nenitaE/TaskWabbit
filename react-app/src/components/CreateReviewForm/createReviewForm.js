@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { createNewReviewByUser, getReviewForLoggedIn } from "../../store/reviews";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom/cjs/react-router-dom";
+import "./CreateReviewForm.css"
 
 const CreateReviewForm = ({test}) => {
 
@@ -55,14 +56,18 @@ const CreateReviewForm = ({test}) => {
 
     return (
         <>
-        <h1>Write a Review</h1>
+        <div className="mainForm">
+            <h2>Write a Review</h2>
+
+            <div className="gapAfterTitle"></div>
+
             <form onSubmit={handleSubmit}>
                 <div>
-                    <h3>How was the service?</h3>
+                    <h4>How was the service?</h4>
                     <p>Please describe your experience</p>
                     <label>
                         <textarea
-                            id='description'
+                            id='descriptionCreate'
                             placeholder="maximum 100 characters"
                             required
                             value={description}
@@ -77,7 +82,7 @@ const CreateReviewForm = ({test}) => {
                     </label>
                 </div>
                 <div>
-                    <h3>Please leave a rating</h3>
+                    <h4>Please leave a rating</h4>
                     <label>
                         <input
                             id='rating'
@@ -96,10 +101,11 @@ const CreateReviewForm = ({test}) => {
                             }
                     </label>
                 </div>
-                <div>
-                    <button type="submit">Post Your Review</button>
+                <div className="buttonDiv">
+                    <button className='postBtn' type="submit">Post Your Review</button>
                 </div>
             </form>
+        </div>
         </>
     )
 }
