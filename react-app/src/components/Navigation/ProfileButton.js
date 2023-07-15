@@ -30,7 +30,7 @@ function ProfileButton({ user }) {
     if (!showMenu) return;
 
     const closeMenu = (e) => {
-      if (!ulRef.current.contains(e.target)) {
+      if (!ulRef.current?.contains(e.target)) {
         setShowMenu(false);
       }
     };
@@ -85,7 +85,7 @@ function ProfileButton({ user }) {
               <button className='logoutBTTN-profile'>Sign Up</button>
             </Link>
 
-            
+
           </>
         )}
       </ul>
