@@ -1,0 +1,10 @@
+.deleteBtn {
+    cursor: pointer;
+}
+
+.deleteBtn:hover {
+    background-color: #006b54;
+    color: white;
+    transition-delay: 150ms;
+    transition-property: background-color, color;
+}
