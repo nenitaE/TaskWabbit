@@ -17,7 +17,6 @@ import GetReview from "./components/UpdateReview/GetReviewById";
 import Update from "./components/UpdateReview";
 import ReviewsByTasker_id from "./components/GetReviewByTasker/GetReviewByTasker";
 import LoginSignup from "./components/LoginSignup/LoginSignup";
-import ShowSignUpForm from "./components/ShowSignUpForm";
 import TaskerProfilePage from "./components/TaskerProfilePage";
 import CreateTaskerTaskTypeForm from "./components/CreateTaskerTaskTypeForm";
 import NewUpdateTaskerTaskTypeForm from "./components/NewUpdateTaskerTaskTypeForm";
@@ -38,13 +37,13 @@ function App() {
           <Route exact path="/">
             <HomePage />
           </Route>
-          <Route exact path="/login" >
+          <Route exact path="/login/:taskTypeId?" >
             <LoginFormPage />
           </Route>
-          <Route exact path="/signup">
-            <ShowSignUpForm />
+          <Route exact path="/signup/:taskTypeId?">
+            <SignupFormPage />
           </Route>
-          <Route exact path="/loginSignup/:taskTypeId">
+          <Route exact path="/loginSignup/:taskTypeId?">
             <LoginSignup/>
           </Route>
           <Route exact path="/form">

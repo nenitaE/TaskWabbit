@@ -4,8 +4,7 @@ import { Redirect } from "react-router-dom";
 import { signUp } from "../../store/session";
 import './SignupForm.css';
 
-function SignupFormPage({ taskTypeId }) {
-  console.log(taskTypeId, "TASKTYPEID********************")
+function SignupFormPage() {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const [email, setEmail] = useState("");
@@ -26,7 +25,6 @@ function SignupFormPage({ taskTypeId }) {
     if (password === confirmPassword) {
         const data = await dispatch(signUp(username, email, password, 
           firstName, lastName, phone, location, isTasker));
-          <Redirect to={`/tasks/new/${taskTypeId}`} />;
         if (data) {
           setErrors(data)
         }
@@ -39,11 +37,28 @@ function SignupFormPage({ taskTypeId }) {
     <div className="signup-root">
         <div className="signup-container">
             <div className="signup-inner">
-                <div className="taskwabbit-title">taskWabbit</div>
-                    <form onSubmit={handleSubmit}>
-                        <ul>
-                          {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-                        </ul>
+                <div className="signup-taskwabbit-title">taskWabbit</div>
+                    <form className="signupForm" onSubmit={handleSubmit}>
+                      <span className="row-signup"> 
+                          <label>
+                            <input
+                              type="text"
+                              placeholder="First Name"
+                              value={firstName}
+                              onChange={(e) => setFirstName(e.target.value)}
+                              required
+                            />
+                          </label>
+                          <label>
+                            <input
+                              type="text"
+                              placeholder="Last Name"
+                              value={lastName}
+                              onChange={(e) => setLastName(e.target.value)}
+                              required
+                            />
+                          </label>
+                      </span> 
                         <label>
                           <input
                             type="text"
@@ -59,24 +74,6 @@ function SignupFormPage({ taskTypeId }) {
                             placeholder="Username"
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}
-                            required
-                          />
-                        </label>
-                        <label>
-                          <input
-                            type="text"
-                            placeholder="First Name"
-                            value={firstName}
-                            onChange={(e) => setFirstName(e.target.value)}
-                            required
-                          />
-                        </label>
-                        <label>
-                          <input
-                            type="text"
-                            placeholder="Last Name"
-                            value={lastName}
-                            onChange={(e) => setLastName(e.target.value)}
                             required
                           />
                         </label>
@@ -99,33 +96,43 @@ function SignupFormPage({ taskTypeId }) {
                             required
                           />
                         </label>
-                        <label>
-                          <input
-                            type="checkbox"
-                            value={true}
-                            onChange={(e) => setIsTasker(e.target.value)}
-                          />
-                          Sign me up as a Tasker
-                        </label>
-                        <label>
-                          <input
-                            type="password"
-                            placeholder="Password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            required
-                          />
-                        </label>
-                        <label>
-                          <input
-                            type="password"
-                            placeholder="Confirm Password"
-                            value={confirmPassword}
-                            onChange={(e) => setConfirmPassword(e.target.value)}
-                            required
-                          />
-                        </label>
-                        <button type="submit">Sign Up</button>
+                        <span className="row-signup">
+                            <label className="column-signup">
+                                <input
+                                    type="password"
+                                    placeholder="Password"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    required
+                                    />
+                            </label>
+                            <label className="column-signup">
+                                <input
+                                  type="password"
+                                  placeholder="Confirm Password"
+                                  value={confirmPassword}
+                                  onChange={(e) => setConfirmPassword(e.target.value)}
+                                  required
+                                />
+                            </label>
+                        </span>
+                            <span className="signup-isTasker">
+                              <input
+                                className="signup-isTaskerBox"
+                                type="checkbox"
+                                value={true}
+                                onChange={(e) => setIsTasker(e.target.value)}
+                              /> <span className="signupBox-text"> Sign me up as a Tasker</span>
+                            </span>
+                        {errors.length != 0 && (
+                          <ul>
+                            {errors.map((error, idx) => (
+                              <li className="signup-errors" key={idx}>{error}</li>
+                            ))}
+                          </ul>
+                        )}
+                        <p className="signup-agreement-text">By clicking below and creating an account, I agree to TaskWabbit’s <span className="signup-greenText">Terms of Service</span> and <span className="signup-greenText">Privacy Policy</span>.</p>
+                        <button className="signup-bttn2" type="submit">Create Account</button>
                       </form>
                     </div>
                 </div>

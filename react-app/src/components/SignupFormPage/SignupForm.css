@@ -9,7 +9,7 @@ html, body
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url("https://cdn.wisemove.co.za/image/blog/e191f4c2692ad6f4f51c8fc262505144.webp");
+    background-image: url("https://ipfs.io/ipfs/QmRSrrKztpa9ALGK5pVqE9Hsbqp7oBmtFfvUoiDDWg7iHT?filename=moving_cropped.webp");
     background-position: center center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -18,52 +18,112 @@ html, body
 }
 
 .signup-container {
-    height: 65%;
-    width: 37%;
     background-color: white;
     border-color: white;
     border-radius: 12px;
+    margin-top: 104px;
+    width: 440px;
+    max-width: 440px;
+    position: absolute;
 }
 
 .signup-inner {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 45px;
+    padding: 35px;
     gap: 15px;
-    width: 300px;
+    width: 350px;
 }
 
-.signup-inner input{
-    width: 200px;
-    height: 200%;
-    text-align: center;
+.signup-taskwabbit-title {
+    font-size: 60px;
+    color: rgb(10, 38, 22);
+}
+.signupForm label {
+    display: flex;
+    flex-direction: column;
+    /* gap: 10px; */
+    padding-bottom: 10px;
 }
 
-.signup-bttn {
+.signup-inner input {
+    align-content: stretch;
+    border-radius: 5px;
+    border-color:lightgray;
+    border-style: solid;
+    border-width: 1px;
+    height: 25px;
+    padding-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    letter-spacing: 1.25px;
+}
+
+.row-signup {
+    display: flex;
+    justify-content: space-between;
+}
+
+.coloumn-signup {
+    /* display: inline; */
+    /* width: 70%; */
+    /* display: flex; */
+    /* flex: shrink; */
+}
+
+
+
+.signup-isTaskerBox { 
+    display: inline;
+    /* align-items: flex-start; */
+}
+
+.signupBox-text {
+    color: #006b54;
+    align-content: center;
+    align-items: center;
+}
+
+.signup-bttn2 {
     color: white;
     background-color: #006b54;
     font-size: 17px;
     border: 1.5px solid #006b54;
     border-radius: 20px;
-    width: 300px;
-    /* width: 100%; */
-    height: 35px;
-}
-
-.login-bttn {
-    color: #006b54;
-    background-color: white;
-    font-size: 17px;
-    border: 1.5px solid #006b54;
-    border-radius: 20px;
-    width: 300px;
-    /* width: 100%; */
-    height: 35px;
-}
-
-.agreement-text {
+    text-decoration: none;
     text-align: center;
+    width: 340px;
+    height: 35px;
+}
+
+.signup-agreement-text {
+    text-align: left;
+    font-family: Arial, Helvetica, sans-serif;
+    letter-spacing: 1px;
+    font-weight: lighter;
     font-size: 12px;
-    padding: 15px 10px 0px 10px;
+    /* padding: 15px 10px 0px 10px; */
+}
+
+.signup-greenText {
+    color: #006b54;
+}
+.signup-errors{
+    color: red;
+    list-style-type: none;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: rgba(106,108,110, .75);
+}
+  
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: gray;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+    color: gray;
 }
