@@ -56,7 +56,7 @@ function Step2({ onStepComplete, taskers}){
     }, [dispatch])
 
     const tasks = useSelector(state => state.tasks.tasks)
-    console.log('THE TASKS', tasks)
+    // console.log('THE TASKS', tasks)
 
     const filteredTaskers = taskers.filter((tasker) => {
         // console.log('In the loop', tasker)
