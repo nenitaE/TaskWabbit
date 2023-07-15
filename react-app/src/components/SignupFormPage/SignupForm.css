@@ -80,9 +80,9 @@ html, body
 
 
 
-.signup-isTaskerBox { 
-    display: inline;
-    /* align-items: flex-start; */
+.signup-isTasker{
+    display: flex;
+    align-items: center;
 }
 
 .signupBox-text {
