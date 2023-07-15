@@ -30,7 +30,7 @@ function ProfileButton({ user }) {
     if (!showMenu) return;
 
     const closeMenu = (e) => {
-      if (!ulRef.current.contains(e.target)) {
+      if (!ulRef.current?.contains(e.target)) {
         setShowMenu(false);
       }
     };
@@ -81,13 +81,11 @@ function ProfileButton({ user }) {
             <Link to={`/login`}>
               <button className='logoutBTTN-profile'>Log in</button>
             </Link>
+            <Link to={`/signup`}>
+              <button className='logoutBTTN-profile'>Sign Up</button>
+            </Link>
 
-            <OpenModalButton
-              buttonText="Sign Up"
-              className="logoutBTTN-profile"
-              onItemClick={closeMenu}
-              modalComponent={<SignupFormModal />}
-            />
+
           </>
         )}
       </ul>

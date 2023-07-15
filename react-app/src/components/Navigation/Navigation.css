@@ -24,8 +24,9 @@
 }
 .logoutBTTN-profile {
   color: #006b54;
-  background-color: transparent;
-  border: none;
+  background-color: white;
+  border-color: #006b54;
+  padding: 5px;
 }
 .welcome-profile {
   color: #006b54;
