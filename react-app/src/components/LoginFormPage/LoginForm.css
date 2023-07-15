@@ -9,11 +9,7 @@ html, body
     display: flex;
     justify-content: center;
     align-items: center;
-<<<<<<< HEAD
     background-image: url("https://ipfs.io/ipfs/QmRSrrKztpa9ALGK5pVqE9Hsbqp7oBmtFfvUoiDDWg7iHT?filename=moving_cropped.webp");
-=======
-    background-image: url("https://cdn.wisemove.co.za/image/blog/e191f4c2692ad6f4f51c8fc262505144.webp");
->>>>>>> 37fe48c339142adf4cf3f53abab9debca393bd60
     background-position: center center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -64,8 +60,4 @@ html, body
 .taskwabbit-title-login {
     font-size: 50px;
     padding-bottom: 15px;
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 37fe48c339142adf4cf3f53abab9debca393bd60
