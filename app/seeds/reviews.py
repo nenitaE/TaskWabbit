@@ -23,7 +23,7 @@ def seed_reviews():
         tasker_id=3
     )
     review4 = Review(
-        description='Did not Arrived on time and was very professional and fast.',
+        description='Did not Arrive on time and was very professional and fast.',
         rating=3,
         user_id=1,
         tasker_id=2
