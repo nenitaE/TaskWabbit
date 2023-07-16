@@ -28,7 +28,7 @@ def seed_tasks():
     task3 = Task(
         taskTypeId=2,
         title='Help!!! Clean!!!',
-        description='tons of cleaning needed of a newly aquired house',
+        description='tons of cleaning needed of a newly acquired house',
         totalPrice=1056.65,
         location='California',
         task_date=date(2021, 6, 21),
@@ -50,7 +50,7 @@ def seed_tasks():
     task5 = Task(
         taskTypeId=4,
         title='Huge overgrown yard',
-        description='The last people who owned the house let the backyard go wild full removal of plants',
+        description='The last people who owned the house let the backyard go wild--Need full removal of plants',
         totalPrice=435.65,
         location='California',
         task_date=date(2023, 6, 21),
@@ -65,7 +65,7 @@ def seed_tasks():
         totalPrice=1233.89,
         location='California',
         task_date=date(2023, 6, 21),
-        user_id=3,
+        user_id=4,
         tasker_id=3
     )
     db.session.add(task1)

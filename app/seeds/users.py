@@ -10,7 +10,7 @@ def seed_users():
         username='demo',
         phone='1234567890',
         location='California',
-        email='demo@aa.io',
+        email='demo@aa.io',  
         isTasker=True,
         password='password'
     )
