@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getTaskerTaskTypes, fetchCreateTaskerTaskType } from '../../store/taskerProfile';
+import { getTaskTypes } from '../../store/taskTypes';
 import './TaskerTaskType.css';
 
 const TaskerTaskTypeForm = ({ taskerTaskType, formType}) => {
@@ -17,6 +18,7 @@ const TaskerTaskTypeForm = ({ taskerTaskType, formType}) => {
     const [hourlyRate, setHourlyRate] = useState("");
     const [rateError, setRateError] = useState('');
     const [taskType_id, setTaskTypeId] = useState(1);
+    const [errors, setErrors] = useState([]);
     const [hasSubmitted, setHasSubmitted] = useState(false);
     
     const dispatch = useDispatch();
@@ -24,13 +26,23 @@ const TaskerTaskTypeForm = ({ taskerTaskType, formType}) => {
 
     const updateHourlyRate = (e) => setHourlyRate(e.target.value);
     const updateTaskType_id = (e) => setTaskTypeId(e.target.value);
-      
+
+    //Fetch all TaskerTaskTypes
+    useEffect(() => {
+        const data = dispatch(getTaskerTaskTypes());
+        const taskTypeData = dispatch(getTaskTypes());
+        console.log("********DATA-taskerTaskTypes*********", data)  
+        console.log("********taskTypeDATA-taskerTaskTypes*********", taskTypeData)  
+    }, [dispatch]);
+
 
     const handleSubmit = async (e) => {
         // console.log("Inside Handle SUbmit...TaskerTaskTypeForm component>>>>>>>>>>>>>>")
     
         e.preventDefault();
         setHasSubmitted(true);
+        // Set hourlyRate errors
+
         const taskerTaskType = {
             hourlyRate,
             tasker_id,
@@ -38,8 +50,6 @@ const TaskerTaskTypeForm = ({ taskerTaskType, formType}) => {
         };
 
         
-        // Set hourlyRate errors
-
         if (hourlyRate.length <= 0){
             setRateError('Must enter an hourly rate in USD to update');
             hasErrors = true;
@@ -53,23 +63,34 @@ const TaskerTaskTypeForm = ({ taskerTaskType, formType}) => {
             setRateError('');
         }
         
-        
         // Disable form submission if errors are present
         if (hasErrors) {
             return;
         }
 
-        let newTaskerTaskType = await dispatch(fetchCreateTaskerTaskType(taskerTaskType));
-        console.log(newTaskerTaskType, "newTaskerTaskType details in TaskerTaskType component----AFTER dispatching CreateTaskerTaskType");
-
-        if (newTaskerTaskType) {
-            let taskertasktypeId = newTaskerTaskType.id;
+        // let newTaskerTaskType = await dispatch(fetchCreateTaskerTaskType(taskerTaskType));
+        // console.log(newTaskerTaskType, "newTaskerTaskType details in TaskerTaskType component----AFTER dispatching CreateTaskerTaskType");
+        // setErrors(newTaskerTaskType);
+        // if (newTaskerTaskType.errors) {
+        //     console.log(newTaskerTaskType.errors, "ERRRRRROOORRRRSSSS");  
+        // } else {
+        //     let taskertasktypeId = newTaskerTaskType.id;
             
-            history.push(`/taskerTaskTypes/current`);
-            dispatch(getTaskerTaskTypes(taskertasktypeId));
-        } else {
+        //     // history.push(`/taskerTaskTypes/current`);
+        //     dispatch(getTaskerTaskTypes(taskertasktypeId));
 
-        }     
+        // }   
+        const data = await dispatch(fetchCreateTaskerTaskType(taskerTaskType));
+        console.log(data, "DATAnewTaskerTaskType details in TaskerTaskType component----AFTER dispatching CreateTaskerTaskType");
+        if (data.id) {
+            setErrors(data);
+            console.log(data.errors, "ERRRRRROOORRRRSSSS");
+            let taskertasktypeId = data.id;
+            dispatch(getTaskerTaskTypes(taskertasktypeId));
+            history.push('/taskerTaskTypes/current')
+        } else {
+            alert('You are already signed up for this tasktype.  Please select a different one.')
+        }
     };
     
     if (!tasker_id) {
