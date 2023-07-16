@@ -78,6 +78,7 @@ function Step1({onStepComplete, existingData}){
                 className={errors.location && !inputValue ? 'error': ''}
                 type="text"
                 value={inputValue}
+                maxLength={100}
                 onChange={(e) => {
                     setInputValue(e.target.value)
                     setShowSuggestions(true); // show suggestions when user types
