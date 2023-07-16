@@ -1,3 +1,15 @@
+.form-step4-description{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+    border-top: 1px solid #b1b9c3;
+    border-bottom: 1px solid #b1b9c3;
+    background-color: white;
+    box-shadow: 0 2px 4px 0 rgba(134,145,157,0.2);
+}
+
+
 .main-container{
     display: grid;
     grid-template-columns: 1fr 2fr;

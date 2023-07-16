@@ -94,9 +94,6 @@ function CreateTaskForm() {
           </Link>
           <StepIndicator currentStep={step} onStepClick={handleStepClick}/>
         </div>
-        <div className="form-description">
-          <p>Tell us aout your task. We use these details to shows Taskers in your area who fit your needs</p>
-        </div>
         <div className="task-form-container">
           <form className="create-task-form" onSubmit={submitForm}>
             {step === 1 && (
