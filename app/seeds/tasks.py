@@ -64,10 +64,77 @@ def seed_tasks():
         description='My bathtub faucet burst and I cant stop it from coming out!!',
         totalPrice=72.54,
         location='California',
-        task_date=date(2023, 6, 21),
+        task_date=date(2023, 7, 1),
         user_id=4,
-        tasker_id=3
+        tasker_id=5
     )
+
+    task7 = Task(
+        taskTypeId=3,
+        title='Need help cleaning',
+        description='i am busy with moving and do not have time to clean',
+        totalPrice=102.54,
+        location='California',
+        task_date=date(2023, 7, 11),
+        user_id=7,
+        tasker_id=5
+    )
+
+    task8 = Task(
+        taskTypeId=9,
+        title='Pet Problems',
+        description='Need help with my pet, I am busy with work',
+        totalPrice=101.54,
+        location='California',
+        task_date=date(2023, 7, 9),
+        user_id=8,
+        tasker_id=5
+    )
+
+    task9 = Task(
+        taskTypeId=10,
+        title='Party time',
+        description='I need help making food for my coming party',
+        totalPrice=68.54,
+        location='California',
+        task_date=date(2023, 7, 8),
+        user_id=3,
+        tasker_id=5
+    )
+
+    task10 = Task(
+        taskTypeId=5,
+        title='water pipe leaking',
+        description='My bathtub faucet has been leaking water for few days',
+        totalPrice=72.54,
+        location='California',
+        task_date=date(2023, 7, 5),
+        user_id=10,
+        tasker_id=5
+    )
+
+    task11 = Task(
+        taskTypeId=9,
+        title='Pet Care',
+        description='I have not taken my dog out for walk, i have been busy with a project',
+        totalPrice=72.54,
+        location='California',
+        task_date=date(2023, 7, 10),
+        user_id=9,
+        tasker_id=6
+    )
+
+    task12 = Task(
+        taskTypeId=6,
+        title='Need help painting my bedroom',
+        description='My bedroom paint is coming off, and it has got many marks',
+        totalPrice=72.54,
+        location='California',
+        task_date=date(2023, 7, 11),
+        user_id=13,
+        tasker_id=6
+    )
+
     task13 = Task(
         taskTypeId=7,
         title='Refridgerator Heavy Lifting and Loading',
@@ -138,6 +205,12 @@ def seed_tasks():
     db.session.add(task4)
     db.session.add(task5)
     db.session.add(task6)
+    db.session.add(task7)
+    db.session.add(task8)
+    db.session.add(task9)
+    db.session.add(task10)
+    db.session.add(task11)
+    db.session.add(task12)
     db.session.add(task13)
     db.session.add(task14)
     db.session.add(task15)
