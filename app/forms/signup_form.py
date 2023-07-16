@@ -39,13 +39,20 @@ def phone_exists(form, field):
     if user:
         raise ValidationError('Phonenumber is already in use.')
 
+def phone_is_number(form, field):
+    # Checking if phone is number
+    if int(field.data):
+        phone = field.data
+    else:
+        raise ValidationError('Phonenumber must be a 10 digit number.')
+
 
 class SignUpForm(FlaskForm):
     username = StringField(
         'username', validators=[DataRequired(), username_exists])
     firstName = StringField('firstName', validators=[DataRequired()])
     lastName = StringField('lastName', validators=[DataRequired()])
-    phone = StringField('phone', validators=[DataRequired(), phone_exists])
+    phone = StringField('phone', validators=[DataRequired(), phone_exists, phone_is_number])
     location = StringField('location', validators=[DataRequired()])
     isTasker = BooleanField('isTasker')
     email = StringField('email', validators=[DataRequired(), user_exists, email_is_valid])
