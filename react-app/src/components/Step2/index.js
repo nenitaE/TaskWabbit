@@ -149,11 +149,12 @@ function Step2({ onStepComplete, taskers}){
                                         <h2>{tasker.firstName}</h2>
                                         <h2>${tasker.taskerTaskTypes.find(taskType => taskType.taskType_id == taskTypeId).hourlyRate}/hr</h2>
                                     </div>
-                                    {avgRating > 0 && <p>Overall Rating</p>}
-                                    {avgRating > 0 && <p>{avgRating.toFixed(1)} ★</p>}
+                                    {/* {avgRating > 0 && <p>Overall Rating</p>} */}
+                                    <div className='review-info'>
+                                        {avgRating > 0 && <p>★ {avgRating.toFixed(1)} </p>}
+                                        <p>({`${tasker.reviews.length} review${tasker.reviews.length > 1 ? 's' : ''}`})</p>
+                                    </div>
 
-                                    <p>({tasker.reviews.length} General reviews)</p>
-                                    <p></p>
                                     <p>
                                     {countTaskerTasks(tasker.id, taskTypeId) === 0
                                         ? `${tasker.firstName} hasn't completed ${tasktypename} yet, be her first client`
