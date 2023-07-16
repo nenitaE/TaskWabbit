@@ -36,8 +36,18 @@ function EditTaskFormPage(){
 
     const validateForm = () => {
       const errors = {}
-      if(!title) errors.title = "Title is required";
-      if(!description) errors.description = "A description is required";
+      if (!title){
+        errors.title = "Title is required";
+      }else if(title.length >= 100) {
+        errors.title = "Title is too long, limit 50 characters"
+      }
+
+      if (!description) {
+        errors.description = "Description is required"
+      } else if(description.length >= 500){
+        errors.description = "Description is too long, limit 500 characters"
+      }
+
       if(!location) errors.location = "A location is required";
       return errors
     }
@@ -158,7 +168,7 @@ function EditTaskFormPage(){
                             suggestionRef.current = suggestion.description;
                             setSuggestions([]);
                             setShowSuggestions(false); // hide suggestions when a suggestion is clicked
-                        }}w
+                        }}
                     >
                         {suggestion.description}
                     </div>
