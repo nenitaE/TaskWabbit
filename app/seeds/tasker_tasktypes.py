@@ -67,7 +67,82 @@ def seed_TaskerTaskTypes():
     taskersTaskType13 = TaskerTaskType(
         hourlyRate = 60,
         tasker_id = 3,
+        taskType_id = 10
+    )
+    taskersTaskType14 = TaskerTaskType(
+        hourlyRate = 89,
+        tasker_id = 5,
+        taskType_id = 9
+    )
+    taskersTaskType15 = TaskerTaskType(
+        hourlyRate = 56,
+        tasker_id = 5,
+        taskType_id = 10
+    )
+    taskersTaskType16 = TaskerTaskType(
+        hourlyRate = 90,
+        tasker_id = 5,
         taskType_id = 3
+    )
+    taskersTaskType17 = TaskerTaskType(
+        hourlyRate = 60,
+        tasker_id = 5,
+        taskType_id = 5
+    )
+    taskersTaskType18 = TaskerTaskType(
+        hourlyRate = 60,
+        tasker_id = 6,
+        taskType_id = 9
+    )
+    taskersTaskType19 = TaskerTaskType(
+        hourlyRate = 60,
+        tasker_id = 6,
+        taskType_id = 10
+    )
+    taskersTaskType20 = TaskerTaskType(
+        hourlyRate = 60,
+        tasker_id = 6,
+        taskType_id = 6
+    )
+    taskersTaskType21 = TaskerTaskType(
+        hourlyRate = 60,
+        tasker_id = 6,
+        taskType_id = 7
+    )
+    taskersTaskType22 = TaskerTaskType(
+        hourlyRate = 60,
+        tasker_id = 9,
+        taskType_id = 7
+    )
+    taskersTaskType23 = TaskerTaskType(
+        hourlyRate = 60,
+        tasker_id = 9,
+        taskType_id = 8
+    )
+    taskersTaskType24 = TaskerTaskType(
+        hourlyRate = 60,
+        tasker_id = 9,
+        taskType_id = 3
+    )
+    taskersTaskType25 = TaskerTaskType(
+        hourlyRate = 60,
+        tasker_id = 11,
+        taskType_id = 2
+    )
+    taskersTaskType26 = TaskerTaskType(
+        hourlyRate = 60,
+        tasker_id = 11,
+        taskType_id = 6
+    )
+    taskersTaskType27 = TaskerTaskType(
+        hourlyRate = 60,
+        tasker_id = 12,
+        taskType_id = 7
+    )
+    taskersTaskType28 = TaskerTaskType(
+        hourlyRate = 60,
+        tasker_id = 12,
+        taskType_id = 8
     )
 
     db.session.add(taskersTaskType1)
@@ -83,6 +158,21 @@ def seed_TaskerTaskTypes():
     db.session.add(taskersTaskType11)
     db.session.add(taskersTaskType12)
     db.session.add(taskersTaskType13)
+    db.session.add(taskersTaskType14)
+    db.session.add(taskersTaskType15)
+    db.session.add(taskersTaskType16)
+    db.session.add(taskersTaskType17)
+    db.session.add(taskersTaskType18)
+    db.session.add(taskersTaskType19)
+    db.session.add(taskersTaskType20)
+    db.session.add(taskersTaskType21)
+    db.session.add(taskersTaskType22)
+    db.session.add(taskersTaskType23)
+    db.session.add(taskersTaskType24)
+    db.session.add(taskersTaskType25)
+    db.session.add(taskersTaskType26)
+    db.session.add(taskersTaskType27)
+    db.session.add(taskersTaskType28)
     db.session.commit()
 
 

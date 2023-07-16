@@ -20,10 +20,10 @@ def seed_reviews():
         description='Tasker arrived late but did complete the task as requested.',
         rating=3,
         user_id=2,
-        tasker_id=2
+        tasker_id=3
     )
     review4 = Review(
-        description='Did not Arrived on time and was very professional and fast.',
+        description='Did not Arrive on time and was very professional and fast.',
         rating=3,
         user_id=1,
         tasker_id=2
@@ -37,14 +37,14 @@ def seed_reviews():
     review6 = Review(
         description='Great job! and fast.',
         rating=5,
-        user_id=4,
-        tasker_id=1
+        user_id=3,
+        tasker_id=5
     )
     review7 = Review(
         description='Arrived on time and was very professional and fast.',
         rating=5,
-        user_id=2,
-        tasker_id=3
+        user_id=9,
+        tasker_id=6
     )
     review8 = Review(
         description='Great job!.',
@@ -55,8 +55,8 @@ def seed_reviews():
     review9 = Review(
         description='Arrived late and was not professional and fast.',
         rating=3,
-        user_id=3,
-        tasker_id=2
+        user_id=13,
+        tasker_id=6
     )
 
 
