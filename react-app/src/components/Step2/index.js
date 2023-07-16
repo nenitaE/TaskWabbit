@@ -143,7 +143,7 @@ function Step2({ onStepComplete, taskers}){
                                         <h2>{tasker.taskerTaskTypes.find(taskType => taskType.taskType_id == taskTypeId).hourlyRate}/hr</h2>
                                     </div>
 
-                                    <p>{avgRating.toFixed(1)} ★</p>
+                                    {avgRating > 0 && <p>{avgRating.toFixed(1)} ★</p>}
 
                                     <p>({tasker.reviews.length} reviews)</p>
                                     <p></p>
