@@ -43,34 +43,39 @@ const HomePage = () => {
     const recommendedTaskers = taskers.filter(tasker => user ? tasker.id != user.id : true).slice(0, 3);
     return (
         <main className='homepage-main-container'>
-            <div className='book-task-spacing'>
-                <h1>
-                    {user ? 'Book Your Next Task' : 'Get help. Gain happiness'}
-                </h1>
-                <input
-                    className='search-filter'
-                    type="text"
-                    placeholder={user ? "Choose your task type e.g. Cleaning" : 'I need help with...'}
-                    value={filterText}
-                    onChange={updateFilterText}
-                />
-                {validationErrors.length != 0 && (
-                    <ul>
-                        {validationErrors.map((error, idx) => (
-                            <li className="signup-errors" key={idx}>
-                                {error}
-                            </li>
-                        ))}
-                    </ul>
-                )}
-                <div className='task-type-buttons'>
-                    {filteredTaskTypes.map((taskType) => (
-                        <NavLink key={taskType.id} className='task-type-button-link' to={user ? `/tasks/new/${parseInt(taskType.id)}` : `/loginSignup/${parseInt(taskType.id)}`}>
-                            <div className='task-type-button'>
-                                {taskType.type}
-                            </div>
-                        </NavLink>
-                    ))}
+
+            <div className='background'>
+                <div className='book-task-spacing-container'>
+                    <div className='book-task-spacing'>
+                        <div className='moto'>
+                            {user ? 'Book Your Next Task' : 'Get help. Gain happiness'}
+                        </div>
+                        <input
+                            className='search-filter'
+                            type="text"
+                            placeholder={user ? "Choose your task type e.g. Cleaning" : 'I need help with...'}
+                            value={filterText}
+                            onChange={updateFilterText}
+                        />
+                        {validationErrors.length != 0 && (
+                            <ul>
+                                {validationErrors.map((error, idx) => (
+                                    <li className="signup-errors" key={idx}>
+                                        {error}
+                                    </li>
+                                ))}
+                            </ul>
+                        )}
+                        <div className='task-type-buttons'>
+                            {filteredTaskTypes.map((taskType) => (
+                                <NavLink key={taskType.id} className='task-type-button-link' to={user ? `/tasks/new/${parseInt(taskType.id)}` : `/loginSignup/${parseInt(taskType.id)}`}>
+                                    <div className='task-type-button'>
+                                        {taskType.type}
+                                    </div>
+                                </NavLink>
+                            ))}
+                        </div>
+                    </div>
                 </div>
             </div>
             <div className="center-spacing">
