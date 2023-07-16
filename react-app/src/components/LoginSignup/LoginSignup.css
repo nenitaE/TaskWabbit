@@ -51,7 +51,7 @@ html, body
 }
 
 button.signup-button:hover {
-    background-color: rgb(0, 72, 57);   
+    background-color: rgb(0, 72, 57);
 }
 
 .login-button {
@@ -64,6 +64,10 @@ button.signup-button:hover {
     text-align: center;
     width: 300px;
     height: 35px;
+}
+
+button.login-button:hover {
+    background-color: rgb(240, 240, 240);
 }
 
 .agreement-section {
