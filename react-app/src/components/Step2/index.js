@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { authenticate } from '../../store/session';
-import { useParams } from "react-router-dom";
+import { useParams, NavLink } from "react-router-dom";
 import { getTasks } from '../../store/tasks';
 
 
@@ -104,6 +104,11 @@ function Step2({ onStepComplete, taskers}){
 
 
     return (
+        <>
+        <div className="form-step2-description">
+            <i class="fa-solid fa-user-group"></i>
+          <p className='step2-text'>Filter and sort to find your Tasker. Then view their availability to request your date.</p>
+        </div>
         <div className='main_container'>
             <div className='range-slider'>
                 <input
@@ -118,7 +123,7 @@ function Step2({ onStepComplete, taskers}){
 
             <div className='taskers'>
             {/* <label> */}
-                Choose your tasker:
+                {/* Choose your tasker: */}
                     {filteredTaskers.length > 0 ? (
                         filteredTaskers
                         .filter(tasker => {
@@ -135,12 +140,14 @@ function Step2({ onStepComplete, taskers}){
                             <div key={tasker.id} className='tasker-card'>
                                 <div className='tasker-image-container'>
                                     <img src="https://placehold.it/100" alt='Profile' className='profile-image'></img>
+
+                                    <a className="reviews-link"  activeClassName="is-active" href={`/taskers/${tasker.id}/reviews`} target="_blank" rel="noopener noreferrer">View Reviews</a>
                                     <button className='select-button' onClick={() => handleSelectTasker(tasker.id)}>Select and continue</button>
                                 </div>
                                 <div className='tasker-info-container'>
                                     <div className='header'>
                                         <h2>{tasker.firstName}</h2>
-                                        <h2>{tasker.taskerTaskTypes.find(taskType => taskType.taskType_id == taskTypeId).hourlyRate}/hr</h2>
+                                        <h2>${tasker.taskerTaskTypes.find(taskType => taskType.taskType_id == taskTypeId).hourlyRate}/hr</h2>
                                     </div>
 
                                     {avgRating > 0 && <p>{avgRating.toFixed(1)} ★</p>}
@@ -165,6 +172,7 @@ function Step2({ onStepComplete, taskers}){
                 Back
             </button>
         </div>
+    </>
     )
 }
 
