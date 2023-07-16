@@ -63,7 +63,7 @@ function LoginFormModal() {
           className="demoButton" 
           onClick={handleDemoLogin}>
               Click here to fill demo user data
-            </button>
+        </button>
       </form>
     </>
   );
