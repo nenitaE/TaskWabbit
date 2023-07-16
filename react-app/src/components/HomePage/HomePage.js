@@ -60,7 +60,7 @@ const HomePage = () => {
                         {validationErrors.length != 0 && (
                             <ul>
                                 {validationErrors.map((error, idx) => (
-                                    <li className="signup-errors" key={idx}>
+                                    <li className="search-error" key={idx}>
                                         {error}
                                     </li>
                                 ))}
