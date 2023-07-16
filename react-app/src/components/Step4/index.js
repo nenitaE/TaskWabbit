@@ -87,11 +87,13 @@ function Step4({ handleSubmit, hourlyRate, location, taskDate, taskerName, trust
                     <p>Total Price {totalRate.toFixed(2)}/hr</p>
                 </div>
             </div>
-            {taskDate ?
-              <button  className='select-button' type="button" onClick={handleCofirm}>Confirm & Chat</button>
-              :
-              <p>Please go to Step 3 and add a date.</p>
-            }
+            <div className='button-container'>
+                {taskDate ?
+                <button  className='select-button' type="button" onClick={handleCofirm}>Confirm & Chat</button>
+                :
+                <p>Please go to Step 3 and add a date.</p>
+                }
+            </div>
 
         </div>
         </>
