@@ -28,6 +28,11 @@ function LoginFormPage() {
       }
     }
   };
+  const handleDemoLogin = async (e) => {
+    e.preventDefault();
+    setEmail('demo@aa.io');
+    setPassword('password');
+  };
 
   return (
     <div className="login-root">
@@ -62,6 +67,11 @@ function LoginFormPage() {
                 required
               />
             </label>
+            <button 
+              className="demoButton" 
+              onClick={handleDemoLogin}>
+                  Click here to fill demo user data
+            </button>
             <button className="login-button2" type="submit">Log In</button>
           </form>
         </div>
