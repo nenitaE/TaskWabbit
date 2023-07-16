@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getTask, updateTask, clearCurrentTask } from "../../store/tasks";
 import { useHistory, useParams } from "react-router-dom";
+import "./EditTaskForm.css"
 
 function EditTaskFormPage(){
     const dispatch = useDispatch();
@@ -117,8 +118,8 @@ function EditTaskFormPage(){
     }
     return (
       <div className="task-form-container">
-        <div className="form-description">
-          <p>Here you can edit your task so your tasker has the most updated information</p>
+        <div className="form-edit-description">
+          <p>Here you can edit your task so your tasker has the most updated information.</p>
         </div>
         <form className="create-task-form"onSubmit={handleSubmit}>
           <div className="step1">
@@ -150,6 +151,7 @@ function EditTaskFormPage(){
             <input
               type="text"
               value={inputValue}
+              maxLength={100}
               onChange={(e) => {
                 setInputValue(e.target.value)
                 setShowSuggestions(true)
