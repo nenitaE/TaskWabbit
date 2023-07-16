@@ -25,6 +25,20 @@ function Step2({ onStepComplete, taskers}){
     });
     const [maxHourlyRate, setMaxHourlyRate] = useState(highestHourlyRate);
 
+    const taskstypesobj = {
+        1:"General Mounting",
+        2: "Minor Home Repairs",
+        3: 'Cleaning',
+        4: "Yard Work",
+        5: "Plumbing Help",
+        6: "Indoor Painting",
+        7: "Heavy Lifting and Loading",
+        8: "Waiting in Line",
+        9: "Pet Sitting",
+        10: "Cooking/Baking"
+    }
+
+    let tasktypename = taskstypesobj[taskTypeId]
 
     const handleSelectTasker= (taskerId) => {
         const selectedTasker = filteredTaskers.find(tasker => tasker.id === taskerId);
@@ -111,7 +125,13 @@ function Step2({ onStepComplete, taskers}){
                             const hourlyRate = Number(tasker.taskerTaskTypes.find(taskType => taskType.taskType_id == taskTypeId).hourlyRate);
                             return hourlyRate <= maxHourlyRate;
                         })
-                        .map((tasker) => (
+                        .map((tasker) => {
+                            const avgRating = tasker.reviews.length
+                            ? tasker.reviews.reduce((total, review) => total + review.rating, 0) /
+                                tasker.reviews.length
+                            : 0;
+
+                            return (
                             <div key={tasker.id} className='tasker-card'>
                                 <div className='tasker-image-container'>
                                     <img src="https://placehold.it/100" alt='Profile' className='profile-image'></img>
@@ -123,12 +143,19 @@ function Step2({ onStepComplete, taskers}){
                                         <h2>{tasker.taskerTaskTypes.find(taskType => taskType.taskType_id == taskTypeId).hourlyRate}/hr</h2>
                                     </div>
 
+                                    {avgRating > 0 && <p>{avgRating.toFixed(1)} ★</p>}
+
                                     <p>({tasker.reviews.length} reviews)</p>
-                                    <p>Tasks done: {countTaskerTasks(tasker.id, taskTypeId)}</p>
+                                    <p></p>
+                                    <p>
+                                    {countTaskerTasks(tasker.id, taskTypeId) === 0
+                                        ? `${tasker.firstName} hasn't completed ${tasktypename} yet, be her first client`
+                                        : `${countTaskerTasks(tasker.id, taskTypeId)} ${tasktypename} task${countTaskerTasks(tasker.id, taskTypeId) > 1 ? 's' : ''}`}
+                                    </p>
                                     <p>{tasker.reviews[0] ? tasker.reviews[0].description : 'No reviews'}</p>
                                 </div>
-                            </div>
-                        ))
+                            </div>)
+                        })
                     ) : (
                         <p>No taskers available</p>
                     )}
