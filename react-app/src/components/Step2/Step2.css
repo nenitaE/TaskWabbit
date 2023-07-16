@@ -117,3 +117,15 @@
 .reviews-link.is-active {
     color: black;
 }
+
+.review-info{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.review-info p {
+  margin: 0;
+  padding: 0;
+  line-height: 1.2;
+}
