@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { authenticate } from '../../store/session';
-import { useParams } from "react-router-dom";
+import { useParams, NavLink } from "react-router-dom";
 import { getTasks } from '../../store/tasks';
 
 
@@ -25,6 +25,20 @@ function Step2({ onStepComplete, taskers}){
     });
     const [maxHourlyRate, setMaxHourlyRate] = useState(highestHourlyRate);
 
+    const taskstypesobj = {
+        1:"General Mounting",
+        2: "Minor Home Repairs",
+        3: 'Cleaning',
+        4: "Yard Work",
+        5: "Plumbing Help",
+        6: "Indoor Painting",
+        7: "Heavy Lifting and Loading",
+        8: "Waiting in Line",
+        9: "Pet Sitting",
+        10: "Cooking/Baking"
+    }
+
+    let tasktypename = taskstypesobj[taskTypeId]
 
     const handleSelectTasker= (taskerId) => {
         const selectedTasker = filteredTaskers.find(tasker => tasker.id === taskerId);
@@ -90,6 +104,11 @@ function Step2({ onStepComplete, taskers}){
 
 
     return (
+        <>
+        <div className="form-step2-description">
+            <i class="fa-solid fa-user-group"></i>
+          <p className='step2-text'>Filter and sort to find your Tasker. Then view their availability to request your date.</p>
+        </div>
         <div className='main_container'>
             <div className='range-slider'>
                 <input
@@ -104,31 +123,51 @@ function Step2({ onStepComplete, taskers}){
 
             <div className='taskers'>
             {/* <label> */}
-                Choose your tasker:
+                {/* Choose your tasker: */}
                     {filteredTaskers.length > 0 ? (
                         filteredTaskers
                         .filter(tasker => {
                             const hourlyRate = Number(tasker.taskerTaskTypes.find(taskType => taskType.taskType_id == taskTypeId).hourlyRate);
                             return hourlyRate <= maxHourlyRate;
                         })
-                        .map((tasker) => (
+                        .map((tasker) => {
+                            const avgRating = tasker.reviews.length
+                            ? tasker.reviews.reduce((total, review) => total + review.rating, 0) /
+                                tasker.reviews.length
+                            : 0;
+
+                            return (
                             <div key={tasker.id} className='tasker-card'>
                                 <div className='tasker-image-container'>
                                     <img src="https://placehold.it/100" alt='Profile' className='profile-image'></img>
+
+                                    <a className="reviews-link"  activeClassName="is-active" href={`/taskers/${tasker.id}/reviews`} target="_blank" rel="noopener noreferrer">View Reviews</a>
                                     <button className='select-button' onClick={() => handleSelectTasker(tasker.id)}>Select and continue</button>
                                 </div>
                                 <div className='tasker-info-container'>
                                     <div className='header'>
                                         <h2>{tasker.firstName}</h2>
-                                        <h2>{tasker.taskerTaskTypes.find(taskType => taskType.taskType_id == taskTypeId).hourlyRate}/hr</h2>
+                                        <h2>${tasker.taskerTaskTypes.find(taskType => taskType.taskType_id == taskTypeId).hourlyRate}/hr</h2>
+                                    </div>
+                                    {/* {avgRating > 0 && <p>Overall Rating</p>} */}
+                                    <div className='review-info'>
+                                        {avgRating > 0 && <p>★ {avgRating.toFixed(1)} </p>}
+                                        <p>({`${tasker.reviews.length} review${tasker.reviews.length > 1 ? 's' : ''}`})</p>
                                     </div>
 
-                                    <p>({tasker.reviews.length} reviews)</p>
-                                    <p>Tasks done: {countTaskerTasks(tasker.id, taskTypeId)}</p>
-                                    <p>{tasker.reviews[0] ? tasker.reviews[0].description : 'No reviews'}</p>
+                                    <p>
+                                    {countTaskerTasks(tasker.id, taskTypeId) === 0
+                                        ? `${tasker.firstName} hasn't completed ${tasktypename} yet, be her first client`
+                                        : `${countTaskerTasks(tasker.id, taskTypeId)} ${tasktypename} task${countTaskerTasks(tasker.id, taskTypeId) > 1 ? 's' : ''}`}
+                                    </p>
+                                    {
+                                        countTaskerTasks(tasker.id, taskTypeId) !== 0 && (
+                                        <p>{tasker.reviews[0] ? tasker.reviews[0].description : 'No reviews'}</p>
+                                        )
+                                    }
                                 </div>
-                            </div>
-                        ))
+                            </div>)
+                        })
                     ) : (
                         <p>No taskers available</p>
                     )}
@@ -138,6 +177,7 @@ function Step2({ onStepComplete, taskers}){
                 Back
             </button>
         </div>
+    </>
     )
 }
 

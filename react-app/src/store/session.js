@@ -101,7 +101,7 @@ export const signUp = (username, email, password, firstName,
 			return data.errors;
 		}
 	} else {
-		return ["An error occurred. Please try again."];
+		return ["An error occurred. Please make sure phone is a number."];
 	}
 };
 

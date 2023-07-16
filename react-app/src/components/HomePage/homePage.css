@@ -4,16 +4,45 @@
     align-items: center;
 }
 
+
+.background {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    height: 500px;
+    background-size: cover;
+    /* background-repeat: no-repeat; */
+    background-image: url("https://ipfs.io/ipfs/QmNzNZoK1YknDxBmgvcTbwkXnVA1Ds4nWTQMbf8QVXCMbt?filename=splashPhoto4.png");
+}
+
+.book-task-spacing-container {
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    justify-content: baseline;
+}
+
+.moto {
+    background-color: white;
+    border: 1.5px solid #006b54;
+    border-radius: 7px;
+    padding: 10px;
+    font-size: 25px;
+}
+
 .book-task-spacing {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    /* padding-left: 80px;
-    padding-right: 80px; */
     gap: 15.5px;
     width: 800px;
+    height: 500px;
 }
+
+
 
 .center-spacing {
     height: 80px;
@@ -32,6 +61,7 @@
     flex-wrap: wrap;
     align-content: flex-start;
     gap: 15.5px;
+
 }
 
 .task-type-button {
@@ -39,6 +69,7 @@
     border: 1.5px solid #006b54;
     border-radius: 7px;
     padding: 10px;
+    background-color: rgb(246, 250, 253);
 }
 
 .task-type-button:hover {
@@ -59,6 +90,7 @@
 
 .taskers-recommended-container {
     width: 800px;
+    padding-bottom: 50px;
 }
 
 .popular-in-area {
@@ -76,6 +108,7 @@
     align-items: center;
     border: 1.5px solid grey;
     border-radius: 2px;
+
 }
 
 .tasker-recommended-details {
@@ -98,4 +131,13 @@
     flex-direction: column;
     gap: 10px;
     padding: 13px;
+}
+
+.search-error {
+    color: red;
+    list-style-type: none;
+    border: black;
+    background-color: white;
+    padding: 4px;
+    border-radius: 10px;
 }

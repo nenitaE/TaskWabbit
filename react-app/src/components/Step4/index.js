@@ -52,6 +52,11 @@ function Step4({ handleSubmit, hourlyRate, location, taskDate, taskerName, trust
 
 
     return (
+        <>
+        <div className="form-step4-description">
+            <i class="fa-solid fa-list"></i>
+          <p className='step2-text'>You`re almost done! We just need a few more details to connect you with your Tasker.</p>
+        </div>
         <div className='main-container'>
             <div className='payment-method'>
                 <h2>Add Payment Method</h2>
@@ -82,13 +87,16 @@ function Step4({ handleSubmit, hourlyRate, location, taskDate, taskerName, trust
                     <p>Total Price {totalRate.toFixed(2)}/hr</p>
                 </div>
             </div>
-            {taskDate ?
-              <button  className='select-button' type="button" onClick={handleCofirm}>Confirm & Chat</button>
-              :
-              <p>Please go to Step 3 and add a date.</p>
-            }
+            <div className='button-container'>
+                {taskDate ?
+                <button  className='select-button' type="button" onClick={handleCofirm}>Confirm & Chat</button>
+                :
+                <p>Please go to Step 3 and add a date.</p>
+                }
+            </div>
 
         </div>
+        </>
     )
 }
 

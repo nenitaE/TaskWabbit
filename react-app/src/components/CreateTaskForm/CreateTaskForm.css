@@ -1,21 +1,11 @@
 .task-form-container{
     max-width: 100%;
     /* margin: auto; */
-    padding: 40px;
+    /* padding: 40px; */
     /* box-shadow: 0px 0px 10px rgba(0,0,0,0.1); */
     background-color: #f9fafb;
 }
 
-.form-description{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 10px;
-    border-top: 1px solid #b1b9c3;
-    border-bottom: 1px solid #b1b9c3;
-    background-color: white;
-
-}
 
 .logo-step-indicator {
     display: flex;

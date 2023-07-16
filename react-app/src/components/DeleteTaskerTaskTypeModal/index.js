@@ -21,13 +21,13 @@ const DeleteTaskerTaskTypeModal = ({ taskerTaskTypeId }) => {
     
 
     return (
-        <div className='deleteTTBox'>
-            <h2>Confirm Delete</h2>
+        <div className='modal-container'>
+            <h2 className="deletetext">Confirm Delete</h2>
             <h3>Are you sure you want to delete this task-type?</h3>
-            <button onClick={(handleDelete)}>
+            <button className="modal-button delete-button" onClick={(handleDelete)}>
                 {'Yes (Delete TaskType)'}
             </button>
-            <button onClick={closeModal}>
+            <button className="modal-button keep-button" onClick={closeModal}>
                 {'No (Keep TaskType)'}
             </button>
         </div>

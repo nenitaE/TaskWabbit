@@ -40,12 +40,23 @@ function Step1({onStepComplete, existingData}){
     const validate = () => {
         const newErrors = {};
         if (!inputValue) newErrors.location = "Location is required";
-        if (!description) newErrors.description = "Description is required";
-        if (!title) newErrors.title = "Title is required";
+
+        if (!description) {
+            newErrors.description = "Description is required"
+        } else if(description.length >= 500){
+            newErrors.description = "Description is too long, limit 500 characters"
+        }
+
+        if (!title){
+            newErrors.title = "Title is required";
+        }else if(title.length >= 100) {
+            newErrors.title = "Title is too long, limit 50 characters"
+        }
         return newErrors;
-    }
+        }
 
     const onNext = (e) => {
+        e.preventDefault()
         const result = validate();
         if (Object.keys(result).length > 0){
             setErrors(result)
@@ -54,10 +65,15 @@ function Step1({onStepComplete, existingData}){
         handleNext();
     }
     return (
+        <>
+        <div className="form-step1-description">
+        <i class="fa-regular fa-pen-to-square"></i>
+          <p className='step2-text'> Tell us about your task. We use these details to show Taskers in your area who fit your needs.</p>
+        </div>
         <div className="step1">
             <div className="step1-section">
             <label>
-                <h2>You task Location</h2>
+                <h2>Your task Location</h2>
                 <input
                 className={errors.location && !inputValue ? 'error': ''}
                 type="text"
@@ -127,6 +143,7 @@ function Step1({onStepComplete, existingData}){
 
 
         </div>
+        </>
     )
 }
 
