@@ -14,15 +14,16 @@ const HomePage = () => {
     const [filterText, setFilterText] = useState('');
     const [taskTypeId, setTaskTypeId] = useState('');
 
+
     const user = useSelector(state => state.session.user)
     const taskTypes = useSelector(state => state.taskTypes);
     const taskers = Object.values(useSelector(state => state.taskers));
     const taskTypesById = {}
     taskTypes.forEach(taskType => { taskTypesById[taskType.id] = taskType })
 
-    console.log(taskTypesById)
     const filteredTaskTypes = taskTypes.filter(taskType => taskType.type.toLowerCase().startsWith(filterText.toLowerCase()));
-
+    const validationErrors = []
+    if (filteredTaskTypes.length == 0) validationErrors.push("Sorry, no results were found. Check your spelling or try searching for something else.");
 
 
     const updateFilterText = (e) => setFilterText(e.target.value);
@@ -53,6 +54,15 @@ const HomePage = () => {
                     value={filterText}
                     onChange={updateFilterText}
                 />
+                {validationErrors.length != 0 && (
+                    <ul>
+                        {validationErrors.map((error, idx) => (
+                            <li className="signup-errors" key={idx}>
+                                {error}
+                            </li>
+                        ))}
+                    </ul>
+                )}
                 <div className='task-type-buttons'>
                     {filteredTaskTypes.map((taskType) => (
                         <NavLink key={taskType.id} className='task-type-button-link' to={user ? `/tasks/new/${parseInt(taskType.id)}` : `/loginSignup/${parseInt(taskType.id)}`}>
