@@ -44,6 +44,25 @@ html, body
     padding-left: 10px;
 }
 
+.demoButton {
+    color: #006b54;
+    background-color: white;
+    font-size: 17px;
+    border: 1.5px solid #006b54;
+    border-radius: 20px;
+    text-decoration: none;
+    text-align: center;
+    justify-content: center;
+    width: 298px;
+    height: 35px;
+    margin-top: 10px;
+}
+
+.demoButton:active {
+    background-color:#006b54;
+    color: white;
+}
+
 .login-button2 {
     color: white;
     background-color: #006b54;
@@ -57,7 +76,12 @@ html, body
     margin-top: 10px;
 }
 
+button.login-button2:hover {
+    background-color: rgb(0, 72, 57);   
+}
+
 .taskwabbit-title-login {
     font-size: 50px;
     padding-bottom: 15px;
+    color: rgb(10, 38, 22);
 }
