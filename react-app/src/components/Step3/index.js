@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from "react";
 import { useModal } from '../../context/Modal';
+import "./Step3.css"
 
 function Step3({onStepComplete, existingData}){
 
@@ -60,9 +61,9 @@ function Step3({onStepComplete, existingData}){
     if (isMounted) {
         setClickOutsideModal(() => {});
         setModalContent(
-        <div>
+        <div className='datemodal-container'>
           <label>
-            Choose the date for your task:
+           Choose your task date:
             <input
               type="date"
               value={taskDate}
