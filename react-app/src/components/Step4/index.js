@@ -52,6 +52,11 @@ function Step4({ handleSubmit, hourlyRate, location, taskDate, taskerName, trust
 
 
     return (
+        <>
+        <div className="form-step4-description">
+            <i class="fa-solid fa-list"></i>
+          <p className='step2-text'>You`re almost done! We just need a few more details to connect you with your Tasker.</p>
+        </div>
         <div className='main-container'>
             <div className='payment-method'>
                 <h2>Add Payment Method</h2>
@@ -89,6 +94,7 @@ function Step4({ handleSubmit, hourlyRate, location, taskDate, taskerName, trust
             }
 
         </div>
+        </>
     )
 }
 

@@ -65,6 +65,11 @@ function Step1({onStepComplete, existingData}){
         handleNext();
     }
     return (
+        <>
+        <div className="form-step1-description">
+        <i class="fa-regular fa-pen-to-square"></i>
+          <p className='step2-text'> Tell us aout your task. We use these details to shows Taskers in your area who fit your needs.</p>
+        </div>
         <div className="step1">
             <div className="step1-section">
             <label>
@@ -138,6 +143,7 @@ function Step1({onStepComplete, existingData}){
 
 
         </div>
+        </>
     )
 }
 
