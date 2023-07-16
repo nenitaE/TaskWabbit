@@ -34,8 +34,8 @@ const ReviewsByTasker_id = () => {
             <p>...loading</p>
         )
     }
-    console.log(tasker, 'tasker data')
-    console.log(tasker[0], 'testing')
+    // console.log(tasker, 'tasker data')
+    // console.log(tasker[0], 'testing')
 
     let avg = 0
     let numReview = 0
@@ -45,7 +45,21 @@ const ReviewsByTasker_id = () => {
         avg = avg+ review.rating
     })
 
-    console.log(avg, numReview, 'test')
+    // console.log(avg, numReview, 'test')
+
+    const taskstypesobj = {
+        1:"General Mounting",
+        2: "Minor Home Repairs",
+        3: 'Cleaning',
+        4: "Yard Work",
+        5: "Plumbing Help",
+        6: "Indoor Painting",
+        7: "Heavy Lifting and Loading",
+        8: "Waiting in Line",
+        9: "Pet Sitting",
+        10: "Cooking/Baking"
+    }
+
 
     return (
         <>
@@ -53,8 +67,9 @@ const ReviewsByTasker_id = () => {
             <div>
             <h2>Tasker Detail</h2>
                 <p>Name: {tasker[0].lastName}, {tasker[0].firstName}</p>
+                {/* <p>Hourly Rate: ${tasker[0].taskerTaskTypes.find(taskType => taskType.taskType_id === YOUR_TASK_TYPE_ID).hourlyRate}/hr</p> */}
                 <p>Member Since: {new Date(tasker[0].createdAt).toDateString()}</p>
-                <p>Average Rating: {avg/numReview}</p>
+                <p>{(avg/numReview).toFixed(1)} ★</p>
             </div>
             <div>
                 {list.map(rev => (

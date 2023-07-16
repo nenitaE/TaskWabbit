@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { authenticate } from '../../store/session';
-import { useParams } from "react-router-dom";
+import { useParams, NavLink } from "react-router-dom";
 import { getTasks } from '../../store/tasks';
 
 
@@ -135,6 +135,8 @@ function Step2({ onStepComplete, taskers}){
                             <div key={tasker.id} className='tasker-card'>
                                 <div className='tasker-image-container'>
                                     <img src="https://placehold.it/100" alt='Profile' className='profile-image'></img>
+
+                                    <a className="task-link" href={`/taskers/${tasker.id}/reviews`} target="_blank" rel="noopener noreferrer">View Reviews</a>
                                     <button className='select-button' onClick={() => handleSelectTasker(tasker.id)}>Select and continue</button>
                                 </div>
                                 <div className='tasker-info-container'>
