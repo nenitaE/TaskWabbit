@@ -58,7 +58,7 @@ const UpdateReview = ({reviewObj}) => {
 
             <form onSubmit={handleSubmit} id="form">
                 <div>
-                    <h4>How was the servie?</h4>
+                    <h4>How was the service?</h4>
                     <p>Please describe your experience.</p>
                     <label>
                         <div>
