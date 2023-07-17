@@ -135,3 +135,14 @@
   padding: 0;
   line-height: 1.2;
 }
+
+.price-slider{
+    padding: 10px;
+}
+
+.tasks-type-done{
+    color: rgb(43, 76, 50);
+    display:flex;
+    align-items: baseline;
+    gap: 10px
+}
