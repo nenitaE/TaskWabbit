@@ -106,7 +106,7 @@ function Step2({ onStepComplete, taskers}){
     return (
         <>
         <div className="form-step2-description">
-            <i class="fa-solid fa-user-group"></i>
+            <i className="fa-solid fa-user-group"></i>
           <p className='step2-text'>Filter and sort to find your Tasker. Then view their availability to request your date.</p>
         </div>
         <div className='main_container'>
