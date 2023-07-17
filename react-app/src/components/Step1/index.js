@@ -3,15 +3,16 @@ import './Step1.css';
 
 
 function Step1({onStepComplete, existingData}){
-    const [location, setLocation] = useState(existingData.location || "");
+    const [location, setLocation] = useState("");
     const [description, setDescription] = useState(existingData.description || "");
     const [title, setTitle] = useState(existingData.title || "");
     const [errors, setErrors] = useState({})
     const [inputValue, setInputValue]  = useState(existingData.location || '');
     const [suggestions, setSuggestions] = useState([]);
-    const suggestionRef = useRef();
+    // const suggestionRef = useRef();
     // const [isInputSelected, setIsInputSelected] = useState(false);
     const [showSuggestions, setShowSuggestions] = useState(false);
+
 
 
     const fetchSuggestions = async (input) => {
@@ -33,13 +34,12 @@ function Step1({onStepComplete, existingData}){
 
     const handleNext = () => {
         // When step is complete, we pass the data back to parent
-        const locationValue = suggestionRef.current || location;
-        onStepComplete({ location: locationValue, description, title });
+        onStepComplete({ location, description, title });
       };
 
     const validate = () => {
         const newErrors = {};
-        if (!inputValue) newErrors.location = "Location is required";
+        if (!location) newErrors.location = "Location is required";
 
         if (!description) {
             newErrors.description = "Description is required"
@@ -62,6 +62,10 @@ function Step1({onStepComplete, existingData}){
             setErrors(result)
             return
         }
+        if (!suggestions.some(suggestion => suggestion.description === location)) {
+            setErrors({...result, location: "Please select a valid location from the suggestions."});
+            return;
+        }
         handleNext();
     }
     return (
@@ -81,6 +85,7 @@ function Step1({onStepComplete, existingData}){
                 maxLength={100}
                 onChange={(e) => {
                     setInputValue(e.target.value)
+                    setLocation(e.target.value);
                     setShowSuggestions(true); // show suggestions when user types
                 }}
                 placeholder="Street Address"
@@ -92,13 +97,18 @@ function Step1({onStepComplete, existingData}){
                         key={index}
                         onMouseDown={(e) => {
                             e.preventDefault()
-                            // console.log('Clicked suggestion:', suggestion.description);
                             setInputValue(suggestion.description);
-                            setLocation(inputValue);
-                            // setIsInputSelected(true); //// Set isInputSelected to true when a suggestion is clicked
-                            suggestionRef.current = suggestion.description;
+                            setLocation(suggestion.description);
                             setSuggestions([]);
                             setShowSuggestions(false); // hide suggestions when a suggestion is clicked
+                            // clear the location error if any
+                            if (errors.location) {
+                                setErrors(prevErrors => {
+                                    const newErrors = {...prevErrors};
+                                    delete newErrors.location;
+                                    return newErrors;
+                                });
+                            }
                         }}
                     >
                         {suggestion.description}
