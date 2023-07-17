@@ -25,6 +25,14 @@ const ReviewByLoggedIn = () => {
         dispatch(getTaskers())
     }, [dispatch, user])
 
+    if (!Object.values(taskers).length){
+        return (
+            <div>
+                <p>loading...</p>
+            </div>
+        )
+    }
+
     if (!reviewList){
         return (
             <div>
@@ -33,13 +41,6 @@ const ReviewByLoggedIn = () => {
         )
     }
 
-    if (!taskers){
-        return (
-            <div>
-                <p>loading...</p>
-            </div>
-        )
-    }
 
     let tasker_id;
 
