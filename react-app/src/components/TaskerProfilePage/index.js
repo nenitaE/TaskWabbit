@@ -69,29 +69,31 @@ function TaskerProfilePage() {
                                     <span> </span>
                                 <div>
                                     <span className='deleteTTBtn'>
-                                        <button onClick={() => openDeleteTaskerTaskTypeModal(currTaskerTaskType.id)}>Delete Tasktype</button>
+                                        <button className="tasktype-button" onClick={() => openDeleteTaskerTaskTypeModal(currTaskerTaskType.id)}>Delete Tasktype</button>
                                     </span>
                                     <span> </span>
                                     <span  className='editTTBtn'>
                                         {/* {<NavLink to={`/taskerTaskTypes/${currTaskerTaskType.id}/edit`}>Edit Tasktype</NavLink>} */}
 
                                         { <a href={`/taskerTaskTypes/${currTaskerTaskType.id}/edit`}>
-                                        <button>Edit Tasktype</button>
+                                        <button className="tasktype-button">Edit Tasktype</button>
                                         </a> }
                                     </span>
                                 </div>
                             </div>
                         ))}
-                    </div>
-                        {!user || (
-                            <div  className='create-new-tasktype'>
-                                <a href="/taskerTaskTypes/new">
-                                    <button>
-                                        <h3> Add a New Tasktype To Your Profile </h3>
-                                    </button>
-                                </a>
-                            </div>)}
-                
+                        <div className="create-new-tasktype-container">
+                            {!user || (
+                                <div  className='create-new-tasktype'>
+                                    <a href="/taskerTaskTypes/new">
+                                        <button className="create-new-tasktypeBttn">
+                                            <h3> Add a New Tasktype To Your Profile </h3>
+                                        </button>
+                                    </a>
+                                </div>
+                            )}
+                        </div>
+                    </div>        
             </div>
         </div>)
 }
