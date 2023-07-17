@@ -53,8 +53,8 @@ function PastTasksPage(){
         <div className="task-main-container">
             <div className="link-container">
             {/* <h1>Past Tasks</h1> */}
-                <NavLink className="task-link" activeClassName="is-active"  to="/tasks/current">Current Tasks</NavLink>
-                <NavLink className="task-link" activeClassName="is-active"  to="/tasks/past">Past Tasks</NavLink>
+                <NavLink className="task-link" activeclassname="is-active"  to="/tasks/current">Current Tasks</NavLink>
+                <NavLink className="task-link" activeclassname="is-active"  to="/tasks/past">Past Tasks</NavLink>
             </div>
             <div  className="spacer"></div>
             <div className="tasks-container">

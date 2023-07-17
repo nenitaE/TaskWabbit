@@ -106,7 +106,7 @@ function Step2({ onStepComplete, taskers}){
     return (
         <>
         <div className="form-step2-description">
-            <i class="fa-solid fa-user-group"></i>
+            <i className="fa-solid fa-user-group"></i>
           <p className='step2-text'>Filter and sort to find your Tasker. Then view their availability to request your date.</p>
         </div>
         <div className='main_container'>
@@ -141,7 +141,7 @@ function Step2({ onStepComplete, taskers}){
                                 <div className='tasker-image-container'>
                                     <img src="https://placehold.it/100" alt='Profile' className='profile-image'></img>
 
-                                    <a className="reviews-link"  activeClassName="is-active" href={`/taskers/${tasker.id}/reviews`} target="_blank" rel="noopener noreferrer">View Reviews</a>
+                                    <a className="reviews-link"  activeclassname="is-active" href={`/taskers/${tasker.id}/reviews`} target="_blank" rel="noopener noreferrer">View Reviews</a>
                                     <button className='select-button' onClick={() => handleSelectTasker(tasker.id)}>Select and continue</button>
                                 </div>
                                 <div className='tasker-info-container'>
