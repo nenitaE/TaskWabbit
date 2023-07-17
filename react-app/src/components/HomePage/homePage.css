@@ -6,15 +6,16 @@
 
 
 .background {
+    position:relative;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around;
+    justify-content: center;
     width: 100%;
     height: 500px;
     background-size: cover;
     /* background-repeat: no-repeat; */
-    background-image: url("https://ipfs.io/ipfs/QmNzNZoK1YknDxBmgvcTbwkXnVA1Ds4nWTQMbf8QVXCMbt?filename=splashPhoto4.png");
+    background-image: url("https://i.imgur.com/OWkYXbU.jpeg");
 }
 
 .book-task-spacing-container {
@@ -26,10 +27,17 @@
 
 .moto {
     background-color: white;
-    border: 1.5px solid #006b54;
-    border-radius: 7px;
     padding: 10px;
-    font-size: 25px;
+    font-size: 40px;
+    gap: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.book-task-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 4px;
 }
 
 .book-task-spacing {
@@ -38,11 +46,9 @@
     align-items: center;
     justify-content: center;
     gap: 15.5px;
-    width: 800px;
+    width: 700px;
     height: 500px;
 }
-
-
 
 .center-spacing {
     height: 80px;
@@ -53,7 +59,24 @@
 
 .search-filter {
     height: 34px;
+    width: 90%;
+    border-radius: 4px;
+    border: 1px solid #b1b9c3;
+    padding-left:40px;
+}
+
+.search-input{
+    position:relative;
     width: 100%;
+    /* transform: translateY(-50%); */
+}
+.search-input i{
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+    color: #b1b9c3;
 }
 
 .task-type-buttons {
@@ -61,6 +84,7 @@
     flex-wrap: wrap;
     align-content: flex-start;
     gap: 15.5px;
+    margin-top: 20px;
 
 }
 
@@ -91,6 +115,9 @@
 .taskers-recommended-container {
     width: 800px;
     padding-bottom: 50px;
+    margin-top: -100px;
+    position: relative;
+    z-index: 2;
 }
 
 .popular-in-area {
