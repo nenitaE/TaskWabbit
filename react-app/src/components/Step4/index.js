@@ -59,7 +59,7 @@ function Step4({ handleSubmit, hourlyRate, location, taskDate, taskerName, trust
         </div>
         <div className='main-container'>
             <div className='payment-method'>
-                <h2>Add Payment Method</h2>
+                <h2 className='payment-text'>Payment Method</h2>
                 <div className='card-input-container'>
                     <label>
                         <input
@@ -76,15 +76,33 @@ function Step4({ handleSubmit, hourlyRate, location, taskDate, taskerName, trust
 
             <div className='taskdetails'>
                 <div className='general-taskdetails'>
-                    <p>{`Tasker Name: ${taskerName}`}</p>
+                    <p>{`${taskerName}`}</p>
+                    <div className='date-icon'>
+                    <i class="fa-regular fa-calendar"></i>
                     <p>{`Date: ${taskDate}`}</p>
+                    </div>
+                    <div className='location-icon'>
+                    <i class="fa-solid fa-location-dot"></i>
                     <p>{`Location: ${location}`}</p>
+                    </div>
                 </div>
                 <div className='price-details'>
-                    <h4>Price Details</h4>
-                    <p>Hourly Rate {Number(hourlyRate)}/hr</p>
-                    <p>Trust and Support Fee {parseFloat(trustAndSupportFee).toFixed(2)}/hr</p>
-                    <p>Total Price {totalRate.toFixed(2)}/hr</p>
+                    <div className='price-icon'>
+                        <i class="fa-solid fa-tag"></i>
+                        <h4>Price Details</h4>
+                    </div>
+                    <div className='price-item'>
+                        <p>Hourly Rate </p>
+                        <p>{Number(hourlyRate)}/hr</p>
+                    </div>
+                    <div className='price-item'>
+                        <p>Trust and Support Fee</p>
+                        <p>{parseFloat(trustAndSupportFee).toFixed(2)}/hr</p>
+                    </div>
+                    <div className='price-item'>
+                        <p>Total Price </p>
+                        <p>{totalRate.toFixed(2)}/hr</p>
+                    </div>
                 </div>
             </div>
             <div className='button-container'>
