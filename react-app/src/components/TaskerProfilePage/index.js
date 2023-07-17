@@ -5,7 +5,7 @@ import { getTaskerTaskTypes } from "../../store/taskerProfile";
 import { getTaskTypes } from "../../store/taskTypes";
 import DeleteTaskerTaskTypeModal from "../DeleteTaskerTaskTypeModal";
 import { useModal } from "../../context/Modal";
-import taskTypesImages from "../../imageData/taskTypes";
+// import taskTypesImages from "../../imageData/taskTypes";
 import './TaskerProfile.css';
 
 
@@ -43,13 +43,13 @@ function TaskerProfilePage() {
     }
 
     
-    const taskTypeImageById = {};
-    //grab each tasktypes id and pass it in as the key with imageData as the value
-    taskTypesImages.forEach(tasktypeImage => {
-        taskTypeImageById[tasktypeImage.id] = tasktypeImage
-    })
+    // const taskTypeImageById = {};
+    // //grab each tasktype id and pass it in as the key with imageData as the value
+    // taskTypesImages.forEach(tasktypeImage => {
+    //     taskTypeImageById[tasktypeImage.id] = tasktypeImage
+    // })
 
-    let taskTypeImage
+    
 
 
 
@@ -64,7 +64,7 @@ function TaskerProfilePage() {
                     <div className="TTcontainer">
                         {isLoaded && currTaskerTaskTypes.map((currTaskerTaskType) => (
                             <div className="individualTTcontainer" key={currTaskerTaskType.id}>
-                                <img src={taskTypeImageById[currTaskerTaskType.taskType_id].url} alt="taskTypeImage" width="100" height="100" className="tasktype-image"/>
+                                {/* <img src={taskTypeImageById[currTaskerTaskType.taskType_id].url} alt="taskTypeImage" width="100" height="100" className="tasktype-image"/> */}
                                 <p className="taskTypeName">{taskTypesById[currTaskerTaskType.taskType_id].type} <span className="basicSentence">at an hourly rate of</span><span> ${currTaskerTaskType.hourlyRate}</span></p>
                                     <span> </span>
                                 <div>
