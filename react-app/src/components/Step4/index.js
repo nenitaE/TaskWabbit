@@ -59,7 +59,7 @@ function Step4({ handleSubmit, hourlyRate, location, taskDate, taskerName, trust
         </div>
         <div className='main-container'>
             <div className='payment-method'>
-                <h2 className='payment-text'>Payment Method</h2>
+                <h2 className='payment-text.'>Payment Method</h2>
                 <div className='card-input-container'>
                     <label>
                         <input

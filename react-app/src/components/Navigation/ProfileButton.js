@@ -51,6 +51,7 @@ function ProfileButton({ user }) {
 
   return (
     <>
+    <div className="profileButtonContainer">
       <button id="navProfileBTTN" onClick={openMenu}>
 
         <i className="fas fa-user-circle fa-lg" />
@@ -60,19 +61,19 @@ function ProfileButton({ user }) {
           <>
             <li className="welcome-profile">Welcome {user.username}.</li>
             {/* <li>{user.email}</li> */}
-            <li>
+            <li className="link-home">
               <NavLink className='text-link' to="/tasks/current">My Tasks</NavLink>
             </li>
             {sessionUser?.isTasker && (
-              <li>
+              <li className="link-home">
                 <NavLink className='text-link' to="/taskerTaskTypes/current">Tasker Profile</NavLink>
               </li>
             )}
-            <li>
+            <li className="link-home">
               <NavLink className='text-link' to="/reviews/currentUser"
               >My Reviews</NavLink>
             </li>
-            <li>
+            <li className="link-home">
               <button className="logoutBTTN-profile" onClick={handleLogout}>Log Out</button>
             </li>
           </>
@@ -89,6 +90,7 @@ function ProfileButton({ user }) {
           </>
         )}
       </ul>
+      </div>
     </>
   );
 }

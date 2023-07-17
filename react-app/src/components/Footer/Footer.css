@@ -20,10 +20,16 @@
 
 .social-links a{
     text-decoration: none;
+    padding: 4px;
 }
 
 .followus{
     color: #B1B9C3;
+}
+
+a:visited{
+    color: white;
+    outline: none;
 }
 
 .footer-title {
