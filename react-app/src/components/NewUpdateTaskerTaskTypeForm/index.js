@@ -104,10 +104,10 @@ function NewUpdateTaskerTaskTypeForm() {
 
 
     return (
-      <div className='a'>
+      <div className='update-tasktype-container'>
        
-          <form className ='b' onSubmit={handleSubmit} >      
-                      <h3>Use this form to edit the hourly rate for: .</h3>              
+          <form className ='step1' onSubmit={handleSubmit} >      
+                      <h3 className="form-edit-description">Use This Form To Edit Your Hourly Rate</h3>              
                       {/* <h3>Use this form to edit the hourly rate for: <span className="descriptionTT">{taskTypeDescription}.</span></h3>               */}
                               <div className='d'>
                                   <label htmlFor='hourlyRate'>Enter an hourly rate in US dollars: </label>

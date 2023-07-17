@@ -84,7 +84,7 @@ const TaskerTaskTypeForm = ({ taskerTaskType, formType}) => {
         console.log(data, "DATAnewTaskerTaskType details in TaskerTaskType component----AFTER dispatching CreateTaskerTaskType");
         if (data.id) {
             setErrors(data);
-            console.log(data.errors, "ERRRRRROOORRRRSSSS");
+            // console.log(data.errors, "ERRRRRROOORRRRSSSS");
             let taskertasktypeId = data.id;
             dispatch(getTaskerTaskTypes(taskertasktypeId));
             history.push('/taskerTaskTypes/current')
@@ -116,6 +116,7 @@ const TaskerTaskTypeForm = ({ taskerTaskType, formType}) => {
                                                                 <label htmlFor='taskType_id' className='field-error'>Task type is required</label>
                                                             )}
                                                             <select 
+                                                                className='createTTdropdown'
                                                                 id="taskType_id" 
                                                                 onChange={updateTaskType_id} 
                                                                 required={true}

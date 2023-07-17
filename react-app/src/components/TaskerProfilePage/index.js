@@ -5,6 +5,7 @@ import { getTaskerTaskTypes } from "../../store/taskerProfile";
 import { getTaskTypes } from "../../store/taskTypes";
 import DeleteTaskerTaskTypeModal from "../DeleteTaskerTaskTypeModal";
 import { useModal } from "../../context/Modal";
+// import taskTypesImages from "../../imageData/taskTypes";
 import './TaskerProfile.css';
 
 
@@ -41,6 +42,20 @@ function TaskerProfilePage() {
         setModalContent(<DeleteTaskerTaskTypeModal taskerTaskTypeId={taskerTaskTypeId}/>)
     }
 
+    
+    // const taskTypeImageById = {};
+    // //grab each tasktype id and pass it in as the key with imageData as the value
+    // taskTypesImages.forEach(tasktypeImage => {
+    //     taskTypeImageById[tasktypeImage.id] = tasktypeImage
+    // })
+
+    
+
+
+
+
+
+
     return (
         <div>
             <div id="taskerProfContainer">
@@ -49,32 +64,36 @@ function TaskerProfilePage() {
                     <div className="TTcontainer">
                         {isLoaded && currTaskerTaskTypes.map((currTaskerTaskType) => (
                             <div className="individualTTcontainer" key={currTaskerTaskType.id}>
-                                <h3 className="taskTypeName">{taskTypesById[currTaskerTaskType.taskType_id].type} <span className="basicSentence">at an hourly rate of</span><span> ${currTaskerTaskType.hourlyRate}</span>
+                                {/* <img src={taskTypeImageById[currTaskerTaskType.taskType_id].url} alt="taskTypeImage" width="100" height="100" className="tasktype-image"/> */}
+                                <p className="taskTypeName">{taskTypesById[currTaskerTaskType.taskType_id].type} <span className="basicSentence">at an hourly rate of</span><span> ${currTaskerTaskType.hourlyRate}</span></p>
                                     <span> </span>
+                                <div>
                                     <span className='deleteTTBtn'>
-                                        <button onClick={() => openDeleteTaskerTaskTypeModal(currTaskerTaskType.id)}>Delete Tasktype</button>
+                                        <button className="tasktype-button" onClick={() => openDeleteTaskerTaskTypeModal(currTaskerTaskType.id)}>Delete Tasktype</button>
                                     </span>
                                     <span> </span>
                                     <span  className='editTTBtn'>
                                         {/* {<NavLink to={`/taskerTaskTypes/${currTaskerTaskType.id}/edit`}>Edit Tasktype</NavLink>} */}
 
                                         { <a href={`/taskerTaskTypes/${currTaskerTaskType.id}/edit`}>
-                                        <button>Edit Tasktype</button>
+                                        <button className="tasktype-button">Edit Tasktype</button>
                                         </a> }
                                     </span>
-                                </h3>
+                                </div>
                             </div>
                         ))}
-                    </div>
-                        {!user || (
-                            <div  className='create-new-tasktype'>
-                                <a href="/taskerTaskTypes/new">
-                                    <button>
-                                        <h3> Add a New Tasktype To Your Profile </h3>
-                                    </button>
-                                </a>
-                            </div>)}
-                
+                        <div className="create-new-tasktype-container">
+                            {!user || (
+                                <div  className='create-new-tasktype'>
+                                    <a href="/taskerTaskTypes/new">
+                                        <button className="create-new-tasktypeBttn">
+                                            <h3> Add a New Tasktype To Your Profile </h3>
+                                        </button>
+                                    </a>
+                                </div>
+                            )}
+                        </div>
+                    </div>        
             </div>
         </div>)
 }
