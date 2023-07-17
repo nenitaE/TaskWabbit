@@ -4,6 +4,7 @@ import { getTask, updateTask, clearCurrentTask } from "../../store/tasks";
 import { useHistory, useParams } from "react-router-dom";
 import "./EditTaskForm.css"
 
+
 function EditTaskFormPage(){
     const dispatch = useDispatch();
     const { taskId } = useParams();
@@ -21,11 +22,31 @@ function EditTaskFormPage(){
     const suggestionRef = useRef();
     const [showSuggestions, setShowSuggestions] = useState(false);
 
+    const [isLocationSelectedFromSuggestions, setLocationSelectedFromSuggestions] = useState(false);
+    const [isInputChanged, setInputChanged] = useState(false);
+
     const fetchSuggestions = async (input) => {
       const response = await fetch(`/api/auth/autocomplete/${input}`);
       const data = await response.json();
       setSuggestions(data);
     };
+
+    useEffect(() => {
+      if(task && task.location) {
+        setLocation(task.location);
+        setInputValue(task.location);
+        setLocationSelectedFromSuggestions(true);
+      }
+    }, [task]);
+
+    useEffect(() => {
+      if (inputValue && isInputChanged) {
+        setLocationSelectedFromSuggestions(false);
+        fetchSuggestions(inputValue);
+      } else {
+        setSuggestions([]);
+      }
+    }, [inputValue, isInputChanged]);
 
     useEffect(() => {
         if (inputValue) {
@@ -50,7 +71,8 @@ function EditTaskFormPage(){
       }
 
       if(!location) errors.location = "A location is required";
-      return errors
+      else if(!isLocationSelectedFromSuggestions) errors.location = "Please select a valid location from the suggestions.";
+            return errors
     }
 
     useEffect(() => {
@@ -154,6 +176,8 @@ function EditTaskFormPage(){
               maxLength={100}
               onChange={(e) => {
                 setInputValue(e.target.value)
+                setLocation(e.target.value);
+                setInputChanged(true);
                 setShowSuggestions(true)
               }
               }
@@ -163,13 +187,13 @@ function EditTaskFormPage(){
                     <div
                         key={index}
                         onMouseDown={(e) => {
-                            e.preventDefault()
-                            // console.log('Clicked suggestion:', suggestion.description);
-                            setInputValue(suggestion.description);
-                            setLocation(inputValue);
-                            suggestionRef.current = suggestion.description;
-                            setSuggestions([]);
-                            setShowSuggestions(false); // hide suggestions when a suggestion is clicked
+                          e.preventDefault()
+                          setInputValue(suggestion.description);
+                          setLocation(suggestion.description);
+                          setSuggestions([]);
+                          setShowSuggestions(false);
+                          setLocationSelectedFromSuggestions(true);
+                          setInputChanged(false);
                         }}
                     >
                         {suggestion.description}
