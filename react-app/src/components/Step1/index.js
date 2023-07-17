@@ -12,6 +12,10 @@ function Step1({onStepComplete, existingData}){
     // const suggestionRef = useRef();
     // const [isInputSelected, setIsInputSelected] = useState(false);
     const [showSuggestions, setShowSuggestions] = useState(false);
+    const [isLocationSelectedFromSuggestions, setLocationSelectedFromSuggestions] = useState(false);
+    const [isInputChanged, setInputChanged] = useState(false);
+
+
 
 
 
@@ -23,8 +27,16 @@ function Step1({onStepComplete, existingData}){
     };
 
     useEffect(() => {
+        if(existingData.location) {
+            setLocation(existingData.location);
+            setLocationSelectedFromSuggestions(true); // If there's an existing location, it should be marked as selected
+        }
+    }, []);
+
+    useEffect(() => {
         // console.log('Input value:', inputValue);
-        if (inputValue) { // && !isInputSelected
+        if (inputValue && isInputChanged) { // && !isInputSelected
+          setLocationSelectedFromSuggestions(false);
           fetchSuggestions(inputValue);
         } else {
           setSuggestions([]);
@@ -62,10 +74,11 @@ function Step1({onStepComplete, existingData}){
             setErrors(result)
             return
         }
-        if (!suggestions.some(suggestion => suggestion.description === location)) {
+        if (!isLocationSelectedFromSuggestions) {
             setErrors({...result, location: "Please select a valid location from the suggestions."});
             return;
-        }
+          }
+
         handleNext();
     }
     return (
@@ -86,6 +99,7 @@ function Step1({onStepComplete, existingData}){
                 onChange={(e) => {
                     setInputValue(e.target.value)
                     setLocation(e.target.value);
+                    setInputChanged(true);
                     setShowSuggestions(true); // show suggestions when user types
                 }}
                 placeholder="Street Address"
@@ -101,6 +115,8 @@ function Step1({onStepComplete, existingData}){
                             setLocation(suggestion.description);
                             setSuggestions([]);
                             setShowSuggestions(false); // hide suggestions when a suggestion is clicked
+                            setLocationSelectedFromSuggestions(true);
+                            setInputChanged(false);
                             // clear the location error if any
                             if (errors.location) {
                                 setErrors(prevErrors => {
