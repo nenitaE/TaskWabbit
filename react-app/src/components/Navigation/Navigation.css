@@ -4,6 +4,8 @@
   width: 200px;
   height: 300px;
   border-radius: 10px;
+  z-index: 100;
+
 }
 .profile-dropdown li{
   background-color: white;
