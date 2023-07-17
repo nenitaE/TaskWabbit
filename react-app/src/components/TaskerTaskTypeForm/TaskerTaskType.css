@@ -2,6 +2,14 @@
     border: 1px solid rgba(128, 128, 128, .5);
     border-radius: 5px;
     border-width: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+    border-top: 1px solid #b1b9c3;
+    border-bottom: 1px solid #b1b9c3;
+    background-color: white;
+    box-shadow: 0 2px 4px 0 rgba(134,145,157,0.2);
 }
 
 .newTTFormContainer h2 {
@@ -27,10 +35,7 @@
     margin-right: 10px;
     margin-bottom: 15px;
 }
-.newTTcontainer h3 {
-    
-    
-}
+
 .newTTSubmitBTN {
     background-color: transparent;
     padding: 8px;
@@ -38,7 +43,16 @@
     border-radius: 5px;
 }
 
+input.newTTSubmitBTN:hover {
+    background-color: #006b54;
+    color: white;
+}
+
 .field-error {
     color: red;
+}
+
+.newTTSubmitBTN option {
+    font-size: medium;
 }
 

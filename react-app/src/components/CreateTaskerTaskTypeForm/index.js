@@ -9,7 +9,7 @@ const CreateTaskerTaskTypeForm = () => {
   
 
   return (
-    <TaskerTaskTypeForm taskerTaskType={taskerTaskType} formType="SUBMIT NEW TASKTYPE/RATE" />
+    <TaskerTaskTypeForm taskerTaskType={taskerTaskType} formType="Submit New TaskType and/or Rate" />
   );
 }
 
