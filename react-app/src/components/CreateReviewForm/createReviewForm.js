@@ -25,6 +25,23 @@ const CreateReviewForm = ({test}) => {
     const sessiontest = useSelector( state => state)
     // console.log(sessiontest, 'test---------')
 
+    let stars;
+    let ratingStar;
+
+    stars = document.querySelectorAll(".ratingBox i")
+    // console.log(stars, 'stars==========')
+    // stars.forEach((star, index1) => {
+    //     star.addEventListener("click", () => {
+    //         console.log(index1)
+    //         ratingStar = index1 + 1
+    //         console.log(ratingStar)
+    //         stars.forEach((star, index2) => {
+    //             index1 >= index2 ? star.classList.add("active") : star.classList.remove("active")
+    //         })
+    //     })
+    // })
+    console.log(ratingStar, 'ratingStar----')
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -72,7 +89,8 @@ const CreateReviewForm = ({test}) => {
                             required
                             value={description}
                             type="text"
-                            onChange={ e => setDescription(e.target.value)}/>
+                            onChange={ e => setDescription(e.target.value)}
+                            />
                             {
                                 validation.description && (
                                     <div style={{color: 'red'}}
@@ -81,7 +99,7 @@ const CreateReviewForm = ({test}) => {
                             }
                     </label>
                 </div>
-                <div>
+                <div className="starRating">
                     <h4>Please leave a rating</h4>
                     <label>
                         <input
@@ -90,9 +108,32 @@ const CreateReviewForm = ({test}) => {
                             placeholder="Rate between 1 & 5"
                             value={rating}
                             type="integer"
-                            onChange={ e => setRating(e.target.value)}
+                            // onChange={ e => setRating(e.target.value)}
+                            onChange={ e =>
+                                stars.forEach((star, index1) => {
+                                    star.addEventListener("click", () => {
+                                        console.log(index1)
+                                        ratingStar = index1 + 1
+                                        console.log(ratingStar)
+                                        setRating(ratingStar)
+                                        stars.forEach((star, index2) => {
+                                            index1 >= index2 ? star.classList.add("active") : star.classList.remove("active")
+                                        })
+                                    })
+                                })
+                            }
                             />
                             {/* <i class="fa-solid fa-star"></i> */}
+                            <div className="ratingBox">
+                            <i className="fa-solid fa-star"></i>
+                            <i className="fa-solid fa-star"></i>
+                            <i className="fa-solid fa-star"></i>
+                            <i className="fa-solid fa-star"></i>
+                            <i className="fa-solid fa-star"></i>
+                            </div>
+
+                            {/* {stars = document.querySelectorAll(".ratingBox i") }
+                            {console.log(stars)} */}
                             {
                                 validation.rating && (
                                     <div style={{color: 'red'}}>
