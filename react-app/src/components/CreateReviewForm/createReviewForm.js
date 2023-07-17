@@ -92,6 +92,7 @@ const CreateReviewForm = ({test}) => {
                             type="integer"
                             onChange={ e => setRating(e.target.value)}
                             />
+                            {/* <i class="fa-solid fa-star"></i> */}
                             {
                                 validation.rating && (
                                     <div style={{color: 'red'}}>
