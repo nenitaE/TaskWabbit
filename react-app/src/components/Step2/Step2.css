@@ -115,6 +115,9 @@
     font-family:Arial, Helvetica, sans-serif;
     font-weight: bold;
 }
+.reviews-link:visited {
+    color: #006b54;
+}
 
 .reviews-link:hover,
 .reviews-link.is-active {

@@ -27,7 +27,7 @@
     color: #B1B9C3;
 }
 
-a:visited{
+.footer a:visited{
     color: white;
     outline: none;
 }
