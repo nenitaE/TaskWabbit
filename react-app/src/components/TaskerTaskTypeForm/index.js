@@ -116,6 +116,7 @@ const TaskerTaskTypeForm = ({ taskerTaskType, formType}) => {
                                                                 <label htmlFor='taskType_id' className='field-error'>Task type is required</label>
                                                             )}
                                                             <select 
+                                                                className='createTTdropdown'
                                                                 id="taskType_id" 
                                                                 onChange={updateTaskType_id} 
                                                                 required={true}
