@@ -25,7 +25,7 @@ const ReviewByLoggedIn = () => {
         dispatch(getTaskers())
     }, [dispatch, user])
 
-    if (!reviewList || !taskers){
+    if (!reviewList){
         return (
             <div>
                 <p>loading...</p>
@@ -33,11 +33,15 @@ const ReviewByLoggedIn = () => {
         )
     }
 
-    // taskers.forEach(tasker => {
-        // console.log(tasker.id)
-        // taskerData.push(tasker)
-    // })
-    // console.log(taskerData, 'tasker DATA')
+    if (!taskers){
+        return (
+            <div>
+                <p>loading...</p>
+            </div>
+        )
+    }
+
+    let tasker_id;
 
     return (
         <>
