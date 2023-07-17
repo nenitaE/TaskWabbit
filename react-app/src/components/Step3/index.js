@@ -62,21 +62,32 @@ function Step3({onStepComplete, existingData}){
         setClickOutsideModal(() => {});
         setModalContent(
         <div className='datemodal-container'>
-          <label>
-           Choose your task date:
+          <div className='label-step3-container'>
+          <h1 className='chose-date'>Choose your task date: </h1>
+          </div>
+          <div className='content-container'>
+            <div className='input-container'>
             <input
-              type="date"
-              value={taskDate}
-              onChange={handleDateChange}
-            />
-          </label>
-          {error && <p>{error}</p>}
-          <button type="button" onClick={handleBack}>
+                type="date"
+                value={taskDate}
+                onChange={handleDateChange}
+              />
+            </div>
+            <div className='vertical-line' />
+            <div className='confirm-details'>
+              <i class="fa-regular fa-calendar"></i>
+              <p>Next, confirm your details to get connected with your Tasker.</p>
+            </div>
+          </div>
+          {error && <p className='error'>{error}</p>}
+          <div className='button-container'>
+          <button className="select-3-button "type="button" onClick={handleBack}>
             Back
           </button>
-          <button onClick={onSubmit}>
+          <button className="select-3-button"onClick={onSubmit}>
             Next
           </button>
+        </div>
         </div>
         );
       }

@@ -29,13 +29,13 @@ export default function DeleteReview ({id}) {
             {modal && (
                     <div id="modal">
                         <div id="modal-background" onClick={toggleModal}></div>
-                        <div id="modal-content">
+                        <div id="modal-content" className="modal-container">
                             <h3>Confirm Delete</h3>
-                            <p>Are you sure you want to delete this review?</p>
-                            <button onClick={handleDelete} style={{backgroundColor: 'pink'}}>
+                            <p className="deletetext">Are you sure you want to delete this review?</p>
+                            <button className="modal-button keep-button" onClick={handleDelete}>
                                 Yes (Delete Review)
                             </button>
-                            <button onClick={toggleModal} style={{backgroundColor: '#006b54'}}>
+                            <button className="modal-button delete-button"onClick={toggleModal}>
                                 No (Keep Review)
                             </button>
                         </div>
