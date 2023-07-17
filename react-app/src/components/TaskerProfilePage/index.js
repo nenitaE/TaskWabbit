@@ -5,6 +5,7 @@ import { getTaskerTaskTypes } from "../../store/taskerProfile";
 import { getTaskTypes } from "../../store/taskTypes";
 import DeleteTaskerTaskTypeModal from "../DeleteTaskerTaskTypeModal";
 import { useModal } from "../../context/Modal";
+import taskTypesImages from "../../imageData/taskTypes";
 import './TaskerProfile.css';
 
 
@@ -41,6 +42,20 @@ function TaskerProfilePage() {
         setModalContent(<DeleteTaskerTaskTypeModal taskerTaskTypeId={taskerTaskTypeId}/>)
     }
 
+    
+    const taskTypeImageById = {};
+    //grab each tasktypes id and pass it in as the key with imageData as the value
+    taskTypesImages.forEach(tasktypeImage => {
+        taskTypeImageById[tasktypeImage.id] = tasktypeImage
+    })
+
+    let taskTypeImage
+
+
+
+
+
+
     return (
         <div>
             <div id="taskerProfContainer">
@@ -49,8 +64,10 @@ function TaskerProfilePage() {
                     <div className="TTcontainer">
                         {isLoaded && currTaskerTaskTypes.map((currTaskerTaskType) => (
                             <div className="individualTTcontainer" key={currTaskerTaskType.id}>
-                                <h3 className="taskTypeName">{taskTypesById[currTaskerTaskType.taskType_id].type} <span className="basicSentence">at an hourly rate of</span><span> ${currTaskerTaskType.hourlyRate}</span>
+                                <img src={taskTypeImageById[currTaskerTaskType.taskType_id].url} alt="taskTypeImage" width="100" height="100" className="tasktype-image"/>
+                                <p className="taskTypeName">{taskTypesById[currTaskerTaskType.taskType_id].type} <span className="basicSentence">at an hourly rate of</span><span> ${currTaskerTaskType.hourlyRate}</span></p>
                                     <span> </span>
+                                <div>
                                     <span className='deleteTTBtn'>
                                         <button onClick={() => openDeleteTaskerTaskTypeModal(currTaskerTaskType.id)}>Delete Tasktype</button>
                                     </span>
@@ -62,7 +79,7 @@ function TaskerProfilePage() {
                                         <button>Edit Tasktype</button>
                                         </a> }
                                     </span>
-                                </h3>
+                                </div>
                             </div>
                         ))}
                     </div>
