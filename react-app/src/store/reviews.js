@@ -59,7 +59,7 @@ export const getReviewForLoggedIn = () => async (dispatch) => {
 }
 
 export const createNewReviewByUser = (payload) => async (dispatch) => {
-    // console.log(payload, 'payload Thunk')
+    // console.log('bodyyyyyyyyyy--------',JSON.stringify(payload))
     const response = await fetch('/api/taskers/reviews', {
         method: 'POST',
         headers: {
@@ -117,11 +117,11 @@ export const updateReview = (payload, id) => async (dispatch) => {
 
 export const delReviewById = (id) => async (dispatch) => {
 
-    // console.log(id, typeof(id), 'test id')
+    // console.log('DELETE--------', response.json())
     const response = await fetch(`/api/reviews/${id}`, {
         method: 'DELETE'
     })
-    // console.log(response, 'thunk response delete')
+    console.log(response, 'thunk response delete')
     if(response.ok){
         const del = await response.json()
         console.log(del)
