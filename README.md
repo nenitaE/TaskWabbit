@@ -1,5 +1,6 @@
 # Landing Page
-![LandingPage](Readme/PNGimage.png?raw=true)
+![PNGimage](https://github.com/nenitaE/TaskWabbit/assets/71307394/1cbe981e-d9d5-41fe-a994-9b9f46e09f16)
+
 
 # Configuration
 
@@ -162,7 +163,8 @@ your site just below the name of the Web Service at the top of the page.
 4. Choose a tasker:
 - Only logged in users are allowed to choose a tasker for their task
 
-![create-task](Readme/create-task.png?raw=true)
+![create-task](https://github.com/nenitaE/TaskWabbit/assets/71307394/ca796dd7-ae64-4030-a36f-06c169db3c2b)
+
 
 6. Tasker profile
 
@@ -172,4 +174,5 @@ your site just below the name of the Web Service at the top of the page.
 
 - A logged in tasker can edit their hourly rate for a specific taskType that they are willing to perform
 
-![taskerprofile](Readme/taskerprofile.png?raw=true)
+![taskerprofile](https://github.com/nenitaE/TaskWabbit/assets/71307394/28267e95-5e9e-45b3-ad04-2ac2bbb44073)
+
