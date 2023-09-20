@@ -70,6 +70,16 @@ const ReviewByLoggedIn = () => {
                         <div id="revContent">
                             Rating: {rev.rating}
                         </div>
+                        {rev.task_id && (
+                            <div id="revContent">
+                                Task: {rev.task_id}
+                            </div>
+                        )}
+                        {rev.task_id && (
+                            <div id="revContent">
+                                TaskType: {rev.task.taskType.type}
+                            </div>
+                        )}
                         <div>
 
                         </div>
