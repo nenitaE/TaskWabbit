@@ -47,7 +47,7 @@ const ReviewByLoggedIn = () => {
             {isLoaded &&
             <div id="main">
                 <div id="mainUser">
-                    <h3>My Info</h3>
+                    <h3 className="rev-headers">My Info</h3>
 
                     <div id="mainUserContent">
 
@@ -64,7 +64,7 @@ const ReviewByLoggedIn = () => {
 
                 </div>
 
-                <h3>My Reviews ({reviewList.length})</h3>
+                <h3 className="rev-headers">My Reviews ({reviewList.length})</h3>
                 {reviewList.map( rev => (
                     <div className="singleReview" key={rev.id}>
                         
@@ -76,9 +76,7 @@ const ReviewByLoggedIn = () => {
                         <div></div>
                         {rev.task_id && (
                             <div id="revContent">
-                                {/* TaskType: {rev.task.taskType.type} */}
-                                Tasker: {taskers[rev.tasker_id].firstName}&nbsp;
-                                {taskers[rev.tasker_id].lastName}
+                                TaskType: {rev.task.taskType.type}
                             </div>
                         )}
                         {rev.task_id && (
@@ -94,11 +92,12 @@ const ReviewByLoggedIn = () => {
                             <b>Review Date: {new Date(rev.created_at).toDateString()}</b>
                         </div>
                         <div id="revContent">
-                            Review: {rev.description}
-                        </div>
-                        <div id="revContent">
                             Rating: {rev.rating}
                         </div>
+                        <div id="revContent">
+                            Review: {rev.description}
+                        </div>
+                        
                     
                         <div id="button">
                             <div id="deleteButton">
