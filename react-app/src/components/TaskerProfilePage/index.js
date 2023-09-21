@@ -17,9 +17,11 @@ function TaskerProfilePage() {
 
     //get list of all possible tasktypes with descriptions by tasktypeID from the state
     const taskTypes = useSelector(state => state.taskTypes);
-
+    console.log("🚀 ~ file: index.js:20 ~ TaskerProfilePage ~ taskTypes:", taskTypes)
+    console.log(typeof(taskTypes), "********TYPEOF")
     // flatten taskTypes into an obj with key of taskType.id
     const taskTypesById = {};
+    console.log("🚀 ~ file: index.js:24 ~ TaskerProfilePage ~ taskTypesById:", taskTypesById)
     taskTypes.forEach(taskType => {taskTypesById[taskType.id] = taskType})
 
 
