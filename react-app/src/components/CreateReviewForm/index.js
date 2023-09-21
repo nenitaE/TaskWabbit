@@ -1,10 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CreateReviewForm from "./createReviewForm";
+import { useDispatch, useSelector } from "react-redux";
+import { getReviewForLoggedIn } from "../../store/reviews";
 
 
 export default function CreateReviewModal ({tasker_id, task_id}){
 
     // console.log(tasker_id, 'tasker_id---')
+    const dispatch = useDispatch()
 
     const [modal, setModal] = useState(false)
 
@@ -12,9 +15,36 @@ export default function CreateReviewModal ({tasker_id, task_id}){
         setModal(!modal)
     };
 
+    const user = useSelector( state => state.session.user)
+    const rev = useSelector( state => Object.values(state.reviewReducer))
+    console.log(rev, user,'--------rev-----')
+
+    useEffect(() => {
+        dispatch(getReviewForLoggedIn())
+    }, [dispatch])
+
+    let arr = rev.filter(
+        function (ele) {
+            return ele.task_id === task_id
+        }
+    )
+
+    console.log(arr, '-----revArr---------')
+
+    if(arr.length){
+        return(
+            <button className="select-button" onClick={toggleModal}
+            disabled={arr.length}
+            >
+                You have Reviewed it Already
+            </button>
+        )
+    }
+
     return (
         <>
-            <button className="select-button" onClick={toggleModal}>
+            <button className="select-button" onClick={toggleModal}
+            >
                 Leave a Review
             </button>
 
