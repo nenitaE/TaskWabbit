@@ -1,6 +1,7 @@
 #main {
     display: grid;
-    justify-content: center;
+    justify-content: stretch;
+    padding-left: 15px;
     /* background-color: antiquewhite; */
 }
 
@@ -11,7 +12,7 @@
 #mainUserContent {
     display: grid;
     border: 1px solid;
-    border-radius: 2%;
+    border-radius: 5px;
     /* border-bottom-color: #006b54;
     border-left-color: #006b54; */
     margin: 1em;
@@ -22,15 +23,18 @@
     border: solid green;
 }
 
+.rev-headers {
+    padding-left: 15px;
+}
 .singleReview {
     display: grid;
     background-color: white;
     border: 1px solid;
-    border-radius: 2%;
+    border-radius: 5px;
     /* border-bottom-color: #006b54;
     border-left-color: #006b54; */
     /* justify-content: start; */
-    justify-items: stretch;
+    /* justify-items: stretch; */
     margin: 1em;
     padding: 0.5em;
 }
