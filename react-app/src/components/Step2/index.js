@@ -111,6 +111,8 @@ function Step2({ onStepComplete, taskers}){
         </div>
         <div className='main_container'>
             <div className='range-slider'>
+                <div className='price-slider'>
+                <p>Price</p>
                 <input
                     type="range"
                     min="0"
@@ -119,6 +121,7 @@ function Step2({ onStepComplete, taskers}){
                     onChange={event => setMaxHourlyRate(Number(event.target.value))}
                 />
                 {maxHourlyRate}$
+                </div>
             </div>
 
             <div className='taskers'>
@@ -155,10 +158,12 @@ function Step2({ onStepComplete, taskers}){
                                         <p>({`${tasker.reviews.length} review${tasker.reviews.length > 1 ? 's' : ''}`})</p>
                                     </div>
 
-                                    <p>
+                                    <p className='tasks-type-done'>
+                                    <i class="fa-regular fa-circle-check"></i>
                                     {countTaskerTasks(tasker.id, taskTypeId) === 0
                                         ? `${tasker.firstName} hasn't completed ${tasktypename} yet, be her first client`
                                         : `${countTaskerTasks(tasker.id, taskTypeId)} ${tasktypename} task${countTaskerTasks(tasker.id, taskTypeId) > 1 ? 's' : ''}`}
+
                                     </p>
                                     {
                                         countTaskerTasks(tasker.id, taskTypeId) !== 0 && (

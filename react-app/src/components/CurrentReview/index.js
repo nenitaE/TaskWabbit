@@ -25,13 +25,13 @@ const ReviewByLoggedIn = () => {
         dispatch(getTaskers())
     }, [dispatch, user])
 
-    if (!Object.values(taskers).length){
-        return (
-            <div>
-                <p>loading...</p>
-            </div>
-        )
-    }
+    // if (!Object.values(taskers).length){
+    //     return (
+    //         <div>
+    //             <p>loading...</p>
+    //         </div>
+    //     )
+    // }
 
     if (!reviewList){
         return (
@@ -75,8 +75,21 @@ const ReviewByLoggedIn = () => {
                         <div id="revContent">
                             Rating: {rev.rating}
                         </div>
+                        {rev.task_id && (
+                            <div id="revContent">
+                                Task: {rev.task_id}
+                                Task: {rev.task.title}
+                            </div>
+                        )}
+                        {rev.task_id && (
+                            <div id="revContent">
+                                TaskType: {rev.task.taskType.type}
+                            </div>
+                        )}
+                        {/* <div> */}
                         <div id="revContent">
                             Tasker: {taskers[rev.tasker_id].firstName} {taskers[rev.tasker_id].lastName}
+
                         </div>
                         <div id="revContent">
                             <b>{new Date(rev.created_at).toDateString()}</b>

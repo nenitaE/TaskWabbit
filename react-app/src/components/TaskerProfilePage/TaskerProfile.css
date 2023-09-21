@@ -10,6 +10,12 @@
 }
 
 .TTcontainer {
+    width: 100%;
+
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
     border: 1px solid rgba(128, 128, 128, .5);
     border-radius: 5px;
     border-width: 1px;
@@ -24,10 +30,15 @@
 }
 
 .individualTTcontainer {
+    display: grid;
+    justify-items: center;
     margin-top: 10px;
     margin-left: 10px;
     margin-right: 10px;
     margin-bottom: 15px;
+    padding: 8px;
+    border: 1px solid rgba(0, 107, 84, .75);
+    border-radius: 5px;
 }
 .taskTypeName {
     color: #0d7a5f;
@@ -35,6 +46,10 @@
 }
 .basicSentence {
     color: black;
+}
+
+.tasktype-image {
+    border-radius: 8px;
 }
 
 .individualTTcontainer button {
@@ -47,6 +62,20 @@
     margin-left: 15px;
 }
 
+.create-new-tasktype-container {
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 15px;
+    padding: 8px;
+    border: 1px solid rgba(0, 107, 84, .75);
+    border-radius: 5px;
+
+}
+
 .create-new-tasktype button {
     background-color: transparent;
     padding: 8px;
@@ -55,4 +84,13 @@
     margin-left: 10px;
     margin-right: 10px;
     margin-bottom: 10px;
+}
+
+button.create-new-tasktypeBttn:hover {
+    background-color: rgb(0, 72, 57);
+    color: white;
+}
+button.tasktype-button:hover {
+    background-color: rgb(0, 72, 57);
+    color: white;
 }

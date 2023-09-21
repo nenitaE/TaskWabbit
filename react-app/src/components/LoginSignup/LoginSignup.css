@@ -9,7 +9,7 @@ html, body
     display: flex;
     justify-content: center;
     align-items:flex-start;
-    background-image: url("https://ipfs.io/ipfs/QmRSrrKztpa9ALGK5pVqE9Hsbqp7oBmtFfvUoiDDWg7iHT?filename=moving_cropped.webp");
+    background-image: url("https://nespinosaportfoliobucket.s3.amazonaws.com/moving_cropped.webp");
     background-position: center center;
     background-size: cover;
     background-repeat: no-repeat;
