@@ -64,16 +64,10 @@ const ReviewByLoggedIn = () => {
                 <h3>My Reviews ({reviewList.length})</h3>
                 {reviewList.map( rev => (
                     <div className="singleReview" key={rev.id}>
-                        <div id="revContent">
-                            Review: {rev.description}
-                        </div>
-                        <div id="revContent">
-                            Rating: {rev.rating}
-                        </div>
+                        
                         {rev.task_id && (
                             <div id="revContent">
-                                Task: {rev.task_id}
-                                Task: {rev.task.title}
+                                Tasker Being Reviewed: {taskers[rev.tasker_id].firstName} {taskers[rev.tasker_id].lastName}
                             </div>
                         )}
                         {rev.task_id && (
@@ -81,12 +75,25 @@ const ReviewByLoggedIn = () => {
                                 TaskType: {rev.task.taskType.type}
                             </div>
                         )}
+                        {rev.task_id && (
+                            <div id="revContent">
+                                Task Title: {rev.task.title}
+                            </div>
+                        )}
+                        
                         <div>
 
                         </div>
                         <div id="revContent">
-                            <b>{new Date(rev.created_at).toDateString()}</b>
+                            <b>Review Date: {new Date(rev.created_at).toDateString()}</b>
                         </div>
+                        <div id="revContent">
+                            Review: {rev.description}
+                        </div>
+                        <div id="revContent">
+                            Rating: {rev.rating}
+                        </div>
+                    
                         <div id="button">
                             <div id="deleteButton">
                             <DeleteReview id={rev.id} />
