@@ -13,10 +13,11 @@ const ReviewByLoggedIn = () => {
 
     // state
     const reviewList = useSelector(state => Object.values(state.reviewReducer))
-    // console.log(reviewList, 'state Result')
+    console.log(reviewList, 'state Result')
     const user = useSelector(state => state.session.user)
-    const taskers = useSelector(state => Object.values(state.taskers))
-    // console.log(user, taskers, 'user-------------')
+    // const taskers = useSelector(state => Object.values(state.taskers))
+    const taskers = useSelector(state => state.taskers)
+    console.log(user, taskers, 'user-------------')
 
     let taskerData = [];
 
@@ -33,10 +34,10 @@ const ReviewByLoggedIn = () => {
         )
     }
 
-    taskers.forEach(tasker => {
-        // console.log(tasker.id)
-        // taskerData.push(tasker)
-    })
+    // taskers.forEach(tasker => {
+    //     // console.log(tasker.id)
+    //     // taskerData.push(tasker)
+    // })
     // console.log(taskerData, 'tasker DATA')
 
     return (
@@ -72,13 +73,16 @@ const ReviewByLoggedIn = () => {
                         </div>
                         {rev.task_id && (
                             <div id="revContent">
-                                Task: {rev.task_id}
+                                {/* Task: {rev.task_id} */}
                                 Task: {rev.task.title}
                             </div>
                         )}
+                        <div></div>
                         {rev.task_id && (
                             <div id="revContent">
-                                TaskType: {rev.task.taskType.type}
+                                {/* TaskType: {rev.task.taskType.type} */}
+                                Tasker: {taskers[rev.tasker_id].firstName}&nbsp;
+                                {taskers[rev.tasker_id].lastName}
                             </div>
                         )}
                         <div>
