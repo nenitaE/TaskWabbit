@@ -36,7 +36,7 @@ export default function CreateReviewModal ({tasker_id, task_id}){
             <button className="select-button" onClick={toggleModal}
             disabled={arr.length}
             >
-                You have Reviewed Already
+                You have Reviewed it Already
             </button>
         )
     }
@@ -44,7 +44,6 @@ export default function CreateReviewModal ({tasker_id, task_id}){
     return (
         <>
             <button className="select-button" onClick={toggleModal}
-
             >
                 Leave a Review
             </button>

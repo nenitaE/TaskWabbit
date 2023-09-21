@@ -13,11 +13,11 @@ const ReviewByLoggedIn = () => {
 
     // state
     const reviewList = useSelector(state => Object.values(state.reviewReducer))
-    console.log(reviewList, 'state Result')
+    // console.log(reviewList, 'state Result')
     const user = useSelector(state => state.session.user)
     // const taskers = useSelector(state => Object.values(state.taskers))
     const taskers = useSelector(state => state.taskers)
-    console.log(user, taskers, 'user-------------')
+    // console.log(user, taskers, 'user-------------')
 
     const[isLoaded, setIsLoaded] = useState(false)
 
