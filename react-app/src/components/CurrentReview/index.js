@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getReviewForLoggedIn } from "../../store/reviews";
@@ -19,11 +19,13 @@ const ReviewByLoggedIn = () => {
     const taskers = useSelector(state => state.taskers)
     console.log(user, taskers, 'user-------------')
 
+    const[isLoaded, setIsLoaded] = useState(false)
+
     let taskerData = [];
 
     useEffect(() => {
         dispatch(getReviewForLoggedIn())
-        dispatch(getTaskers())
+        dispatch(getTaskers()).then(() => setIsLoaded(true))
     }, [dispatch, user])
 
     if (!reviewList){
@@ -42,7 +44,7 @@ const ReviewByLoggedIn = () => {
 
     return (
         <>
-
+            {isLoaded &&
             <div id="main">
                 <div id="mainUser">
                     <h3>My Info</h3>
@@ -104,6 +106,7 @@ const ReviewByLoggedIn = () => {
                     </div>
                 ))}
             </div>
+        }
         </>
     )
 }

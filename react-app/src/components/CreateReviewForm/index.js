@@ -31,10 +31,20 @@ export default function CreateReviewModal ({tasker_id, task_id}){
 
     console.log(arr, '-----revArr---------')
 
+    if(arr.length){
+        return(
+            <button className="select-button" onClick={toggleModal}
+            disabled={arr.length}
+            >
+                You have Reviewed Already
+            </button>
+        )
+    }
+
     return (
         <>
             <button className="select-button" onClick={toggleModal}
-            disabled={arr.length}
+
             >
                 Leave a Review
             </button>
