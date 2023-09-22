@@ -5,6 +5,7 @@ import { getReviewForLoggedIn } from "../../store/reviews";
 import { getTaskers } from "../../store/taskers";
 import DeleteReview from "../DeleteReviewModal/DeleteReview";
 import { Link, useHistory } from "react-router-dom/cjs/react-router-dom";
+import StarRating from "./StarRating";
 import "./CurrentReview.css"
 
 const ReviewByLoggedIn = () => {
@@ -70,43 +71,41 @@ const ReviewByLoggedIn = () => {
                         
                         {rev.task_id && (
                             <div id="revContent">
-                                Tasker Being Reviewed: {taskers[rev.tasker_id].firstName} {taskers[rev.tasker_id].lastName}
-                            </div>
-                        )}
-                        <div></div>
-                        {rev.task_id && (
-                            <div id="revContent">
-                                TaskType: {rev.task.taskType.type}
-                            </div>
-                        )}
-                        {rev.task_id && (
-                            <div id="revContent">
-                                Task Title: {rev.task.title}
+                               <span className="rev-title">Tasker: </span> {taskers[rev.tasker_id].firstName} {taskers[rev.tasker_id].lastName}
+                               <span className="space10">   </span>
+                               <StarRating rating={rev.rating} />
                             </div>
                         )}
                         
-                        <div>
-
+                        {rev.task_id && (
+                            <div id="revContent">
+                                <span className="rev-title">Task Type: </span>{rev.task.taskType.type}
+                            </div>
+                        )}
+                        {rev.task_id && (
+                            <div id="revContent">
+                            <span className="rev-title">Task Title: </span>{rev.task.title}
+                            </div>
+                        )}
+                       
+                        <div id="revContent">
+                            <span className="rev-title">Review: </span>{rev.description}
                         </div>
                         <div id="revContent">
-                            <b>Review Date: {new Date(rev.created_at).toDateString()}</b>
-                        </div>
-                        <div id="revContent">
-                            Rating: {rev.rating}
-                        </div>
-                        <div id="revContent">
-                            Review: {rev.description}
+                            <span className="rev-date">Reviewed On: {new Date(rev.created_at).toDateString()}</span>
                         </div>
                         
                     
                         <div id="button">
-                            <div id="deleteButton">
-                            <DeleteReview id={rev.id} />
+                            <div id="delete">
+                                <div className="deleteButton">
+                                <DeleteReview id={rev.id} />
+                                </div>
                             </div>
                             <div id="update">
-                            <button className='updateButton' onClick={
-                                () => history.push(`/reviews/${rev.id}/edit`)
-                            }>Update</button>
+                                <button className='updateButton' onClick={
+                                    () => history.push(`/reviews/${rev.id}/edit`)
+                                }>Update</button>
                             </div>
                         </div>
                     </div>

@@ -1,6 +1,6 @@
 #main {
     display: grid;
-    justify-content: stretch;
+    justify-content: center;
     padding-left: 15px;
     /* background-color: antiquewhite; */
 }
@@ -20,7 +20,7 @@
 }
 
 #afterUser {
-    border: solid green;
+    border: solid #006b54;
 }
 
 .rev-headers {
@@ -39,26 +39,47 @@
     padding: 0.5em;
 }
 
+.space10 {
+    padding-left: 10px;
+}
+
 #revContent {
-    /* background-color: aqua; */
-    padding: 2%;
+    padding: 10px;
 }
 
-#button {
-    /* background-color: #006b54; */
+.rev-title {
+    color: #006b54;
+}
+.rev-date {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-areas: "delete" "Update";
-    /* justify-content: end; */
-    /* justify-items: end; */
-    width: fit-content;
-    /* align-items: end; */
-    padding: 2%;
+    color: #006b54;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: xx-small;
+    justify-items: center;
 }
 
+.starRating {
+    /* display: grid; */
+    justify-content: end;
+    color: #006b54;
+}
+#button {
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    justify-items: stretch;
+    /* width: fit-content; */
+    
+}
+
+.deleteReviewButton {
+    /* background-color: gray; */
+    cursor: pointer;
+    padding: 8px;
+}
 .updateButton {
     /* background-color: gray; */
     cursor: pointer;
+    padding: 8px;
 }
 
 .updateButton:hover {

@@ -22,7 +22,7 @@ export default function DeleteReview ({id}) {
 
     return (
         <>
-            <button className='deleteBtn' onClick={toggleModal}>
+            <button className='deleteReviewButton' onClick={toggleModal}>
                 Delete
             </button>
 

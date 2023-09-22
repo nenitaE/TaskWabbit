@@ -50,21 +50,17 @@ const UpdateReview = ({reviewObj}) => {
     }
 
     return(
-        <>
+        <div id="mainRev">
         <div id="mainForm">
-            <h3>Update Review</h3>
+            <h2>Update Review</h2>
 
             <div id="afterTitle"></div>
 
             <form onSubmit={handleSubmit} id="form">
                 <div>
-                    <h4>How was the service?</h4>
-                    <p>Please describe your experience.</p>
+                    <h3>How did your tasker do?</h3>
+                    <p>Update your review below.</p>
                     <label>
-                        <div>
-                            Description:
-                        </div>
-
                         <div>
                         <textarea
                             id='description'
@@ -85,10 +81,10 @@ const UpdateReview = ({reviewObj}) => {
                     </label>
                 </div>
                 <div>
-                    <h4>Please give a rating</h4>
+                    
                     <label>
-                        <div>
-                            Rating:
+                        <div className="rev-rating">
+                            Update Your Rating:
                         </div>
 
                         <div>
@@ -119,7 +115,7 @@ const UpdateReview = ({reviewObj}) => {
                 </div>
             </form>
         </div>
-        </>
+        </div>
     )
 }
 
