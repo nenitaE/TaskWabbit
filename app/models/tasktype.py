@@ -11,6 +11,7 @@ class TaskType(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     type = db.Column(db.Text)
+    image = db.Column(db.Text)
     createdAt = db.Column(db.DateTime, default=datetime.utcnow)
     updatedAt = db.Column(db.DateTime, default=datetime.utcnow)
 
@@ -24,6 +25,7 @@ class TaskType(db.Model):
         return {
             'id': self.id,
             'type': self.type,
+            'image': self.image,
             'createdAt': self.createdAt.isoformat(),
             'updatedAt': self.updatedAt.isoformat()
         }

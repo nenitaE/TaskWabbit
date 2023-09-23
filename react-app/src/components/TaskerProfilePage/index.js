@@ -37,6 +37,7 @@ function TaskerProfilePage() {
 
      //get taskerTaskTypes for current logged in tasker from the state
     let currTaskerTaskTypes = useSelector(state => state.taskerProfile.taskerTaskTypes)
+    console.log("🚀 ~ file: index.js:40 ~ TaskerProfilePage ~ currTaskerTaskTypes:", currTaskerTaskTypes)
 
     if (!currTaskerTaskTypes) return null;
 
@@ -66,7 +67,7 @@ function TaskerProfilePage() {
                     <div className="TTcontainer">
                         {isLoaded && currTaskerTaskTypes.map((currTaskerTaskType) => (
                             <div className="individualTTcontainer" key={currTaskerTaskType.id}>
-                                {/* <img src={taskTypeImageById[currTaskerTaskType.taskType_id].url} alt="taskTypeImage" width="100" height="100" className="tasktype-image"/> */}
+                                <img src={taskTypesById[currTaskerTaskType.taskType_id].image} alt="taskTypeImage" width="100" height="100" className="tasktype-image"/>
                                 <p className="taskTypeName">{taskTypesById[currTaskerTaskType.taskType_id].type} <span className="basicSentence">at an hourly rate of</span><span> ${currTaskerTaskType.hourlyRate}</span></p>
                                     <span> </span>
                                 <div>

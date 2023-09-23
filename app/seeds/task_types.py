@@ -3,43 +3,53 @@ from sqlalchemy.sql import text
 
 def seed_task_types():
     task_type1 = TaskType(
-        type='General Mounting'
+        type='General Mounting',
+        image='https://nespinosaportfoliobucket.s3.amazonaws.com/mounting.png'
     )
 
     task_type2 = TaskType(
-        type='Minor Home Repairs'
+        type='Minor Home Repairs',
+        image='https://nespinosaportfoliobucket.s3.amazonaws.com/homerepairs.png'
     )
 
     task_type3 = TaskType(
-        type='Cleaning'
+        type='Cleaning',
+        image='https://nespinosaportfoliobucket.s3.amazonaws.com/cleaning.png'
     )
 
     task_type4 = TaskType(
-        type='Yard Work'
+        type='Yard Work',
+        image='https://nespinosaportfoliobucket.s3.amazonaws.com/yardwork.png'
     )
 
     task_type5 = TaskType(
-        type='Plumbing Help'
+        type='Plumbing Help',
+        image='https://nespinosaportfoliobucket.s3.amazonaws.com/plumbing.png'
     )
 
     task_type6 = TaskType(
-        type='Indoor Painting'
+        type='Indoor Painting',
+        image='https://nespinosaportfoliobucket.s3.amazonaws.com/painting.png'
     )
 
     task_type7 = TaskType(
-        type='Heavy Lifting and Loading'
+        type='Heavy Lifting and Loading',
+        image='https://nespinosaportfoliobucket.s3.amazonaws.com/heavylifting.png'
     )
 
     task_type8 = TaskType(
-        type='Waiting in Line'
+        type='Waiting in Line',
+        image='https://nespinosaportfoliobucket.s3.amazonaws.com/waiting.png'
     )
 
     task_type9 = TaskType(
-        type='Pet Sitting'
+        type='Pet Sitting',
+        image='https://nespinosaportfoliobucket.s3.amazonaws.com/petsitting.png'
     )
 
     task_type10 = TaskType(
-        type='Cooking/Baking'
+        type='Cooking/Baking',
+        image='https://nespinosaportfoliobucket.s3.amazonaws.com/cooking.png'
     )
 
     db.session.add(task_type1)
