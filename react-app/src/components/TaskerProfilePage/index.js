@@ -63,7 +63,7 @@ function TaskerProfilePage() {
         <div>
             <div id="taskerProfContainer">
                 <h1 className="welcome">Welcome {user.firstName}.</h1>
-                <h2 className="currTTcontainer">Your current tasktypes are:</h2>
+                {isLoaded && currTaskerTaskTypes.length >0 && (<h2 className="currTTcontainer">You are currently available to perform the following task types:</h2>)}
                     <div className="TTcontainer">
                         {isLoaded && currTaskerTaskTypes.map((currTaskerTaskType) => (
                             <div className="individualTTcontainer" key={currTaskerTaskType.id}>
@@ -85,6 +85,11 @@ function TaskerProfilePage() {
                                 </div>
                             </div>
                         ))}
+                        {!currTaskerTaskTypes.length &&(
+                        <div>
+                            <h3> You are not currently available to perform any task types.</h3>
+                            <h4>Use this form to add task types that you would like to perform.</h4>
+                        </div>)}
                         <div className="create-new-tasktype-container">
                             {!user || (
                                 <div  className='create-new-tasktype'>
