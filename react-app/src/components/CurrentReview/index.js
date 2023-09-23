@@ -14,7 +14,7 @@ const ReviewByLoggedIn = () => {
 
     // state
     const reviewList = useSelector(state => Object.values(state.reviewReducer))
-    // console.log(reviewList, 'state Result')
+    console.log(reviewList, 'state Result')
     const user = useSelector(state => state.session.user)
     // const taskers = useSelector(state => Object.values(state.taskers))
     const taskers = useSelector(state => state.taskers)
@@ -79,8 +79,14 @@ const ReviewByLoggedIn = () => {
                         
                         {rev.task_id && (
                             <div id="revContent">
+                                <div className="revTT">
                                 <span className="rev-title">Task Type: </span>{rev.task.taskType.type}
-                            </div>
+                                   
+                                </div>
+                                <div>
+                                    <img src={rev.task.taskType.image} alt="taskTypeImage" width="100" height="100" className="tasktype-image"/>
+                                </div>
+                             </div>
                         )}
                         {rev.task_id && (
                             <div id="revContent">

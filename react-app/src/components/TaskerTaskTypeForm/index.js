@@ -84,7 +84,6 @@ const TaskerTaskTypeForm = ({ taskerTaskType, formType}) => {
         console.log(data, "DATAnewTaskerTaskType details in TaskerTaskType component----AFTER dispatching CreateTaskerTaskType");
         if (data.id) {
             setErrors(data);
-            // console.log(data.errors, "ERRRRRROOORRRRSSSS");
             let taskertasktypeId = data.id;
             dispatch(getTaskerTaskTypes(taskertasktypeId));
             history.push('/taskerTaskTypes/current')
@@ -110,7 +109,7 @@ const TaskerTaskTypeForm = ({ taskerTaskType, formType}) => {
                                         <h3 className='newTT-TitleContainer'>Use this form to add a new tasktype to your profile.</h3>              
                                             <div className='newTTcontainer'>
                                                 <h3>
-                                                    <div>
+                                                    <div className='createTT'>
                                                         <label  htmlFor='taskType_id'>Task Type </label>
                                                             {hasSubmitted && !taskType_id && (
                                                                 <label htmlFor='taskType_id' className='field-error'>Task type is required</label>
@@ -133,12 +132,13 @@ const TaskerTaskTypeForm = ({ taskerTaskType, formType}) => {
                                                                 <option value={10}>Cooking/Baking</option>  
                                                             </select>
                                                     </div>
-                                                    <div className='d'>
+                                                    <div >
                                                         <label htmlFor='hourlyRate'>Enter an hourly rate in US dollars: </label>
                                                             {hasSubmitted && !hourlyRate && (
                                                                 <label htmlFor='hourlyRate' className='e'>Hourly rate is required</label>
                                                             )}
                                                             <input 
+                                                                className="rateTTform"
                                                                 type="number"
                                                                 placeholder="hourlyRate"
                                                                 required={true}

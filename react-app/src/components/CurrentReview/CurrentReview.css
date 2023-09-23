@@ -58,6 +58,10 @@
     justify-items: center;
 }
 
+.revTT {
+    padding-bottom: 10px;
+}
+
 .starRating {
     /* display: grid; */
     justify-content: end;

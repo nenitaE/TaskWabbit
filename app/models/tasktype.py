@@ -34,4 +34,5 @@ class TaskType(db.Model):
         return {
             'id': self.id,
             'type': self.type,
+            'image': self.image
         }

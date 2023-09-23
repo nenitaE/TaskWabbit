@@ -36,6 +36,17 @@
     margin-bottom: 15px;
 }
 
+.createTT {
+    padding-bottom: 10px;
+}
+
+.createTTdropdown {
+    height: 30px;
+}
+
+.rateTTform {
+    height: 20px;
+}
 .newTTSubmitBTN {
     background-color: transparent;
     padding: 8px;
