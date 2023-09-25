@@ -18,7 +18,6 @@ const ReviewByLoggedIn = () => {
     const user = useSelector(state => state.session.user)
     // const taskers = useSelector(state => Object.values(state.taskers))
     const taskers = useSelector(state => state.taskers)
-    // console.log(user, taskers, 'user-------------')
 
     const[isLoaded, setIsLoaded] = useState(false)
 
@@ -41,8 +40,6 @@ const ReviewByLoggedIn = () => {
     //     // console.log(tasker.id)
     //     // taskerData.push(tasker)
     // })
-    // console.log(taskerData, 'tasker DATA')
-
     return (
         <>
             {isLoaded &&

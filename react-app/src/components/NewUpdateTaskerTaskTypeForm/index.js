@@ -30,8 +30,6 @@ function NewUpdateTaskerTaskTypeForm() {
     const taskTypesById = {};
     taskTypes.forEach(taskType => {taskTypesById[taskType.id] = taskType})
 
-    // const taskTypeDescription = taskTypesById[taskType_id].type
-    // console.log(taskTypeDescription, "taskTypeDescription")
 
     const tasker_id = useSelector((state) => state.session.user?.id);
 
@@ -45,25 +43,19 @@ function NewUpdateTaskerTaskTypeForm() {
 
 
     const handleSubmit = async (e) => {
-    //   console.log("Inside Handle SUbmit...EditTaskerTaskTypeForm component>>>>>>>>>>>>>>")
-  
       e.preventDefault();
       setHasSubmitted(true);
       const existingData = {
           "tasker_id": tasker_id,
           "taskType_id": taskerProfile.taskType_id
       };
-    //   console.log(existingData, "********existingData in handle submit")
       const taskerTaskTypeData = {
         hourlyRate
       }
-    //   console.log(taskerTaskTypeData, "********EDITED***taskerTaskTypeData in handle submit")
-      
       const finalTaskerTaskTypeData = {
         ...existingData,
         ...taskerTaskTypeData
-      }
-    //   console.log(finalTaskerTaskTypeData, "********finalTaskerTaskTypeData in handle submit")
+      }TaskerTaskTypeData, "********finalTaskerTaskTypeData in handle submit")
 
     // Set errors
       if (hourlyRate.length <= 0){

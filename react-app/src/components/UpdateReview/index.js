@@ -11,7 +11,6 @@ const Update = () => {
     const history = useHistory()
 
     const {id} = useParams()
-    // console.log(id, 'test')
     const review = useSelector(state => state.reviewReducer[id])
 
     const userSession = useSelector(state => state.session.user)
@@ -45,7 +44,6 @@ const Update = () => {
 
     // converting to Object
     let reviewObj = review
-    // console.log(reviewObj, 'reviewObj --------')
 
     return(
         // <p>Test</p>

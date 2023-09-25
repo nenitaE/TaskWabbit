@@ -45,19 +45,6 @@ function TaskerProfilePage() {
         setModalContent(<DeleteTaskerTaskTypeModal taskerTaskTypeId={taskerTaskTypeId}/>)
     }
 
-    
-    // const taskTypeImageById = {};
-    // //grab each tasktype id and pass it in as the key with imageData as the value
-    // taskTypesImages.forEach(tasktypeImage => {
-    //     taskTypeImageById[tasktypeImage.id] = tasktypeImage
-    // })
-
-    
-
-
-
-
-
 
     return (
         <div>
