@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import AverageRating from './AverageRating';
 import './homePage.css';
 
 import { NavLink, Link, Route, useParams } from 'react-router-dom';
@@ -38,9 +39,10 @@ const HomePage = () => {
             <h1>Loading</h1>
         )
     }
-
-
+   
     const recommendedTaskers = taskers.filter(tasker => user ? tasker.id != user.id : true).slice(0, 3);
+    
+    
     return (
         <main className='homepage-main-container'>
 
@@ -84,24 +86,27 @@ const HomePage = () => {
                 </div>
             </div>
             <div className="center-spacing">
-
+                <h2 className='recommendedTitle'>
+                    Taskers recommended for you
+                </h2>
             </div>
             <div className="taskers-recommended-container">
-                <h3>
-                    Taskers recommended for you
-                </h3>
+                
                 <div className="taskers-recommended-spacing">
                     {recommendedTaskers.map((tasker) => (
                         <div className="tasker-recommended-individual" key={tasker.id}>
                             <div className="popular-in-area">popular in your area</div>
                             <div className='tasker-recommended-details'>
                                 <h3>{tasker.firstName} {tasker.lastName}</h3>
-                                <p>({tasker.reviews.length} reviews)</p>
+                                <AverageRating reviews={tasker.reviews} />
+                                {/* <p>({tasker.reviews.length} reviews)</p> */}
                                 <div>—————  Top Skills —————</div>
                                 <div className="top-skill-container">
                                     {tasker.taskerTaskTypes.slice(0, 3).map((taskerTaskType) => (
                                         <div className="top-skills-layout" key={taskerTaskType.id}>
-                                            {taskTypesById[taskerTaskType.taskType_id].type} for ${taskerTaskType.hourlyRate}/hr
+                                           <span>{taskTypesById[taskerTaskType.taskType_id].type} for ${taskerTaskType.hourlyRate}/hr</span> 
+                                           <p><img src={taskTypesById[taskerTaskType.taskType_id].image} alt="taskTypeImage" width="100" height="100" className="tasktype-image"/></p> 
+                                            
                                         </div>
                                     ))}
                                 </div>
