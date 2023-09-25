@@ -30,6 +30,8 @@ function NewUpdateTaskerTaskTypeForm() {
     const taskTypesById = {};
     taskTypes.forEach(taskType => {taskTypesById[taskType.id] = taskType})
 
+    // const taskTypeDescription = taskTypesById[taskType_id].type
+    // console.log(taskTypeDescription, "taskTypeDescription")
 
     const tasker_id = useSelector((state) => state.session.user?.id);
 
@@ -43,20 +45,21 @@ function NewUpdateTaskerTaskTypeForm() {
 
 
     const handleSubmit = async (e) => {
+      
       e.preventDefault();
       setHasSubmitted(true);
       const existingData = {
           "tasker_id": tasker_id,
           "taskType_id": taskerProfile.taskType_id
       };
+      
       const taskerTaskTypeData = {
         hourlyRate
       }
       const finalTaskerTaskTypeData = {
         ...existingData,
         ...taskerTaskTypeData
-      }TaskerTaskTypeData, "********finalTaskerTaskTypeData in handle submit")
-
+      }
     // Set errors
       if (hourlyRate.length <= 0){
         setRateError('Must enter an hourly rate in USD to update');
