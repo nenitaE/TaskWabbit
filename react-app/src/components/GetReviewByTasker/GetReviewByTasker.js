@@ -13,8 +13,6 @@ const ReviewsByTasker_id = () => {
     const taskerData = useSelector(state => Object.values(state.taskers))
     let {tasker_id} = useParams()
     tasker_id = Number(tasker_id)
-    console.log(list, tasker_id, typeof(tasker_id),'state in compo')
-    console.log(taskerData, 'Data-----')
 
     useEffect(() => {
         dispatch(getReviewByTaskerId((tasker_id)))
@@ -23,7 +21,6 @@ const ReviewsByTasker_id = () => {
 
     let tasker = []
     taskerData.forEach( data => {
-        console.log(data.id, 'data ID')
         if(data.id === tasker_id){
             return tasker.push(data)
         }
@@ -34,8 +31,6 @@ const ReviewsByTasker_id = () => {
             <p>...loading</p>
         )
     }
-    // console.log(tasker, 'tasker data')
-    // console.log(tasker[0], 'testing')
 
     let avg = 0
     let numReview = 0
@@ -45,7 +40,6 @@ const ReviewsByTasker_id = () => {
         avg = avg+ review.rating
     })
 
-    // console.log(avg, numReview, 'test')
 
     const taskstypesobj = {
         1:"General Mounting",

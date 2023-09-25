@@ -6,14 +6,11 @@ import { getTaskTypes } from '../../store/taskTypes';
 import './TaskerTaskType.css';
 
 const TaskerTaskTypeForm = ({ taskerTaskType, formType}) => {
-    console.log("Inside TaskerTaskTypeForm component>>>>>>>>>>>>>>")
+    
     const tasker_id = useSelector((state) => state.session.user?.id);
-    console.log(tasker_id, "******SESSIONUSER*********")
     const history = useHistory();
     
 
-    // const tasker_id = session.user.id;
-    // console.log (tasker_id, "********TASKERID********")
    
     const [hourlyRate, setHourlyRate] = useState("");
     const [rateError, setRateError] = useState('');
@@ -31,14 +28,11 @@ const TaskerTaskTypeForm = ({ taskerTaskType, formType}) => {
     useEffect(() => {
         const data = dispatch(getTaskerTaskTypes());
         const taskTypeData = dispatch(getTaskTypes());
-        console.log("********DATA-taskerTaskTypes*********", data)  
-        console.log("********taskTypeDATA-taskerTaskTypes*********", taskTypeData)  
     }, [dispatch]);
 
 
     const handleSubmit = async (e) => {
-        // console.log("Inside Handle SUbmit...TaskerTaskTypeForm component>>>>>>>>>>>>>>")
-    
+        
         e.preventDefault();
         setHasSubmitted(true);
         // Set hourlyRate errors
@@ -68,18 +62,7 @@ const TaskerTaskTypeForm = ({ taskerTaskType, formType}) => {
             return;
         }
 
-        // let newTaskerTaskType = await dispatch(fetchCreateTaskerTaskType(taskerTaskType));
-        // console.log(newTaskerTaskType, "newTaskerTaskType details in TaskerTaskType component----AFTER dispatching CreateTaskerTaskType");
-        // setErrors(newTaskerTaskType);
-        // if (newTaskerTaskType.errors) {
-        //     console.log(newTaskerTaskType.errors, "ERRRRRROOORRRRSSSS");  
-        // } else {
-        //     let taskertasktypeId = newTaskerTaskType.id;
-            
-        //     // history.push(`/taskerTaskTypes/current`);
-        //     dispatch(getTaskerTaskTypes(taskertasktypeId));
-
-        // }   
+          
         const data = await dispatch(fetchCreateTaskerTaskType(taskerTaskType));
         console.log(data, "DATAnewTaskerTaskType details in TaskerTaskType component----AFTER dispatching CreateTaskerTaskType");
         if (data.id) {

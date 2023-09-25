@@ -6,7 +6,7 @@ import "./CreateReviewForm.css"
 
 const CreateReviewForm = ({test, taskId}) => {
 
-    // console.log(test, typeof(test),'tasker_id in form')
+
     const [description, setDescription] = useState('')
     const [rating, setRating] = useState('')
     const [tasker_id, setTasker_id] = useState('')
@@ -20,10 +20,8 @@ const CreateReviewForm = ({test, taskId}) => {
     }, [dispatch])
 
     const sessionUser = useSelector( (state) => state.session.user)
-    // console.log(typeof(sessionUser), sessionUser, 'session//////////////')
 
     const sessiontest = useSelector( state => state)
-    // console.log(sessiontest, 'test---------')
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -46,7 +44,6 @@ const CreateReviewForm = ({test, taskId}) => {
         }
 
         let newReviewByUser = await dispatch(createNewReviewByUser(payload))
-        // console.log(newReviewByUser, 'handle submit')
 
         if (newReviewByUser) {
             return history.push('/reviews/currentUser')

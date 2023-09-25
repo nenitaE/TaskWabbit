@@ -76,13 +76,11 @@ function CreateTaskForm() {
       timeDiff: new Date().getTimezoneOffset()
     }
     const data = await dispatch(createTask(taskData))
-    // console.log("Create task Form in the component", data);
     if(isMounted){
       if (data) {
         setErrors(data)
       } else {
         setStep(step + 1);
-        // console.log("Form submitted successfully");
       }
     }
   }

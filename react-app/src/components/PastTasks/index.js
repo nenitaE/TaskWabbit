@@ -34,7 +34,6 @@ function PastTasksPage(){
     useEffect(() =>{
         dispatch(getTasks())
         dispatch(getTaskers())
-        // console.log('The TASKERS', taskers)
     }, [dispatch])
 
 
