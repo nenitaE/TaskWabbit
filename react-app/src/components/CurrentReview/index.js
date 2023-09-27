@@ -14,7 +14,7 @@ const ReviewByLoggedIn = () => {
 
     // state
     const reviewList = useSelector(state => Object.values(state.reviewReducer))
-    console.log(reviewList, 'state Result')
+   
     const user = useSelector(state => state.session.user)
     // const taskers = useSelector(state => Object.values(state.taskers))
     const taskers = useSelector(state => state.taskers)
@@ -36,10 +36,6 @@ const ReviewByLoggedIn = () => {
         )
     }
 
-    // taskers.forEach(tasker => {
-    //     // console.log(tasker.id)
-    //     // taskerData.push(tasker)
-    // })
     return (
         <>
             {isLoaded &&

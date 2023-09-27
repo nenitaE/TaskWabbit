@@ -118,7 +118,6 @@ export const deleteTaskerTaskType = (taskerTaskTypeId) => async(dispatch) => {
 
 
 export const fetchCreateTaskerTaskType = (taskerTaskTypeData) => async(dispatch) =>{
-    console.log("********INSIDE CREATE TASKTYPE THUNK******")
     try {
         const response = await fetch('/api/taskerTaskTypes', {
             method: "POST",

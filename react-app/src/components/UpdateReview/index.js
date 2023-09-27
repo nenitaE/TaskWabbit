@@ -14,12 +14,10 @@ const Update = () => {
     const review = useSelector(state => state.reviewReducer[id])
 
     const userSession = useSelector(state => state.session.user)
-    console.log(review, userSession, 'review update')
-
+   
     useEffect(() => {
 
         dispatch(getRevById(id))
-        console.log(id, 'idTest')
     }, [dispatch, userSession])
 
     if(!review){

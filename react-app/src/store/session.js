@@ -24,7 +24,6 @@ export const authenticate = () => async (dispatch) => {
 	});
 	if (response.ok) {
 		const data = await response.json();
-		// console.log(data.errors, "data.errors truthy")
 		if (data.errors) {
 			return
 		}

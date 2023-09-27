@@ -11,13 +11,19 @@ function Navigation({ isLoaded }){
 
 	return (
 			<div className='navContainer'>
-				<NavLink exact to="/" className="navLinkLogo">
-					<img className='logoimg' src={logoimg} alt='logo' />
-				</NavLink>	
-				<span>
-					<li className="profileButton">
-							<ProfileButton user={sessionUser} />
-					</li>
+				<span className='logo-link'>
+					<NavLink exact to="/" className="navLinkLogo">
+						<img className='logoimg' src={logoimg} alt='logo' />
+					</NavLink>	
+				</span>
+				
+				<span className="about-link">
+					<NavLink className='aboutLink' exact to="/about">
+					ABOUT
+					</NavLink>
+				</span>
+				<span className='profileButton'>
+					<ProfileButton user={sessionUser} />
 				</span>
 			</div>
 	);
