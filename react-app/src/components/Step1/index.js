@@ -22,7 +22,6 @@ function Step1({onStepComplete, existingData}){
     const fetchSuggestions = async (input) => {
         const response = await fetch(`/api/auth/autocomplete/${input}`);
         const data = await response.json();
-        // console.log('Fetched suggestions:', data);
         setSuggestions(data);
     };
 
@@ -34,7 +33,6 @@ function Step1({onStepComplete, existingData}){
     }, []);
 
     useEffect(() => {
-        // console.log('Input value:', inputValue);
         if (inputValue && isInputChanged) { // && !isInputSelected
           setLocationSelectedFromSuggestions(false);
           fetchSuggestions(inputValue);

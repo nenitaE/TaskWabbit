@@ -38,7 +38,6 @@ function TasksPage(){
     useEffect(() =>{
         dispatch(getTasks())
         dispatch(getTaskers())
-        // console.log('TASKKSSS', tasks);
     }, [dispatch])
 
     const openDeleteModal = (taskId) => {

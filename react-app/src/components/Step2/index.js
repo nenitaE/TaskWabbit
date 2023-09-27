@@ -43,7 +43,7 @@ function Step2({ onStepComplete, taskers}){
     const handleSelectTasker= (taskerId) => {
         const selectedTasker = filteredTaskers.find(tasker => tasker.id === taskerId);
         const taskType = selectedTasker.taskerTaskTypes.find(taskType => taskType.taskType_id == taskTypeId);
-        // console.log('THE TASKTYPE', taskType.hourlyRate)
+        
         const trustAndSupportFee = 12.54;
         // const totalRate = Number(taskType.hourlyRate) + trustAndSupportFee;
 
@@ -70,12 +70,11 @@ function Step2({ onStepComplete, taskers}){
     }, [dispatch])
 
     const tasks = useSelector(state => state.tasks.tasks)
-    // console.log('THE TASKS', tasks)
-
+  
+    
     const filteredTaskers = taskers.filter((tasker) => {
-        // console.log('In the loop', tasker)
+        
         if(tasker.id === user.id) {
-            // console.log(`Tasker ${tasker.id} has the same ID as the user, excluding`);
             return false;
         }
         for (let i = 0; i < tasker.taskerTaskTypes.length; i++){
@@ -87,7 +86,7 @@ function Step2({ onStepComplete, taskers}){
         return false
     })
 
-    // console.log('LALALA', filteredTaskers)
+    
 
     function countTaskerTasks(taskerId, taskTypeId) {
         let count = 0

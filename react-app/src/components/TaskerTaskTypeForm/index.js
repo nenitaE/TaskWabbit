@@ -64,7 +64,7 @@ const TaskerTaskTypeForm = ({ taskerTaskType, formType}) => {
 
           
         const data = await dispatch(fetchCreateTaskerTaskType(taskerTaskType));
-        console.log(data, "DATAnewTaskerTaskType details in TaskerTaskType component----AFTER dispatching CreateTaskerTaskType");
+        
         if (data.id) {
             setErrors(data);
             let taskertasktypeId = data.id;

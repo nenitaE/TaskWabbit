@@ -9,9 +9,7 @@ const GetReview = () => {
     const dispatch = useDispatch()
     const {id} = useParams()
     const selectReview = useSelector( state => Object.values(state.reviewReducer))
-    // console.log(id, 'id')
-    // console.log()
-    // console.log(selectReview, 'selectRev----')
+   
 
     useEffect(() => {
         dispatch(getRevById(id))

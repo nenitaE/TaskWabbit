@@ -6,7 +6,7 @@ import { getReviewForLoggedIn } from "../../store/reviews";
 
 export default function CreateReviewModal ({tasker_id, task_id}){
 
-    // console.log(tasker_id, 'tasker_id---')
+   
     const dispatch = useDispatch()
 
     const [modal, setModal] = useState(false)
@@ -17,8 +17,7 @@ export default function CreateReviewModal ({tasker_id, task_id}){
 
     const user = useSelector( state => state.session.user)
     const rev = useSelector( state => Object.values(state.reviewReducer))
-    console.log(rev, user,'--------rev-----')
-
+    
     useEffect(() => {
         dispatch(getReviewForLoggedIn())
     }, [dispatch])
@@ -28,8 +27,7 @@ export default function CreateReviewModal ({tasker_id, task_id}){
             return ele.task_id === task_id
         }
     )
-
-    console.log(arr, '-----revArr---------')
+    
 
     if(arr.length){
         return(

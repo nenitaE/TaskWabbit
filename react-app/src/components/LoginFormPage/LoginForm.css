@@ -64,6 +64,7 @@ html, body
 }
 
 .login-button2 {
+    cursor: pointer;
     color: white;
     background-color: #006b54;
     font-size: 17px;

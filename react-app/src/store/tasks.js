@@ -46,7 +46,6 @@ export const getTasks = () => async(dispatch) => {
     const response = await fetch('/api/tasks/current');
     if(response.ok){
         const data = await response.json();
-        // console.log(data)
         dispatch(setTasks(data.tasks))
     }
 }
@@ -60,7 +59,6 @@ export const getTask = (taskId) => async(dispatch) => {
 }
 
 export const updateTask = (taskId, taskData) => async(dispatch) =>{
-        // console.log("FAILED BODY", JSON.stringify(taskData))
     const response = await fetch(`/api/tasks/${taskId}`, {
         method: "PUT",
         headers: {
@@ -100,31 +98,9 @@ export const deleteTask = (taskId) => async(dispatch) => {
     }
 }
 
-// export const createTask = (taskData) => async(dispatch) =>{
-//     console.log("FAILED BODY", JSON.stringify(taskData))
-//     const response = await fetch('/api/tasks', {
-//         method: "POST",
-//         headers: {
-//             'Content-Type': 'application/json'
-//         },
-//         body: JSON.stringify(taskData)
-//     })
-//     if(response.ok){
-//         const newTask = await response.json();
-//         dispatch(createTaskAction(newTask));
-//         return newTask
-//     } else if (response.status <= 500){
-//         const data = response.json();
-//         if(data.errors){
-//             return data.errors;
-//         }
-//     }else {
-//         return ('An error occurred. Please try again')
-//     }
-// }
+
 
 export const createTask = (taskData) => async(dispatch) =>{
-    // console.log("FAILED BODY", JSON.stringify(taskData))
     try {
 
         const response = await fetch('/api/tasks/', {
@@ -136,11 +112,9 @@ export const createTask = (taskData) => async(dispatch) =>{
         });
         if(response.ok){
             const newTask = await response.json();
-            // console.log(newTask, 'in my thunk, the response i get back')
             dispatch(createTaskAction(newTask));
             return newTask
         } else if (response.status <= 500){
-            // console.log("FAILED BODY", JSON.stringify(taskData))
             const data = await response.json();
             if(data.errors){
                 return data.errors;

@@ -7,7 +7,6 @@ import './NewUpdateTaskerTaskType.css';
 
 function NewUpdateTaskerTaskTypeForm() {
     const { taskerTaskTypeId } = useParams();
-    console.log(taskerTaskTypeId, "*********taskerTaskType.Id in Update Form*********")
     
     //Get taskerTaskType by Id
     const dispatch = useDispatch();
@@ -19,20 +18,16 @@ function NewUpdateTaskerTaskTypeForm() {
     }, [dispatch, taskerTaskTypeId]);
 
     const taskerProfile = useSelector((state) => state.taskerProfile.taskerTaskType);
-    console.log("*********TASKERProfile IN UPDATE FORM", taskerProfile)
-
+    
     const taskType_id = taskerProfile.taskType_id
-    console.log(taskType_id, "taskType_id")
-
+    
     const taskTypes = useSelector(state => state.taskTypes);
 
     // flatten taskTypes into an obj with key of taskType.id
     const taskTypesById = {};
     taskTypes.forEach(taskType => {taskTypesById[taskType.id] = taskType})
 
-    // const taskTypeDescription = taskTypesById[taskType_id].type
-    // console.log(taskTypeDescription, "taskTypeDescription")
-
+    
     const tasker_id = useSelector((state) => state.session.user?.id);
 
     const history = useHistory();
@@ -78,8 +73,7 @@ function NewUpdateTaskerTaskTypeForm() {
     
       //dispatching edited data
       const editedTaskType = await dispatch(updateTaskerTaskType(taskerTaskTypeId, finalTaskerTaskTypeData));
-      console.log(editedTaskType, "editedTaskerTaskType details in EditTaskerTaskTypeForm component----AFTER dispatching editTaskerTaskType");
-
+      
       if (editedTaskType) {
         
         history.push(`/taskerTaskTypes/current`);

@@ -24,6 +24,7 @@ import ProtectedRoute from "./ProtectedRoute";
 import PastTasksPage from "./components/PastTasks";
 import Footer from "./components/Footer";
 import {useLocation} from 'react-router-dom';
+import AboutPage from "./components/AboutPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -40,6 +41,9 @@ function App() {
         <Switch>
           <Route exact path="/">
             <HomePage />
+          </Route>
+          <Route exact path="/about">
+            <AboutPage />
           </Route>
           <Route exact path="/login/:taskTypeId?" >
             <LoginFormPage />
