@@ -15,7 +15,7 @@ const AboutPage = () => {
                     <h2>A group project inspired by TaskRabbit.com</h2> 
                     <div className="aboutContent">
                         <p>TaskWabbit is a fullstack web application that was built utilizing
-                        the following frameworks: JavaScript, Redux.js, Python, Flask, 
+                        the following languages/frameworks/libraries: JavaScript, Redux.js, Python, Flask, 
                         SQLAlchemy, React.js, HTML, and CSS.</p>
 
                         <p>TaskWabbit allows users to book skilled individuals 
