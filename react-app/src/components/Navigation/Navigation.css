@@ -36,6 +36,11 @@
 .profileButton {
   display: grid;
   justify-items: end;
+  list-style-type: none;
+}
+
+.navContainer li {
+  list-style-type: none;
 }
 
 #navProfileBTTN {
